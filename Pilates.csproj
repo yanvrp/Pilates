@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33031A85-68F8-4458-A013-B630C47ACA3A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Pilates</RootNamespace>
+    <AssemblyName>Pilates</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.3.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Enums.NET, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>packages\Enums.NET.4.0.1\lib\net45\Enums.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtendedNumerics.BigDecimal, Version=2023.1000.0.230, Culture=neutral, PublicKeyToken=65f1315a45ad8949, processorArchitecture=MSIL">
+      <HintPath>packages\ExtendedNumerics.BigDecimal.2023.1000.0.230\lib\net472\ExtendedNumerics.BigDecimal.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Numerics.Signed.5.0.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>packages\SixLabors.Fonts.1.0.1\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>packages\SixLabors.ImageSharp.2.1.7\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=6.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Pkcs.6.0.3\lib\net461\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=6.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Xml.6.0.1\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\ControllerAluno.cs" />
+    <Compile Include="Controller\ControllerCidade.cs" />
+    <Compile Include="Controller\ControllerCirurgia.cs" />
+    <Compile Include="Controller\ControllerCondicaoPagamento.cs" />
+    <Compile Include="Controller\ControllerContasPagar.cs" />
+    <Compile Include="Controller\ControllerContasReceber.cs" />
+    <Compile Include="Controller\ControllerContrato.cs" />
+    <Compile Include="Controller\ControllerDoenca.cs" />
+    <Compile Include="Controller\ControllerDores.cs" />
+    <Compile Include="Controller\ControllerEstado.cs" />
+    <Compile Include="Controller\ControllerEvolucao.cs" />
+    <Compile Include="Controller\ControllerFormaPagamento.cs" />
+    <Compile Include="Controller\ControllerGestacao.cs" />
+    <Compile Include="Controller\ControllerMedicamento.cs" />
+    <Compile Include="Controller\ControllerPai.cs" />
+    <Compile Include="Controller\ControllerPais.cs" />
+    <Compile Include="Controller\ControllerPostura.cs" />
+    <Compile Include="Controller\ControllerProfissao.cs" />
+    <Compile Include="Controller\ControllerPrograma.cs" />
+    <Compile Include="DAO\DAO.cs" />
+    <Compile Include="DAO\DAOAluno.cs" />
+    <Compile Include="DAO\DAOCidade.cs" />
+    <Compile Include="DAO\DAOCirurgia.cs" />
+    <Compile Include="DAO\DAOCondicaoPagamento.cs" />
+    <Compile Include="DAO\DAOContasPagar.cs" />
+    <Compile Include="DAO\DAOContasReceber.cs" />
+    <Compile Include="DAO\DAOContrato.cs" />
+    <Compile Include="DAO\DAODoenca.cs" />
+    <Compile Include="DAO\DAODores.cs" />
+    <Compile Include="DAO\DAOEstado.cs" />
+    <Compile Include="DAO\DAOEvolucao.cs" />
+    <Compile Include="DAO\DAOFormaPagamento.cs" />
+    <Compile Include="DAO\DAOGestacao.cs" />
+    <Compile Include="DAO\DAOMedicamento.cs" />
+    <Compile Include="DAO\DAOPais.cs" />
+    <Compile Include="DAO\DAOPostura.cs" />
+    <Compile Include="DAO\DAOProfissao.cs" />
+    <Compile Include="DAO\DAOPrograma.cs" />
+    <Compile Include="Models\ModelAluno.cs" />
+    <Compile Include="Models\ModelCidade.cs" />
+    <Compile Include="Models\ModelCirurgia.cs" />
+    <Compile Include="Models\ModelCondicaoPagamento.cs" />
+    <Compile Include="Models\ModelContasPagar.cs" />
+    <Compile Include="Models\ModelContasReceber.cs" />
+    <Compile Include="Models\ModelContrato.cs" />
+    <Compile Include="Models\ModelDoenca.cs" />
+    <Compile Include="Models\ModelDores.cs" />
+    <Compile Include="Models\ModelEstado.cs" />
+    <Compile Include="Models\ModelEvolucao.cs" />
+    <Compile Include="Models\ModelFormaPagamento.cs" />
+    <Compile Include="Models\ModelGestacao.cs" />
+    <Compile Include="Models\ModelMedicamento.cs" />
+    <Compile Include="Models\ModelPais.cs" />
+    <Compile Include="Models\ModelParcela.cs" />
+    <Compile Include="Models\ModelPostura.cs" />
+    <Compile Include="Models\ModelProfissao.cs" />
+    <Compile Include="Models\ModelPrograma.cs" />
+    <Compile Include="pilates_BemEstarDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pilates_BemEstarDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroAluno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroAluno.Designer.cs">
+      <DependentUpon>CadastroAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroCidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroCidade.Designer.cs">
+      <DependentUpon>CadastroCidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroCirurgia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroCirurgia.Designer.cs">
+      <DependentUpon>CadastroCirurgia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroCondicaoDePagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroCondicaoDePagamento.Designer.cs">
+      <DependentUpon>CadastroCondicaoDePagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroContasPagar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroContasPagar.Designer.cs">
+      <DependentUpon>CadastroContasPagar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroContasReceber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroContasReceber.Designer.cs">
+      <DependentUpon>CadastroContasReceber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroContrato.Designer.cs">
+      <DependentUpon>CadastroContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroDoenca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroDoenca.Designer.cs">
+      <DependentUpon>CadastroDoenca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroDores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroDores.Designer.cs">
+      <DependentUpon>CadastroDores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroEstado.Designer.cs">
+      <DependentUpon>CadastroEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroEvolucao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroEvolucao.Designer.cs">
+      <DependentUpon>CadastroEvolucao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroFormaPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroFormaPagamento.Designer.cs">
+      <DependentUpon>CadastroFormaPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroGestacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroGestacao.Designer.cs">
+      <DependentUpon>CadastroGestacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroMedicamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroMedicamento.Designer.cs">
+      <DependentUpon>CadastroMedicamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroPAI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroPAI.Designer.cs">
+      <DependentUpon>CadastroPAI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroPais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroPais.Designer.cs">
+      <DependentUpon>CadastroPais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroPostura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroPostura.Designer.cs">
+      <DependentUpon>CadastroPostura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroProfissao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroProfissao.Designer.cs">
+      <DependentUpon>CadastroProfissao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroPrograma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroPrograma.Designer.cs">
+      <DependentUpon>CadastroPrograma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaAluno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaAluno.Designer.cs">
+      <DependentUpon>ConsultaAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaCidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaCidade.Designer.cs">
+      <DependentUpon>ConsultaCidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaCirurgia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaCirurgia.Designer.cs">
+      <DependentUpon>ConsultaCirurgia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaCondicaoPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaCondicaoPagamento.Designer.cs">
+      <DependentUpon>ConsultaCondicaoPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaContasPagar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaContasPagar.Designer.cs">
+      <DependentUpon>ConsultaContasPagar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaContasReceber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaContasReceber.Designer.cs">
+      <DependentUpon>ConsultaContasReceber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaContrato.Designer.cs">
+      <DependentUpon>ConsultaContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaDoenca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaDoenca.Designer.cs">
+      <DependentUpon>ConsultaDoenca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaDores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaDores.Designer.cs">
+      <DependentUpon>ConsultaDores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaEstado.Designer.cs">
+      <DependentUpon>ConsultaEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaEvolucao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaEvolucao.Designer.cs">
+      <DependentUpon>ConsultaEvolucao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaFormaPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaFormaPagamento.Designer.cs">
+      <DependentUpon>ConsultaFormaPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaGestacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaGestacao.Designer.cs">
+      <DependentUpon>ConsultaGestacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaMedicamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaMedicamento.Designer.cs">
+      <DependentUpon>ConsultaMedicamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaPAI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaPAI.Designer.cs">
+      <DependentUpon>ConsultaPAI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaPais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaPais.Designer.cs">
+      <DependentUpon>ConsultaPais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaPostura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaPostura.Designer.cs">
+      <DependentUpon>ConsultaPostura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaProfissao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaProfissao.Designer.cs">
+      <DependentUpon>ConsultaProfissao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaPrograma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaPrograma.Designer.cs">
+      <DependentUpon>ConsultaPrograma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MenuPrincipal.Designer.cs">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Validacoes.cs" />
+    <EmbeddedResource Include="Views\CadastroAluno.resx">
+      <DependentUpon>CadastroAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroCidade.resx">
+      <DependentUpon>CadastroCidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroCirurgia.resx">
+      <DependentUpon>CadastroCirurgia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroCondicaoDePagamento.resx">
+      <DependentUpon>CadastroCondicaoDePagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroContasPagar.resx">
+      <DependentUpon>CadastroContasPagar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroContasReceber.resx">
+      <DependentUpon>CadastroContasReceber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroContrato.resx">
+      <DependentUpon>CadastroContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroDoenca.resx">
+      <DependentUpon>CadastroDoenca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroDores.resx">
+      <DependentUpon>CadastroDores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroEstado.resx">
+      <DependentUpon>CadastroEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroEvolucao.resx">
+      <DependentUpon>CadastroEvolucao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroFormaPagamento.resx">
+      <DependentUpon>CadastroFormaPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroGestacao.resx">
+      <DependentUpon>CadastroGestacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroMedicamento.resx">
+      <DependentUpon>CadastroMedicamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroPAI.resx">
+      <DependentUpon>CadastroPAI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroPais.resx">
+      <DependentUpon>CadastroPais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroPostura.resx">
+      <DependentUpon>CadastroPostura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroProfissao.resx">
+      <DependentUpon>CadastroProfissao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroPrograma.resx">
+      <DependentUpon>CadastroPrograma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaAluno.resx">
+      <DependentUpon>ConsultaAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaCidade.resx">
+      <DependentUpon>ConsultaCidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaCirurgia.resx">
+      <DependentUpon>ConsultaCirurgia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaCondicaoPagamento.resx">
+      <DependentUpon>ConsultaCondicaoPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaContasPagar.resx">
+      <DependentUpon>ConsultaContasPagar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaContasReceber.resx">
+      <DependentUpon>ConsultaContasReceber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaContrato.resx">
+      <DependentUpon>ConsultaContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaDoenca.resx">
+      <DependentUpon>ConsultaDoenca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaDores.resx">
+      <DependentUpon>ConsultaDores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaEstado.resx">
+      <DependentUpon>ConsultaEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaEvolucao.resx">
+      <DependentUpon>ConsultaEvolucao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaFormaPagamento.resx">
+      <DependentUpon>ConsultaFormaPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaGestacao.resx">
+      <DependentUpon>ConsultaGestacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaMedicamento.resx">
+      <DependentUpon>ConsultaMedicamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaPAI.resx">
+      <DependentUpon>ConsultaPAI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaPais.resx">
+      <DependentUpon>ConsultaPais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaPostura.resx">
+      <DependentUpon>ConsultaPostura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaProfissao.resx">
+      <DependentUpon>ConsultaProfissao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaPrograma.resx">
+      <DependentUpon>ConsultaPrograma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="pilates_BemEstarDataSet.xsc">
+      <DependentUpon>pilates_BemEstarDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="pilates_BemEstarDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pilates_BemEstarDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="pilates_BemEstarDataSet.xss">
+      <DependentUpon>pilates_BemEstarDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
