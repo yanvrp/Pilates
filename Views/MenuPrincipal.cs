@@ -141,5 +141,11 @@ namespace Pilates
             ConsultaContasPagar consultaContasPagar = new ConsultaContasPagar();
             consultaContasPagar.ShowDialog();
         }
+
+        private void fornecedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaFornecedor consultaFornecedor = new ConsultaFornecedor();
+            consultaFornecedor.ShowDialog();
+        }
     }
 }

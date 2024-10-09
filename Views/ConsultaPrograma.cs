@@ -149,9 +149,9 @@ namespace Pilates.Views
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 int idPrograma = (int)dataGridViewPrograma.Rows[e.RowIndex].Cells["Código"].Value;
-                CadastroPrograma CadastroPrograma = new CadastroPrograma(idPrograma);
-                CadastroPrograma.Owner = this;
-                CadastroPrograma.ShowDialog();
+                CadastroPrograma cadastroPrograma = new CadastroPrograma(idPrograma);
+                cadastroPrograma.Owner = this;
+                cadastroPrograma.ShowDialog();
             }
             else
             {
