@@ -38,29 +38,34 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
-            // txtPesquisar
+            // btnIncluir
             // 
-            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // btnExcluir
-            // 
-            this.btnExcluir.Location = new System.Drawing.Point(447, 415);
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(253, 427);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(366, 415);
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(342, 427);
             // 
-            // btnIncluir
+            // btnExcluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(285, 415);
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(431, 427);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(528, 415);
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(520, 427);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // dataGridViewCondicaoPagamento
             // 
+            this.dataGridViewCondicaoPagamento.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewCondicaoPagamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCondicaoPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
@@ -85,7 +90,7 @@
             // ConsultaCondicaoPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(615, 450);
+            this.ClientSize = new System.Drawing.Size(615, 470);
             this.Controls.Add(this.dataGridViewCondicaoPagamento);
             this.Name = "ConsultaCondicaoPagamento";
             this.Text = "Consulta de Condição de Pagamento";

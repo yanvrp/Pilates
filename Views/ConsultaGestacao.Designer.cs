@@ -39,18 +39,40 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
+            // btnIncluir
+            // 
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(438, 437);
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(527, 437);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(616, 437);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
+            // 
             // btnSair
             // 
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(705, 437);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // dataGridViewGestacao
             // 
+            this.dataGridViewGestacao.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewGestacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGestacao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.Gestação,
             this.Descrição});
-            this.dataGridViewGestacao.Location = new System.Drawing.Point(12, 40);
+            this.dataGridViewGestacao.Location = new System.Drawing.Point(12, 49);
             this.dataGridViewGestacao.Name = "dataGridViewGestacao";
             this.dataGridViewGestacao.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewGestacao.TabIndex = 8;
@@ -77,7 +99,7 @@
             // ConsultaGestacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 480);
             this.Controls.Add(this.dataGridViewGestacao);
             this.Name = "ConsultaGestacao";
             this.Text = "Consulta de Gestação";

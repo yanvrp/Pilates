@@ -39,22 +39,36 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
-            // txtPesquisar
+            // btnIncluir
             // 
-            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
+            this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // dataGridViewEstado
             // 
+            this.dataGridViewEstado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewEstado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEstado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.Estado,
             this.UF});
-            this.dataGridViewEstado.Location = new System.Drawing.Point(12, 38);
+            this.dataGridViewEstado.Location = new System.Drawing.Point(12, 49);
             this.dataGridViewEstado.Name = "dataGridViewEstado";
             this.dataGridViewEstado.Size = new System.Drawing.Size(776, 361);
             this.dataGridViewEstado.TabIndex = 6;
@@ -80,7 +94,7 @@
             // ConsultaEstado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 472);
             this.Controls.Add(this.dataGridViewEstado);
             this.Name = "ConsultaEstado";
             this.Text = "Consulta de Estado";

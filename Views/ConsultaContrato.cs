@@ -120,15 +120,6 @@ namespace Pilates.Views
             }
         }
 
-        private void btnVisualizar_Click(object sender, EventArgs e)
-        {
-            int idContrato = (int)dataGridViewContrato.SelectedRows[0].Cells["Código"].Value;
-            CadastroContrato cadastroContrato = new CadastroContrato(idContrato);
-            cadastroContrato.BloqueiaTudo();
-            cadastroContrato.Owner = this;
-            cadastroContrato.ShowDialog();
-        }
-
         private void dataGridViewContrato_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
@@ -143,6 +134,15 @@ namespace Pilates.Views
             {
                 MessageBox.Show("Selecione uma conta a receber para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnVisualizar_Click(object sender, EventArgs e)
+        {
+            int idContrato = (int)dataGridViewContrato.SelectedRows[0].Cells["Código"].Value;
+            CadastroContrato cadastroContrato = new CadastroContrato(idContrato);
+            cadastroContrato.BloqueiaTudo();
+            cadastroContrato.Owner = this;
+            cadastroContrato.ShowDialog();
         }
     }
 }

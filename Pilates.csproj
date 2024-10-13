@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ControllerAluno.cs" />
+    <Compile Include="Controller\ControllerAvaliacao.cs" />
     <Compile Include="Controller\ControllerCidade.cs" />
     <Compile Include="Controller\ControllerCirurgia.cs" />
     <Compile Include="Controller\ControllerCondicaoPagamento.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Controller\ControllerPrograma.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DAOAluno.cs" />
+    <Compile Include="DAO\DAOAvaliacao.cs" />
     <Compile Include="DAO\DAOCidade.cs" />
     <Compile Include="DAO\DAOCirurgia.cs" />
     <Compile Include="DAO\DAOCondicaoPagamento.cs" />
@@ -144,7 +146,14 @@
     <Compile Include="DAO\DAOPostura.cs" />
     <Compile Include="DAO\DAOProfissao.cs" />
     <Compile Include="DAO\DAOPrograma.cs" />
+    <Compile Include="EscapeKeyFilter.cs" />
     <Compile Include="Models\ModelAluno.cs" />
+    <Compile Include="Models\ModelAvaliacao.cs" />
+    <Compile Include="Models\ModelAvaliacaoCirurgia.cs" />
+    <Compile Include="Models\ModelAvaliacaoDoenca.cs" />
+    <Compile Include="Models\ModelAvaliacaoDores.cs" />
+    <Compile Include="Models\ModelAvaliacaoGestacao.cs" />
+    <Compile Include="Models\ModelAvaliacaoMedicamento.cs" />
     <Compile Include="Models\ModelCidade.cs" />
     <Compile Include="Models\ModelCirurgia.cs" />
     <Compile Include="Models\ModelCondicaoPagamento.cs" />
@@ -174,6 +183,12 @@
     </Compile>
     <Compile Include="Views\CadastroAluno.Designer.cs">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroAvaliacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroAvaliacao.Designer.cs">
+      <DependentUpon>CadastroAvaliacao.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CadastroCidade.cs">
       <SubType>Form</SubType>
@@ -418,8 +433,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Validacoes.cs" />
+    <Compile Include="YControls\YButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Views\CadastroAluno.resx">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroAvaliacao.resx">
+      <DependentUpon>CadastroAvaliacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CadastroCidade.resx">
       <DependentUpon>CadastroCidade.cs</DependentUpon>

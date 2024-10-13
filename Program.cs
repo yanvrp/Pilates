@@ -14,6 +14,7 @@ namespace Pilates
         [STAThread]
         static void Main()
         {
+            Application.AddMessageFilter(new EscapeKeyFilter());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MenuPrincipal());

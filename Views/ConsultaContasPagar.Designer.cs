@@ -38,29 +38,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContasPagar)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtPesquisar
+            // btnIncluir
             // 
-            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // btnExcluir
-            // 
-            this.btnExcluir.Location = new System.Drawing.Point(12, 408);
-            this.btnExcluir.Visible = false;
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(415, 409);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(520, 410);
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(504, 409);
             // 
-            // btnIncluir
+            // btnExcluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(439, 410);
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(12, 408);
+            this.btnExcluir.Visible = false;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(601, 410);
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(593, 409);
             // 
             // dataGridViewContasPagar
             // 
+            this.dataGridViewContasPagar.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewContasPagar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContasPagar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numero,
@@ -69,7 +74,7 @@
             this.dataVencimento,
             this.dataPagamento,
             this.dataCancelamento});
-            this.dataGridViewContasPagar.Location = new System.Drawing.Point(12, 39);
+            this.dataGridViewContasPagar.Location = new System.Drawing.Point(12, 52);
             this.dataGridViewContasPagar.Name = "dataGridViewContasPagar";
             this.dataGridViewContasPagar.Size = new System.Drawing.Size(664, 350);
             this.dataGridViewContasPagar.TabIndex = 8;
@@ -109,7 +114,7 @@
             // ConsultaContasPagar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(688, 443);
+            this.ClientSize = new System.Drawing.Size(688, 452);
             this.Controls.Add(this.dataGridViewContasPagar);
             this.Name = "ConsultaContasPagar";
             this.Text = "Consulta Contas a Pagar";

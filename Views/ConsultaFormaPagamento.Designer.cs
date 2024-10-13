@@ -38,25 +38,34 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
-            // btnExcluir
+            // btnIncluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(405, 415);
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(212, 407);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(324, 415);
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(301, 407);
             // 
-            // btnIncluir
+            // btnExcluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(243, 415);
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(390, 407);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(486, 415);
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(479, 407);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // dataGridViewFormaPagamento
             // 
+            this.dataGridViewFormaPagamento.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewFormaPagamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFormaPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,

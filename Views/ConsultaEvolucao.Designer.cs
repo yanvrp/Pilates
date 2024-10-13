@@ -39,22 +39,37 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
-            // btnAlterar
-            // 
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
-            // 
             // btnIncluir
             // 
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
             this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
+            // 
+            // btnSair
+            // 
+            this.btnSair.FlatAppearance.BorderSize = 0;
             // 
             // dataGridViewEvolucao
             // 
+            this.dataGridViewEvolucao.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewEvolucao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEvolucao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.Título,
             this.DataCadastro});
-            this.dataGridViewEvolucao.Location = new System.Drawing.Point(12, 40);
+            this.dataGridViewEvolucao.Location = new System.Drawing.Point(12, 43);
             this.dataGridViewEvolucao.Name = "dataGridViewEvolucao";
             this.dataGridViewEvolucao.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewEvolucao.TabIndex = 8;
@@ -79,7 +94,7 @@
             // ConsultaEvolucao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 472);
             this.Controls.Add(this.dataGridViewEvolucao);
             this.Name = "ConsultaEvolucao";
             this.Text = "Consulta de Evolução";

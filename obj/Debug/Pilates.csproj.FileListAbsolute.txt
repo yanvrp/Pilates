@@ -89,3 +89,4 @@ C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroContas
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaContasPagar.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroFornecedor.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaFornecedor.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroAvaliacao.resources

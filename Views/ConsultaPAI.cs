@@ -21,6 +21,11 @@ namespace Pilates
         public virtual void Excluir() { }
         public virtual void Pesquisar() { }
 
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            Pesquisar();
+        }
+
         private void btnIncluir_Click(object sender, EventArgs e)
         {
             Incluir();
@@ -41,9 +46,9 @@ namespace Pilates
             Close();
         }
 
-        private void btnPesquisar_Click(object sender, EventArgs e)
+        private void ConsultaPAI_KeyUp(object sender, KeyEventArgs e)
         {
-            Pesquisar();
+
         }
     }
 }

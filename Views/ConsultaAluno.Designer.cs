@@ -40,36 +40,41 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
-            // txtPesquisar
+            // btnIncluir
             // 
-            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // btnExcluir
-            // 
-            this.btnExcluir.Location = new System.Drawing.Point(600, 415);
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(407, 426);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(519, 415);
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(496, 426);
             // 
-            // btnIncluir
+            // btnExcluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(438, 415);
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(584, 426);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(681, 415);
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(673, 426);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // dataGridViewAlunos
             // 
+            this.dataGridViewAlunos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAlunos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.Aluno,
             this.Celular,
             this.CPF});
-            this.dataGridViewAlunos.Location = new System.Drawing.Point(12, 38);
+            this.dataGridViewAlunos.Location = new System.Drawing.Point(12, 44);
             this.dataGridViewAlunos.Name = "dataGridViewAlunos";
             this.dataGridViewAlunos.Size = new System.Drawing.Size(744, 371);
             this.dataGridViewAlunos.TabIndex = 7;
@@ -101,7 +106,7 @@
             // ConsultaAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(768, 450);
+            this.ClientSize = new System.Drawing.Size(768, 469);
             this.Controls.Add(this.dataGridViewAlunos);
             this.Name = "ConsultaAluno";
             this.Text = "Consulta de Aluno";

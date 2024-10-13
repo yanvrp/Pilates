@@ -46,21 +46,29 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
-            // btnExcluir
+            // btnIncluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(563, 464);
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(370, 466);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(482, 464);
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(459, 466);
             // 
-            // btnIncluir
+            // btnExcluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(401, 464);
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(548, 466);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(644, 464);
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(637, 465);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // pilates_BemEstarDataSet
@@ -79,15 +87,16 @@
             // 
             // dataGridViewPais
             // 
+            this.dataGridViewPais.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewPais.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPais.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.País,
             this.Sigla,
             this.DDI});
-            this.dataGridViewPais.Location = new System.Drawing.Point(12, 38);
+            this.dataGridViewPais.Location = new System.Drawing.Point(12, 51);
             this.dataGridViewPais.Name = "dataGridViewPais";
-            this.dataGridViewPais.Size = new System.Drawing.Size(707, 420);
+            this.dataGridViewPais.Size = new System.Drawing.Size(707, 408);
             this.dataGridViewPais.TabIndex = 7;
             this.dataGridViewPais.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPais_CellDoubleClick);
             // 
@@ -115,7 +124,7 @@
             // ConsultaPais
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(732, 499);
+            this.ClientSize = new System.Drawing.Size(732, 508);
             this.Controls.Add(this.dataGridViewPais);
             this.Name = "ConsultaPais";
             this.Text = "Consulta de País";

@@ -39,22 +39,40 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
-            // txtPesquisar
+            // btnIncluir
             // 
-            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(438, 440);
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(527, 440);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(616, 440);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(705, 440);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // dataGridViewDoenca
             // 
+            this.dataGridViewDoenca.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewDoenca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDoenca.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.Doença,
             this.Descrição});
-            this.dataGridViewDoenca.Location = new System.Drawing.Point(12, 38);
+            this.dataGridViewDoenca.Location = new System.Drawing.Point(12, 50);
             this.dataGridViewDoenca.Name = "dataGridViewDoenca";
             this.dataGridViewDoenca.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewDoenca.TabIndex = 7;
@@ -80,7 +98,7 @@
             // ConsultaDoenca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 483);
             this.Controls.Add(this.dataGridViewDoenca);
             this.Name = "ConsultaDoenca";
             this.Text = "Consulta de Doença";

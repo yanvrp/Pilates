@@ -160,6 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(551, 450);
             this.Controls.Add(this.gbStatus);
             this.Controls.Add(this.lblDataCadastro);
@@ -170,7 +171,9 @@
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.lblCodigo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CadastroPAI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CadastroPAI";
             this.Load += new System.EventHandler(this.CadastroPAI_Load);
             this.gbStatus.ResumeLayout(false);

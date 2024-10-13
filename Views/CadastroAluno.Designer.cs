@@ -459,6 +459,7 @@
             // 
             this.dataGridViewPostura.AllowUserToAddRows = false;
             this.dataGridViewPostura.AllowUserToDeleteRows = false;
+            this.dataGridViewPostura.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewPostura.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPostura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodigoPostura,
@@ -487,6 +488,7 @@
             // 
             this.dataGridViewEvolucao.AllowUserToAddRows = false;
             this.dataGridViewEvolucao.AllowUserToDeleteRows = false;
+            this.dataGridViewEvolucao.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewEvolucao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEvolucao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodigoEvolucao,
@@ -594,6 +596,7 @@
             // CadastroAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(941, 722);
             this.Controls.Add(this.btnExcluirEvolucao);
             this.Controls.Add(this.btnAlterarEvolucao);

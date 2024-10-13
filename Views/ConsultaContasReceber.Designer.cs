@@ -40,29 +40,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContasReceber)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtPesquisar
+            // btnIncluir
             // 
-            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // btnExcluir
-            // 
-            this.btnExcluir.Location = new System.Drawing.Point(12, 481);
-            this.btnExcluir.Visible = false;
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(733, 488);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(838, 481);
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(822, 488);
             // 
-            // btnIncluir
+            // btnExcluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(757, 481);
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(12, 481);
+            this.btnExcluir.Visible = false;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(919, 480);
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(911, 487);
             // 
             // dataGridViewContasReceber
             // 
+            this.dataGridViewContasReceber.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewContasReceber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContasReceber.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numero,
@@ -73,7 +78,7 @@
             this.dataVencimento,
             this.dataRecebimento,
             this.dataCancelamento});
-            this.dataGridViewContasReceber.Location = new System.Drawing.Point(12, 39);
+            this.dataGridViewContasReceber.Location = new System.Drawing.Point(12, 43);
             this.dataGridViewContasReceber.Name = "dataGridViewContasReceber";
             this.dataGridViewContasReceber.Size = new System.Drawing.Size(982, 436);
             this.dataGridViewContasReceber.TabIndex = 7;
@@ -124,7 +129,7 @@
             // ConsultaContasReceber
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1006, 515);
+            this.ClientSize = new System.Drawing.Size(1006, 530);
             this.Controls.Add(this.dataGridViewContasReceber);
             this.Name = "ConsultaContasReceber";
             this.Text = "Consulta Contas a Receber";

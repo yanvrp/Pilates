@@ -39,22 +39,36 @@
             // 
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
-            // txtPesquisar
+            // btnIncluir
             // 
-            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.btnIncluir.FlatAppearance.BorderSize = 0;
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.FlatAppearance.BorderSize = 0;
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.FlatAppearance.BorderSize = 0;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.FlatAppearance.BorderSize = 0;
             // 
             // btnSair
             // 
+            this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // dataGridViewCidade
             // 
+            this.dataGridViewCidade.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewCidade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCidade.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.Cidade,
             this.DDD});
-            this.dataGridViewCidade.Location = new System.Drawing.Point(12, 38);
+            this.dataGridViewCidade.Location = new System.Drawing.Point(12, 44);
             this.dataGridViewCidade.Name = "dataGridViewCidade";
             this.dataGridViewCidade.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewCidade.TabIndex = 6;
@@ -79,7 +93,7 @@
             // ConsultaCidade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 471);
             this.Controls.Add(this.dataGridViewCidade);
             this.Name = "ConsultaCidade";
             this.Text = "Consulta de Cidade";
