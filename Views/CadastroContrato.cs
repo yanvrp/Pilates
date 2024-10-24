@@ -413,7 +413,7 @@ namespace Pilates.Views
                     MessageBox.Show("Aluno não encontrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodAluno.Focus();
                     txtCodAluno.Clear();
-                    txtCodAluno.Clear();
+                    txtAluno.Clear();
                 }
             }
         }

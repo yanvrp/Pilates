@@ -70,6 +70,9 @@ namespace Pilates.Controller
         {
             return daoAvaliacao.BuscarMedicamentoPorId(idMedicamento);
         }
-
+        public int GetUltimoCodigo()
+        {
+            return daoAvaliacao.GetUltimoCodigo();
+        }
     }
 }

@@ -126,7 +126,7 @@ namespace Pilates.Views
                 {
                     // Capturar o ID e o nome da profissão selecionado
                     int profissaoID = Convert.ToInt32(dataGridViewProfissao.SelectedRows[0].Cells["Código"].Value);
-                    string profissaoNome = dataGridViewProfissao.SelectedRows[0].Cells["Profissao"].Value.ToString();
+                    string profissaoNome = dataGridViewProfissao.SelectedRows[0].Cells["Profissão"].Value.ToString();
 
                     // Passar os detalhes da profissão selecionada de volta para a tela principal
                     this.Tag = new Tuple<int, string>(profissaoID, profissaoNome);

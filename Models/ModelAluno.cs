@@ -21,6 +21,7 @@ namespace Pilates.Models
         public string celular { get; set; }
         public string cpf { get; set; }
         public int idCidade { get; set; }
+        public int? idProfissao { get; set; }
         public DateTime dataCadastro { get; set; }
         public DateTime dataUltAlt { get; set; }
         public DateTime dataNasc { get; set; }

@@ -127,9 +127,9 @@ namespace Pilates.Views
                     // Capturar o ID e o nome das dores selecionado
                     int doresID = Convert.ToInt32(dataGridViewDores.SelectedRows[0].Cells["Código"].Value);
                     string doresNome = dataGridViewDores.SelectedRows[0].Cells["Dores"].Value.ToString();
+                    string doresDescricao = dataGridViewDores.SelectedRows[0].Cells["Descrição"].Value.ToString();
 
-                    // Passar os detalhes da doença selecionada de volta para a tela principal
-                    this.Tag = new Tuple<int, string>(doresID, doresNome);
+                    this.Tag = new Tuple<int, string, string>(doresID, doresNome, doresDescricao);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

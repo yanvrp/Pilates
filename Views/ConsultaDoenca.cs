@@ -29,6 +29,7 @@ namespace Pilates.Views
 
                 dataGridViewDoenca.AutoGenerateColumns = false;
                 dataGridViewDoenca.Columns["Código"].DataPropertyName = "idDoenca";
+                dataGridViewDoenca.Columns["CID"].DataPropertyName = "CID";
                 dataGridViewDoenca.Columns["Doença"].DataPropertyName = "doenca";
                 dataGridViewDoenca.Columns["Descrição"].DataPropertyName = "descricao";
 
@@ -127,9 +128,10 @@ namespace Pilates.Views
                     // Capturar o ID e o nome da doença selecionado
                     int doencaID = Convert.ToInt32(dataGridViewDoenca.SelectedRows[0].Cells["Código"].Value);
                     string doencaNome = dataGridViewDoenca.SelectedRows[0].Cells["Doença"].Value.ToString();
-
+                    string doencaDescricao = dataGridViewDoenca.SelectedRows[0].Cells["Descrição"].Value.ToString();
+                    string CID = dataGridViewDoenca.SelectedRows[0].Cells["CID"].Value.ToString();
                     // Passar os detalhes da doença selecionada de volta para a tela principal
-                    this.Tag = new Tuple<int, string>(doencaID, doencaNome);
+                    this.Tag = new Tuple<int, string, string, string>(doencaID, doencaNome, doencaDescricao, CID);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

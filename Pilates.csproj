@@ -310,6 +310,12 @@
     <Compile Include="Views\ConsultaAluno.Designer.cs">
       <DependentUpon>ConsultaAluno.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ConsultaAvaliacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaAvaliacao.Designer.cs">
+      <DependentUpon>ConsultaAvaliacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConsultaCidade.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -436,6 +442,12 @@
     <Compile Include="YControls\YButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="YControls\YTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="YControls\YTextBox.Designer.cs">
+      <DependentUpon>YTextBox.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\CadastroAluno.resx">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
     </EmbeddedResource>
@@ -501,6 +513,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ConsultaAluno.resx">
       <DependentUpon>ConsultaAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaAvaliacao.resx">
+      <DependentUpon>ConsultaAvaliacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ConsultaCidade.resx">
       <DependentUpon>ConsultaCidade.cs</DependentUpon>
@@ -571,6 +586,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="YControls\YTextBox.resx">
+      <DependentUpon>YTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="pilates_BemEstarDataSet.xsc">
       <DependentUpon>pilates_BemEstarDataSet.xsd</DependentUpon>

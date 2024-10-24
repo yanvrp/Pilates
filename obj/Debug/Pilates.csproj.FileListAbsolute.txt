@@ -90,3 +90,5 @@ C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaContas
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroFornecedor.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaFornecedor.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroAvaliacao.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaAvaliacao.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.YControls.YTextBox.resources

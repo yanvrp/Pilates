@@ -32,6 +32,7 @@ namespace Pilates.Views
                 {//carrega os dados da doença
                     txtCodigo.Text = doenca.idDoenca.ToString();
                     txtDoenca.Text = doenca.doenca;
+                    txtCID.Text = doenca.CID;
                     txtDescricao.Text = doenca.descricao;
                     txtDataCadastro.Text = doenca.dataCadastro.ToString();
                     txtDataUltAlt.Text = doenca.dataUltAlt.ToString();
@@ -70,6 +71,7 @@ namespace Pilates.Views
                     try
                     {
                         string doenca = txtDoenca.Text;
+                        string CID = txtCID.Text;
                         string descricao = txtDescricao.Text;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
@@ -88,6 +90,7 @@ namespace Pilates.Views
                         ModelDoenca novaDoenca = new ModelDoenca
                         {
                             doenca = doenca,
+                            CID = CID,
                             descricao = descricao,
                             dataCadastro = dataCadastro,
                             dataUltAlt = dataUltAlt,

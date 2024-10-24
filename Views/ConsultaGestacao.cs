@@ -127,9 +127,10 @@ namespace Pilates.Views
                     // Capturar o ID e o nome da Gestação selecionado
                     int gestacaoID = Convert.ToInt32(dataGridViewGestacao.SelectedRows[0].Cells["Código"].Value);
                     string gestacaoNome = dataGridViewGestacao.SelectedRows[0].Cells["Gestação"].Value.ToString();
+                    string gestacaoDescricao = dataGridViewGestacao.SelectedRows[0].Cells["Descrição"].Value.ToString();
 
                     // Passar os detalhes da Gestação selecionada de volta para a tela principal
-                    this.Tag = new Tuple<int, string>(gestacaoID, gestacaoNome);
+                    this.Tag = new Tuple<int, string, string>(gestacaoID, gestacaoNome, gestacaoDescricao);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

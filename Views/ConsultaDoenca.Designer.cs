@@ -31,6 +31,7 @@
             this.dataGridViewDoenca = new System.Windows.Forms.DataGridView();
             this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Doença = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDoenca)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +72,7 @@
             this.dataGridViewDoenca.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.Doença,
+            this.CID,
             this.Descrição});
             this.dataGridViewDoenca.Location = new System.Drawing.Point(12, 50);
             this.dataGridViewDoenca.Name = "dataGridViewDoenca";
@@ -88,6 +90,11 @@
             this.Doença.HeaderText = "Doença";
             this.Doença.Name = "Doença";
             this.Doença.Width = 200;
+            // 
+            // CID
+            // 
+            this.CID.HeaderText = "CID";
+            this.CID.Name = "CID";
             // 
             // Descrição
             // 
@@ -122,6 +129,7 @@
         private System.Windows.Forms.DataGridView dataGridViewDoenca;
         private System.Windows.Forms.DataGridViewTextBoxColumn Código;
         private System.Windows.Forms.DataGridViewTextBoxColumn Doença;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descrição;
     }
 }

@@ -127,9 +127,10 @@ namespace Pilates.Views
                     // Capturar o ID e o nome do medicamento selecionado
                     int medicamentoID = Convert.ToInt32(dataGridViewMedicamento.SelectedRows[0].Cells["Código"].Value);
                     string medicamentoNome = dataGridViewMedicamento.SelectedRows[0].Cells["Medicamento"].Value.ToString();
+                    string medicamentoDescricao = dataGridViewMedicamento.SelectedRows[0].Cells["Descrição"].Value.ToString();
 
                     // Passar os detalhes do medicamento selecionada de volta para a tela principal
-                    this.Tag = new Tuple<int, string>(medicamentoID, medicamentoNome);
+                    this.Tag = new Tuple<int, string, string>(medicamentoID, medicamentoNome, medicamentoDescricao);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

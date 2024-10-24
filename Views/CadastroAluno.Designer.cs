@@ -76,6 +76,11 @@
             this.btnExcluirEvolucao = new System.Windows.Forms.Button();
             this.btnAlterarEvolucao = new System.Windows.Forms.Button();
             this.btnIncluirEvolucao = new System.Windows.Forms.Button();
+            this.txtProfissão = new System.Windows.Forms.TextBox();
+            this.lblProfissao = new System.Windows.Forms.Label();
+            this.btnBuscarProfissao = new System.Windows.Forms.Button();
+            this.txtCodProfissao = new System.Windows.Forms.TextBox();
+            this.lblCodProfissao = new System.Windows.Forms.Label();
             this.gbStatus.SuspendLayout();
             this.gbEndereco.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPostura)).BeginInit();
@@ -593,11 +598,62 @@
             this.btnIncluirEvolucao.UseVisualStyleBackColor = true;
             this.btnIncluirEvolucao.Click += new System.EventHandler(this.btnIncluirEvolucao_Click);
             // 
+            // txtProfissão
+            // 
+            this.txtProfissão.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtProfissão.Enabled = false;
+            this.txtProfissão.Location = new System.Drawing.Point(607, 290);
+            this.txtProfissão.Name = "txtProfissão";
+            this.txtProfissão.Size = new System.Drawing.Size(206, 20);
+            this.txtProfissão.TabIndex = 34;
+            // 
+            // lblProfissao
+            // 
+            this.lblProfissao.AutoSize = true;
+            this.lblProfissao.Location = new System.Drawing.Point(604, 275);
+            this.lblProfissao.Name = "lblProfissao";
+            this.lblProfissao.Size = new System.Drawing.Size(53, 13);
+            this.lblProfissao.TabIndex = 37;
+            this.lblProfissao.Text = "Profissão:";
+            // 
+            // btnBuscarProfissao
+            // 
+            this.btnBuscarProfissao.Location = new System.Drawing.Point(528, 289);
+            this.btnBuscarProfissao.Name = "btnBuscarProfissao";
+            this.btnBuscarProfissao.Size = new System.Drawing.Size(53, 23);
+            this.btnBuscarProfissao.TabIndex = 36;
+            this.btnBuscarProfissao.Text = "Buscar";
+            this.btnBuscarProfissao.UseVisualStyleBackColor = true;
+            this.btnBuscarProfissao.Click += new System.EventHandler(this.btnBuscarProfissao_Click);
+            // 
+            // txtCodProfissao
+            // 
+            this.txtCodProfissao.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodProfissao.Location = new System.Drawing.Point(442, 291);
+            this.txtCodProfissao.Name = "txtCodProfissao";
+            this.txtCodProfissao.Size = new System.Drawing.Size(80, 20);
+            this.txtCodProfissao.TabIndex = 35;
+            this.txtCodProfissao.Leave += new System.EventHandler(this.txtCodProfissao_Leave);
+            // 
+            // lblCodProfissao
+            // 
+            this.lblCodProfissao.AutoSize = true;
+            this.lblCodProfissao.Location = new System.Drawing.Point(439, 275);
+            this.lblCodProfissao.Name = "lblCodProfissao";
+            this.lblCodProfissao.Size = new System.Drawing.Size(78, 13);
+            this.lblCodProfissao.TabIndex = 38;
+            this.lblCodProfissao.Text = "Cod. Profissão:";
+            // 
             // CadastroAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(941, 722);
+            this.Controls.Add(this.txtProfissão);
+            this.Controls.Add(this.lblProfissao);
+            this.Controls.Add(this.btnBuscarProfissao);
+            this.Controls.Add(this.txtCodProfissao);
+            this.Controls.Add(this.lblCodProfissao);
             this.Controls.Add(this.btnExcluirEvolucao);
             this.Controls.Add(this.btnAlterarEvolucao);
             this.Controls.Add(this.btnIncluirEvolucao);
@@ -661,6 +717,11 @@
             this.Controls.SetChildIndex(this.btnIncluirEvolucao, 0);
             this.Controls.SetChildIndex(this.btnAlterarEvolucao, 0);
             this.Controls.SetChildIndex(this.btnExcluirEvolucao, 0);
+            this.Controls.SetChildIndex(this.lblCodProfissao, 0);
+            this.Controls.SetChildIndex(this.txtCodProfissao, 0);
+            this.Controls.SetChildIndex(this.btnBuscarProfissao, 0);
+            this.Controls.SetChildIndex(this.lblProfissao, 0);
+            this.Controls.SetChildIndex(this.txtProfissão, 0);
             this.gbStatus.ResumeLayout(false);
             this.gbStatus.PerformLayout();
             this.gbEndereco.ResumeLayout(false);
@@ -722,5 +783,10 @@
         private System.Windows.Forms.Button btnIncluirEvolucao;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoPostura;
         private System.Windows.Forms.DataGridViewTextBoxColumn TituloPostura;
+        private System.Windows.Forms.TextBox txtProfissão;
+        private System.Windows.Forms.Label lblProfissao;
+        private System.Windows.Forms.Button btnBuscarProfissao;
+        private System.Windows.Forms.TextBox txtCodProfissao;
+        private System.Windows.Forms.Label lblCodProfissao;
     }
 }

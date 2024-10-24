@@ -1,0 +1,340 @@
+create database pilates_BemEstar;
+use pilates_BemEstar;
+CREATE TABLE pais (
+    idPais INT IDENTITY(1,1) PRIMARY KEY,
+    pais VARCHAR(100) NOT NULL,
+    sigla VARCHAR(5),
+    DDI VARCHAR(5),
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL
+);
+
+CREATE TABLE estado (
+    idEstado INT IDENTITY(1,1) PRIMARY KEY,
+    estado VARCHAR(100) NOT NULL,
+    UF VARCHAR(5),
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    idPais INT FOREIGN KEY REFERENCES pais(idPais)
+);
+
+CREATE TABLE cidade (
+    idCidade INT IDENTITY(1,1) PRIMARY KEY,
+    cidade VARCHAR(100) NOT NULL,
+    DDD VARCHAR(5),
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    idEstado INT FOREIGN KEY REFERENCES estado(idEstado)
+);
+
+CREATE TABLE profissao (
+    idProfissao INT IDENTITY(1,1) NOT NULL,
+    profissao VARCHAR(100) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    ativo BIT NOT NULL,
+    PRIMARY KEY (idProfissao)
+);
+
+ CREATE TABLE aluno (
+    idAluno INT IDENTITY(1,1) NOT NULL,
+    Aluno VARCHAR(50) NOT NULL,
+    apelido VARCHAR(50),
+    endereco VARCHAR(150),
+    bairro VARCHAR(100),
+    numero INT,
+    cep VARCHAR(8),
+    complemento VARCHAR(100),
+    sexo VARCHAR(10),
+    email VARCHAR(100),
+    celular VARCHAR(50),
+    data_nasc DATE,
+    cpf VARCHAR(14),
+    dataNasc DATE NOT NULL,
+    idCidade INT,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    ativo BIT NOT NULL,
+    PRIMARY KEY (idFuncionario),
+    CONSTRAINT FK_idCidade_aluno FOREIGN KEY (idCidade) REFERENCES cidade(idCidade),
+    CONSTRAINT FK_idProfissao_aluno FOREIGN KEY (idProfissao) REFERENCES profissao(idProfissao)
+);
+
+CREATE TABLE doenca (
+    idDoenca INT IDENTITY(1,1) NOT NULL,
+    doenca VARCHAR(100) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    CID VARCHAR(20),
+    ativo BIT NOT NULL,
+    PRIMARY KEY (idDoenca)
+);
+
+CREATE TABLE medicamento (
+    idMedicamento INT IDENTITY(1,1) NOT NULL,
+    medicamento VARCHAR(100) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    ativo BIT NOT NULL,
+    PRIMARY KEY (idMedicamento)
+);
+
+CREATE TABLE cirurgia (
+    idCirurgia INT IDENTITY(1,1) NOT NULL,
+    cirurgia VARCHAR(100) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    ativo BIT NOT NULL,
+    PRIMARY KEY (idCirurgias)
+);
+
+CREATE TABLE gestacao (
+    idGestacao INT IDENTITY(1,1) NOT NULL,
+    gestacao VARCHAR(100) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    ativo BIT NOT NULL,
+    PRIMARY KEY (idGestacoes)
+);
+
+CREATE TABLE dores (
+    idDores INT IDENTITY(1,1) NOT NULL,
+    dores VARCHAR(100) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    ativo BIT NOT NULL,
+    PRIMARY KEY (idDores)
+);
+
+CREATE TABLE avaliacao (
+    idAvaliacao INT IDENTITY(1,1) PRIMARY KEY,
+    data DATE NOT NULL,
+    idAluno INT NOT NULL,
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    PRIMARY KEY (idAvaliacao),
+    CONSTRAINT FK_idAluno_Avaliacao FOREIGN KEY (idAluno) REFERENCES aluno(idAluno)
+);
+
+CREATE TABLE avaliacao_Doenca (
+    idAvaliacao INT NOT NULL,
+    idDoenca INT NOT NULL,
+    observacao VARCHAR(200),
+    PRIMARY KEY(idAvaliacao, idDoenca),
+    CONSTRAINT FK_idAvaliacao_AvaliacaoDoenca FOREIGN KEY (idAvaliacao) REFERENCES avaliacao(idAvaliacao),
+    CONSTRAINT FK_idDoenca_AvaliacaoDoenca FOREIGN KEY (idDoenca) REFERENCES doenca(idDoenca)
+);
+
+CREATE TABLE avaliacao_Dores (
+    idAvaliacao INT NOT NULL,
+    idDores INT NOT NULL,
+    observacao VARCHAR(200),
+    PRIMARY KEY(idAvaliacao, idDores),
+    CONSTRAINT FK_idAvaliacao_AvaliacaoDores FOREIGN KEY (idAvaliacao) REFERENCES avaliacao(idAvaliacao),
+    CONSTRAINT FK_idDores_AvaliacaoDoenca FOREIGN KEY (idDores) REFERENCES dores(idDores)
+);
+
+CREATE TABLE avaliacao_Gestacao (
+    idAvaliacao INT NOT NULL,
+    idGestacao INT NOT NULL,
+    dataParto DATE,
+    observacao VARCHAR(200),
+    PRIMARY KEY(idAvaliacao, idGestacao),
+    CONSTRAINT FK_idAvaliacao_AvaliacaoGestacao FOREIGN KEY (idAvaliacao) REFERENCES avaliacao(idAvaliacao),
+    CONSTRAINT FK_idGestacao_AvaliacaoGestacao FOREIGN KEY (idGestacao) REFERENCES gestacao(idGestacao)
+);
+
+CREATE TABLE avaliacao_Cirurgia (
+    idAvaliacao INT NOT NULL,
+    idCirurgia INT NOT NULL,
+    dataCirurgia DATE,
+    observacao VARCHAR(200),
+    PRIMARY KEY(idAvaliacao, idCirurgia),
+    CONSTRAINT FK_idAvaliacao_AvaliacaoCirurgia FOREIGN KEY (idAvaliacao) REFERENCES avaliacao(idAvaliacao),
+    CONSTRAINT FK_idCirurgia_AvaliacaoCirurgia FOREIGN KEY (idCirurgia) REFERENCES cirurgia(idCirurgia)
+);
+
+CREATE TABLE avaliacao_Medicamento (
+    idAvaliacao INT NOT NULL,
+    idMedicamento INT NOT NULL,
+    dosagem VARCHAR(10) NOT NULL,
+    frequencia VARCHAR(20) NOT NULL,
+    observacao VARCHAR(200),
+    PRIMARY KEY(idAvaliacao, idCirurgia),
+    CONSTRAINT FK_idAvaliacao_AvaliacaoMedicamento FOREIGN KEY (idAvaliacao) REFERENCES avaliacao(idAvaliacao),
+    CONSTRAINT FK_idMedicamento_AvaliacaoMedicamento FOREIGN KEY (idMedicamento) REFERENCES medicamento(idMedicamento)
+);
+
+
+CREATE TABLE postura (
+    idPostura INT IDENTITY(1,1) NOT NULL,
+    cabecaPostura VARCHAR(200) NOT NULL,
+    ombroPostura VARCHAR(200) NOT NULL,
+    escapuloPostura VARCHAR(200) NOT NULL,
+    maosPostura VARCHAR(200) NOT NULL,
+    cervicalPostura VARCHAR(200) NOT NULL,
+    toracicaPostura VARCHAR(200) NOT NULL,
+    lombarPostura VARCHAR(200) NOT NULL,
+    quadrilPostura VARCHAR(200) NOT NULL,
+    joelhoPostura VARCHAR(200) NOT NULL,
+    pesPostura VARCHAR(200) NOT NULL,
+    idAluno INT,
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    titulo VARCHAR(255),
+    outros VARCHAR(255),
+    PRIMARY KEY (idPostura),
+    CONSTRAINT FK_idAluno_postura FOREIGN KEY (idAluno) REFERENCES aluno(idAluno)
+);
+
+CREATE TABLE evolucao (
+    idEvolucao INT IDENTITY(1,1) NOT NULL,
+    idAluno INT,
+    observacao VARCHAR(200) NOT NULL,
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    PRIMARY KEY (idEvolucao),
+    CONSTRAINT FK_idAluno_evolucao FOREIGN KEY (idAluno) REFERENCES aluno(idAluno)
+);
+
+CREATE TABLE programa (
+    idPrograma INT IDENTITY(1,1) NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    titulo VARCHAR(200) NOT NULL,
+    numeroAulas INT NOT NULL,
+    tipoPrograma VARCHAR(50) NOT NULL,
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    PRIMARY KEY (idPrograma),
+);
+
+CREATE TABLE formaPagamento (
+    idFormaPagamento INT IDENTITY(1,1) NOT NULL,
+    formaPagamento VARCHAR(50),
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    PRIMARY KEY (idFormaPagamento),
+);
+
+CREATE TABLE condicaoPagamento (
+    idCondPagamento INT IDENTITY(1,1) NOT NULL,
+    condicaoPagamento VARCHAR(50) NOT NULL,
+    desconto DECIMAL(10, 2),
+    juros DECIMAL(10, 2),
+    multa DECIMAL(10, 2),
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    PRIMARY KEY (idCondPagamento),
+
+);
+
+CREATE TABLE parcela (
+    idParcela INT IDENTITY(1,1) NOT NULL,
+    numeroParcela INT NOT NULL,
+    porcentagem DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (idParcela),
+    idCondPagamento INT NOT NULL,
+    idFormaPagamento INT NOT NULL,
+    CONSTRAINT FK_idCondPagamento_parcela FOREIGN KEY (idCondPagamento) REFERENCES condicaoPagamento(idCondPagamento),
+    CONSTRAINT FK_idFormaPagamento_parcela FOREIGN KEY (idFormaPagamento) REFERENCES formaPagamento(idFormaPagamento)
+);
+
+CREATE TABLE contrato (
+    idContrato INT IDENTITY(1,1) NOT NULL,
+    idAluno INT,
+    idPrograma INT,
+    idCondPagamento INT,
+    dataInicioPrograma DATE NOT NULL,
+    dataPrograma DATE NOT NULL,
+    horario TIME(7) NOT NULL,
+    periodo VARCHAR(50) NOT NULL,
+    diaAcordado INT NOT NULL,
+    valorTotal DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY (idContrato),
+    CONSTRAINT FK_idAluno_contrato FOREIGN KEY (idAluno) REFERENCES aluno(idAluno),
+    CONSTRAINT FK_idPrograma_contrato FOREIGN KEY (idPrograma) REFERENCES programa(idPrograma),
+    CONSTRAINT FK_idCondPagamento_contrato FOREING KEY (idCondPagamento) REFERENCES condicaoPagamento(idCondPagamento)
+);
+
+CREATE TABLE fornecedor (
+    idFornecedor INT IDENTITY(1,1) NOT NULL,
+    tipo_pessoa BIT NOT NULL,
+    fornecedor_razao_social VARCHAR(70) NOT NULL,
+    apelido_nome_fantasia VARCHAR(70),
+    endereco VARCHAR(150),
+    bairro VARCHAR(100),
+    numero VARCHAR(8),
+    cep VARCHAR(8),
+    complemento VARCHAR(50),
+    sexo VARCHAR(15),
+    email VARCHAR(100),
+    telefone VARCHAR(50),
+    celular VARCHAR(50),
+    nome_contato VARCHAR(70),
+    data_nasc DATE,
+    cpf_cnpj VARCHAR(14),
+    rg_ie VARCHAR(14),
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    idCidade INT,
+    idCondPagamento INT,
+    PRIMARY KEY (idFornecedor),
+    CONSTRAINT FK_idCidade_fornecedor FOREIGN KEY (idCidade) REFERENCES cidade(idCidade),
+    CONSTRAINT FK_idCondPagamento_fornecedor FOREIGN KEY (idCondPagamento) REFERENCES condicaoPagamento(idCondPagamento)
+);
+
+CREATE TABLE contasPagar (
+    numero INT NOT NULL,
+    idFornecedor INT NOT NULL,
+    dataEmissao DATE NOT NULL,
+    idFormaPagamento INT NOT NULL,
+    parcela INT NOT NULL,
+    valorParcela DECIMAL(10,2) NOT NULL,
+    dataVencimento DATE NOT NULL,
+    dataPagamento DATE,
+    juros DECIMAL(10,2),
+    multa DECIMAL(10,2),
+    desconto DECIMAL(10,2),
+    valorPago DECIMAL(10,2),
+    dataCancelamento DATE,
+    observacao VARCHAR(200),
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    CONSTRAINT PK_contasPagar PRIMARY KEY (numero, parcela),
+    CONSTRAINT FK_idFormaPagamento_contasPagar FOREIGN KEY (idFormaPagamento) REFERENCES formaPagamento(idFormaPagamento)
+);
+
+CREATE TABLE contasReceber (
+    numero INT NOT NULL,
+    idAluno INT NOT NULL,
+    dataEmissao DATE NOT NULL,
+    idFormaPagamento INT NOT NULL,
+    parcela INT NOT NULL,
+    valorParcela DECIMAL(10,2) NOT NULL,
+    dataVencimento DATE NOT NULL,
+    dataRecebimento DATE,
+    juros DECIMAL(10,2),
+    multa DECIMAL(10,2),
+    desconto DECIMAL(10,2),
+    valorRecebido DECIMAL(10,2),
+    dataCancelamento DATE,
+    observacao VARCHAR(200),
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    CONSTRAINT PK_contasReceber PRIMARY KEY (numero, idAluno, parcela),    CONSTRAINT FK_idFormaPagamento_contasReceber FOREIGN KEY (idFormaPagamento) REFERENCES formaPagamento(idFormaPagamento));

@@ -19,6 +19,8 @@ namespace Pilates.Views
         private CadastroPostura cadastroPostura;
         private ControllerEvolucao<ModelEvolucao> evolucaoController;
         private CadastroEvolucao cadastroEvolucao;
+        private ConsultaProfissao consultaProfissao;
+        private ControllerProfissao<ModelProfissao> controllerProfissao;
         public int idBusca;
         public CadastroAluno()
         {
@@ -27,6 +29,8 @@ namespace Pilates.Views
             alunoController = new ControllerAluno<ModelAluno>();
             consultaCidade = new ConsultaCidade();
             evolucaoController = new ControllerEvolucao<ModelEvolucao>();
+            consultaProfissao = new ConsultaProfissao();
+            controllerProfissao = new ControllerProfissao<ModelProfissao>();
             idBusca = int.Parse(txtCodigo.Text);
         }
         public CadastroAluno(int idAluno) : this()
@@ -50,6 +54,12 @@ namespace Pilates.Views
                     txtCEP.Text = aluno.cep;
                     txtComplemento.Text = aluno.complemento;
                     txtCodCidade.Text = aluno.idCidade.ToString();
+                    txtCodProfissao.Text = aluno.idProfissao.ToString();
+                    if (aluno.idProfissao != null)
+                    { 
+                        ModelProfissao profissao = controllerProfissao.BuscarPorId(int.Parse(txtCodProfissao.Text));               
+                        txtProfissão.Text = profissao.profissao.ToString();
+                    }
                     txtSexo.Text = aluno.sexo;
                     txtEmail.Text = aluno.email;
                     txtCelular.Text = aluno.celular;
@@ -191,6 +201,7 @@ namespace Pilates.Views
                     string email = txtEmail.Text;
                     string celular = new string(txtCelular.Text.Where(char.IsDigit).ToArray());
                     int idCidade = int.Parse(txtCodCidade.Text);
+                    int idProfissao = int.Parse(txtCodProfissao.Text);
                     string sexo = txtSexo.SelectedItem.ToString();
                     DateTime.TryParse(txtDataCadastro.Text, out DateTime dataCadastro);
                     DateTime.TryParse(txtDataNasc.Text, out DateTime dataNasc);
@@ -214,7 +225,8 @@ namespace Pilates.Views
                         Ativo = Ativo,
                         dataCadastro = dataCadastro,
                         dataUltAlt = dataUltAlt,
-                        idCidade = idCidade
+                        idCidade = idCidade,
+                        idProfissao = idProfissao
                     };
 
                     if (Alterar == -7)
@@ -569,6 +581,45 @@ namespace Pilates.Views
             else
             {
                 MessageBox.Show("Selecione uma evolução para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnBuscarProfissao_Click(object sender, EventArgs e)
+        {
+            {
+                consultaProfissao.btnSair.Text = "Selecionar";
+
+                if (consultaProfissao.ShowDialog() == DialogResult.OK)
+                {
+                    var infosProfissao = consultaProfissao.Tag as Tuple<int, string>;
+                    if (infosProfissao != null)
+                    {
+                        int idProfissao = infosProfissao.Item1;
+                        string Profissao = infosProfissao.Item2;
+
+                        txtCodProfissao.Text = idProfissao.ToString();
+                        txtProfissão.Text = Profissao;
+                    }
+                }
+            }
+        }
+
+        private void txtCodProfissao_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCodProfissao.Text))
+            {
+                ModelProfissao profissao = controllerProfissao.BuscarPorId(int.Parse(txtCodProfissao.Text));
+                if (profissao != null)
+                {
+                    txtProfissão.Text = profissao.profissao;
+                }
+                else
+                {
+                    MessageBox.Show("Aluno não encontrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCodProfissao.Focus();
+                    txtCodProfissao.Clear();
+                    txtCodProfissao.Clear();
+                }
             }
         }
     }

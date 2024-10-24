@@ -62,7 +62,7 @@ namespace Pilates.Views
 
                 if (ProfissaoController.JaCadastrado(txtProfissao.Text, idAtual))
                 {
-                    MessageBox.Show("País já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Profissão já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtProfissao.Focus();
                 }
                 else

@@ -32,6 +32,8 @@
             this.lblDescricao = new System.Windows.Forms.Label();
             this.txtDoenca = new System.Windows.Forms.TextBox();
             this.lblDoenca = new System.Windows.Forms.Label();
+            this.txtCID = new System.Windows.Forms.TextBox();
+            this.lblCid = new System.Windows.Forms.Label();
             this.gbStatus.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,10 +102,28 @@
             this.lblDoenca.TabIndex = 13;
             this.lblDoenca.Text = "Doenca:*";
             // 
+            // txtCID
+            // 
+            this.txtCID.Location = new System.Drawing.Point(233, 104);
+            this.txtCID.Name = "txtCID";
+            this.txtCID.Size = new System.Drawing.Size(215, 20);
+            this.txtCID.TabIndex = 19;
+            // 
+            // lblCid
+            // 
+            this.lblCid.AutoSize = true;
+            this.lblCid.Location = new System.Drawing.Point(233, 88);
+            this.lblCid.Name = "lblCid";
+            this.lblCid.Size = new System.Drawing.Size(28, 13);
+            this.lblCid.TabIndex = 18;
+            this.lblCid.Text = "CID:";
+            // 
             // CadastroDoenca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(581, 450);
+            this.Controls.Add(this.txtCID);
+            this.Controls.Add(this.lblCid);
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.lblDescricao);
             this.Controls.Add(this.txtDoenca);
@@ -111,6 +131,10 @@
             this.Name = "CadastroDoenca";
             this.Text = "Cadastro de Doença";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroDoenca_FormClosed);
+            this.Controls.SetChildIndex(this.lblDoenca, 0);
+            this.Controls.SetChildIndex(this.txtDoenca, 0);
+            this.Controls.SetChildIndex(this.lblDescricao, 0);
+            this.Controls.SetChildIndex(this.txtDescricao, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);
@@ -120,10 +144,8 @@
             this.Controls.SetChildIndex(this.lblDataUltAlt, 0);
             this.Controls.SetChildIndex(this.lblDataCadastro, 0);
             this.Controls.SetChildIndex(this.gbStatus, 0);
-            this.Controls.SetChildIndex(this.lblDoenca, 0);
-            this.Controls.SetChildIndex(this.txtDoenca, 0);
-            this.Controls.SetChildIndex(this.lblDescricao, 0);
-            this.Controls.SetChildIndex(this.txtDescricao, 0);
+            this.Controls.SetChildIndex(this.lblCid, 0);
+            this.Controls.SetChildIndex(this.txtCID, 0);
             this.gbStatus.ResumeLayout(false);
             this.gbStatus.PerformLayout();
             this.ResumeLayout(false);
@@ -137,5 +159,7 @@
         private System.Windows.Forms.Label lblDescricao;
         private System.Windows.Forms.TextBox txtDoenca;
         private System.Windows.Forms.Label lblDoenca;
+        private System.Windows.Forms.TextBox txtCID;
+        private System.Windows.Forms.Label lblCid;
     }
 }

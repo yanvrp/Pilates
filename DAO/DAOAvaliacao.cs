@@ -153,7 +153,7 @@ namespace Pilates.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"SELECT * FROM avaliacao_Gestacao  
-                 WHERE idAvaliacao = @idAvaliacao";
+                         WHERE idAvaliacao = @idAvaliacao";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
                 conn.Open();
@@ -162,10 +162,12 @@ namespace Pilates.DAO
                 {
                     while (reader.Read())
                     {
-                        ModelAvaliacaoGestacao gestacao = new ModelAvaliacaoGestacao();
-                        gestacao.idGestacao = Convert.ToInt32(reader["idGestacao"]);
-                        gestacao.dataParto = Convert.ToDateTime(reader["dataParto"]);
-                        gestacao.observacao = reader["observacao"].ToString();
+                        ModelAvaliacaoGestacao gestacao = new ModelAvaliacaoGestacao
+                        {
+                            idGestacao = Convert.ToInt32(reader["idGestacao"]),
+                            dataParto = reader.IsDBNull(reader.GetOrdinal("dataParto")) ? (DateTime?)null : Convert.ToDateTime(reader["dataParto"]),
+                            observacao = reader["observacao"].ToString()
+                        };
 
                         gestacoes.Add(gestacao);
                     }
@@ -173,6 +175,7 @@ namespace Pilates.DAO
             }
             return gestacoes;
         }
+
         public List<ModelAvaliacaoMedicamento> BuscarMedicamentoPorAvaliacaoId(int idAvaliacao)
         {
             List<ModelAvaliacaoMedicamento> medicamentos = new List<ModelAvaliacaoMedicamento>();
@@ -264,7 +267,7 @@ namespace Pilates.DAO
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT doenca, descricao FROM doenca WHERE idDoenca = @idDoenca";
+                string query = "SELECT doenca, descricao, cid FROM doenca WHERE idDoenca = @idDoenca";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@idDoenca", idDoenca);
 
@@ -279,6 +282,7 @@ namespace Pilates.DAO
                             idDoenca = idDoenca,
                             doenca = reader["doenca"].ToString(),
                             descricao = reader["descricao"].ToString(),
+                            CID = reader["cid"].ToString(),
                         };
                     }
                 }
@@ -350,7 +354,7 @@ namespace Pilates.DAO
             {
                 string query = "SELECT gestacao, descricao FROM gestacao WHERE idGestacao = @idGestacao";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@idMedicamento", idGestacao);
+                cmd.Parameters.AddWithValue("@idGestacao", idGestacao);
 
                 conn.Open();
 
@@ -378,10 +382,11 @@ namespace Pilates.DAO
 
                 try
                 {
+                    // Inserir a avaliação principal
                     string queryAvaliacao = @"INSERT INTO avaliacao 
-                        (data, idAluno, dataCadastro, dataUltAlt, ativo) 
-                        VALUES (@data, @idAluno, @dataCadastro, @dataUltAlt, @ativo);
-                        SELECT SCOPE_IDENTITY();";
+                       (data, idAluno, dataCadastro, dataUltAlt, ativo) 
+                       VALUES (@data, @idAluno, @dataCadastro, @dataUltAlt, @ativo);
+                       SELECT SCOPE_IDENTITY();";
                     SqlCommand cmdAvaliacao = new SqlCommand(queryAvaliacao, conn, transaction);
 
                     cmdAvaliacao.Parameters.AddWithValue("@data", obj.data);
@@ -391,88 +396,100 @@ namespace Pilates.DAO
                     cmdAvaliacao.Parameters.AddWithValue("@ativo", obj.Ativo);
                     int idAvaliacao = Convert.ToInt32(cmdAvaliacao.ExecuteScalar());
 
+                    // Inserir as dores
                     foreach (var dor in obj.Dores)
                     {
                         string queryDores = @"INSERT INTO avaliacao_Dores 
-                             (idAvaliacao, observacao, idDores) 
-                             VALUES (@idAvaliacao, @observacao, @idDores)";
+                            (idAvaliacao, observacao, idDores) 
+                            VALUES (@idAvaliacao, @observacao, @idDores)";
                         SqlCommand cmdDores = new SqlCommand(queryDores, conn, transaction);
 
                         cmdDores.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
                         cmdDores.Parameters.AddWithValue("@observacao", dor.observacao);
                         cmdDores.Parameters.AddWithValue("@idDores", dor.idDores);
 
-
-                        cmdAvaliacao.ExecuteNonQuery();
+                        cmdDores.ExecuteNonQuery();
                     }
 
+                    // Inserir as doenças
                     foreach (var doenca in obj.Doenca)
                     {
-                        string queryDores = @"INSERT INTO avaliacao_Doenca 
-                             (idAvaliacao, observacao, idDoenca) 
-                             VALUES (@idAvaliacao, @observacao, @idDoenca)";
-                        SqlCommand cmdDores = new SqlCommand(queryDores, conn, transaction);
+                        string queryDoenca = @"INSERT INTO avaliacao_Doenca 
+                            (idAvaliacao, observacao, idDoenca) 
+                            VALUES (@idAvaliacao, @observacao, @idDoenca)";
+                        SqlCommand cmdDoenca = new SqlCommand(queryDoenca, conn, transaction);
 
-                        cmdDores.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
-                        cmdDores.Parameters.AddWithValue("@observacao", doenca.observacao);
-                        cmdDores.Parameters.AddWithValue("@idDoenca", doenca.idDoenca);
+                        cmdDoenca.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                        cmdDoenca.Parameters.AddWithValue("@observacao", doenca.observacao);
+                        cmdDoenca.Parameters.AddWithValue("@idDoenca", doenca.idDoenca);
 
-
-                        cmdAvaliacao.ExecuteNonQuery();
+                        cmdDoenca.ExecuteNonQuery();
                     }
 
+                    // Inserir as gestações
                     foreach (var gestacao in obj.Gestacao)
                     {
-                        string queryDores = @"INSERT INTO avaliacao_Gestacao 
-                             (idAvaliacao, observacao, idGestacao, dataParto) 
-                             VALUES (@idAvaliacao, @observacao, @idGestacao, @dataParto)";
-                        SqlCommand cmdDores = new SqlCommand(queryDores, conn, transaction);
+                        string queryGestacao = @"INSERT INTO avaliacao_Gestacao 
+                            (idAvaliacao, observacao, idGestacao, dataParto) 
+                            VALUES (@idAvaliacao, @observacao, @idGestacao, @dataParto)";
+                        SqlCommand cmdGestacao = new SqlCommand(queryGestacao, conn, transaction);
 
-                        cmdDores.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
-                        cmdDores.Parameters.AddWithValue("@observacao", gestacao.observacao);
-                        cmdDores.Parameters.AddWithValue("@idDoenca", gestacao.idGestacao);
-                        cmdDores.Parameters.AddWithValue("@dataParto", gestacao.dataParto);
+                        cmdGestacao.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                        cmdGestacao.Parameters.AddWithValue("@observacao", gestacao.observacao);
+                        cmdGestacao.Parameters.AddWithValue("@idGestacao", gestacao.idGestacao);
 
+                        // Verificar se dataParto é null e adicionar DBNull.Value se for
+                        if (gestacao.dataParto.HasValue)
+                        {
+                            cmdGestacao.Parameters.AddWithValue("@dataParto", gestacao.dataParto.Value);
+                        }
+                        else
+                        {
+                            cmdGestacao.Parameters.AddWithValue("@dataParto", DBNull.Value);
+                        }
 
-                        cmdAvaliacao.ExecuteNonQuery();
+                        cmdGestacao.ExecuteNonQuery();
                     }
 
-                    foreach (var cirugia in obj.Cirurgia)
+                    // Inserir as cirurgias
+                    foreach (var cirurgia in obj.Cirurgia)
                     {
-                        string queryDores = @"INSERT INTO avaliacao_Cirurgia 
-                             (idAvaliacao, observacao, idCirurgia, dataCirurgia) 
-                             VALUES (@idAvaliacao, @observacao, @idCirurgia, @dataCirurgia)";
-                        SqlCommand cmdDores = new SqlCommand(queryDores, conn, transaction);
+                        string queryCirurgia = @"INSERT INTO avaliacao_Cirurgia 
+                            (idAvaliacao, observacao, idCirurgia, dataCirurgia) 
+                            VALUES (@idAvaliacao, @observacao, @idCirurgia, @dataCirurgia)";
+                        SqlCommand cmdCirurgia = new SqlCommand(queryCirurgia, conn, transaction);
 
-                        cmdDores.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
-                        cmdDores.Parameters.AddWithValue("@observacao", cirugia.observacao);
-                        cmdDores.Parameters.AddWithValue("@idCirurgia", cirugia.idCirurgia);
-                        cmdDores.Parameters.AddWithValue("@dataCirurgia", cirugia.dataCirurgia);
+                        cmdCirurgia.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                        cmdCirurgia.Parameters.AddWithValue("@observacao", cirurgia.observacao);
+                        cmdCirurgia.Parameters.AddWithValue("@idCirurgia", cirurgia.idCirurgia);
+                        cmdCirurgia.Parameters.AddWithValue("@dataCirurgia", cirurgia.dataCirurgia);
 
-
-                        cmdAvaliacao.ExecuteNonQuery();
+                        cmdCirurgia.ExecuteNonQuery();
                     }
 
+                    // Inserir os medicamentos
                     foreach (var medicamento in obj.Medicamento)
                     {
-                        string queryDores = @"INSERT INTO avaliacao_Medicamento 
-                             (idAvaliacao, observacao, idMedicamento, dosagem, frequencia) 
-                             VALUES (@idAvaliacao, @observacao, @idMedicamento, @dosagem, @frequencia)";
-                        SqlCommand cmdDores = new SqlCommand(queryDores, conn, transaction);
+                        string queryMedicamento = @"INSERT INTO avaliacao_Medicamento 
+                            (idAvaliacao, observacao, idMedicamento, dosagem, frequencia) 
+                            VALUES (@idAvaliacao, @observacao, @idMedicamento, @dosagem, @frequencia)";
+                        SqlCommand cmdMedicamento = new SqlCommand(queryMedicamento, conn, transaction);
 
-                        cmdDores.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
-                        cmdDores.Parameters.AddWithValue("@observacao", medicamento.observacao);
-                        cmdDores.Parameters.AddWithValue("@idCirurgia", medicamento.idMedicamento);
-                        cmdDores.Parameters.AddWithValue("@dosagem", medicamento.dosagem);
-                        cmdDores.Parameters.AddWithValue("@frequencia", medicamento.frequencia);
+                        cmdMedicamento.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                        cmdMedicamento.Parameters.AddWithValue("@observacao", medicamento.observacao);
+                        cmdMedicamento.Parameters.AddWithValue("@idMedicamento", medicamento.idMedicamento);
+                        cmdMedicamento.Parameters.AddWithValue("@dosagem", medicamento.dosagem);
+                        cmdMedicamento.Parameters.AddWithValue("@frequencia", medicamento.frequencia);
 
-
-                        cmdAvaliacao.ExecuteNonQuery();
+                        cmdMedicamento.ExecuteNonQuery();
                     }
+
+                    // Commit da transação
                     transaction.Commit();
                 }
                 catch (Exception ex)
                 {
+                    // Rollback em caso de erro
                     transaction.Rollback();
                     throw new Exception("Erro no banco ao salvar a Avaliação: " + ex.Message);
                 }

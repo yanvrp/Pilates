@@ -127,9 +127,10 @@ namespace Pilates.Views
                     // Capturar o ID e o nome da cirurgia selecionado
                     int cirurgiaID = Convert.ToInt32(dataGridViewCirurgia.SelectedRows[0].Cells["Código"].Value);
                     string cirurgiaNome = dataGridViewCirurgia.SelectedRows[0].Cells["Cirurgia"].Value.ToString();
+                    string cirurgiaDescricao = dataGridViewCirurgia.SelectedRows[0].Cells["Descrição"].Value.ToString();
 
                     // Passar os detalhes da cirurgia selecionada de volta para a tela principal
-                    this.Tag = new Tuple<int, string>(cirurgiaID, cirurgiaNome);
+                    this.Tag = new Tuple<int, string, string>(cirurgiaID, cirurgiaNome, cirurgiaDescricao);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

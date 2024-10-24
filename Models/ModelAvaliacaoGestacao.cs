@@ -10,7 +10,7 @@ namespace Pilates.Models
     {
         public int idGestacao { get; set; }
         public int idAvaliacao { get; set; }
-        public DateTime dataParto { get; set; }
+        public DateTime? dataParto { get; set; }
         public string observacao { get; set; }
     }
 }

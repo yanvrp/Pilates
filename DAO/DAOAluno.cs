@@ -17,7 +17,7 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE aluno SET Aluno = @aluno, apelido = @apelido, endereco = @endereco, bairro = @bairro, numero = @numero, cep = @cep, complemento = @complemento, sexo = @sexo, email = @email, celular = @celular, cpf = @cpf, dataNasc = @dataNasc, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt, idCidade = @idCidade, ativo = @ativo WHERE idAluno = @id";
+                string query = "UPDATE aluno SET Aluno = @aluno, apelido = @apelido, endereco = @endereco, bairro = @bairro, numero = @numero, cep = @cep, complemento = @complemento, sexo = @sexo, email = @email, celular = @celular, cpf = @cpf, dataNasc = @dataNasc, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt, idCidade = @idCidade, idProfissao = @idProfissao, ativo = @ativo WHERE idAluno = @id";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", aluno.idAluno);
@@ -36,6 +36,7 @@ namespace Pilates.DAO
                 command.Parameters.AddWithValue("@dataCadastro", aluno.dataCadastro);
                 command.Parameters.AddWithValue("@dataUltAlt", aluno.dataUltAlt);
                 command.Parameters.AddWithValue("@idCidade", aluno.idCidade);
+                command.Parameters.AddWithValue("@idProfissao", aluno.idProfissao ?? DBNull.Value);
                 command.Parameters.AddWithValue("@ativo", aluno.Ativo);
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -73,6 +74,7 @@ namespace Pilates.DAO
                         obj.dataCadastro = DateTime.Parse(reader["dataCadastro"].ToString());
                         obj.dataUltAlt = DateTime.Parse(reader["dataUltAlt"].ToString());
                         obj.idCidade = Convert.ToInt32(reader["idCidade"]);
+                        obj.idProfissao = reader["idProfissao"] != DBNull.Value ? Convert.ToInt32(reader["idProfissao"]) : (int?)null;
                         obj.Ativo = Convert.ToBoolean(reader["Ativo"]);
                         obj.Posturas = GetPosturasPorAlunoID(obj.idAluno);
                         obj.Evolucoes = GetEvolucaoPorAlunoID(obj.idAluno);
@@ -244,7 +246,7 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO aluno (Aluno, apelido, endereco, bairro, numero, cep, complemento, sexo, email, celular, cpf, dataNasc, dataCadastro, dataUltAlt, idCidade, ativo) VALUES (@aluno, @apelido, @endereco, @bairro, @numero, @cep, @complemento, @sexo, @email, @celular, @cpf, @dataNasc, @dataCadastro, @dataUltAlt, @idCidade, @ativo)";
+                string query = "INSERT INTO aluno (Aluno, apelido, endereco, bairro, numero, cep, complemento, sexo, email, celular, cpf, dataNasc, dataCadastro, dataUltAlt, idCidade, idProfissao, ativo) VALUES (@aluno, @apelido, @endereco, @bairro, @numero, @cep, @complemento, @sexo, @email, @celular, @cpf, @dataNasc, @dataCadastro, @dataUltAlt, @idCidade, @idProfissao, @ativo)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", aluno.idAluno);
@@ -263,6 +265,7 @@ namespace Pilates.DAO
                 command.Parameters.AddWithValue("@dataCadastro", aluno.dataCadastro);
                 command.Parameters.AddWithValue("@dataUltAlt", aluno.dataUltAlt);
                 command.Parameters.AddWithValue("@idCidade", aluno.idCidade);
+                command.Parameters.AddWithValue("@idProfissao", aluno.idProfissao ?? DBNull.Value);
                 command.Parameters.AddWithValue("@ativo", aluno.Ativo);
                 connection.Open();
                 command.ExecuteNonQuery();

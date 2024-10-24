@@ -147,5 +147,11 @@ namespace Pilates
             ConsultaFornecedor consultaFornecedor = new ConsultaFornecedor();
             consultaFornecedor.ShowDialog();
         }
+
+        private void avaliaçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaAvaliacao consultaAvaliacao = new ConsultaAvaliacao();
+            consultaAvaliacao.ShowDialog();
+        }
     }
 }
