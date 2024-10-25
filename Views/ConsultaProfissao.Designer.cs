@@ -66,6 +66,8 @@
             // 
             // dataGridViewProfissao
             // 
+            this.dataGridViewProfissao.AllowUserToAddRows = false;
+            this.dataGridViewProfissao.AllowUserToDeleteRows = false;
             this.dataGridViewProfissao.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewProfissao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProfissao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -74,6 +76,7 @@
             this.Descrição});
             this.dataGridViewProfissao.Location = new System.Drawing.Point(12, 48);
             this.dataGridViewProfissao.Name = "dataGridViewProfissao";
+            this.dataGridViewProfissao.ReadOnly = true;
             this.dataGridViewProfissao.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewProfissao.TabIndex = 7;
             this.dataGridViewProfissao.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProfissao_CellDoubleClick);
@@ -82,11 +85,13 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Profissão
             // 
             this.Profissão.HeaderText = "Profissão";
             this.Profissão.Name = "Profissão";
+            this.Profissão.ReadOnly = true;
             this.Profissão.Width = 200;
             // 
             // Descrição
@@ -94,6 +99,7 @@
             this.Descrição.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Descrição.HeaderText = "Descrição";
             this.Descrição.Name = "Descrição";
+            this.Descrição.ReadOnly = true;
             // 
             // ConsultaProfissao
             // 

@@ -442,6 +442,12 @@
     <Compile Include="YControls\YButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="YControls\YMaskedTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="YControls\YMaskedTextBox.Designer.cs">
+      <DependentUpon>YMaskedTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="YControls\YTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -586,6 +592,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="YControls\YMaskedTextBox.resx">
+      <DependentUpon>YMaskedTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="YControls\YTextBox.resx">
       <DependentUpon>YTextBox.cs</DependentUpon>
     </EmbeddedResource>

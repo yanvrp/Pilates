@@ -67,6 +67,8 @@
             // 
             // dataGridViewDoenca
             // 
+            this.dataGridViewDoenca.AllowUserToAddRows = false;
+            this.dataGridViewDoenca.AllowUserToDeleteRows = false;
             this.dataGridViewDoenca.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewDoenca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDoenca.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -76,6 +78,7 @@
             this.Descrição});
             this.dataGridViewDoenca.Location = new System.Drawing.Point(12, 50);
             this.dataGridViewDoenca.Name = "dataGridViewDoenca";
+            this.dataGridViewDoenca.ReadOnly = true;
             this.dataGridViewDoenca.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewDoenca.TabIndex = 7;
             this.dataGridViewDoenca.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDoenca_CellDoubleClick);
@@ -84,23 +87,27 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Doença
             // 
             this.Doença.HeaderText = "Doença";
             this.Doença.Name = "Doença";
+            this.Doença.ReadOnly = true;
             this.Doença.Width = 200;
             // 
             // CID
             // 
             this.CID.HeaderText = "CID";
             this.CID.Name = "CID";
+            this.CID.ReadOnly = true;
             // 
             // Descrição
             // 
             this.Descrição.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Descrição.HeaderText = "Descrição";
             this.Descrição.Name = "Descrição";
+            this.Descrição.ReadOnly = true;
             // 
             // ConsultaDoenca
             // 

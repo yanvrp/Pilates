@@ -62,6 +62,8 @@
             // 
             // dataGridViewCirurgia
             // 
+            this.dataGridViewCirurgia.AllowUserToAddRows = false;
+            this.dataGridViewCirurgia.AllowUserToDeleteRows = false;
             this.dataGridViewCirurgia.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewCirurgia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCirurgia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -70,6 +72,7 @@
             this.Descrição});
             this.dataGridViewCirurgia.Location = new System.Drawing.Point(12, 44);
             this.dataGridViewCirurgia.Name = "dataGridViewCirurgia";
+            this.dataGridViewCirurgia.ReadOnly = true;
             this.dataGridViewCirurgia.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewCirurgia.TabIndex = 8;
             this.dataGridViewCirurgia.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCirurgia_CellDoubleClick);
@@ -78,11 +81,13 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Cirurgia
             // 
             this.Cirurgia.HeaderText = "Cirurgia";
             this.Cirurgia.Name = "Cirurgia";
+            this.Cirurgia.ReadOnly = true;
             this.Cirurgia.Width = 200;
             // 
             // Descrição
@@ -90,6 +95,7 @@
             this.Descrição.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Descrição.HeaderText = "Descrição";
             this.Descrição.Name = "Descrição";
+            this.Descrição.ReadOnly = true;
             // 
             // ConsultaCirurgia
             // 

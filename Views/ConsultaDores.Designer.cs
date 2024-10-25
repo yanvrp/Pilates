@@ -66,6 +66,8 @@
             // 
             // dataGridViewDores
             // 
+            this.dataGridViewDores.AllowUserToAddRows = false;
+            this.dataGridViewDores.AllowUserToDeleteRows = false;
             this.dataGridViewDores.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewDores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -74,6 +76,7 @@
             this.Descrição});
             this.dataGridViewDores.Location = new System.Drawing.Point(12, 44);
             this.dataGridViewDores.Name = "dataGridViewDores";
+            this.dataGridViewDores.ReadOnly = true;
             this.dataGridViewDores.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewDores.TabIndex = 8;
             this.dataGridViewDores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDores_CellDoubleClick);
@@ -82,11 +85,13 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Dores
             // 
             this.Dores.HeaderText = "Dores";
             this.Dores.Name = "Dores";
+            this.Dores.ReadOnly = true;
             this.Dores.Width = 200;
             // 
             // Descrição
@@ -94,6 +99,7 @@
             this.Descrição.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Descrição.HeaderText = "Descrição";
             this.Descrição.Name = "Descrição";
+            this.Descrição.ReadOnly = true;
             // 
             // ConsultaDores
             // 

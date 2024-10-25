@@ -62,6 +62,8 @@
             // 
             // dataGridViewEstado
             // 
+            this.dataGridViewEstado.AllowUserToAddRows = false;
+            this.dataGridViewEstado.AllowUserToDeleteRows = false;
             this.dataGridViewEstado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewEstado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEstado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -70,6 +72,7 @@
             this.UF});
             this.dataGridViewEstado.Location = new System.Drawing.Point(12, 49);
             this.dataGridViewEstado.Name = "dataGridViewEstado";
+            this.dataGridViewEstado.ReadOnly = true;
             this.dataGridViewEstado.Size = new System.Drawing.Size(776, 361);
             this.dataGridViewEstado.TabIndex = 6;
             this.dataGridViewEstado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEstado_CellDoubleClick);
@@ -78,17 +81,20 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Estado
             // 
             this.Estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
             // 
             // UF
             // 
             this.UF.HeaderText = "UF";
             this.UF.Name = "UF";
+            this.UF.ReadOnly = true;
             this.UF.Width = 200;
             // 
             // ConsultaEstado

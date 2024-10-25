@@ -36,12 +36,12 @@ namespace Pilates.Views
                 ModelCidade cidade = cidadeController.BuscarPorId(Alterar);
                 if (cidade != null)
                 {
-                    txtCodigo.Text = cidade.idCidade.ToString();
-                    txtCidade.Text = cidade.Cidade;
-                    txtDDD.Text = cidade.DDD.ToString();
-                    txtCodigoEstado.Text = cidade.idEstado.ToString();
-                    txtDataCadastro.Text = cidade.dataCadastro.ToString();
-                    txtDataUltAlt.Text = cidade.dataUltAlt.ToString();
+                    txtCodigo.Texts = cidade.idCidade.ToString();
+                    txtCidade.Texts = cidade.Cidade;
+                    txtDDD.Texts = cidade.DDD.ToString();
+                    txtCodigoEstado.Texts = cidade.idEstado.ToString();
+                    txtDataCadastro.Texts = cidade.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = cidade.dataUltAlt.ToString();
                     rbAtivo.Checked = cidade.Ativo;
                     rbInativo.Checked = !cidade.Ativo;
 
@@ -49,7 +49,7 @@ namespace Pilates.Views
 
                     if (!string.IsNullOrEmpty(nomeEstado))
                     {
-                        txtEstado.Text = nomeEstado;
+                        txtEstado.Texts = nomeEstado;
                     }
                 }
                 else
@@ -60,17 +60,17 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtCidade.Text))
+            if (!Validacoes.CampoObrigatorio(txtCidade.Texts))
             {
                 MessageBox.Show("Campo Cidade é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCidade.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDDD.Text))
+            else if (!Validacoes.CampoObrigatorio(txtDDD.Texts))
             {
                 MessageBox.Show("Campo DDD é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDDD.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtCodigoEstado.Text))
+            else if (!Validacoes.CampoObrigatorio(txtCodigoEstado.Texts))
             {
                 MessageBox.Show("Campo Código Estado é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodigoEstado.Focus();
@@ -78,7 +78,7 @@ namespace Pilates.Views
             else
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
-                if (cidadeController.JaCadastrado(txtCidade.Text, int.Parse(txtCodigoEstado.Text), idAtual))
+                if (cidadeController.JaCadastrado(txtCidade.Texts, int.Parse(txtCodigoEstado.Texts), idAtual))
                 {
                     MessageBox.Show("Cidade já cadastrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCidade.Focus();
@@ -88,13 +88,13 @@ namespace Pilates.Views
 
                     try
                     {
-                        string cidade = txtCidade.Text;
-                        int DDD = int.Parse(txtDDD.Text);
-                        int idEstado = int.Parse(txtCodigoEstado.Text);
+                        string cidade = txtCidade.Texts;
+                        int DDD = int.Parse(txtDDD.Texts);
+                        int idEstado = int.Parse(txtCodigoEstado.Texts);
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -102,7 +102,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelCidade novaCidade = new ModelCidade
@@ -140,6 +140,15 @@ namespace Pilates.Views
             ((ConsultaCidade)this.Owner).AtualizarConsultaCidades(false);
         }
 
+        private void CadastroCidade_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = cidadeController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
+        }
+
         private void btnBuscarEstado_Click(object sender, EventArgs e)
         {
             consultaEstado.btnSair.Text = "Selecionar";
@@ -154,15 +163,15 @@ namespace Pilates.Views
                     int estadoID = estadoDetalhes.Item1;
                     string estadoNome = estadoDetalhes.Item2;
 
-                    txtCodigoEstado.Text = estadoID.ToString();
-                    txtEstado.Text = estadoNome;
+                    txtCodigoEstado.Texts = estadoID.ToString();
+                    txtEstado.Texts = estadoNome;
                 }
             }
         }
 
         private void txtCidade_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtCidade.Text))
+            if (!Validacoes.VerificaLetras(txtCidade.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCidade.Focus();
@@ -171,7 +180,7 @@ namespace Pilates.Views
 
         private void txtDDD_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaNumeros(txtDDD.Text))
+            if (!Validacoes.VerificaNumeros(txtDDD.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDDD.Focus();
@@ -180,19 +189,19 @@ namespace Pilates.Views
 
         private void txtCodigoEstado_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaNumeros(txtCodigoEstado.Text))
+            if (!Validacoes.VerificaNumeros(txtCodigoEstado.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodigoEstado.Focus();
             }
             else
             {
-                if (!string.IsNullOrEmpty(txtCodigoEstado.Text))
+                if (!string.IsNullOrEmpty(txtCodigoEstado.Texts))
                 {
-                    ModelEstado estado = estadoController.BuscarPorId(int.Parse(txtCodigoEstado.Text));
+                    ModelEstado estado = estadoController.BuscarPorId(int.Parse(txtCodigoEstado.Texts));
                     if (estado != null)
                     {
-                        txtEstado.Text = estado.Estado;
+                        txtEstado.Texts = estado.Estado;
                     }
                     else
                     {
@@ -200,6 +209,15 @@ namespace Pilates.Views
                         txtCodigoEstado.Focus();
                     }
                 }
+            }
+        }
+
+        private void txtCodigoEstado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //permitir apenas números
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

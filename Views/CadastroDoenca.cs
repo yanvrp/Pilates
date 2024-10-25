@@ -30,12 +30,12 @@ namespace Pilates.Views
                 ModelDoenca doenca = DoencaController.BuscarPorId(Alterar);
                 if (doenca != null)
                 {//carrega os dados da doença
-                    txtCodigo.Text = doenca.idDoenca.ToString();
-                    txtDoenca.Text = doenca.doenca;
-                    txtCID.Text = doenca.CID;
-                    txtDescricao.Text = doenca.descricao;
-                    txtDataCadastro.Text = doenca.dataCadastro.ToString();
-                    txtDataUltAlt.Text = doenca.dataUltAlt.ToString();
+                    txtCodigo.Texts = doenca.idDoenca.ToString();
+                    txtDoenca.Texts = doenca.doenca;
+                    txtCID.Texts = doenca.CID;
+                    txtDescricao.Texts = doenca.descricao;
+                    txtDataCadastro.Texts = doenca.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = doenca.dataUltAlt.ToString();
                     rbAtivo.Checked = doenca.Ativo;
                     rbInativo.Checked = !doenca.Ativo;
                 }
@@ -47,12 +47,12 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtDoenca.Text))
+            if (!Validacoes.CampoObrigatorio(txtDoenca.Texts))
             {
                 MessageBox.Show("Campo doença é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDoenca.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDescricao.Text))
+            else if (!Validacoes.CampoObrigatorio(txtDescricao.Texts))
             {
                 MessageBox.Show("Campo descrição é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDescricao.Focus();
@@ -61,7 +61,7 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (DoencaController.JaCadastrado(txtDoenca.Text, idAtual))
+                if (DoencaController.JaCadastrado(txtDoenca.Texts, idAtual))
                 {
                     MessageBox.Show("Doenca já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtDoenca.Focus();
@@ -70,13 +70,13 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string doenca = txtDoenca.Text;
-                        string CID = txtCID.Text;
-                        string descricao = txtDescricao.Text;
+                        string doenca = txtDoenca.Texts;
+                        string CID = txtCID.Texts;
+                        string descricao = txtDescricao.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -84,7 +84,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelDoenca novaDoenca = new ModelDoenca
@@ -124,5 +124,15 @@ namespace Pilates.Views
         {
             ((ConsultaDoenca)this.Owner).AtualizarConsultaDoencas(false);
         }
+
+        private void CadastroDoenca_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = DoencaController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
+        }
     }
 }
+

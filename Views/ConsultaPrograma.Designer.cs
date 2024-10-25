@@ -66,6 +66,8 @@
             // 
             // dataGridViewPrograma
             // 
+            this.dataGridViewPrograma.AllowUserToAddRows = false;
+            this.dataGridViewPrograma.AllowUserToDeleteRows = false;
             this.dataGridViewPrograma.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewPrograma.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPrograma.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -74,6 +76,7 @@
             this.valor});
             this.dataGridViewPrograma.Location = new System.Drawing.Point(12, 55);
             this.dataGridViewPrograma.Name = "dataGridViewPrograma";
+            this.dataGridViewPrograma.ReadOnly = true;
             this.dataGridViewPrograma.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewPrograma.TabIndex = 7;
             this.dataGridViewPrograma.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrograma_CellDoubleClick);
@@ -82,17 +85,20 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Título
             // 
             this.Título.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Título.HeaderText = "Título";
             this.Título.Name = "Título";
+            this.Título.ReadOnly = true;
             // 
             // valor
             // 
             this.valor.HeaderText = "Valor Mensal";
             this.valor.Name = "valor";
+            this.valor.ReadOnly = true;
             // 
             // ConsultaPrograma
             // 

@@ -15,6 +15,10 @@ namespace Pilates.Controller
         {
             daoCidade = new DAOCidade<T>();
         }
+        public int BuscarUltimoCodigo()
+        {
+            return daoCidade.BuscarUltimoCodigo();
+        }
         public override void Alterar(T obj)
         {
             daoCidade.Alterar(obj);

@@ -87,6 +87,8 @@
             // 
             // dataGridViewPais
             // 
+            this.dataGridViewPais.AllowUserToAddRows = false;
+            this.dataGridViewPais.AllowUserToDeleteRows = false;
             this.dataGridViewPais.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewPais.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPais.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -96,6 +98,7 @@
             this.DDI});
             this.dataGridViewPais.Location = new System.Drawing.Point(12, 51);
             this.dataGridViewPais.Name = "dataGridViewPais";
+            this.dataGridViewPais.ReadOnly = true;
             this.dataGridViewPais.Size = new System.Drawing.Size(707, 408);
             this.dataGridViewPais.TabIndex = 7;
             this.dataGridViewPais.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPais_CellDoubleClick);
@@ -104,22 +107,26 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // País
             // 
             this.País.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.País.HeaderText = "País";
             this.País.Name = "País";
+            this.País.ReadOnly = true;
             // 
             // Sigla
             // 
             this.Sigla.HeaderText = "Sigla";
             this.Sigla.Name = "Sigla";
+            this.Sigla.ReadOnly = true;
             // 
             // DDI
             // 
             this.DDI.HeaderText = "DDI";
             this.DDI.Name = "DDI";
+            this.DDI.ReadOnly = true;
             // 
             // ConsultaPais
             // 

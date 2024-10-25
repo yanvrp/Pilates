@@ -16,31 +16,34 @@ namespace Pilates.Views
         private ControllerPostura<ModelPostura> controllerPostura;
         private ConsultaAluno consultaAluno;
         private ControllerAluno<ModelAluno> controllerAluno;
+
+        private List<ModelPostura> posturasTemporarias = new List<ModelPostura>();
         public CadastroPostura()
         {
             InitializeComponent();
             controllerPostura = new ControllerPostura<ModelPostura>();
             consultaAluno = new ConsultaAluno();
             controllerAluno = new ControllerAluno<ModelAluno>();
-            txtCodAluno.Text = buscaID.ToString();
+            txtCodAluno.Texts = buscaID.ToString();
             string nomeAluno = controllerPostura.GetNomeAlunoByAlunoID(buscaID);
             if (!string.IsNullOrEmpty(nomeAluno))
             {
-                txtAluno.Text = nomeAluno;
+                txtAluno.Texts = nomeAluno;
             }
         }
         public CadastroPostura(int idPostura, int idBusca) : this()
         {
             Alterar = idPostura;
             buscaID = idBusca;
-            txtCodAluno.Text = buscaID.ToString();
+            txtCodAluno.Texts = buscaID.ToString();
             string nomeAluno = controllerPostura.GetNomeAlunoByAlunoID(buscaID);
             if (!string.IsNullOrEmpty(nomeAluno))
             {
-                txtAluno.Text = nomeAluno;
+                txtAluno.Texts = nomeAluno;
             }
             Carrega();
         }
+
         public override void Carrega()
         {
             if (Alterar != -7)
@@ -48,22 +51,22 @@ namespace Pilates.Views
                 ModelPostura postura = controllerPostura.BuscarPorId(Alterar);
                 if (postura != null)
                 {
-                    txtCodigo.Text = postura.idPostura.ToString();
-                    txtTitulo.Text = postura.titulo.ToString();
-                    txtCabeca.Text = postura.cabecaPostura;
-                    txtOmbro.Text = postura.ombroPostura;
-                    txtEscapula.Text = postura.escapuloPostura;
-                    txtMaos.Text = postura.maosPostura;
-                    txtCervical.Text = postura.cervicalPostura;
-                    txtToracica.Text = postura.toracicaPostura;
-                    txtLombar.Text = postura.lombarPostura;
-                    txtQuadril.Text = postura.quadrilPostura;
-                    txtJoelhos.Text = postura.joelhoPostura;
-                    txtPes.Text = postura.pesPostura;
-                    txtCodAluno.Text = postura.idAluno.ToString();
-                    txtDataCadastro.Text = postura.dataCadastro.ToString();
-                    txtDataUltAlt.Text = postura.dataUltAlt.ToString();
-                    txtOutros.Text = postura.Outros;
+                    txtCodigo.Texts = postura.idPostura.ToString();
+                    txtTitulo.Texts = postura.titulo.ToString();
+                    txtCabeca.Texts = postura.cabecaPostura;
+                    txtOmbro.Texts = postura.ombroPostura;
+                    txtEscapula.Texts = postura.escapuloPostura;
+                    txtMaos.Texts = postura.maosPostura;
+                    txtCervical.Texts = postura.cervicalPostura;
+                    txtToracica.Texts = postura.toracicaPostura;
+                    txtLombar.Texts = postura.lombarPostura;
+                    txtQuadril.Texts = postura.quadrilPostura;
+                    txtJoelhos.Texts = postura.joelhoPostura;
+                    txtPes.Texts = postura.pesPostura;
+                    txtCodAluno.Texts = postura.idAluno.ToString();
+                    txtDataCadastro.Texts = postura.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = postura.dataUltAlt.ToString();
+                    txtOutros.Texts = postura.Outros;
                     rbAtivo.Checked = postura.Ativo;
                     rbInativo.Checked = !postura.Ativo;
 
@@ -71,7 +74,7 @@ namespace Pilates.Views
 
                     if (!string.IsNullOrEmpty(nomeAluno))
                     {
-                        txtAluno.Text = nomeAluno;
+                        txtAluno.Texts = nomeAluno;
                     }
                 }
                 else
@@ -82,62 +85,62 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtCabeca.Text))
+            if (!Validacoes.CampoObrigatorio(txtCabeca.Texts))
             {
                 MessageBox.Show("Campo cabeça é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCabeca.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtOmbro.Text))
+            else if (!Validacoes.CampoObrigatorio(txtOmbro.Texts))
             {
                 MessageBox.Show("Campo ombro é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtOmbro.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtEscapula.Text))
+            else if (!Validacoes.CampoObrigatorio(txtEscapula.Texts))
             {
                 MessageBox.Show("Campo escapula é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEscapula.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtMaos.Text))
+            else if (!Validacoes.CampoObrigatorio(txtMaos.Texts))
             {
                 MessageBox.Show("Campo mãos é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtMaos.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtCervical.Text))
+            else if (!Validacoes.CampoObrigatorio(txtCervical.Texts))
             {
                 MessageBox.Show("Campo cervical é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCervical.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtToracica.Text))
+            else if (!Validacoes.CampoObrigatorio(txtToracica.Texts))
             {
                 MessageBox.Show("Campo toracica é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtToracica.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtLombar.Text))
+            else if (!Validacoes.CampoObrigatorio(txtLombar.Texts))
             {
                 MessageBox.Show("Campo lombar é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtLombar.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtQuadril.Text))
+            else if (!Validacoes.CampoObrigatorio(txtQuadril.Texts))
             {
                 MessageBox.Show("Campo quadril é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtQuadril.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtJoelhos.Text))
+            else if (!Validacoes.CampoObrigatorio(txtJoelhos.Texts))
             {
                 MessageBox.Show("Campo joelhos é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtJoelhos.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtPes.Text))
+            else if (!Validacoes.CampoObrigatorio(txtPes.Texts))
             {
                 MessageBox.Show("Campo pés País é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPes.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtCodAluno.Text))
+            else if (!Validacoes.CampoObrigatorio(txtCodAluno.Texts))
             {
                 MessageBox.Show("Campo código aluno é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodAluno.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtTitulo.Text))
+            else if (!Validacoes.CampoObrigatorio(txtTitulo.Texts))
             {
                 MessageBox.Show("Campo titulo é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTitulo.Focus();
@@ -146,29 +149,29 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string titulo = txtTitulo.Text;
-                        string cabeca = txtCabeca.Text;
-                        string ombro = txtOmbro.Text;
-                        string escapula = txtEscapula.Text;
-                        string maos = txtMaos.Text;
-                        string cervical = txtCervical.Text;
-                        string toracica = txtToracica.Text;
-                        string lombar = txtLombar.Text;
-                        string quadril = txtQuadril.Text;
-                        string joelhos = txtJoelhos.Text;
-                        string pes = txtPes.Text;
-                        string Outros = txtOutros.Text;
-                        int idAluno = int.Parse(txtCodAluno.Text);
+                        string titulo = txtTitulo.Texts;
+                        string cabeca = txtCabeca.Texts;
+                        string ombro = txtOmbro.Texts;
+                        string escapula = txtEscapula.Texts;
+                        string maos = txtMaos.Texts;
+                        string cervical = txtCervical.Texts;
+                        string toracica = txtToracica.Texts;
+                        string lombar = txtLombar.Texts;
+                        string quadril = txtQuadril.Texts;
+                        string joelhos = txtJoelhos.Texts;
+                        string pes = txtPes.Texts;
+                        string Outros = txtOutros.Texts;
+                        int idAluno = int.Parse(txtCodAluno.Texts);
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
                         if (Alterar != -7)
                         {
                             DateTime.TryParse(DateTime.Now.ToString(), out dataUltAlt);
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelPostura novaPostura = new ModelPostura
@@ -209,51 +212,6 @@ namespace Pilates.Views
                     }
                 }
             }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            consultaAluno.btnSair.Text = "Selecionar";
-
-            if (consultaAluno.ShowDialog() == DialogResult.OK)
-            {
-                // Receber os detalhes do país selecionado
-                var alunoDetalhes = consultaAluno.Tag as Tuple<int, string>;
-                if (alunoDetalhes != null)
-                {
-                    int alunoID = alunoDetalhes.Item1;
-                    string alunoNome = alunoDetalhes.Item2;
-
-                    // Atualizar o campo txtPais com o nome do país selecionado
-                    txtCodAluno.Text = alunoID.ToString();
-                    txtAluno.Text = alunoNome;
-                }
-            }
-        }
-
-        private void txtCodAluno_Leave(object sender, EventArgs e)
-        {
-            if (!Validacoes.VerificaNumeros(txtCodAluno.Text))
-            {
-                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCodAluno.Focus();
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(txtCodAluno.Text))
-                {
-                    ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Text));
-                    if (aluno != null)
-                    {
-                        txtAluno.Text = aluno.Aluno;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Aluno(a) não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtCodAluno.Focus();
-                    }
-                }
-            }
-        }
 
         private void CadastroPostura_FormClosed(object sender, FormClosedEventArgs e)
         {

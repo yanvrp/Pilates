@@ -65,14 +65,17 @@
             // 
             // dataGridViewCondicaoPagamento
             // 
+            this.dataGridViewCondicaoPagamento.AllowUserToAddRows = false;
+            this.dataGridViewCondicaoPagamento.AllowUserToDeleteRows = false;
             this.dataGridViewCondicaoPagamento.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewCondicaoPagamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCondicaoPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.condicaoPagamento});
-            this.dataGridViewCondicaoPagamento.Location = new System.Drawing.Point(12, 38);
+            this.dataGridViewCondicaoPagamento.Location = new System.Drawing.Point(12, 44);
             this.dataGridViewCondicaoPagamento.Name = "dataGridViewCondicaoPagamento";
-            this.dataGridViewCondicaoPagamento.Size = new System.Drawing.Size(591, 371);
+            this.dataGridViewCondicaoPagamento.ReadOnly = true;
+            this.dataGridViewCondicaoPagamento.Size = new System.Drawing.Size(591, 365);
             this.dataGridViewCondicaoPagamento.TabIndex = 7;
             this.dataGridViewCondicaoPagamento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCondicaoPagamento_CellDoubleClick);
             // 
@@ -80,12 +83,14 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // condicaoPagamento
             // 
             this.condicaoPagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.condicaoPagamento.HeaderText = "Condição de Pagamento";
             this.condicaoPagamento.Name = "condicaoPagamento";
+            this.condicaoPagamento.ReadOnly = true;
             // 
             // ConsultaCondicaoPagamento
             // 

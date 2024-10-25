@@ -10,6 +10,23 @@ namespace Pilates.DAO
     public class DAOGestacao<T> : DAO<T>
     {
         public DAOGestacao() : base() { }
+        public int BuscarUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(idGestacao) FROM gestacao";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
         public override void Alterar(T obj)
         {
             dynamic gestacao = obj;

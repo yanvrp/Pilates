@@ -13,6 +13,23 @@ namespace Pilates.DAO
         public DAOFormaPagamento() : base()
         { 
         }
+        public int BuscarUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(idFormaPagamento) FROM formaPagamento";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
         public override void Alterar(T obj)
         {
             dynamic formaPagamento = obj;

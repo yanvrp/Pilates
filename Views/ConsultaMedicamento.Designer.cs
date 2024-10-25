@@ -66,6 +66,8 @@
             // 
             // dataGridViewMedicamento
             // 
+            this.dataGridViewMedicamento.AllowUserToAddRows = false;
+            this.dataGridViewMedicamento.AllowUserToDeleteRows = false;
             this.dataGridViewMedicamento.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewMedicamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMedicamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -74,6 +76,7 @@
             this.Descrição});
             this.dataGridViewMedicamento.Location = new System.Drawing.Point(12, 53);
             this.dataGridViewMedicamento.Name = "dataGridViewMedicamento";
+            this.dataGridViewMedicamento.ReadOnly = true;
             this.dataGridViewMedicamento.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewMedicamento.TabIndex = 8;
             this.dataGridViewMedicamento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMedicamento_CellDoubleClick);
@@ -82,11 +85,13 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Medicamento
             // 
             this.Medicamento.HeaderText = "Medicamento";
             this.Medicamento.Name = "Medicamento";
+            this.Medicamento.ReadOnly = true;
             this.Medicamento.Width = 200;
             // 
             // Descrição
@@ -94,6 +99,7 @@
             this.Descrição.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Descrição.HeaderText = "Descrição";
             this.Descrição.Name = "Descrição";
+            this.Descrição.ReadOnly = true;
             // 
             // ConsultaMedicamento
             // 

@@ -65,6 +65,8 @@
             // 
             // dataGridViewContasPagar
             // 
+            this.dataGridViewContasPagar.AllowUserToAddRows = false;
+            this.dataGridViewContasPagar.AllowUserToDeleteRows = false;
             this.dataGridViewContasPagar.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewContasPagar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContasPagar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -76,6 +78,7 @@
             this.dataCancelamento});
             this.dataGridViewContasPagar.Location = new System.Drawing.Point(12, 52);
             this.dataGridViewContasPagar.Name = "dataGridViewContasPagar";
+            this.dataGridViewContasPagar.ReadOnly = true;
             this.dataGridViewContasPagar.Size = new System.Drawing.Size(664, 350);
             this.dataGridViewContasPagar.TabIndex = 8;
             this.dataGridViewContasPagar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContasPagar_CellDoubleClick);
@@ -84,32 +87,38 @@
             // 
             this.numero.HeaderText = "Número";
             this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
             // 
             // parcela
             // 
             this.parcela.HeaderText = "Parcela";
             this.parcela.Name = "parcela";
+            this.parcela.ReadOnly = true;
             // 
             // valorParcela
             // 
             this.valorParcela.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.valorParcela.HeaderText = "Valor";
             this.valorParcela.Name = "valorParcela";
+            this.valorParcela.ReadOnly = true;
             // 
             // dataVencimento
             // 
             this.dataVencimento.HeaderText = "Data Vencimento";
             this.dataVencimento.Name = "dataVencimento";
+            this.dataVencimento.ReadOnly = true;
             // 
             // dataPagamento
             // 
             this.dataPagamento.HeaderText = "Data Pagamento";
             this.dataPagamento.Name = "dataPagamento";
+            this.dataPagamento.ReadOnly = true;
             // 
             // dataCancelamento
             // 
             this.dataCancelamento.HeaderText = "Data Cancelamento";
             this.dataCancelamento.Name = "dataCancelamento";
+            this.dataCancelamento.ReadOnly = true;
             // 
             // ConsultaContasPagar
             // 

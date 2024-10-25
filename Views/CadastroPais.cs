@@ -30,12 +30,12 @@ namespace Pilates.Views
                 ModelPais pais = PaisController.BuscarPorId(Alterar);
                 if (pais != null)
                 {//carrega os dados do país
-                    txtCodigo.Text = pais.idPais.ToString();
-                    txtPais.Text = pais.Pais;
-                    txtSigla.Text = pais.Sigla;
-                    txtDDI.Text = pais.DDI;
-                    txtDataCadastro.Text = pais.dataCadastro.ToString();
-                    txtDataUltAlt.Text = pais.dataUltAlt.ToString();
+                    txtCodigo.Texts = pais.idPais.ToString();
+                    txtPais.Texts = pais.Pais;
+                    txtSigla.Texts = pais.Sigla;
+                    txtDDI.Texts = pais.DDI;
+                    txtDataCadastro.Texts = pais.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = pais.dataUltAlt.ToString();
                     rbAtivo.Checked = pais.Ativo;
                     rbInativo.Checked = !pais.Ativo;
                 }
@@ -47,17 +47,17 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtPais.Text))
+            if (!Validacoes.CampoObrigatorio(txtPais.Texts))
             {
                 MessageBox.Show("Campo País é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPais.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtSigla.Text))
+            else if (!Validacoes.CampoObrigatorio(txtSigla.Texts))
             {
                 MessageBox.Show("Campo Sigla é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSigla.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDDI.Text))
+            else if (!Validacoes.CampoObrigatorio(txtDDI.Texts))
             {
                 MessageBox.Show("Campo DDI é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDDI.Focus();
@@ -66,7 +66,7 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (PaisController.JaCadastrado(txtPais.Text, idAtual))
+                if (PaisController.JaCadastrado(txtPais.Texts, idAtual))
                 {
                     MessageBox.Show("País já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtPais.Focus();
@@ -75,13 +75,13 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string pais = txtPais.Text;
-                        string sigla = txtSigla.Text;
-                        string ddi = txtDDI.Text;
+                        string pais = txtPais.Texts;
+                        string sigla = txtSigla.Texts;
+                        string ddi = txtDDI.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -89,7 +89,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelPais novoPais = new ModelPais
@@ -132,12 +132,16 @@ namespace Pilates.Views
 
         private void CadastroPais_Load(object sender, EventArgs e)
         {
-
+            if (Alterar == -7)
+            {
+                int novoCodigo = PaisController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
         }
 
         private void txtPais_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtPais.Text))
+            if (!Validacoes.VerificaLetras(txtPais.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPais.Focus();
@@ -146,7 +150,7 @@ namespace Pilates.Views
 
         private void txtSigla_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetrasSemEspaco(txtSigla.Text))
+            if (!Validacoes.VerificaLetrasSemEspaco(txtSigla.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSigla.Focus();
@@ -155,7 +159,7 @@ namespace Pilates.Views
 
         private void txtDDI_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaNumeros(txtDDI.Text))
+            if (!Validacoes.VerificaNumeros(txtDDI.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDDI.Focus();

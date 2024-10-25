@@ -23,22 +23,22 @@ namespace Pilates.Views
             controllerEvolucao = new ControllerEvolucao<ModelEvolucao>();
             consultaAluno = new ConsultaAluno();
             controllerAluno = new ControllerAluno<ModelAluno>();
-            txtCodAluno.Text = buscaID.ToString();
+            txtCodAluno.Texts = buscaID.ToString();
             string nomeAluno = controllerEvolucao.GetNomeAlunoByAlunoID(buscaID);
             if (!string.IsNullOrEmpty(nomeAluno))
             {
-                txtAluno.Text = nomeAluno;
+                txtAluno.Texts = nomeAluno;
             }
         }
         public CadastroEvolucao(int idEvolucao, int idBusca) : this()
         {
             Alterar = idEvolucao;
             buscaID = idBusca;
-            txtCodAluno.Text = buscaID.ToString();
+            txtCodAluno.Texts = buscaID.ToString();
             string nomeAluno = controllerEvolucao.GetNomeAlunoByAlunoID(buscaID);
             if (!string.IsNullOrEmpty(nomeAluno))
             {
-                txtAluno.Text = nomeAluno;
+                txtAluno.Texts = nomeAluno;
             }
             Carrega();
         }
@@ -49,12 +49,12 @@ namespace Pilates.Views
                 ModelEvolucao evolucao = controllerEvolucao.BuscarPorId(Alterar);
                 if (evolucao != null)
                 {
-                    txtCodigo.Text = evolucao.idEvolucao.ToString();
-                    txtTitulo.Text = evolucao.titulo.ToString();
-                    txtCodAluno.Text = evolucao.idAluno.ToString();
-                    txtObservacao.Text = evolucao.observacao;
-                    txtDataCadastro.Text = evolucao.dataCadastro.ToString();
-                    txtDataUltAlt.Text = evolucao.dataUltAlt.ToString();
+                    txtCodigo.Texts = evolucao.idEvolucao.ToString();
+                    txtTitulo.Texts = evolucao.titulo.ToString();
+                    txtCodAluno.Texts = evolucao.idAluno.ToString();
+                    txtObservacao.Texts = evolucao.observacao;
+                    txtDataCadastro.Texts = evolucao.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = evolucao.dataUltAlt.ToString();
                     rbAtivo.Checked = evolucao.Ativo;
                     rbInativo.Checked = !evolucao.Ativo;
 
@@ -62,7 +62,7 @@ namespace Pilates.Views
 
                     if (!string.IsNullOrEmpty(nomeAluno))
                     {
-                        txtAluno.Text = nomeAluno;
+                        txtAluno.Texts = nomeAluno;
                     }
                 }
                 else
@@ -73,17 +73,17 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtCodAluno.Text))
+            if (!Validacoes.CampoObrigatorio(txtCodAluno.Texts))
             {
                 MessageBox.Show("Campo código aluno é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodAluno.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtObservacao.Text))
+            else if (!Validacoes.CampoObrigatorio(txtObservacao.Texts))
             {
                 MessageBox.Show("Campo observação é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtObservacao.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtTitulo.Text))
+            else if (!Validacoes.CampoObrigatorio(txtTitulo.Texts))
             {
                 MessageBox.Show("Campo titulo é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTitulo.Focus();
@@ -93,13 +93,13 @@ namespace Pilates.Views
 
                 try
                 {
-                    int idAluno = int.Parse(txtCodAluno.Text);
-                    string titulo = txtTitulo.Text;
-                    string observacao = txtObservacao.Text;
+                    int idAluno = int.Parse(txtCodAluno.Texts);
+                    string titulo = txtTitulo.Texts;
+                    string observacao = txtObservacao.Texts;
                     DateTime dataCadastro;
                     DateTime dataUltAlt;
 
-                    DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                    DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                     if (Alterar != -7)
                     {
@@ -107,7 +107,7 @@ namespace Pilates.Views
                     }
                     else
                     {
-                        DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                        DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                     }
 
                     ModelEvolucao novaEvolucao = new ModelEvolucao
@@ -142,51 +142,6 @@ namespace Pilates.Views
         private void btnSair_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            consultaAluno.btnSair.Text = "Selecionar";
-
-            if (consultaAluno.ShowDialog() == DialogResult.OK)
-            {
-                // Receber os detalhes do aluno selecionado
-                var alunoDetalhes = consultaAluno.Tag as Tuple<int, string>;
-                if (alunoDetalhes != null)
-                {
-                    int alunoID = alunoDetalhes.Item1;
-                    string alunoNome = alunoDetalhes.Item2;
-
-                    // Atualizar o campo aluno com o nome do país selecionado
-                    txtCodAluno.Text = alunoID.ToString();
-                    txtAluno.Text = alunoNome;
-                }
-            }
-        }
-
-        private void txtCodAluno_Leave(object sender, EventArgs e)
-        {
-            if (!Validacoes.VerificaNumeros(txtCodAluno.Text))
-            {
-                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCodAluno.Focus();
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(txtCodAluno.Text))
-                {
-                    ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Text));
-                    if (aluno != null)
-                    {
-                        txtAluno.Text = aluno.Aluno;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Aluno(a) não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtCodAluno.Focus();
-                    }
-                }
-            }
         }
 
         private void CadastroEvolucao_FormClosed(object sender, FormClosedEventArgs e)

@@ -31,10 +31,10 @@ namespace Pilates.Views
                 ModelFormaPagamento formaPag = controllerFormaPagamento.BuscarPorId(Alterar);
                 if (formaPag != null)
                 {
-                    txtCodigo.Text = formaPag.idFormaPagamento.ToString();
-                    txtFormaPagamento.Text = formaPag.formaPagamento;
-                    txtDataCadastro.Text = formaPag.dataCadastro.ToString();
-                    txtDataUltAlt.Text = formaPag.dataUltAlt.ToString();
+                    txtCodigo.Texts = formaPag.idFormaPagamento.ToString();
+                    txtFormaPagamento.Texts = formaPag.formaPagamento;
+                    txtDataCadastro.Texts = formaPag.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = formaPag.dataUltAlt.ToString();
                     rbAtivo.Checked = formaPag.Ativo;
                     rbInativo.Checked = !formaPag.Ativo;
                 }
@@ -47,7 +47,7 @@ namespace Pilates.Views
 
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtFormaPagamento.Text))
+            if (!Validacoes.CampoObrigatorio(txtFormaPagamento.Texts))
             {
                 MessageBox.Show("Campo Forma de Pagamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtFormaPagamento.Focus();
@@ -56,7 +56,7 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (controllerFormaPagamento.JaCadastrado(txtFormaPagamento.Text, idAtual))
+                if (controllerFormaPagamento.JaCadastrado(txtFormaPagamento.Texts, idAtual))
                 {
                     MessageBox.Show("Forma de Pagamento já cadastrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtFormaPagamento.Focus();
@@ -65,9 +65,9 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string formaPagamento = txtFormaPagamento.Text;
-                        DateTime.TryParse(txtDataCadastro.Text, out DateTime dataCadastro);
-                        DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Text, out DateTime result) ? result : DateTime.MinValue;
+                        string formaPagamento = txtFormaPagamento.Texts;
+                        DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
+                        DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
 
                         ModelFormaPagamento novaFormaPag = new ModelFormaPagamento
                         {
@@ -97,18 +97,27 @@ namespace Pilates.Views
             }
         }
 
+        private void CadastroFormaPagamento_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ((ConsultaFormaPagamento)this.Owner).AtualizarConsultaFormasPag(false);
+        }
+
+        private void CadastroFormaPagamento_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = controllerFormaPagamento.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
+        }
+
         private void txtFormaPagamento_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtFormaPagamento.Text))
+            if (!Validacoes.VerificaLetras(txtFormaPagamento.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtFormaPagamento.Focus();
             }
-        }
-
-        private void CadastroFormaPagamento_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            ((ConsultaFormaPagamento)this.Owner).AtualizarConsultaFormasPag(false);
         }
     }
 }

@@ -69,6 +69,8 @@
             // 
             // dataGridViewContrato
             // 
+            this.dataGridViewContrato.AllowUserToAddRows = false;
+            this.dataGridViewContrato.AllowUserToDeleteRows = false;
             this.dataGridViewContrato.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewContrato.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContrato.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -81,6 +83,7 @@
             this.dataCancelamento});
             this.dataGridViewContrato.Location = new System.Drawing.Point(12, 49);
             this.dataGridViewContrato.Name = "dataGridViewContrato";
+            this.dataGridViewContrato.ReadOnly = true;
             this.dataGridViewContrato.Size = new System.Drawing.Size(776, 372);
             this.dataGridViewContrato.TabIndex = 7;
             this.dataGridViewContrato.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContrato_CellDoubleClick);
@@ -90,12 +93,14 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             this.Código.Width = 50;
             // 
             // idAluno
             // 
             this.idAluno.HeaderText = "Cod. Aluno";
             this.idAluno.Name = "idAluno";
+            this.idAluno.ReadOnly = true;
             this.idAluno.Width = 50;
             // 
             // aluno
@@ -103,11 +108,13 @@
             this.aluno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.aluno.HeaderText = "Aluno";
             this.aluno.Name = "aluno";
+            this.aluno.ReadOnly = true;
             // 
             // idPrograma
             // 
             this.idPrograma.HeaderText = "Cod. Programa";
             this.idPrograma.Name = "idPrograma";
+            this.idPrograma.ReadOnly = true;
             this.idPrograma.Width = 50;
             // 
             // programa
@@ -115,16 +122,19 @@
             this.programa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.programa.HeaderText = "Programa";
             this.programa.Name = "programa";
+            this.programa.ReadOnly = true;
             // 
             // dataInicio
             // 
             this.dataInicio.HeaderText = "Data de Inicio";
             this.dataInicio.Name = "dataInicio";
+            this.dataInicio.ReadOnly = true;
             // 
             // dataCancelamento
             // 
             this.dataCancelamento.HeaderText = "Data de Cancelamento";
             this.dataCancelamento.Name = "dataCancelamento";
+            this.dataCancelamento.ReadOnly = true;
             // 
             // btnVisualizar
             // 

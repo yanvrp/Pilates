@@ -19,6 +19,10 @@ namespace Pilates.Controller
         {
             daoFormaPagamento.Alterar(obj);
         }
+        public int BuscarUltimoCodigo()
+        {
+            return daoFormaPagamento.BuscarUltimoCodigo();
+        }
 
         public override void Deletar(int idObj)
         {

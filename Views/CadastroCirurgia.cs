@@ -30,11 +30,11 @@ namespace Pilates.Views
                 ModelCirurgia cirurgia = CirurgiaController.BuscarPorId(Alterar);
                 if (cirurgia != null)
                 {//carrega os dados da cirurgia
-                    txtCodigo.Text = cirurgia.idCirurgia.ToString();
-                    txtCirurgia.Text = cirurgia.cirurgia;
-                    txtDescricao.Text = cirurgia.descricao;
-                    txtDataCadastro.Text = cirurgia.dataCadastro.ToString();
-                    txtDataUltAlt.Text = cirurgia.dataUltAlt.ToString();
+                    txtCodigo.Texts = cirurgia.idCirurgia.ToString();
+                    txtCirurgia.Texts = cirurgia.cirurgia;
+                    txtDescricao.Texts = cirurgia.descricao;
+                    txtDataCadastro.Texts = cirurgia.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = cirurgia.dataUltAlt.ToString();
                     rbAtivo.Checked = cirurgia.Ativo;
                     rbInativo.Checked = !cirurgia.Ativo;
                 }
@@ -46,12 +46,12 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtCirurgia.Text))
+            if (!Validacoes.CampoObrigatorio(txtCirurgia.Texts))
             {
                 MessageBox.Show("Campo cirurgia é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCirurgia.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDescricao.Text))
+            else if (!Validacoes.CampoObrigatorio(txtDescricao.Texts))
             {
                 MessageBox.Show("Campo descrição é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDescricao.Focus();
@@ -60,7 +60,7 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (CirurgiaController.JaCadastrado(txtCirurgia.Text, idAtual))
+                if (CirurgiaController.JaCadastrado(txtCirurgia.Texts, idAtual))
                 {
                     MessageBox.Show("País já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCirurgia.Focus();
@@ -69,12 +69,12 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string cirurgia = txtCirurgia.Text;
-                        string descricao = txtDescricao.Text;
+                        string cirurgia = txtCirurgia.Texts;
+                        string descricao = txtDescricao.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -82,7 +82,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelCirurgia novaCirurgia = new ModelCirurgia
@@ -122,5 +122,22 @@ namespace Pilates.Views
             ((ConsultaCirurgia)this.Owner).AtualizarConsultaCirurgias(false);
         }
 
+        private void CadastroCirurgia_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = CirurgiaController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
+        }
+
+        private void txtCirurgia_Leave(object sender, EventArgs e)
+        {
+            if (!Validacoes.VerificaLetras(txtCirurgia.Texts))
+            {
+                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCirurgia.Focus();
+            }
+        }
     }
 }

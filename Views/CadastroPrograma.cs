@@ -30,13 +30,13 @@ namespace Pilates.Views
                 ModelPrograma programa = programaController.BuscarPorId(Alterar);
                 if (programa != null)
                 {//carrega os dados da gestacao
-                    txtCodigo.Text = programa.idPrograma.ToString();
-                    txtTitulo.Text = programa.titulo;
+                    txtCodigo.Texts = programa.idPrograma.ToString();
+                    txtTitulo.Texts = programa.titulo;
                     txtNumAula.Text = programa.numeroAulas.ToString();
-                    txtValor.Text = programa.Valor.ToString();
+                    txtValor.Texts = programa.Valor.ToString();
                     txtTipoPrograma.Text = programa.tipoPrograma;
-                    txtDataCadastro.Text = programa.dataCadastro.ToString();
-                    txtDataUltAlt.Text = programa.dataUltAlt.ToString();
+                    txtDataCadastro.Texts = programa.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = programa.dataUltAlt.ToString();
                     rbAtivo.Checked = programa.Ativo;
                     rbInativo.Checked = !programa.Ativo;
                 }
@@ -48,7 +48,7 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtTitulo.Text))
+            if (!Validacoes.CampoObrigatorio(txtTitulo.Texts))
             {
                 MessageBox.Show("Campo titulo é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTitulo.Focus();
@@ -58,7 +58,7 @@ namespace Pilates.Views
                 MessageBox.Show("Campo numero de aulas é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNumAula.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtValor.Text))
+            else if (!Validacoes.CampoObrigatorio(txtValor.Texts))
             {
                 MessageBox.Show("Campo valors é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtValor.Focus();
@@ -72,14 +72,14 @@ namespace Pilates.Views
             {
                 try
                 {
-                    string titulo = txtTitulo.Text;
+                    string titulo = txtTitulo.Texts;
                     string tipoPrograma = txtTipoPrograma.Text;
-                    decimal valor = Convert.ToDecimal(txtValor.Text);
+                    decimal valor = Convert.ToDecimal(txtValor.Texts);
                     int numeroAulas = Convert.ToInt32(txtNumAula.Text);
                     DateTime dataCadastro;
                     DateTime dataUltAlt;
 
-                    DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                    DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                     if (Alterar != -7)
                     {
@@ -87,7 +87,7 @@ namespace Pilates.Views
                     }
                     else
                     {
-                        DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                        DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                     }
 
                     ModelPrograma novoPrograma = new ModelPrograma
@@ -123,6 +123,41 @@ namespace Pilates.Views
         private void CadastroPrograma_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaPrograma)this.Owner).AtualizarConsultaProgramas(false);
+        }
+
+        private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtValor_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtValor.Texts))
+            {
+                try
+                {
+                    txtValor.Texts = Validacoes.FormataPreco(txtValor.Texts);
+
+                    //verifica se o valor é maior que zero
+                    if (decimal.TryParse(txtValor.Texts, out decimal preco) && preco > 0)
+                    {
+                        //valor é válido e maior que zero
+                    }
+                    else
+                    {
+                        MessageBox.Show("O valor deve ser maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtValor.Focus();
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtValor.Focus();
+                }
+            }
         }
     }
 }

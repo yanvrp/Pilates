@@ -24,16 +24,6 @@ namespace Pilates.Views
         public virtual void Carrega() { }
         public virtual void LimparCampos() { }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            Salvar();
-        }
-
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void rbAtivo_CheckedChanged(object sender, EventArgs e)
         {
             Ativo = rbAtivo.Checked;
@@ -46,15 +36,25 @@ namespace Pilates.Views
 
         private void CadastroPAI_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtCodigo.Text))
+            if (string.IsNullOrEmpty(txtCodigo.Texts))
             {
-                txtCodigo.Text = "0";
+                txtCodigo.Texts = "0";
             }
             if (Alterar == -7)
             {
-                txtDataCadastro.Text = DateTime.Now.ToString();
-                txtDataUltAlt.Text = DateTime.Now.ToString();
+                txtDataCadastro.Texts = DateTime.Now.ToString();
+                txtDataUltAlt.Texts = DateTime.Now.ToString();
             }
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            Salvar();
         }
     }
 }

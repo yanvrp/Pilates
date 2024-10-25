@@ -66,6 +66,8 @@
             // 
             // dataGridViewGestacao
             // 
+            this.dataGridViewGestacao.AllowUserToAddRows = false;
+            this.dataGridViewGestacao.AllowUserToDeleteRows = false;
             this.dataGridViewGestacao.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewGestacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGestacao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -74,6 +76,7 @@
             this.Descrição});
             this.dataGridViewGestacao.Location = new System.Drawing.Point(12, 49);
             this.dataGridViewGestacao.Name = "dataGridViewGestacao";
+            this.dataGridViewGestacao.ReadOnly = true;
             this.dataGridViewGestacao.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewGestacao.TabIndex = 8;
             this.dataGridViewGestacao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGestacao_CellContentClick);
@@ -83,11 +86,13 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Gestação
             // 
             this.Gestação.HeaderText = "Gestação";
             this.Gestação.Name = "Gestação";
+            this.Gestação.ReadOnly = true;
             this.Gestação.Width = 200;
             // 
             // Descrição
@@ -95,6 +100,7 @@
             this.Descrição.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Descrição.HeaderText = "Descrição";
             this.Descrição.Name = "Descrição";
+            this.Descrição.ReadOnly = true;
             // 
             // ConsultaGestacao
             // 

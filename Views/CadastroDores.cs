@@ -30,11 +30,11 @@ namespace Pilates.Views
                 ModelDores dores = DoresController.BuscarPorId(Alterar);
                 if (dores != null)
                 {//carrega os dados da dor
-                    txtCodigo.Text = dores.idDores.ToString();
-                    txtDores.Text = dores.dores;
-                    txtDescricao.Text = dores.descricao;
-                    txtDataCadastro.Text = dores.dataCadastro.ToString();
-                    txtDataUltAlt.Text = dores.dataUltAlt.ToString();
+                    txtCodigo.Texts = dores.idDores.ToString();
+                    txtDores.Texts = dores.dores;
+                    txtDescricao.Texts = dores.descricao;
+                    txtDataCadastro.Texts = dores.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = dores.dataUltAlt.ToString();
                     rbAtivo.Checked = dores.Ativo;
                     rbInativo.Checked = !dores.Ativo;
                 }
@@ -46,12 +46,12 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtDores.Text))
+            if (!Validacoes.CampoObrigatorio(txtDores.Texts))
             {
                 MessageBox.Show("Campo dores é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDores.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDescricao.Text))
+            else if (!Validacoes.CampoObrigatorio(txtDescricao.Texts))
             {
                 MessageBox.Show("Campo descrição é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDescricao.Focus();
@@ -60,7 +60,7 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (DoresController.JaCadastrado(txtDores.Text, idAtual))
+                if (DoresController.JaCadastrado(txtDores.Texts, idAtual))
                 {
                     MessageBox.Show("Dor já cadastrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtDores.Focus();
@@ -69,12 +69,12 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string dores = txtDores.Text;
-                        string descricao = txtDescricao.Text;
+                        string dores = txtDores.Texts;
+                        string descricao = txtDescricao.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -82,7 +82,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelDores novaDor = new ModelDores
@@ -120,6 +120,15 @@ namespace Pilates.Views
         private void CadastroDores_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaDores)this.Owner).AtualizarConsultaDores(false);
+        }
+
+        private void CadastroDores_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = DoresController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
         }
     }
 }

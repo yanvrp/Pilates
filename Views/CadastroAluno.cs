@@ -22,6 +22,7 @@ namespace Pilates.Views
         private ConsultaProfissao consultaProfissao;
         private ControllerProfissao<ModelProfissao> controllerProfissao;
         public int idBusca;
+        int idAtual;
         public CadastroAluno()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace Pilates.Views
             evolucaoController = new ControllerEvolucao<ModelEvolucao>();
             consultaProfissao = new ConsultaProfissao();
             controllerProfissao = new ControllerProfissao<ModelProfissao>();
-            idBusca = int.Parse(txtCodigo.Text);
+            idBusca = int.Parse(txtCodigo.Texts);
         }
         public CadastroAluno(int idAluno) : this()
         {
@@ -40,33 +41,36 @@ namespace Pilates.Views
         }
         public override void Carrega()
         {
+            btnAlterarEvolucao.Enabled = true;
+            btnIncluirEvolucao.Enabled = true;
+            btnExcluirEvolucao.Enabled = true;
             if (Alterar != -7)
             {
                 ModelAluno aluno = alunoController.BuscarPorId(Alterar);
                 if (aluno != null)
                 {
-                    txtCodigo.Text = aluno.idAluno.ToString();
-                    txtNome.Text = aluno.Aluno;
-                    txtApelido.Text = aluno.Apelido;
-                    txtEndereco.Text = aluno.endereco;
-                    txtBairro.Text = aluno.bairro;
-                    txtNumero.Text = aluno.numero.ToString();
-                    txtCEP.Text = aluno.cep;
-                    txtComplemento.Text = aluno.complemento;
-                    txtCodCidade.Text = aluno.idCidade.ToString();
-                    txtCodProfissao.Text = aluno.idProfissao.ToString();
+                    txtCodigo.Texts = aluno.idAluno.ToString();
+                    txtNome.Texts = aluno.Aluno;
+                    txtApelido.Texts = aluno.Apelido;
+                    txtEndereco.Texts = aluno.endereco;
+                    txtBairro.Texts = aluno.bairro;
+                    txtNumero.Texts = aluno.numero.ToString();
+                    txtCEP.Texts = aluno.cep;
+                    txtComplemento.Texts = aluno.complemento;
+                    txtCodCidade.Texts = aluno.idCidade.ToString();
+                    txtCodProfissao.Texts = aluno.idProfissao.ToString();
                     if (aluno.idProfissao != null)
                     { 
-                        ModelProfissao profissao = controllerProfissao.BuscarPorId(int.Parse(txtCodProfissao.Text));               
-                        txtProfissão.Text = profissao.profissao.ToString();
+                        ModelProfissao profissao = controllerProfissao.BuscarPorId(int.Parse(txtCodProfissao.Texts));               
+                        txtProfissão.Texts = profissao.profissao.ToString();
                     }
                     txtSexo.Text = aluno.sexo;
-                    txtEmail.Text = aluno.email;
-                    txtCelular.Text = aluno.celular;
-                    txtCPF.Text = aluno.cpf;
-                    txtDataNasc.Text = aluno.dataNasc.ToString();
-                    txtDataCadastro.Text = aluno.dataCadastro.ToString();
-                    txtDataUltAlt.Text = aluno.dataUltAlt.ToString();
+                    txtEmail.Texts = aluno.email;
+                    txtCelular.Texts = aluno.celular;
+                    txtCPF.Texts = aluno.cpf;
+                    txtDataNasc.Texts = aluno.dataNasc.ToString();
+                    txtDataCadastro.Texts = aluno.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = aluno.dataUltAlt.ToString();
                     rbAtivo.Checked = aluno.Ativo;
                     rbInativo.Checked = !aluno.Ativo;
                     List<string> cep = alunoController.GetCEPByCidadeId(aluno.idCidade);
@@ -75,9 +79,9 @@ namespace Pilates.Views
                         string[] info = cep[0].Split(',');
                         if (info.Length >= 3)
                         {
-                            txtCidade.Text = info[0].Trim();
-                            txtUF.Text = info[1].Trim();
-                            txtPais.Text = info[2].Trim();
+                            txtCidade.Texts = info[0].Trim();
+                            txtUF.Texts = info[1].Trim();
+                            txtPais.Texts = info[2].Trim();
                         }
                     }
                     exibirPosturasDGV(aluno.Posturas);
@@ -87,14 +91,14 @@ namespace Pilates.Views
                 {
                     MessageBox.Show("Aluno(a) não encontrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                idBusca = int.Parse(txtCodigo.Text);
+                idBusca = int.Parse(txtCodigo.Texts);
             }
         }
         protected bool VerificaCamposObrigatorios()
         {
-            string cpf = new string(txtCPF.Text.Where(char.IsDigit).ToArray());
-            string pais = txtPais.Text.ToLower();
-            if (pais == "brasil")
+            string cpf = new string(txtCPF.Texts.Where(char.IsDigit).ToArray());
+            string pais = txtPais.Texts;
+            if (pais == "BRASIL")
             {
                 if (!Validacoes.CampoObrigatorio(cpf))
                 {
@@ -103,57 +107,57 @@ namespace Pilates.Views
                     return false;
                 }
             }
-            if (!Validacoes.CampoObrigatorio(txtNome.Text))
+            if (!Validacoes.CampoObrigatorio(txtNome.Texts))
             {
                 MessageBox.Show("Campo Nome é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNome.Focus();
                 return false;
             }
-            string celular = new string(txtCelular.Text.Where(char.IsDigit).ToArray());
+            string celular = new string(txtCelular.Texts.Where(char.IsDigit).ToArray());
             if (!Validacoes.CampoObrigatorio(celular))
             {
                 MessageBox.Show("Campo Celular é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCelular.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtEmail.Text))
+            if (!Validacoes.CampoObrigatorio(txtEmail.Texts))
             {
                 MessageBox.Show("Campo Email é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEmail.Focus();
                 return false;
             }
-            string cep = new string(txtCEP.Text.Where(char.IsDigit).ToArray());
+            string cep = new string(txtCEP.Texts.Where(char.IsDigit).ToArray());
             if (!Validacoes.CampoObrigatorio(cep))
             {
                 MessageBox.Show("Campo CEP é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCEP.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtEndereco.Text))
+            if (!Validacoes.CampoObrigatorio(txtEndereco.Texts))
             {
                 MessageBox.Show("Campo Endereço é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEndereco.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtNumero.Text))
+            if (!Validacoes.CampoObrigatorio(txtNumero.Texts))
             {
                 MessageBox.Show("Campo Número é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNumero.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtBairro.Text))
+            if (!Validacoes.CampoObrigatorio(txtBairro.Texts))
             {
                 MessageBox.Show("Campo Bairro é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtBairro.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtCodCidade.Text))
+            if (!Validacoes.CampoObrigatorio(txtCodCidade.Texts))
             {
                 MessageBox.Show("Campo Código Cidade é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodCidade.Focus();
                 return false;
             }
-            string DataNasc = new string(txtDataNasc.Text.Where(char.IsDigit).ToArray());
+            string DataNasc = new string(txtDataNasc.Texts.Where(char.IsDigit).ToArray());
             if (!Validacoes.CampoObrigatorio(DataNasc))
             {
                 MessageBox.Show("Campo Data Nasc. é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -166,6 +170,12 @@ namespace Pilates.Views
                 txtSexo.Focus();
                 return false;
             }
+            if (!Validacoes.CampoObrigatorio(txtCodProfissao.Texts)) 
+            {
+                MessageBox.Show("Campo Código Profissão é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCodProfissao.Focus();
+                return false;
+            }
             return true;
         }
         public override void Salvar()
@@ -174,10 +184,10 @@ namespace Pilates.Views
             {
                 return;
             }
-            int idAtual = Alterar != -7 ? Alterar : -7;
-            string cpf = new string(txtCPF.Text.Where(char.IsDigit).ToArray());
+            idAtual = Alterar != -7 ? Alterar : -7;
+            string cpf = new string(txtCPF.Texts.Where(char.IsDigit).ToArray());
 
-            if (!Validacoes.VerificarDataMenorOuIgualHoje(txtDataNasc.Text, "nascimento"))
+            if (!Validacoes.VerificarDataMenorOuIgualHoje(txtDataNasc.Texts, "nascimento"))
             {
                 txtDataNasc.Focus();
                 return;
@@ -191,22 +201,22 @@ namespace Pilates.Views
             {
                 try
                 {
-                    string Aluno = txtNome.Text;
-                    string apelido = txtApelido.Text;
-                    string endereco = txtEndereco.Text;
-                    string bairro = txtBairro.Text;
-                    int numero = Convert.ToInt32(txtNumero.Text);
-                    string cep = new string(txtCEP.Text.Where(char.IsDigit).ToArray());
-                    string complemento = txtComplemento.Text;
-                    string email = txtEmail.Text;
-                    string celular = new string(txtCelular.Text.Where(char.IsDigit).ToArray());
-                    int idCidade = int.Parse(txtCodCidade.Text);
-                    int idProfissao = int.Parse(txtCodProfissao.Text);
+                    string Aluno = txtNome.Texts;
+                    string apelido = txtApelido.Texts;
+                    string endereco = txtEndereco.Texts;
+                    string bairro = txtBairro.Texts;
+                    int numero = Convert.ToInt32(txtNumero.Texts);
+                    string cep = new string(txtCEP.Texts.Where(char.IsDigit).ToArray());
+                    string complemento = txtComplemento.Texts;
+                    string email = txtEmail.Texts;
+                    string celular = new string(txtCelular.Texts.Where(char.IsDigit).ToArray());
+                    int idCidade = int.Parse(txtCodCidade.Texts);
+                    int idProfissao = int.Parse(txtCodProfissao.Texts);
                     string sexo = txtSexo.SelectedItem.ToString();
-                    DateTime.TryParse(txtDataCadastro.Text, out DateTime dataCadastro);
-                    DateTime.TryParse(txtDataNasc.Text, out DateTime dataNasc);
+                    DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
+                    DateTime.TryParse(txtDataNasc.Texts, out DateTime dataNasc);
 
-                    DateTime dataUltAlt = Alterar != -1 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Text, out DateTime result) ? result : DateTime.MinValue;
+                    DateTime dataUltAlt = Alterar != -1 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
 
                     ModelAluno novoAluno = new ModelAluno
                     {
@@ -248,218 +258,15 @@ namespace Pilates.Views
             }
         }
 
-        private void txtCPF_Leave(object sender, EventArgs e)
-        {
-            string cpf = new string(txtCPF.Text.Where(char.IsDigit).ToArray());
-            if (!Validacoes.ValidaCPF(cpf))
-            {
-                MessageBox.Show("CPF inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCPF.Focus();
-            }
-        }
-
-        private void txtEmail_Leave(object sender, EventArgs e)
-        {
-            if (!Validacoes.ValidaEmail(txtEmail.Text))
-            {
-                MessageBox.Show("Email inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtEmail.Focus();
-            }
-        }
-
-        private void txtNome_Leave(object sender, EventArgs e)
-        {
-            if (!Validacoes.VerificaLetras(txtNome.Text))
-            {
-                MessageBox.Show("Nome inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNome.Focus();
-            }
-        }
-
-        private void txtApelido_Leave(object sender, EventArgs e)
-        {
-            if (!Validacoes.VerificaLetras(txtApelido.Text))
-            {
-                MessageBox.Show("Apelido inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtApelido.Focus();
-            }
-        }
-
-
-        private void txtNumero_Leave(object sender, EventArgs e)
-        {
-            if (!Validacoes.VerificaNumeros(txtNumero.Text))
-            {
-                MessageBox.Show("Numero inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNumero.Focus();
-            }
-        }
-
-        private void txtCodCidade_Leave(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtCodCidade.Text))
-            {
-                if (!Validacoes.VerificaNumeros(txtCodCidade.Text))
-                {
-                    MessageBox.Show("Cód. Cidade inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtCodCidade.Focus();
-                }
-                else
-                {
-                    List<string> cidadeEstadoPais = alunoController.GetCEPByCidadeId(int.Parse(txtCodCidade.Text));
-
-                    if (cidadeEstadoPais.Count > 0)
-                    {
-                        string[] info = cidadeEstadoPais[0].Split(',');
-                        if (info.Length >= 3)
-                        {
-                            txtCidade.Text = info[0].Trim();
-                            txtUF.Text = info[1].Trim();
-                            txtPais.Text = info[2].Trim();
-                        }
-                    }
-                    else
-                    {
-                        txtCodCidade.Clear();
-                        txtCidade.Clear();
-                        txtUF.Clear();
-                        txtPais.Clear();
-                        txtCodCidade.Focus();
-                        MessageBox.Show("Código Cidade não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            consultaCidade.btnSair.Text = "Selecionar";
-
-            if (consultaCidade.ShowDialog() == DialogResult.OK)
-            {
-                var cidadeDetalhes = consultaCidade.Tag as Tuple<int, string>;
-
-                if (cidadeDetalhes != null)
-                {
-                    int cidadeID = cidadeDetalhes.Item1;
-                    string cidadeNome = cidadeDetalhes.Item2;
-
-                    txtCodCidade.Text = cidadeID.ToString();
-                    txtCidade.Text = cidadeNome;
-
-                    List<string> cidadeEstadoPais = alunoController.GetCEPByCidadeId(cidadeID);
-
-                    if (cidadeEstadoPais.Count > 0)
-                    {
-                        string[] info = cidadeEstadoPais[0].Split(',');
-                        if (info.Length >= 3)
-                        {
-                            txtUF.Text = info[1].Trim();
-                            txtPais.Text = info[2].Trim();
-                        }
-                    }
-                }
-            }
-        }
 
         private void CadastroAluno_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaAluno)this.Owner).AtualizarConsultaAlunos(false);
         }
 
-        private void btnConsultaEvolucao_Click(object sender, EventArgs e)
-        {
-            if (txtCodigo.Text == "0")
-            {
-                MessageBox.Show("Aluno ainda não cadastrado, salve o cadastro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                ConsultaEvolucao consultaEvolucao = new ConsultaEvolucao(int.Parse(txtCodigo.Text));
-                consultaEvolucao.ShowDialog();
-            }
-        }
-
-        private void btnConsultaPostura_Click(object sender, EventArgs e)
-        {
-            if (txtCodigo.Text == "0")
-            {
-                MessageBox.Show("Aluno ainda não cadastrado, salve o cadastro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                ConsultaPostura consultaPostura = new ConsultaPostura(int.Parse(txtCodigo.Text));
-                consultaPostura.ShowDialog();
-            }
-        }
-
-        private void txtDataNasc_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCelular_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCelular_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnIncluirPostura_Click(object sender, EventArgs e)
-        {
-            CadastroPostura cadastroPostura = new CadastroPostura(-7, idBusca);
-            cadastroPostura.Owner = this;
-            cadastroPostura.ShowDialog();
-        }
-
-        private void btnAlterarPostura_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewPostura.SelectedRows.Count > 0)
-            {
-                int idPostura = (int)dataGridViewPostura.SelectedRows[0].Cells["CodigoPostura"].Value;
-                CadastroPostura cadastroPosturas = new CadastroPostura(idPostura, idBusca);
-                cadastroPosturas.Owner = this;
-                cadastroPosturas.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma postura para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btnExcluirPostura_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewPostura.SelectedRows.Count > 0)
-            {
-                if (MessageBox.Show("Tem certeza de que deseja excluir esta postura?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    int idPostura = (int)dataGridViewPostura.SelectedRows[0].Cells["CodigoPostura"].Value;
-                    posturaController.Deletar(idPostura);
-                    AtualizarConsultaPostura();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma postura para postura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btnIncluirEvolucao_Click(object sender, EventArgs e)
-        {
-            CadastroEvolucao cadastroEvolucao = new CadastroEvolucao(-7, idBusca);
-            cadastroEvolucao.Owner = this;
-            cadastroEvolucao.ShowDialog();
         }
         public void AtualizarConsultaPostura()
         {
@@ -514,38 +321,10 @@ namespace Pilates.Views
         }
         private void CadastroAluno_Load(object sender, EventArgs e)
         {
-            
-        }
-
-        private void btnExcluirEvolucao_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewEvolucao.SelectedRows.Count > 0)
+            if (Alterar == -7)
             {
-                if (MessageBox.Show("Tem certeza de que deseja excluir esta evolução?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    int idEvolucao = (int)dataGridViewEvolucao.SelectedRows[0].Cells["CodigoEvolucao"].Value;
-                    evolucaoController.Deletar(idEvolucao);
-                    AtualizarConsultaEvolucao();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma evolução para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btnAlterarEvolucao_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewEvolucao.SelectedRows.Count > 0)
-            {
-                int idEvolucao = (int)dataGridViewEvolucao.SelectedRows[0].Cells["CodigoEvolucao"].Value;
-                CadastroEvolucao cadastroEvolucao = new CadastroEvolucao(idEvolucao, idBusca);
-                cadastroEvolucao.Owner = this;
-                cadastroEvolucao.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma evolução para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                int novoCodigo = alunoController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
             }
         }
 
@@ -584,34 +363,230 @@ namespace Pilates.Views
             }
         }
 
+        private void txtCPF_Leave(object sender, EventArgs e)
+        {
+            string cpf = new string(txtCPF.Texts.Where(char.IsDigit).ToArray());
+            if (!Validacoes.ValidaCPF(cpf))
+            {
+                MessageBox.Show("CPF inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCPF.Focus();
+            } else
+            {
+                idAtual = Alterar != -7 ? Alterar : -7;
+                if (alunoController.JaCadastrado(cpf, idAtual))
+                {
+                    MessageBox.Show("Aluno(a) já cadastrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCPF.Focus();
+                }
+            }
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (!Validacoes.ValidaEmail(txtEmail.Texts))
+            {
+                MessageBox.Show("Email inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEmail.Focus();
+            }
+        }
+
+        private void txtNome_Leave(object sender, EventArgs e)
+        {
+            if (!Validacoes.VerificaLetras(txtNome.Texts))
+            {
+                MessageBox.Show("Nome inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNome.Focus();
+            }
+        }
+
+        private void txtApelido_Leave(object sender, EventArgs e)
+        {
+            if (!Validacoes.VerificaLetras(txtApelido.Texts))
+            {
+                MessageBox.Show("Apelido inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtApelido.Focus();
+            }
+        }
+
+        private void txtCodCidade_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCodCidade.Texts))
+            {
+                if (!Validacoes.VerificaNumeros(txtCodCidade.Texts))
+                {
+                    MessageBox.Show("Cód. Cidade inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCodCidade.Focus();
+                }
+                else
+                {
+                    List<string> cidadeEstadoPais = alunoController.GetCEPByCidadeId(int.Parse(txtCodCidade.Texts));
+
+                    if (cidadeEstadoPais.Count > 0)
+                    {
+                        string[] info = cidadeEstadoPais[0].Split(',');
+                        if (info.Length >= 3)
+                        {
+                            txtCidade.Texts = info[0].Trim();
+                            txtUF.Texts = info[1].Trim();
+                            txtPais.Texts = info[2].Trim();
+                        }
+                    }
+                    else
+                    {
+                        txtCodCidade.Clear();
+                        txtCidade.Clear();
+                        txtUF.Clear();
+                        txtPais.Clear();
+                        txtCodCidade.Focus();
+                        MessageBox.Show("Código Cidade não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnBuscarCidade_Click(object sender, EventArgs e)
+        {
+            consultaCidade.btnSair.Text = "Selecionar";
+
+            if (consultaCidade.ShowDialog() == DialogResult.OK)
+            {
+                var cidadeDetalhes = consultaCidade.Tag as Tuple<int, string>;
+
+                if (cidadeDetalhes != null)
+                {
+                    int cidadeID = cidadeDetalhes.Item1;
+                    string cidadeNome = cidadeDetalhes.Item2;
+
+                    txtCodCidade.Texts = cidadeID.ToString();
+                    txtCidade.Texts = cidadeNome;
+
+                    List<string> cidadeEstadoPais = alunoController.GetCEPByCidadeId(cidadeID);
+
+                    if (cidadeEstadoPais.Count > 0)
+                    {
+                        string[] info = cidadeEstadoPais[0].Split(',');
+                        if (info.Length >= 3)
+                        {
+                            txtUF.Texts = info[1].Trim();
+                            txtPais.Texts = info[2].Trim();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void txtCelular_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnIncluirPostura_Click(object sender, EventArgs e)
+        {
+            CadastroPostura cadastroPostura = new CadastroPostura(-7, idBusca);
+            cadastroPostura.Owner = this;
+            cadastroPostura.ShowDialog();
+        }
+
+        private void btnAlterarPostura_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPostura.SelectedRows.Count > 0)
+            {
+                int idPostura = (int)dataGridViewPostura.SelectedRows[0].Cells["CodigoPostura"].Value;
+                CadastroPostura cadastroPosturas = new CadastroPostura(idPostura, idBusca);
+                cadastroPosturas.Owner = this;
+                cadastroPosturas.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma postura para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnExcluirPostura_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPostura.SelectedRows.Count > 0)
+            {
+                if (MessageBox.Show("Tem certeza de que deseja excluir esta postura?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int idPostura = (int)dataGridViewPostura.SelectedRows[0].Cells["CodigoPostura"].Value;
+                    posturaController.Deletar(idPostura);
+                    AtualizarConsultaPostura();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma postura para postura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnIncluirEvolucao_Click(object sender, EventArgs e)
+        {
+            CadastroEvolucao cadastroEvolucao = new CadastroEvolucao(-7, idBusca);
+            cadastroEvolucao.Owner = this;
+            cadastroEvolucao.ShowDialog();
+        }
+
+        private void btnAlterarEvolucao_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEvolucao.SelectedRows.Count > 0)
+            {
+                int idEvolucao = (int)dataGridViewEvolucao.SelectedRows[0].Cells["CodigoEvolucao"].Value;
+                CadastroEvolucao cadastroEvolucao = new CadastroEvolucao(idEvolucao, idBusca);
+                cadastroEvolucao.Owner = this;
+                cadastroEvolucao.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma evolução para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnExcluirEvolucao_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEvolucao.SelectedRows.Count > 0)
+            {
+                if (MessageBox.Show("Tem certeza de que deseja excluir esta evolução?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int idEvolucao = (int)dataGridViewEvolucao.SelectedRows[0].Cells["CodigoEvolucao"].Value;
+                    evolucaoController.Deletar(idEvolucao);
+                    AtualizarConsultaEvolucao();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma evolução para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void btnBuscarProfissao_Click(object sender, EventArgs e)
         {
+            consultaProfissao.btnSair.Text = "Selecionar";
+
+            if (consultaProfissao.ShowDialog() == DialogResult.OK)
             {
-                consultaProfissao.btnSair.Text = "Selecionar";
-
-                if (consultaProfissao.ShowDialog() == DialogResult.OK)
+                var infosProfissao = consultaProfissao.Tag as Tuple<int, string>;
+                if (infosProfissao != null)
                 {
-                    var infosProfissao = consultaProfissao.Tag as Tuple<int, string>;
-                    if (infosProfissao != null)
-                    {
-                        int idProfissao = infosProfissao.Item1;
-                        string Profissao = infosProfissao.Item2;
+                    int idProfissao = infosProfissao.Item1;
+                    string Profissao = infosProfissao.Item2;
 
-                        txtCodProfissao.Text = idProfissao.ToString();
-                        txtProfissão.Text = Profissao;
-                    }
+                    txtCodProfissao.Texts = idProfissao.ToString();
+                    txtProfissão.Texts = Profissao;
                 }
             }
         }
 
         private void txtCodProfissao_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodProfissao.Text))
+            if (!string.IsNullOrEmpty(txtCodProfissao.Texts))
             {
-                ModelProfissao profissao = controllerProfissao.BuscarPorId(int.Parse(txtCodProfissao.Text));
+                ModelProfissao profissao = controllerProfissao.BuscarPorId(int.Parse(txtCodProfissao.Texts));
                 if (profissao != null)
                 {
-                    txtProfissão.Text = profissao.profissao;
+                    txtProfissão.Texts = profissao.profissao;
                 }
                 else
                 {
@@ -619,6 +594,44 @@ namespace Pilates.Views
                     txtCodProfissao.Focus();
                     txtCodProfissao.Clear();
                     txtCodProfissao.Clear();
+                }
+            }
+        }
+
+        private void txtCodProfissao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCodCidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDataNasc_Leave(object sender, EventArgs e)
+        {
+            DateTime dataNasc;
+            string dataN = new string(txtDataNasc.Texts.Where(char.IsDigit).ToArray());
+            bool dataValida = DateTime.TryParse(txtDataNasc.Texts, out dataNasc);
+
+            if (!string.IsNullOrEmpty(dataN))
+            {
+                if (!dataValida)
+                {
+                    MessageBox.Show("Data de Nascimento inválida!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtDataNasc.Focus();
+                    return;
+                }
+                if (!Validacoes.VerificarDataMenorOuIgualHoje(dataNasc.ToString("dd/MM/yyyy"), "nascimento"))
+                {
+                    txtDataNasc.Focus();
+                    return;
                 }
             }
         }

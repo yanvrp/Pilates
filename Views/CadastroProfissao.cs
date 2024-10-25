@@ -30,11 +30,11 @@ namespace Pilates.Views
                 ModelProfissao profissao = ProfissaoController.BuscarPorId(Alterar);
                 if (profissao != null)
                 {//carrega os dados do país
-                    txtCodigo.Text = profissao.idProfissao.ToString();
-                    txtProfissao.Text = profissao.profissao;
-                    txtDescricao.Text = profissao.descricao;
-                    txtDataCadastro.Text = profissao.dataCadastro.ToString();
-                    txtDataUltAlt.Text = profissao.dataUltAlt.ToString();
+                    txtCodigo.Texts = profissao.idProfissao.ToString();
+                    txtProfissao.Texts = profissao.profissao;
+                    txtDescricao.Texts = profissao.descricao;
+                    txtDataCadastro.Texts = profissao.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = profissao.dataUltAlt.ToString();
                     rbAtivo.Checked = profissao.Ativo;
                     rbInativo.Checked = !profissao.Ativo;
                 }
@@ -46,12 +46,12 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtProfissao.Text))
+            if (!Validacoes.CampoObrigatorio(txtProfissao.Texts))
             {
                 MessageBox.Show("Campo profissão é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProfissao.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDescricao.Text))
+            else if (!Validacoes.CampoObrigatorio(txtDescricao.Texts))
             {
                 MessageBox.Show("Campo descrição é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDescricao.Focus();
@@ -60,21 +60,21 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (ProfissaoController.JaCadastrado(txtProfissao.Text, idAtual))
+                if (ProfissaoController.JaCadastrado(txtProfissao.Texts, idAtual))
                 {
-                    MessageBox.Show("Profissão já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Profissão já cadastrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtProfissao.Focus();
                 }
                 else
                 {
                     try
                     {
-                        string profissao = txtProfissao.Text;
-                        string descricao = txtDescricao.Text;
+                        string profissao = txtProfissao.Texts;
+                        string descricao = txtDescricao.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -82,7 +82,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelProfissao novaProfissao = new ModelProfissao
@@ -120,6 +120,24 @@ namespace Pilates.Views
         private void CadastroProfissao_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaProfissao)this.Owner).AtualizarConsultaProfissoes(false);
+        }
+
+        private void CadastroProfissao_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = ProfissaoController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
+        }
+
+        private void txtProfissao_Leave(object sender, EventArgs e)
+        {
+            if (!Validacoes.VerificaLetras(txtProfissao.Texts))
+            {
+                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProfissao.Focus();
+            }
         }
     }
 }

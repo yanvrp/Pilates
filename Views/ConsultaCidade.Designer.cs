@@ -62,6 +62,8 @@
             // 
             // dataGridViewCidade
             // 
+            this.dataGridViewCidade.AllowUserToAddRows = false;
+            this.dataGridViewCidade.AllowUserToDeleteRows = false;
             this.dataGridViewCidade.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewCidade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCidade.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -70,6 +72,7 @@
             this.DDD});
             this.dataGridViewCidade.Location = new System.Drawing.Point(12, 44);
             this.dataGridViewCidade.Name = "dataGridViewCidade";
+            this.dataGridViewCidade.ReadOnly = true;
             this.dataGridViewCidade.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewCidade.TabIndex = 6;
             this.dataGridViewCidade.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCidade_CellDoubleClick);
@@ -78,17 +81,20 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Cidade
             // 
             this.Cidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Cidade.HeaderText = "Cidade";
             this.Cidade.Name = "Cidade";
+            this.Cidade.ReadOnly = true;
             // 
             // DDD
             // 
             this.DDD.HeaderText = "DDD";
             this.DDD.Name = "DDD";
+            this.DDD.ReadOnly = true;
             // 
             // ConsultaCidade
             // 

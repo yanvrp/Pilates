@@ -92,3 +92,4 @@ C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaFornec
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroAvaliacao.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaAvaliacao.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.YControls.YTextBox.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.YControls.YMaskedTextBox.resources

@@ -15,6 +15,10 @@ namespace Pilates.Controller
         {
             DoresDAO = new DAODores<T>();
         }
+        public int BuscarUltimoCodigo()
+        {
+            return DoresDAO.BuscarUltimoCodigo();
+        }
         public override void Alterar(T obj)
         {
             DoresDAO.Alterar(obj);

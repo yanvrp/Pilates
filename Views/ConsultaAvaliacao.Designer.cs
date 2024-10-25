@@ -62,6 +62,9 @@
             // 
             // dataGridViewAvaliacao
             // 
+            this.dataGridViewAvaliacao.AllowUserToAddRows = false;
+            this.dataGridViewAvaliacao.AllowUserToDeleteRows = false;
+            this.dataGridViewAvaliacao.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewAvaliacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAvaliacao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idAvaliação,
@@ -70,6 +73,7 @@
             this.dataAvaliação});
             this.dataGridViewAvaliacao.Location = new System.Drawing.Point(12, 47);
             this.dataGridViewAvaliacao.Name = "dataGridViewAvaliacao";
+            this.dataGridViewAvaliacao.ReadOnly = true;
             this.dataGridViewAvaliacao.Size = new System.Drawing.Size(776, 359);
             this.dataGridViewAvaliacao.TabIndex = 12;
             this.dataGridViewAvaliacao.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAvaliacao_CellDoubleClick);

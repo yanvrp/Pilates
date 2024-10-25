@@ -63,6 +63,8 @@
             // 
             // dataGridViewEvolucao
             // 
+            this.dataGridViewEvolucao.AllowUserToAddRows = false;
+            this.dataGridViewEvolucao.AllowUserToDeleteRows = false;
             this.dataGridViewEvolucao.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewEvolucao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEvolucao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -71,6 +73,7 @@
             this.DataCadastro});
             this.dataGridViewEvolucao.Location = new System.Drawing.Point(12, 43);
             this.dataGridViewEvolucao.Name = "dataGridViewEvolucao";
+            this.dataGridViewEvolucao.ReadOnly = true;
             this.dataGridViewEvolucao.Size = new System.Drawing.Size(776, 371);
             this.dataGridViewEvolucao.TabIndex = 8;
             this.dataGridViewEvolucao.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewEvolucao_CellFormatting);
@@ -79,17 +82,20 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Título
             // 
             this.Título.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Título.HeaderText = "Título";
             this.Título.Name = "Título";
+            this.Título.ReadOnly = true;
             // 
             // DataCadastro
             // 
             this.DataCadastro.HeaderText = "DataCadastro";
             this.DataCadastro.Name = "DataCadastro";
+            this.DataCadastro.ReadOnly = true;
             // 
             // ConsultaEvolucao
             // 

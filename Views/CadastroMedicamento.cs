@@ -30,11 +30,11 @@ namespace Pilates.Views
                 ModelMedicamento medicamento = MedicamentoController.BuscarPorId(Alterar);
                 if (medicamento != null)
                 {//carrega os dados do medicamento
-                    txtCodigo.Text = medicamento.idMedicamento.ToString();
-                    txtMedicamento.Text = medicamento.medicamento;
-                    txtDescricao.Text = medicamento.descricao;
-                    txtDataCadastro.Text = medicamento.dataCadastro.ToString();
-                    txtDataUltAlt.Text = medicamento.dataUltAlt.ToString();
+                    txtCodigo.Texts = medicamento.idMedicamento.ToString();
+                    txtMedicamento.Texts = medicamento.medicamento;
+                    txtDescricao.Texts = medicamento.descricao;
+                    txtDataCadastro.Texts = medicamento.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = medicamento.dataUltAlt.ToString();
                     rbAtivo.Checked = medicamento.Ativo;
                     rbInativo.Checked = !medicamento.Ativo;
                 }
@@ -46,12 +46,12 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtMedicamento.Text))
+            if (!Validacoes.CampoObrigatorio(txtMedicamento.Texts))
             {
                 MessageBox.Show("Campo medicamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtMedicamento.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDescricao.Text))
+            else if (!Validacoes.CampoObrigatorio(txtDescricao.Texts))
             {
                 MessageBox.Show("Campo descrição é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDescricao.Focus();
@@ -60,7 +60,7 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (MedicamentoController.JaCadastrado(txtMedicamento.Text, idAtual))
+                if (MedicamentoController.JaCadastrado(txtMedicamento.Texts, idAtual))
                 {
                     MessageBox.Show("Medicamento já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtMedicamento.Focus();
@@ -69,12 +69,12 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string medicamento = txtMedicamento.Text;
-                        string descricao = txtDescricao.Text;
+                        string medicamento = txtMedicamento.Texts;
+                        string descricao = txtDescricao.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -82,7 +82,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelMedicamento novoMedicamento = new ModelMedicamento
@@ -120,6 +120,15 @@ namespace Pilates.Views
         private void CadastroMedicamento_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaMedicamento)this.Owner).AtualizarConsultaMedicamentos(false);
+        }
+
+        private void CadastroMedicamento_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = MedicamentoController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
         }
     }
 }

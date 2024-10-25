@@ -67,6 +67,8 @@
             // 
             // dataGridViewAlunos
             // 
+            this.dataGridViewAlunos.AllowUserToAddRows = false;
+            this.dataGridViewAlunos.AllowUserToDeleteRows = false;
             this.dataGridViewAlunos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAlunos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -76,6 +78,7 @@
             this.CPF});
             this.dataGridViewAlunos.Location = new System.Drawing.Point(12, 44);
             this.dataGridViewAlunos.Name = "dataGridViewAlunos";
+            this.dataGridViewAlunos.ReadOnly = true;
             this.dataGridViewAlunos.Size = new System.Drawing.Size(744, 371);
             this.dataGridViewAlunos.TabIndex = 7;
             this.dataGridViewAlunos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAlunos_CellDoubleClick);
@@ -84,23 +87,27 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // Aluno
             // 
             this.Aluno.HeaderText = "Aluno";
             this.Aluno.Name = "Aluno";
+            this.Aluno.ReadOnly = true;
             this.Aluno.Width = 300;
             // 
             // Celular
             // 
             this.Celular.HeaderText = "Celular";
             this.Celular.Name = "Celular";
+            this.Celular.ReadOnly = true;
             this.Celular.Width = 150;
             // 
             // CPF
             // 
             this.CPF.HeaderText = "CPF";
             this.CPF.Name = "CPF";
+            this.CPF.ReadOnly = true;
             this.CPF.Width = 150;
             // 
             // ConsultaAluno

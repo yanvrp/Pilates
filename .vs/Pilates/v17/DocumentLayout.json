@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastrofornecedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastrofornecedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroprograma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroprograma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\consultaavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\consultaavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroprograma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroprograma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\views\\cadastroavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroaluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroaluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\views\\consultaavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\consultaavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroaluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroaluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\views\\cadastroavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\consultacontaspagar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\consultacontaspagar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\dao\\daoavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:dao\\daoavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroformapagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroformapagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,88 +35,64 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CadastroFornecedor.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroFornecedor.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroFornecedor.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroFornecedor.cs [Design]",
-              "RelativeToolTip": "Views\\CadastroFornecedor.cs [Design]",
+              "Title": "CadastroPrograma.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroPrograma.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroPrograma.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroPrograma.cs",
+              "RelativeToolTip": "Views\\CadastroPrograma.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAvwJ8AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T01:11:08.193Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-10-25T02:38:39.586Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ConsultaAvaliacao.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaAvaliacao.cs",
-              "RelativeDocumentMoniker": "Views\\ConsultaAvaliacao.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaAvaliacao.cs [Design]",
-              "RelativeToolTip": "Views\\ConsultaAvaliacao.cs [Design]",
+              "Title": "CadastroPrograma.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroPrograma.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroPrograma.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroPrograma.cs [Design]",
+              "RelativeToolTip": "Views\\CadastroPrograma.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T00:56:24.297Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ConsultaContasPagar.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContasPagar.cs",
-              "RelativeDocumentMoniker": "Views\\ConsultaContasPagar.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContasPagar.cs [Design]",
-              "RelativeToolTip": "Views\\ConsultaContasPagar.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T14:40:17.201Z",
+              "WhenOpened": "2024-10-25T02:36:37.162Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CadastroAvaliacao.cs",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAvaliacao.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroAvaliacao.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAvaliacao.cs",
-              "RelativeToolTip": "Views\\CadastroAvaliacao.cs",
-              "ViewState": "AgIAAM8CAAAAAAAAAAAewOACAAAQAAAAAAAAAA==",
+              "Title": "CadastroFormaPagamento.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroFormaPagamento.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroFormaPagamento.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroFormaPagamento.cs [Design]",
+              "RelativeToolTip": "Views\\CadastroFormaPagamento.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T21:36:01.955Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CadastroAvaliacao.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAvaliacao.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroAvaliacao.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAvaliacao.cs [Design]",
-              "RelativeToolTip": "Views\\CadastroAvaliacao.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T21:36:00.044Z",
+              "WhenOpened": "2024-10-25T02:32:04.824Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DAOAvaliacao.cs",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\DAO\\DAOAvaliacao.cs",
-              "RelativeDocumentMoniker": "DAO\\DAOAvaliacao.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\DAO\\DAOAvaliacao.cs",
-              "RelativeToolTip": "DAO\\DAOAvaliacao.cs",
-              "ViewState": "AgIAAOcAAAAAAAAAAAAlwBwBAAAfAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "CadastroAluno.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAluno.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroAluno.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAluno.cs",
+              "RelativeToolTip": "Views\\CadastroAluno.cs",
+              "ViewState": "AgIAANgBAAAAAAAAAAAwwOcBAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T21:33:03.196Z"
+              "WhenOpened": "2024-10-24T21:45:22.377Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ConsultaAvaliacao.cs",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaAvaliacao.cs",
-              "RelativeDocumentMoniker": "Views\\ConsultaAvaliacao.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaAvaliacao.cs",
-              "RelativeToolTip": "Views\\ConsultaAvaliacao.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAA9wJgAAAA+AAAAAAAAAA==",
+              "Title": "CadastroAluno.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAluno.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroAluno.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAluno.cs [Design]",
+              "RelativeToolTip": "Views\\CadastroAluno.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T21:30:25.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T21:45:14.248Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

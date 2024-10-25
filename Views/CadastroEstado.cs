@@ -34,12 +34,12 @@ namespace Pilates.Views
                 ModelEstado estado = controllerEstado.BuscarPorId(Alterar);
                 if (estado != null)
                 {
-                    txtCodigo.Text = estado.idEstado.ToString();
-                    txtEstado.Text = estado.Estado;
-                    txtUF.Text = estado.UF;
-                    txtCodigoPais.Text = estado.idPais.ToString();
-                    txtDataCadastro.Text = estado.dataCadastro.ToString();
-                    txtDataUltAlt.Text = estado.dataUltAlt.ToString();
+                    txtCodigo.Texts = estado.idEstado.ToString();
+                    txtEstado.Texts = estado.Estado;
+                    txtUF.Texts = estado.UF;
+                    txtCodigoPais.Texts = estado.idPais.ToString();
+                    txtDataCadastro.Texts = estado.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = estado.dataUltAlt.ToString();
                     rbAtivo.Checked = estado.Ativo;
                     rbInativo.Checked = !estado.Ativo;
 
@@ -47,7 +47,7 @@ namespace Pilates.Views
 
                     if (!string.IsNullOrEmpty(nomePais))
                     {
-                        txtPais.Text = nomePais;
+                        txtPais.Texts = nomePais;
                     }
                 }
                 else
@@ -58,17 +58,17 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtEstado.Text))
+            if (!Validacoes.CampoObrigatorio(txtEstado.Texts))
             {
                 MessageBox.Show("Campo Estado é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEstado.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtUF.Text))
+            else if (!Validacoes.CampoObrigatorio(txtUF.Texts))
             {
                 MessageBox.Show("Campo UF é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUF.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtCodigoPais.Text))
+            else if (!Validacoes.CampoObrigatorio(txtCodigoPais.Texts))
             {
                 MessageBox.Show("Campo Código País é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodigoPais.Focus();
@@ -77,7 +77,7 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (controllerEstado.JaCadastrado(txtEstado.Text, idAtual))
+                if (controllerEstado.JaCadastrado(txtEstado.Texts, idAtual))
                 {
                     MessageBox.Show("Estado já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtEstado.Focus();
@@ -86,13 +86,13 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string estado = txtEstado.Text;
-                        string UF = txtUF.Text;
-                        int idPais = int.Parse(txtCodigoPais.Text);
+                        string estado = txtEstado.Texts;
+                        string UF = txtUF.Texts;
+                        int idPais = int.Parse(txtCodigoPais.Texts);
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -100,7 +100,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelEstado novoEstado = new ModelEstado
@@ -137,6 +137,20 @@ namespace Pilates.Views
             ((ConsultaEstado)this.Owner).AtualizarConsultaEstados(false);
         }
 
+        private void rbAtivo_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CadastroEstado_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = controllerEstado.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
+        }
+
         private void btnBuscarPais_Click(object sender, EventArgs e)
         {
             consultaPais.btnSair.Text = "Selecionar";
@@ -151,25 +165,15 @@ namespace Pilates.Views
                     string paisNome = paisDetalhes.Item2;
 
                     // Atualizar o campo txtPais com o nome do país selecionado
-                    txtCodigoPais.Text = paisID.ToString();
-                    txtPais.Text = paisNome;
+                    txtCodigoPais.Texts = paisID.ToString();
+                    txtPais.Texts = paisNome;
                 }
             }
         }
 
-        private void rbAtivo_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CadastroEstado_Load(object sender, EventArgs e)
-        {
-           
-        }
-
         private void txtEstado_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtEstado.Text))
+            if (!Validacoes.VerificaLetras(txtEstado.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEstado.Focus();
@@ -178,7 +182,7 @@ namespace Pilates.Views
 
         private void txtUF_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetrasSemEspaco(txtUF.Text))
+            if (!Validacoes.VerificaLetrasSemEspaco(txtUF.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUF.Focus();
@@ -187,19 +191,19 @@ namespace Pilates.Views
 
         private void txtCodigoPais_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaNumeros(txtCodigoPais.Text))
+            if (!Validacoes.VerificaNumeros(txtCodigoPais.Texts))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodigoPais.Focus();
             }
             else
             {
-                if (!string.IsNullOrEmpty(txtCodigoPais.Text))
+                if (!string.IsNullOrEmpty(txtCodigoPais.Texts))
                 {
-                    ModelPais pais = controllerPais.BuscarPorId(int.Parse(txtCodigoPais.Text));
+                    ModelPais pais = controllerPais.BuscarPorId(int.Parse(txtCodigoPais.Texts));
                     if (pais != null)
                     {
-                        txtPais.Text = pais.Pais;
+                        txtPais.Texts = pais.Pais;
                     }
                     else
                     {
@@ -207,6 +211,15 @@ namespace Pilates.Views
                         txtCodigoPais.Focus();
                     }
                 }
+            }
+        }
+
+        private void txtCodigoPais_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //permitir apenas números
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

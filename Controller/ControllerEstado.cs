@@ -15,6 +15,10 @@ namespace Pilates.Controller
         {
             daoEstado = new DAOEstado<T>();
         }
+        public int BuscarUltimoCodigo()
+        {
+            return daoEstado.BuscarUltimoCodigo();
+        }
         public override void Alterar(T obj)
         {
             daoEstado.Alterar(obj);

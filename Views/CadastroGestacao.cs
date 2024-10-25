@@ -30,11 +30,11 @@ namespace Pilates.Views
                 ModelGestacao gestacao = GestacaoController.BuscarPorId(Alterar);
                 if (gestacao != null)
                 {//carrega os dados da gestacao
-                    txtCodigo.Text = gestacao.idGestacao.ToString();
-                    txtGestacao.Text = gestacao.gestacao;
-                    txtDescricao.Text = gestacao.descricao;
-                    txtDataCadastro.Text = gestacao.dataCadastro.ToString();
-                    txtDataUltAlt.Text = gestacao.dataUltAlt.ToString();
+                    txtCodigo.Texts = gestacao.idGestacao.ToString();
+                    txtGestacao.Texts = gestacao.gestacao;
+                    txtDescricao.Texts = gestacao.descricao;
+                    txtDataCadastro.Texts = gestacao.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = gestacao.dataUltAlt.ToString();
                     rbAtivo.Checked = gestacao.Ativo;
                     rbInativo.Checked = !gestacao.Ativo;
                 }
@@ -46,12 +46,12 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtGestacao.Text))
+            if (!Validacoes.CampoObrigatorio(txtGestacao.Texts))
             {
                 MessageBox.Show("Campo gestação é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtGestacao.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDescricao.Text))
+            else if (!Validacoes.CampoObrigatorio(txtDescricao.Texts))
             {
                 MessageBox.Show("Campo descrição é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDescricao.Focus();
@@ -60,7 +60,7 @@ namespace Pilates.Views
             {
                 int idAtual = Alterar != -7 ? Alterar : -7;
 
-                if (GestacaoController.JaCadastrado(txtGestacao.Text, idAtual))
+                if (GestacaoController.JaCadastrado(txtGestacao.Texts, idAtual))
                 {
                     MessageBox.Show("Gestação já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtGestacao.Focus();
@@ -69,12 +69,12 @@ namespace Pilates.Views
                 {
                     try
                     {
-                        string gestacao = txtGestacao.Text;
-                        string descricao = txtDescricao.Text;
+                        string gestacao = txtGestacao.Texts;
+                        string descricao = txtDescricao.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
 
-                        DateTime.TryParse(txtDataCadastro.Text, out dataCadastro);
+                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
                         if (Alterar != -7)
                         {
@@ -82,7 +82,7 @@ namespace Pilates.Views
                         }
                         else
                         {
-                            DateTime.TryParse(txtDataUltAlt.Text, out dataUltAlt);
+                            DateTime.TryParse(txtDataUltAlt.Texts, out dataUltAlt);
                         }
 
                         ModelGestacao novaGestacao = new ModelGestacao
@@ -120,6 +120,15 @@ namespace Pilates.Views
         private void CadastroGestacao_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaGestacao)this.Owner).AtualizarConsultaGestacoes(false);
+        }
+
+        private void CadastroGestacao_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = GestacaoController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
         }
     }
 }

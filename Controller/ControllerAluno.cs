@@ -19,6 +19,10 @@ namespace Pilates.Controller
         {
             daoAluno.Alterar(obj);
         }
+        public int BuscarUltimoCodigo()
+        {
+            return daoAluno.BuscarUltimoCodigo();
+        }
 
         public override T BuscarPorId(int idObj)
         {
@@ -54,7 +58,8 @@ namespace Pilates.Controller
         public bool JaCadastrado(string cpf, int idAtual)
         {
             List<ModelAluno> alunos = daoAluno.BuscarTodos(false).Cast<ModelAluno>().ToList();
-
+            if(string.IsNullOrEmpty(cpf))
+                return false;
             foreach (ModelAluno aluno in alunos)
             {
                 if (string.Equals(aluno.cpf, cpf, StringComparison.OrdinalIgnoreCase) && aluno.idAluno != idAtual)

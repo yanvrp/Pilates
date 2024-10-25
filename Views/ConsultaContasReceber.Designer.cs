@@ -67,6 +67,8 @@
             // 
             // dataGridViewContasReceber
             // 
+            this.dataGridViewContasReceber.AllowUserToAddRows = false;
+            this.dataGridViewContasReceber.AllowUserToDeleteRows = false;
             this.dataGridViewContasReceber.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewContasReceber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContasReceber.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -80,6 +82,7 @@
             this.dataCancelamento});
             this.dataGridViewContasReceber.Location = new System.Drawing.Point(12, 43);
             this.dataGridViewContasReceber.Name = "dataGridViewContasReceber";
+            this.dataGridViewContasReceber.ReadOnly = true;
             this.dataGridViewContasReceber.Size = new System.Drawing.Size(982, 436);
             this.dataGridViewContasReceber.TabIndex = 7;
             this.dataGridViewContasReceber.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContasReceber_CellDoubleClick);
@@ -89,42 +92,50 @@
             // 
             this.numero.HeaderText = "Número";
             this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
             // 
             // idAluno
             // 
             this.idAluno.HeaderText = "Cód. Aluno";
             this.idAluno.Name = "idAluno";
+            this.idAluno.ReadOnly = true;
             // 
             // aluno
             // 
             this.aluno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.aluno.HeaderText = "Aluno";
             this.aluno.Name = "aluno";
+            this.aluno.ReadOnly = true;
             // 
             // parcela
             // 
             this.parcela.HeaderText = "Parcela";
             this.parcela.Name = "parcela";
+            this.parcela.ReadOnly = true;
             // 
             // valorParcela
             // 
             this.valorParcela.HeaderText = "Valor";
             this.valorParcela.Name = "valorParcela";
+            this.valorParcela.ReadOnly = true;
             // 
             // dataVencimento
             // 
             this.dataVencimento.HeaderText = "Data Vencimento";
             this.dataVencimento.Name = "dataVencimento";
+            this.dataVencimento.ReadOnly = true;
             // 
             // dataRecebimento
             // 
             this.dataRecebimento.HeaderText = "Data Recebimento";
             this.dataRecebimento.Name = "dataRecebimento";
+            this.dataRecebimento.ReadOnly = true;
             // 
             // dataCancelamento
             // 
             this.dataCancelamento.HeaderText = "Data Cancelamento";
             this.dataCancelamento.Name = "dataCancelamento";
+            this.dataCancelamento.ReadOnly = true;
             // 
             // ConsultaContasReceber
             // 

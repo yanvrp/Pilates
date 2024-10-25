@@ -65,6 +65,8 @@
             // 
             // dataGridViewFormaPagamento
             // 
+            this.dataGridViewFormaPagamento.AllowUserToAddRows = false;
+            this.dataGridViewFormaPagamento.AllowUserToDeleteRows = false;
             this.dataGridViewFormaPagamento.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.dataGridViewFormaPagamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFormaPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -72,6 +74,7 @@
             this.formaPagamento});
             this.dataGridViewFormaPagamento.Location = new System.Drawing.Point(12, 63);
             this.dataGridViewFormaPagamento.Name = "dataGridViewFormaPagamento";
+            this.dataGridViewFormaPagamento.ReadOnly = true;
             this.dataGridViewFormaPagamento.Size = new System.Drawing.Size(549, 323);
             this.dataGridViewFormaPagamento.TabIndex = 7;
             this.dataGridViewFormaPagamento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFormaPagamento_CellDoubleClick);
@@ -80,12 +83,14 @@
             // 
             this.Código.HeaderText = "Código";
             this.Código.Name = "Código";
+            this.Código.ReadOnly = true;
             // 
             // formaPagamento
             // 
             this.formaPagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.formaPagamento.HeaderText = "Forma de Pagamento";
             this.formaPagamento.Name = "formaPagamento";
+            this.formaPagamento.ReadOnly = true;
             // 
             // ConsultaFormaPagamento
             // 
