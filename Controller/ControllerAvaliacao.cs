@@ -17,7 +17,7 @@ namespace Pilates.Controller
         }
         public override void Alterar(T obj)
         {
-            throw new NotImplementedException();
+            daoAvaliacao.Alterar(obj);
         }
 
         public override T BuscarPorId(int idObj)

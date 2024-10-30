@@ -147,6 +147,7 @@
     <Compile Include="DAO\DAOProfissao.cs" />
     <Compile Include="DAO\DAOPrograma.cs" />
     <Compile Include="EscapeKeyFilter.cs" />
+    <Compile Include="Models\ModelAgenda.cs" />
     <Compile Include="Models\ModelAluno.cs" />
     <Compile Include="Models\ModelAvaliacao.cs" />
     <Compile Include="Models\ModelAvaliacaoCirurgia.cs" />
@@ -177,6 +178,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>pilates_BemEstarDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CadastroAgenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroAgenda.Designer.cs">
+      <DependentUpon>CadastroAgenda.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CadastroAluno.cs">
       <SubType>Form</SubType>
@@ -454,6 +461,9 @@
     <Compile Include="YControls\YTextBox.Designer.cs">
       <DependentUpon>YTextBox.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\CadastroAgenda.resx">
+      <DependentUpon>CadastroAgenda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\CadastroAluno.resx">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
     </EmbeddedResource>

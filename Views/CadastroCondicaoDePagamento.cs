@@ -36,16 +36,16 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (!string.IsNullOrEmpty(txtPorcentagemTotal.Text))
+            if (!string.IsNullOrEmpty(txtPorcentagemTotal.Texts))
             {
-                decimal porcentagem = Convert.ToDecimal(txtPorcentagemTotal.Text);
+                decimal porcentagem = Convert.ToDecimal(txtPorcentagemTotal.Texts);
                 if (porcentagem != 100)
                 {
                     MessageBox.Show("A porcentagem total deve ser igual a 100%.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
-            if (!Validacoes.CampoObrigatorio(txtCondicaoPagamento.Text))
+            if (!Validacoes.CampoObrigatorio(txtCondicaoPagamento.Texts))
             {
                 MessageBox.Show("Campo Condição de Pagamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCondicaoPagamento.Focus();
@@ -58,12 +58,12 @@ namespace Pilates.Views
             {
                 try
                 {
-                    string condPagamento = txtCondicaoPagamento.Text;
-                    decimal desconto = Convert.ToDecimal(txtDesconto.Text);
-                    decimal juros = Convert.ToDecimal(txtJuros.Text);
-                    decimal multa = Convert.ToDecimal(txtMulta.Text);
-                    DateTime.TryParse(txtDataCadastro.Text, out DateTime dataCadastro);
-                    DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Text, out DateTime result) ? result : DateTime.MinValue;
+                    string condPagamento = txtCondicaoPagamento.Texts;
+                    decimal desconto = Convert.ToDecimal(txtDesconto.Texts);
+                    decimal juros = Convert.ToDecimal(txtJuros.Texts);
+                    decimal multa = Convert.ToDecimal(txtMulta.Texts);
+                    DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
+                    DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
 
                     ModelCondicaoPagamento NovaCondPagamento = new ModelCondicaoPagamento
                     {
@@ -99,13 +99,13 @@ namespace Pilates.Views
             var condicaoPagamento = controllerCondicaoPagamento.BuscarPorId(Alterar);
             if (condicaoPagamento != null)
             {
-                txtCodigo.Text = condicaoPagamento.idCondPagamento.ToString();
-                txtCondicaoPagamento.Text = condicaoPagamento.condicaoPagamento;
-                txtJuros.Text = condicaoPagamento.juros.ToString();
-                txtMulta.Text = condicaoPagamento.multa.ToString();
-                txtDesconto.Text = condicaoPagamento.desconto.ToString();
-                txtDataCadastro.Text = condicaoPagamento.dataCadastro.ToString();
-                txtDataUltAlt.Text = condicaoPagamento.dataUltAlt.ToString();
+                txtCodigo.Texts = condicaoPagamento.idCondPagamento.ToString();
+                txtCondicaoPagamento.Texts = condicaoPagamento.condicaoPagamento;
+                txtJuros.Texts = condicaoPagamento.juros.ToString();
+                txtMulta.Texts = condicaoPagamento.multa.ToString();
+                txtDesconto.Texts = condicaoPagamento.desconto.ToString();
+                txtDataCadastro.Texts = condicaoPagamento.dataCadastro.ToString();
+                txtDataUltAlt.Texts = condicaoPagamento.dataUltAlt.ToString();
                 rbAtivo.Checked = condicaoPagamento.Ativo;
                 exibirParcelasDGV(condicaoPagamento.Parcelas);
                 atualizaPorcentagemTotal();
@@ -164,7 +164,7 @@ namespace Pilates.Views
             {
                 porcentagemTotal += Convert.ToDecimal(row.Cells["porcentagem"].Value); //add os valores da coluna porcentagem a variavel
             }
-            txtPorcentagemTotal.Text = porcentagemTotal.ToString("F2"); //att o campo com 2 casas decimais
+            txtPorcentagemTotal.Texts = porcentagemTotal.ToString("F2"); //att o campo com 2 casas decimais
         }
 
         private void CadastroCondicaoDePagamento_FormClosed(object sender, FormClosedEventArgs e)
@@ -176,14 +176,15 @@ namespace Pilates.Views
         {
             if (Alterar == -7)
             {
-                txtCodigo.Text = "0";
-                txtNumParcelas.Text = "1";
-                txtJuros.Text = "0";
-                txtMulta.Text = "0";
-                txtDesconto.Text = "0";
+                txtCodigo.Texts = "0";
+                txtNumParcelas.Texts = "1";
+                txtJuros.Texts = "0";
+                txtMulta.Texts = "0";
+                txtDesconto.Texts = "0";
+                int novoCodigo = controllerCondicaoPagamento.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
             }
         }
-
         private void btnPesquisarPagamento_Click(object sender, EventArgs e)
         {
             consultaFormaPagamento.btnSair.Text = "Selecionar";
@@ -196,15 +197,15 @@ namespace Pilates.Views
                     int idFormaPag = infosFormaPag.Item1;
                     string formaPag = infosFormaPag.Item2;
 
-                    txtCodigoPagamento.Text = idFormaPag.ToString();
-                    txtFormaPagamento.Text = formaPag;
+                    txtCodigoPagamento.Texts = idFormaPag.ToString();
+                    txtFormaPagamento.Texts = formaPag;
                 }
             }
         }
 
         private void txtPorcentagem_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtPorcentagem.Text) && decimal.Parse(txtPorcentagem.Text) == 0)
+            if (!string.IsNullOrEmpty(txtPorcentagem.Texts) && decimal.Parse(txtPorcentagem.Texts) == 0)
             {
                 MessageBox.Show("A porcentagem deve ser maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPorcentagem.Focus();
@@ -221,17 +222,17 @@ namespace Pilates.Views
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            if (!Validacoes.CampoObrigatorio(txtNumParcelas.Text))
+            if (!Validacoes.CampoObrigatorio(txtNumParcelas.Texts))
             {
                 MessageBox.Show("Campo Nº Parcela é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNumParcelas.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtPorcentagem.Text))
+            else if (!Validacoes.CampoObrigatorio(txtPorcentagem.Texts))
             {
                 MessageBox.Show("Campo % é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPorcentagem.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtCodigoPagamento.Text))
+            else if (!Validacoes.CampoObrigatorio(txtCodigoPagamento.Texts))
             {
                 MessageBox.Show("Campo Código Forma Pagamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodigoPagamento.Focus();
@@ -240,7 +241,7 @@ namespace Pilates.Views
             {
                 try
                 {
-                    int numeroParcela = Convert.ToInt32(txtNumParcelas.Text);
+                    int numeroParcela = Convert.ToInt32(txtNumParcelas.Texts);
                     if (verificaNumeroParcela(numeroParcela))
                     {
                         MessageBox.Show("Número de parcela já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -248,9 +249,9 @@ namespace Pilates.Views
                         return;
                     }
 
-                    decimal porcentagem = Convert.ToDecimal(txtPorcentagem.Text);
-                    int idFormaPag = Convert.ToInt32(txtCodigoPagamento.Text);
-                    string formaPagamento = txtFormaPagamento.Text;
+                    decimal porcentagem = Convert.ToDecimal(txtPorcentagem.Texts);
+                    int idFormaPag = Convert.ToInt32(txtCodigoPagamento.Texts);
+                    string formaPagamento = txtFormaPagamento.Texts;
 
                     dataGridViewParcelas.Rows.Add(numeroParcela, porcentagem, idFormaPag, formaPagamento); //add nova linha com os valores 
 
@@ -288,28 +289,7 @@ namespace Pilates.Views
             }
         }
 
-        private void txtJuros_Leave(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtJuros_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtMulta_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtDesconto_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
             {
@@ -335,12 +315,12 @@ namespace Pilates.Views
 
         private void txtCodigoPagamento_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodigoPagamento.Text))
+            if (!string.IsNullOrEmpty(txtCodigoPagamento.Texts))
             {
-                ModelFormaPagamento formaPag = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodigoPagamento.Text));
+                ModelFormaPagamento formaPag = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodigoPagamento.Texts));
                 if (formaPag != null)
                 {
-                    txtFormaPagamento.Text = formaPag.formaPagamento;
+                    txtFormaPagamento.Texts = formaPag.formaPagamento;
                 }
                 else
                 {
@@ -349,6 +329,19 @@ namespace Pilates.Views
                     txtCodigoPagamento.Clear();
                     txtCodigoPagamento.Clear();
                 }
+            }
+        }
+
+        private void txtNumParcelas_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNumParcelas.Texts))
+            {
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtNumParcelas.Texts.TrimStart('0')))
+            {
+                MessageBox.Show("O número da parcela não pode ser 0.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNumParcelas.Focus();
             }
         }
     }

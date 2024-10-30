@@ -23,6 +23,7 @@ namespace Pilates.Views
         private ControllerAluno<ModelAluno> controllerAluno;
         private ControllerPrograma<ModelPrograma> controllerPrograma;
         private ControllerContasReceber<ModelContasReceber> controllerContasReceber;
+
         public CadastroContrato()
         {
             InitializeComponent();
@@ -34,15 +35,16 @@ namespace Pilates.Views
             controllerAluno = new ControllerAluno<ModelAluno>();
             controllerPrograma = new ControllerPrograma<ModelPrograma>();
             controllerContasReceber = new ControllerContasReceber<ModelContasReceber>();
+            PreencherDropDownList();
         }
 
         private void CadastroContrato_Load(object sender, EventArgs e)
         {
             if (Alterar == -7)
             {
-                txtInicioPrograma.Text = DateTime.Now.ToString();
+                txtInicioPrograma.Texts = DateTime.Now.ToString();
                 int novoCodigo = controllerContrato.GetUltimoNumero() + 1;
-                txtCodigo.Text = novoCodigo.ToString();
+                txtCodigo.Texts = novoCodigo.ToString();
             }
         }
         public CadastroContrato(int idContrato) : this()
@@ -50,78 +52,19 @@ namespace Pilates.Views
             Alterar = idContrato;
             Carrega();
         }
-
-        private void btnPesquisarAluno_Click(object sender, EventArgs e)
+        private void PreencherDropDownList()
         {
+            cbHoras.Items.Clear();
+            for (int i = 6; i <= 22; i++)
             {
-                consultaAluno.btnSair.Text = "Selecionar";
-
-                if (consultaAluno.ShowDialog() == DialogResult.OK)
-                {
-                    var infosAluno = consultaAluno.Tag as Tuple<int, string>;
-                    if (infosAluno != null)
-                    {
-                        int idAluno = infosAluno.Item1;
-                        string Aluno = infosAluno.Item2;
-
-                        txtCodAluno.Text = idAluno.ToString();
-                        txtAluno.Text = Aluno;
-                    }
-                }
+                cbHoras.Items.Add(i.ToString("D2")); 
             }
+
+            cbMinutos.Items.Clear();
+            cbMinutos.Items.Add("00");
+            cbMinutos.Items.Add("30");
         }
 
-        private void btnPesquisarPrograma_Click(object sender, EventArgs e)
-        {
-            {
-                consultaPrograma.btnSair.Text = "Selecionar";
-
-                if (consultaPrograma.ShowDialog() == DialogResult.OK)
-                {
-                    var infosPrograma = consultaPrograma.Tag as Tuple<int, string, decimal, string, int>;
-                    if (infosPrograma != null)
-                    {
-                        int idPrograma = infosPrograma.Item1;
-                        string Programa = infosPrograma.Item2;
-                        decimal valor = infosPrograma.Item3;
-                        string tipoPrograma = infosPrograma.Item4;
-                        int aulas = infosPrograma.Item5;
-
-                        txtCodPrograma.Text = idPrograma.ToString();
-                        txtPrograma.Text = Programa;
-                        txtValorMensal.Text = valor.ToString();
-                        txtTipoPrograma.Text = tipoPrograma;
-                        txtAulas.Text = aulas.ToString();
-                    }
-                }
-            }
-        }
-
-        private void btnPesquisarCond_Click(object sender, EventArgs e)
-        {
-            {
-                consultaCondicaoPagamento.btnSair.Text = "Selecionar";
-
-                if (consultaCondicaoPagamento.ShowDialog() == DialogResult.OK)
-                {
-                    var infosCondPag = consultaCondicaoPagamento.Tag as Tuple<int, string>;
-                    if (infosCondPag != null)
-                    {
-                        int idCondPag = infosCondPag.Item1;
-                        string condPag = infosCondPag.Item2;
-
-                        txtCodCondPag.Text = idCondPag.ToString();
-                        txtCondPagamento.Text = condPag;
-                    }
-                }
-            }
-        }
-
-        private void btnAdicionar_Click(object sender, EventArgs e)
-        {
-            ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Text));
-            exibirParcelasDGV(condPagamento.Parcelas);
-        }
         private void exibirParcelasDGV(List<ModelParcela> parcelas)
         {
             dataGridViewParcelas.Rows.Clear();
@@ -129,8 +72,8 @@ namespace Pilates.Views
             decimal valorTotal;
             int diaMes;
 
-            if (decimal.TryParse(txtValorTotal.Text, out valorTotal) &&
-                int.TryParse(txtDiaPagar.Text, out diaMes))
+            if (decimal.TryParse(txtValorTotal.Texts, out valorTotal) &&
+                int.TryParse(txtDiaPagar.Texts, out diaMes))
             {
                 //verifica se o dia do mês é válido
                 if (diaMes < 1 || diaMes > 31)
@@ -206,51 +149,91 @@ namespace Pilates.Views
             var contrato = controllerContrato.BuscarPorId(Alterar);
             if (contrato != null)
             {
-                txtCodigo.Text = contrato.idContrato.ToString();
-                txtCodAluno.Text = contrato.idAluno.ToString();
-                txtCodPrograma.Text = contrato.idPrograma.ToString();
-                txtHorario.Text = contrato.horario.ToString();
+                txtCodigo.Texts = contrato.idContrato.ToString();
+                txtCodAluno.Texts = contrato.idAluno.ToString();
+                txtCodPrograma.Texts = contrato.idPrograma.ToString();
                 txtPeriodo.Text = contrato.periodo.ToString();
-                txtDiaPagar.Text = contrato.diaAcordado.ToString();
-                txtValorTotal.Text = contrato.ValorTotal.ToString();
-                txtCodCondPag.Text = contrato.idCondPag.ToString();
-                txtDataCancelamento.Text = contrato.dataCancelamento.ToString();
-                txtInicioPrograma.Text = contrato.dataInicioPrograma.ToString();
-                txtDataCadastro.Text = contrato.dataCadastro.ToString();
-                txtDataUltAlt.Text = contrato.dataUltAlt.ToString();
+                txtDiaPagar.Texts = contrato.diaAcordado.ToString();
+                txtValorTotal.Texts = contrato.ValorTotal.ToString();
+                txtCodCondPag.Texts = contrato.idCondPag.ToString();
+                txtDataCancelamento.Texts = contrato.dataCancelamento.ToString();
+                txtInicioPrograma.Texts = contrato.dataInicioPrograma.ToString();
+                txtDataCadastro.Texts = contrato.dataCadastro.ToString();
+                txtDataUltAlt.Texts = contrato.dataUltAlt.ToString();
                 rbAtivo.Checked = contrato.Ativo;
                 rbInativo.Checked = !contrato.Ativo;
-                ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Text));
-                ModelPrograma programa = controllerPrograma.BuscarPorId(int.Parse(txtCodPrograma.Text));
-                ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Text));
-                txtAluno.Text = aluno.Aluno.ToString();
-                txtPrograma.Text = programa.titulo.ToString();
-                txtCondPagamento.Text = condPagamento.condicaoPagamento.ToString();
-                txtValorMensal.Text = programa.Valor.ToString();
-                txtAulas.Text = programa.numeroAulas.ToString();
-                txtTipoPrograma.Text = programa.tipoPrograma.ToString();
+
+                ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
+                ModelPrograma programa = controllerPrograma.BuscarPorId(int.Parse(txtCodPrograma.Texts));
+                ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Texts));
+
+                txtAluno.Texts = aluno.Aluno.ToString();
+                txtPrograma.Texts = programa.titulo.ToString();
+                txtCondPagamento.Texts = condPagamento.condicaoPagamento.ToString();
+                txtValorMensal.Texts = programa.Valor.ToString();
+                txtAulas.Texts = programa.numeroAulas.ToString();
+                txtTipoPrograma.Texts = programa.tipoPrograma.ToString();
+
+                TimeSpan horario = contrato.horario;
+                cbHoras.SelectedItem = horario.Hours.ToString("D2");
+                cbMinutos.SelectedItem = horario.Minutes.ToString("D2");
+
+                if (!string.IsNullOrEmpty(contrato.diasSemana))
+                {
+                    string[] diasSelecionados = contrato.diasSemana.Split(';');
+                    foreach (string dia in diasSelecionados)
+                    {
+                        switch (dia)
+                        {
+                            case "SEGUNDA":
+                                cbSegunda.Checked = true;
+                                break;
+                            case "TERÇA":
+                                cbTerca.Checked = true;
+                                break;
+                            case "QUARTA":
+                                cbQuarta.Checked = true;
+                                break;
+                            case "QUINTA":
+                                cbQuinta.Checked = true;
+                                break;
+                            case "SEXTA":
+                                cbSexta.Checked = true;
+                                break;
+                            case "SÁBADO":
+                                cbSabado.Checked = true;
+                                break;
+                        }
+                    }
+                }
 
                 exibirParcelasDGV(condPagamento.Parcelas);
             }
         }
+
         public override void Salvar()
         {
-            if (!Validacoes.CampoObrigatorio(txtCodAluno.Text))
+            if (!Validacoes.CampoObrigatorio(txtCodAluno.Texts))
             {
                 MessageBox.Show("Campo Código Aluno é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodAluno.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtCodPrograma.Text))
+            else if (!Validacoes.CampoObrigatorio(txtCodPrograma.Texts))
             {
                 MessageBox.Show("Campo Código do programa é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodPrograma.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtHorario.Text))
+            else if (!Validacoes.CampoObrigatorio(cbHoras.Text))
             {
-                MessageBox.Show("Campo horario é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtHorario.Focus();
+                MessageBox.Show("Campo Horas é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cbHoras.Focus();
             }
-            else if (!Validacoes.CampoObrigatorio(txtDiaPagar.Text))
+            else if (!Validacoes.CampoObrigatorio(cbMinutos.Text))
+            {
+                MessageBox.Show("Campo Minutos é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cbMinutos.Focus();
+            }
+            else if (!Validacoes.CampoObrigatorio(txtDiaPagar.Texts))
             {
                 MessageBox.Show("Campo dia a pagar é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDiaPagar.Focus();
@@ -259,18 +242,40 @@ namespace Pilates.Views
             {
                 try
                 {
-                    int idAluno = Convert.ToInt32(txtCodAluno.Text);
-                    int idPrograma = Convert.ToInt32(txtCodPrograma.Text);
-                    int idCondPag = Convert.ToInt32(txtCodCondPag.Text);
-                    int diaAcordado = Convert.ToInt32(txtDiaPagar.Text);
-                    TimeSpan.TryParse(txtHorario.Text, out TimeSpan horario);
+                    int numeroAulasSelecionadas = 0;
+                    if (cbSegunda.Checked) numeroAulasSelecionadas++;
+                    if (cbTerca.Checked) numeroAulasSelecionadas++;
+                    if (cbQuarta.Checked) numeroAulasSelecionadas++;
+                    if (cbQuinta.Checked) numeroAulasSelecionadas++;
+                    if (cbSexta.Checked) numeroAulasSelecionadas++;
+                    if (cbSabado.Checked) numeroAulasSelecionadas++;
+
+                    //ver se numero de aulas selecionadas é igual ao numero de aulas do programa escolhido
+                    int numeroAulasDefinidas = Convert.ToInt32(txtAulas.Texts);
+                    if (numeroAulasSelecionadas != numeroAulasDefinidas)
+                    {
+                        MessageBox.Show($"Número de aulas selecionadas ({numeroAulasSelecionadas}) não corresponde ao número definido ({numeroAulasDefinidas}).",
+                            "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    int idAluno = Convert.ToInt32(txtCodAluno.Texts);
+                    int idPrograma = Convert.ToInt32(txtCodPrograma.Texts);
+                    int idCondPag = Convert.ToInt32(txtCodCondPag.Texts);
+                    int diaAcordado = Convert.ToInt32(txtDiaPagar.Texts);
+
+                    string horas = cbHoras.Text;
+                    string minutos = cbMinutos.Text;
+                    string horarioString = $"{horas}:{minutos}";
+                    TimeSpan horario = TimeSpan.Parse(horarioString);
+
                     string periodo = txtPeriodo.Text;
-                    decimal valorTotal = Convert.ToDecimal(txtValorTotal.Text);
-                    DateTime.TryParse(txtInicioPrograma.Text, out DateTime dataInicioPrograma);
-                    string dCancelamento = new string(txtDataCancelamento.Text.Where(char.IsDigit).ToArray());
-                    DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Text, "dd/MM/yyyy", null);
-                    DateTime.TryParse(txtDataCadastro.Text, out DateTime dataCadastro);
-                    DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Text, out DateTime result) ? result : DateTime.MinValue;
+                    decimal valorTotal = Convert.ToDecimal(txtValorTotal.Texts);
+                    DateTime.TryParse(txtInicioPrograma.Texts, out DateTime dataInicioPrograma);
+                    string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
+                    DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Texts, "dd/MM/yyyy", null);
+                    DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
+                    DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
 
                     ModelContrato novoContrato = new ModelContrato
                     {
@@ -278,6 +283,7 @@ namespace Pilates.Views
                         idPrograma = idPrograma,
                         idCondPag = idCondPag,
                         diaAcordado = diaAcordado,
+                        diasSemana = diasSelecionados,
                         horario = horario,
                         periodo = periodo,
                         ValorTotal = valorTotal,
@@ -327,7 +333,7 @@ namespace Pilates.Views
 
                             ModelContasReceber contaReceber = new ModelContasReceber
                             {
-                                numero = int.Parse(txtCodigo.Text),
+                                numero = int.Parse(txtCodigo.Texts),
                                 idAluno = idAluno,
                                 dataEmissao = dataInicioPrograma,
                                 idFormaPagamento = idFormaPagamento,
@@ -338,7 +344,7 @@ namespace Pilates.Views
                                 desconto = null,
                                 valorRecebido = null,
                                 dataCancelamento = null,
-                                observacao = "REFERENTE AO CONTRATO NÚMERO: " + txtCodigo.Text,
+                                observacao = "REFERENTE AO CONTRATO NÚMERO: " + txtCodigo.Texts,
                                 dataCadastro = DateTime.Now,
                                 dataUltAlt = DateTime.Now
                             };
@@ -371,7 +377,7 @@ namespace Pilates.Views
         {
             int multiplicador;
             decimal valorParcial;
-            if (txtPrograma.Text.Length > 0 && txtPeriodo.Text.Length > 0)
+            if (txtPrograma.Texts.Length > 0 && txtPeriodo.Text.Length > 0)
             {
                 switch (txtPeriodo.Text.ToLower())
                 {
@@ -393,20 +399,119 @@ namespace Pilates.Views
                     default:
                         throw new ArgumentException("Periodicidade inválida");
                 }
-                ModelPrograma programa = controllerPrograma.BuscarPorId(int.Parse(txtCodPrograma.Text));
+                ModelPrograma programa = controllerPrograma.BuscarPorId(int.Parse(txtCodPrograma.Texts));
                 valorParcial = programa.Valor;
-                txtValorTotal.Text = (valorParcial * multiplicador).ToString();
+                txtValorTotal.Texts = (valorParcial * multiplicador).ToString();
+            }
+        }
+
+        public void BloqueiaTudo()
+        {
+            //usado quando a conta já está paga ou está cancelada
+            txtInicioPrograma.Enabled = false;
+            txtCodAluno.Enabled = false;
+            btnPesquisarAluno.Enabled = false;
+            txtCodPrograma.Enabled = false;
+            btnPesquisarPrograma.Enabled = false;
+            cbHoras.Enabled = false;
+            cbMinutos.Enabled = false;
+            txtPeriodo.Enabled = false;
+            txtDiaPagar.Enabled = false;
+            txtCodCondPag.Enabled = false;
+            btnPesquisarCond.Enabled = false;
+            btnAdicionar.Enabled = false;
+            cbSegunda.Enabled = false;
+            cbTerca.Enabled = false;
+            cbQuarta.Enabled = false;
+            cbQuinta.Enabled = false;
+            cbSexta.Enabled = false;
+            cbSabado.Enabled = false;
+        }
+
+        private void txtPeriodo_Leave(object sender, EventArgs e)
+        {
+            CalculaValorTotal();
+        }
+
+        private void txtPeriodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPesquisarAluno_Click(object sender, EventArgs e)
+        {
+            consultaAluno.btnSair.Text = "Selecionar";
+
+            if (consultaAluno.ShowDialog() == DialogResult.OK)
+            {
+                var infosAluno = consultaAluno.Tag as Tuple<int, string>;
+                if (infosAluno != null)
+                {
+                    int idAluno = infosAluno.Item1;
+                    string Aluno = infosAluno.Item2;
+
+                    txtCodAluno.Texts = idAluno.ToString();
+                    txtAluno.Texts = Aluno;
+                }
+            }
+        }
+
+        private void btnPesquisarCond_Click(object sender, EventArgs e)
+        {
+            consultaCondicaoPagamento.btnSair.Text = "Selecionar";
+
+            if (consultaCondicaoPagamento.ShowDialog() == DialogResult.OK)
+            {
+                var infosCondPag = consultaCondicaoPagamento.Tag as Tuple<int, string>;
+                if (infosCondPag != null)
+                {
+                    int idCondPag = infosCondPag.Item1;
+                    string condPag = infosCondPag.Item2;
+
+                    txtCodCondPag.Texts = idCondPag.ToString();
+                    txtCondPagamento.Texts = condPag;
+                }
+            }
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Texts));
+            exibirParcelasDGV(condPagamento.Parcelas);
+        }
+
+        private void btnPesquisarPrograma_Click(object sender, EventArgs e)
+        {
+            consultaPrograma.btnSair.Text = "Selecionar";
+
+            if (consultaPrograma.ShowDialog() == DialogResult.OK)
+            {
+                var infosPrograma = consultaPrograma.Tag as Tuple<int, string, decimal, string, int>;
+                if (infosPrograma != null)
+                {
+                    int idPrograma = infosPrograma.Item1;
+                    string Programa = infosPrograma.Item2;
+                    decimal valor = infosPrograma.Item3;
+                    string tipoPrograma = infosPrograma.Item4;
+                    int aulas = infosPrograma.Item5;
+
+                    txtCodPrograma.Texts = idPrograma.ToString();
+                    txtPrograma.Texts = Programa;
+                    txtValorMensal.Texts = valor.ToString();
+                    txtTipoPrograma.Texts = tipoPrograma;
+                    txtAulas.Texts = aulas.ToString();
+                }
             }
         }
 
         private void txtCodAluno_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodAluno.Text))
+            if (!string.IsNullOrEmpty(txtCodAluno.Texts))
             {
-                ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Text));
+                ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
                 if (aluno != null)
                 {
-                    txtAluno.Text = aluno.Aluno;
+                    txtAluno.Texts = aluno.Aluno;
                 }
                 else
                 {
@@ -420,15 +525,15 @@ namespace Pilates.Views
 
         private void txtCodPrograma_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodPrograma.Text))
+            if (!string.IsNullOrEmpty(txtCodPrograma.Texts))
             {
-                ModelPrograma programa = controllerPrograma.BuscarPorId(int.Parse(txtCodPrograma.Text));
+                ModelPrograma programa = controllerPrograma.BuscarPorId(int.Parse(txtCodPrograma.Texts));
                 if (programa != null)
                 {
-                    txtPrograma.Text = programa.titulo;
-                    txtAulas.Text = programa.numeroAulas.ToString();
-                    txtTipoPrograma.Text = programa.tipoPrograma;
-                    txtValorMensal.Text = programa.Valor.ToString();
+                    txtPrograma.Texts = programa.titulo;
+                    txtAulas.Texts = programa.numeroAulas.ToString();
+                    txtTipoPrograma.Texts = programa.tipoPrograma;
+                    txtValorMensal.Texts = programa.Valor.ToString();
                 }
                 else
                 {
@@ -440,29 +545,15 @@ namespace Pilates.Views
             }
             CalculaValorTotal();
         }
-        public void BloqueiaTudo()
-        {
-            //usado quando a conta já está paga ou está cancelada
-            txtInicioPrograma.Enabled = false;
-            txtCodAluno.Enabled = false;
-            btnPesquisarAluno.Enabled = false;
-            txtCodPrograma.Enabled = false;
-            btnPesquisarPrograma.Enabled = false;
-            txtHorario.Enabled = false;
-            txtPeriodo.Enabled = false;
-            txtDiaPagar.Enabled = false;
-            txtCodCondPag.Enabled = false;
-            btnPesquisarCond.Enabled = false;
-            btnAdicionar.Enabled = false;
-        }
+
         private void txtCodCondPag_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodCondPag.Text))
+            if (!string.IsNullOrEmpty(txtCodCondPag.Texts))
             {
-                ModelCondicaoPagamento condPag = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Text));
+                ModelCondicaoPagamento condPag = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Texts));
                 if (condPag != null)
                 {
-                    txtCondPagamento.Text = condPag.condicaoPagamento;
+                    txtCondPagamento.Texts = condPag.condicaoPagamento;
                 }
                 else
                 {
@@ -474,14 +565,120 @@ namespace Pilates.Views
             }
         }
 
-        private void txtPeriodo_Leave(object sender, EventArgs e)
+        private void txtCodAluno_KeyPress(object sender, KeyPressEventArgs e)
         {
-            CalculaValorTotal();
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
-        private void txtPeriodo_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtCodPrograma_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
+        private void txtCodCondPag_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtHorario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ':')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDiaPagar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtInicioPrograma_Leave(object sender, EventArgs e)
+        {
+            DateTime dataInicio;
+            string dataI = new string(txtInicioPrograma.Texts.Where(char.IsDigit).ToArray());
+            bool dataValida = DateTime.TryParse(txtInicioPrograma.Texts, out dataInicio);
+
+            if (!string.IsNullOrEmpty(dataI))
+            {
+                if (!dataValida)
+                {
+                    MessageBox.Show("Data de Início do Programa inválida!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtInicioPrograma.Focus();
+                    return;
+                }
+                if (!Validacoes.VerificarDataMenorOuIgualHoje(dataInicio.ToString("dd/MM/yyyy"), "Início Programa"))
+                {
+                    txtInicioPrograma.Focus();
+                    return;
+                }
+            }
+        }
+        private string diasSelecionados = string.Empty;
+
+        private void AtualizarDiasSelecionados()
+        {
+            diasSelecionados = string.Empty; 
+
+            if (cbSegunda.Checked)
+                diasSelecionados += "SEGUNDA;";
+            if (cbTerca.Checked)
+                diasSelecionados += "TERÇA;";
+            if (cbQuarta.Checked)
+                diasSelecionados += "QUARTA;";
+            if (cbQuinta.Checked)
+                diasSelecionados += "QUINTA;";
+            if (cbSexta.Checked)
+                diasSelecionados += "SEXTA;";
+            if (cbSabado.Checked)
+                diasSelecionados += "SÁBADO;";
+
+            if (diasSelecionados.Length > 0)
+            {
+                diasSelecionados = diasSelecionados.TrimEnd(';'); 
+            }
+        }
+
+        private void cbSegunda_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarDiasSelecionados();
+        }
+
+        private void cbTerca_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarDiasSelecionados();
+        }
+
+        private void cbQuarta_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarDiasSelecionados();
+        }
+
+        private void cbQuinta_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarDiasSelecionados();
+        }
+
+        private void cbSexta_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarDiasSelecionados();
+        }
+
+        private void cbSabado_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarDiasSelecionados();
         }
     }
 }

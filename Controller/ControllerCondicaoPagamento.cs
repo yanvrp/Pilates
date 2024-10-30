@@ -15,6 +15,10 @@ namespace Pilates.Controller
         {
             daoCondicaoPagamento = new DAOCondicaoPagamento();
         }
+        public int BuscarUltimoCodigo()
+        {
+            return daoCondicaoPagamento.BuscarUltimoCodigo();
+        }
         public override void Alterar(T obj)
         {
             daoCondicaoPagamento.Alterar(obj as ModelCondicaoPagamento);

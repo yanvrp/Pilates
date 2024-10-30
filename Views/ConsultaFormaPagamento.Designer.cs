@@ -36,31 +36,37 @@
             // 
             // cbInativos
             // 
+            this.cbInativos.Location = new System.Drawing.Point(517, 25);
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
+            // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(12, 22);
             // 
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
-            this.btnIncluir.Location = new System.Drawing.Point(212, 407);
+            this.btnIncluir.Location = new System.Drawing.Point(230, 407);
             // 
             // btnAlterar
             // 
             this.btnAlterar.FlatAppearance.BorderSize = 0;
-            this.btnAlterar.Location = new System.Drawing.Point(301, 407);
+            this.btnAlterar.Location = new System.Drawing.Point(319, 407);
             // 
             // btnExcluir
             // 
             this.btnExcluir.FlatAppearance.BorderSize = 0;
-            this.btnExcluir.Location = new System.Drawing.Point(390, 407);
+            this.btnExcluir.Location = new System.Drawing.Point(408, 407);
             // 
             // btnPesquisar
             // 
             this.btnPesquisar.FlatAppearance.BorderSize = 0;
+            this.btnPesquisar.Location = new System.Drawing.Point(416, 17);
             // 
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
-            this.btnSair.Location = new System.Drawing.Point(479, 407);
+            this.btnSair.Location = new System.Drawing.Point(497, 407);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // dataGridViewFormaPagamento
@@ -75,7 +81,7 @@
             this.dataGridViewFormaPagamento.Location = new System.Drawing.Point(12, 63);
             this.dataGridViewFormaPagamento.Name = "dataGridViewFormaPagamento";
             this.dataGridViewFormaPagamento.ReadOnly = true;
-            this.dataGridViewFormaPagamento.Size = new System.Drawing.Size(549, 323);
+            this.dataGridViewFormaPagamento.Size = new System.Drawing.Size(568, 323);
             this.dataGridViewFormaPagamento.TabIndex = 7;
             this.dataGridViewFormaPagamento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFormaPagamento_CellDoubleClick);
             // 
@@ -95,7 +101,7 @@
             // ConsultaFormaPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(574, 450);
+            this.ClientSize = new System.Drawing.Size(592, 450);
             this.Controls.Add(this.dataGridViewFormaPagamento);
             this.Name = "ConsultaFormaPagamento";
             this.Text = "Consulta Formas de Pagamento";

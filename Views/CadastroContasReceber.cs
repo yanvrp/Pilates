@@ -56,30 +56,30 @@ namespace Pilates.Views
             var contasReceber = controllerContasReceber.GetContaById(Numero,IdAluno, Parcela);
             if (contasReceber != null)
             {
-                txtNumero.Text = contasReceber.numero.ToString();
-                txtCodAluno.Text = contasReceber.idAluno.ToString();
-                txtDataEmissao.Text = contasReceber.dataEmissao.ToString();
-                txtCodFormaPag.Text = contasReceber.idFormaPagamento.ToString();
-                txtParcelas.Text = contasReceber.parcela.ToString();
-                txtValorParcela.Text = contasReceber.valorParcela.ToString();
-                txtDataVencimento.Text = contasReceber.dataVencimento.ToString();
+                txtNumero.Texts = contasReceber.numero.ToString();
+                txtCodAluno.Texts = contasReceber.idAluno.ToString();
+                txtDataEmissao.Texts = contasReceber.dataEmissao.ToString();
+                txtCodFormaPag.Texts = contasReceber.idFormaPagamento.ToString();
+                txtParcelas.Texts = contasReceber.parcela.ToString();
+                txtValorParcela.Texts = contasReceber.valorParcela.ToString();
+                txtDataVencimento.Texts = contasReceber.dataVencimento.ToString();
                 porcentagemJuros = contasReceber.juros;
                 porcentagemMulta = contasReceber.multa;
                 porcentagemDesconto = contasReceber.desconto;
-                txtValorRecebido.Text = contasReceber.valorRecebido.ToString();
-                txtDataRecebimento.Text = contasReceber.dataRecebimento.ToString();
-                txtObservacao.Text = contasReceber.observacao.ToString();
-                txtDataCancelamento.Text = contasReceber.dataCancelamento.ToString();
-                txtDataCadastro.Text = contasReceber.dataCadastro.ToString();
-                txtDataUltAlt.Text = contasReceber.dataUltAlt.ToString();
+                txtValorRecebido.Texts = contasReceber.valorRecebido.ToString();
+                txtDataRecebimento.Texts = contasReceber.dataRecebimento.ToString();
+                txtObservacao.Texts = contasReceber.observacao.ToString();
+                txtDataCancelamento.Texts = contasReceber.dataCancelamento.ToString();
+                txtDataCadastro.Texts = contasReceber.dataCadastro.ToString();
+                txtDataUltAlt.Texts = contasReceber.dataUltAlt.ToString();
 
-                ModelAluno Aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Text));
-                ModelFormaPagamento formaPagamento = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodFormaPag.Text));
+                ModelAluno Aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
+                ModelFormaPagamento formaPagamento = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodFormaPag.Texts));
 
                 if (Aluno != null)
-                    txtAluno.Text = Aluno.Aluno;
+                    txtAluno.Texts = Aluno.Aluno;
                 if (formaPagamento != null)
-                    txtFormaPag.Text = formaPagamento.formaPagamento;
+                    txtFormaPag.Texts = formaPagamento.formaPagamento;
 
                 if (contasReceber.dataCancelamento != null)
                 {
@@ -109,9 +109,9 @@ namespace Pilates.Views
             {
                 return;
             }
-            int numero = int.Parse(txtNumero.Text);
-            int idAluno = int.Parse(txtCodAluno.Text);
-            int parcela = int.Parse(txtParcelas.Text);
+            int numero = int.Parse(txtNumero.Texts);
+            int idAluno = int.Parse(txtCodAluno.Texts);
+            int parcela = int.Parse(txtParcelas.Texts);
 
             bool incluindo = Numero == -1 && IdAluno == -1 && Parcela == -1;
 
@@ -122,19 +122,19 @@ namespace Pilates.Views
             }
             try
             {
-                DateTime.TryParse(txtDataEmissao.Text, out DateTime dataEmissao);
-                int idFormaPag = Convert.ToInt32(txtCodFormaPag.Text);
-                int parcelas = Convert.ToInt32(txtParcelas.Text);
-                decimal valorParcela = Convert.ToDecimal(txtValorParcela.Text);
-                DateTime.TryParse(txtDataVencimento.Text, out DateTime dataVencimento);
-                string dRecebimento = new string(txtDataRecebimento.Text.Where(char.IsDigit).ToArray());
-                DateTime? dataRecebimento = string.IsNullOrEmpty(dRecebimento) || dRecebimento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataRecebimento.Text, "dd/MM/yyyy", null);
-                decimal valorRecebido = string.IsNullOrEmpty(txtValorRecebido.Text) ? 0 : Convert.ToDecimal(txtValorRecebido.Text);
-                string dCancelamento = new string(txtDataCancelamento.Text.Where(char.IsDigit).ToArray());
-                DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Text, "dd/MM/yyyy", null);
-                string observacao = txtObservacao.Text;
-                DateTime.TryParse(txtDataCadastro.Text, out DateTime dataCadastro);
-                DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Text, out DateTime result) ? result : DateTime.MinValue;
+                DateTime.TryParse(txtDataEmissao.Texts, out DateTime dataEmissao);
+                int idFormaPag = Convert.ToInt32(txtCodFormaPag.Texts);
+                int parcelas = Convert.ToInt32(txtParcelas.Texts);
+                decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
+                DateTime.TryParse(txtDataVencimento.Texts, out DateTime dataVencimento);
+                string dRecebimento = new string(txtDataRecebimento.Texts.Where(char.IsDigit).ToArray());
+                DateTime? dataRecebimento = string.IsNullOrEmpty(dRecebimento) || dRecebimento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataRecebimento.Texts, "dd/MM/yyyy", null);
+                decimal valorRecebido = string.IsNullOrEmpty(txtValorRecebido.Texts) ? 0 : Convert.ToDecimal(txtValorRecebido.Texts);
+                string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
+                DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Texts, "dd/MM/yyyy", null);
+                string observacao = txtObservacao.Texts;
+                DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
+                DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
 
                 ModelContasReceber novaContaReceber = new ModelContasReceber
                 {
@@ -172,15 +172,15 @@ namespace Pilates.Views
         }
         protected bool VerificaCamposObrigatorios()
         {
-            string dEmissao = new string(txtDataEmissao.Text.Where(char.IsDigit).ToArray());
-            string dVencimento = new string(txtDataVencimento.Text.Where(char.IsDigit).ToArray());
-            if (!Validacoes.CampoObrigatorio(txtNumero.Text))
+            string dEmissao = new string(txtDataEmissao.Texts.Where(char.IsDigit).ToArray());
+            string dVencimento = new string(txtDataVencimento.Texts.Where(char.IsDigit).ToArray());
+            if (!Validacoes.CampoObrigatorio(txtNumero.Texts))
             {
                 MessageBox.Show("Campo Número é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNumero.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtCodAluno.Text))
+            if (!Validacoes.CampoObrigatorio(txtCodAluno.Texts))
             {
                 MessageBox.Show("Campo Código Aluno é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodAluno.Focus();
@@ -192,19 +192,19 @@ namespace Pilates.Views
                 txtDataEmissao.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtCodFormaPag.Text))
+            if (!Validacoes.CampoObrigatorio(txtCodFormaPag.Texts))
             {
                 MessageBox.Show("Campo Código Forma Pagamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodFormaPag.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtParcelas.Text))
+            if (!Validacoes.CampoObrigatorio(txtParcelas.Texts))
             {
                 MessageBox.Show("Campo Nº Parcela é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtParcelas.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtValorParcela.Text))
+            if (!Validacoes.CampoObrigatorio(txtValorParcela.Texts))
             {
                 MessageBox.Show("Campo Valor Parcela é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtValorParcela.Focus();
@@ -220,9 +220,9 @@ namespace Pilates.Views
         }
         private void calcularJuros()
         {
-            if (Validacoes.DataValida(txtDataVencimento.Text))
+            if (Validacoes.DataValida(txtDataVencimento.Texts))
             {
-                DateTime dataVencimento = DateTime.Parse(txtDataVencimento.Text);
+                DateTime dataVencimento = DateTime.Parse(txtDataVencimento.Texts);
                 DateTime dataAtual = DateTime.Now;
 
                 int diasAtraso = (dataAtual - dataVencimento).Days;
@@ -230,16 +230,16 @@ namespace Pilates.Views
 
                 if (diasAtraso > 0 && porcentagemJuros.HasValue)
                 {
-                    valorJuros = (diasAtraso * porcentagemJuros.Value / 100) * Convert.ToDecimal(txtValorParcela.Text);
+                    valorJuros = (diasAtraso * porcentagemJuros.Value / 100) * Convert.ToDecimal(txtValorParcela.Texts);
                 }
-                txtJuros.Text = valorJuros.ToString("N2");
+                txtJuros.Texts = valorJuros.ToString("N2");
             }
         }
         private void calcularMulta()
         {
-            if (Validacoes.DataValida(txtDataVencimento.Text))
+            if (Validacoes.DataValida(txtDataVencimento.Texts))
             {
-                DateTime dataVencimento = DateTime.Parse(txtDataVencimento.Text);
+                DateTime dataVencimento = DateTime.Parse(txtDataVencimento.Texts);
                 DateTime dataAtual = DateTime.Now;
 
                 int diasAtraso = (dataAtual - dataVencimento).Days;
@@ -247,71 +247,75 @@ namespace Pilates.Views
 
                 if (diasAtraso > 0 && porcentagemJuros.HasValue)
                 {
-                    valorMulta = (diasAtraso * porcentagemMulta.Value / 100) * Convert.ToDecimal(txtValorParcela.Text);
+                    valorMulta = (diasAtraso * porcentagemMulta.Value / 100) * Convert.ToDecimal(txtValorParcela.Texts);
                 }
-                txtMulta.Text = valorMulta.ToString("N2");
+                txtMulta.Texts = valorMulta.ToString("N2");
             }
         }
         private void calcularDesconto()
         {
-            if (Validacoes.DataValida(txtDataVencimento.Text))
+            if (Validacoes.DataValida(txtDataVencimento.Texts))
             {
-                if (porcentagemDesconto.HasValue && !string.IsNullOrWhiteSpace(txtValorParcela.Text))
+                if (porcentagemDesconto.HasValue && !string.IsNullOrWhiteSpace(txtValorParcela.Texts))
                 {
-                    decimal valorParcela = Convert.ToDecimal(txtValorParcela.Text);
+                    decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
                     decimal valorDesconto = (porcentagemDesconto.Value / 100) * valorParcela;
 
-                    txtDesconto.Text = valorDesconto.ToString("N2");
+                    txtDesconto.Texts = valorDesconto.ToString("N2");
                 }
                 else
                 {
-                    txtDesconto.Text = "0.00";
+                    txtDesconto.Texts = "0.00";
                 }
             }
         }
 
         private void calculaTotalReceber()
         {
-            decimal valorDesconto = string.IsNullOrWhiteSpace(txtDesconto.Text) ? 0 : Convert.ToDecimal(txtDesconto.Text);
-            decimal valorJuros = string.IsNullOrWhiteSpace(txtJuros.Text) ? 0 : Convert.ToDecimal(txtJuros.Text);
-            decimal valorMulta = string.IsNullOrWhiteSpace(txtMulta.Text) ? 0 : Convert.ToDecimal(txtMulta.Text);
-            decimal valorParcela = string.IsNullOrWhiteSpace(txtValorParcela.Text) ? 0 : Convert.ToDecimal(txtValorParcela.Text);
+            decimal valorDesconto = string.IsNullOrWhiteSpace(txtDesconto.Texts) ? 0 : Convert.ToDecimal(txtDesconto.Texts);
+            decimal valorJuros = string.IsNullOrWhiteSpace(txtJuros.Texts) ? 0 : Convert.ToDecimal(txtJuros.Texts);
+            decimal valorMulta = string.IsNullOrWhiteSpace(txtMulta.Texts) ? 0 : Convert.ToDecimal(txtMulta.Texts);
+            decimal valorParcela = string.IsNullOrWhiteSpace(txtValorParcela.Texts) ? 0 : Convert.ToDecimal(txtValorParcela.Texts);
 
             decimal totalPagar = valorParcela + valorJuros + valorMulta - valorDesconto;
-            txtTotalReceber.Text = totalPagar.ToString("N2");
+            txtTotalReceber.Texts = totalPagar.ToString("N2");
         }
 
         private void CadastroContasReceber_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaContasReceber)this.Owner).AtualizarConsultaContasReceber(false);
         }
-
-        private void btnPesquisarFormaPag_Click(object sender, EventArgs e)
+        public override void Bloqueia()
         {
-            consultaFormaPagamento.btnSair.Text = "Selecionar";
+            base.Bloqueia();
+            txtNumero.Enabled = false;
+            txtCodAluno.Enabled = false;
+            txtDataEmissao.Enabled = false;
+            txtCodFormaPag.Enabled = false;
+            txtParcelas.Enabled = false;
+            txtValorParcela.Enabled = false;
 
-            if (consultaFormaPagamento.ShowDialog() == DialogResult.OK)
-            {
-                var infosFormaPag = consultaFormaPagamento.Tag as Tuple<int, string>;
-                if (infosFormaPag != null)
-                {
-                    int idFormaPag = infosFormaPag.Item1;
-                    string formaPag = infosFormaPag.Item2;
-
-                    txtCodFormaPag.Text = idFormaPag.ToString();
-                    txtFormaPag.Text = formaPag;
-                }
-            }
+            btnPesquisarFormaPag.Enabled = false;
+            btnPesquisarAluno.Enabled = false;
+        }
+        public void BloqueiaTudo()
+        {
+            //usado quando a conta já está paga ou está cancelada
+            txtJuros.Enabled = false;
+            txtMulta.Enabled = false;
+            txtDesconto.Enabled = false;
+            txtValorRecebido.Enabled = false;
+            txtDataVencimento.Enabled = false;
         }
 
         private void txtCodFormaPag_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodFormaPag.Text))
+            if (!string.IsNullOrEmpty(txtCodFormaPag.Texts))
             {
-                ModelFormaPagamento formaPag = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodFormaPag.Text));
+                ModelFormaPagamento formaPag = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodFormaPag.Texts));
                 if (formaPag != null)
                 {
-                    txtFormaPag.Text = formaPag.formaPagamento;
+                    txtFormaPag.Texts = formaPag.formaPagamento;
                 }
                 else
                 {
@@ -325,32 +329,30 @@ namespace Pilates.Views
 
         private void btnPesquisarAluno_Click(object sender, EventArgs e)
         {
+            ConsultaAluno.btnSair.Text = "Selecionar";
+
+            if (ConsultaAluno.ShowDialog() == DialogResult.OK)
             {
-                ConsultaAluno.btnSair.Text = "Selecionar";
-
-                if (ConsultaAluno.ShowDialog() == DialogResult.OK)
+                var infosAluno = ConsultaAluno.Tag as Tuple<int, string>;
+                if (infosAluno != null)
                 {
-                    var infosAluno = ConsultaAluno.Tag as Tuple<int, string>;
-                    if (infosAluno != null)
-                    {
-                        int idAluno = infosAluno.Item1;
-                        string Aluno = infosAluno.Item2;
+                    int idAluno = infosAluno.Item1;
+                    string Aluno = infosAluno.Item2;
 
-                        txtCodAluno.Text = idAluno.ToString();
-                        txtAluno.Text = Aluno;
-                    }
+                    txtCodAluno.Texts = idAluno.ToString();
+                    txtAluno.Texts = Aluno;
                 }
             }
         }
 
         private void txtCodAluno_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodAluno.Text))
+            if (!string.IsNullOrEmpty(txtCodAluno.Texts))
             {
-                ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Text));
+                ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
                 if (aluno != null)
                 {
-                    txtAluno.Text = aluno.Aluno;
+                    txtAluno.Texts = aluno.Aluno;
                 }
                 else
                 {
@@ -364,17 +366,17 @@ namespace Pilates.Views
 
         private void txtDataVencimento_Leave(object sender, EventArgs e)
         {
-            string dVencimento = new string(txtDataVencimento.Text.Where(char.IsDigit).ToArray());
-            string dEmissao = new string(txtDataEmissao.Text.Where(char.IsDigit).ToArray());
+            string dVencimento = new string(txtDataVencimento.Texts.Where(char.IsDigit).ToArray());
+            string dEmissao = new string(txtDataEmissao.Texts.Where(char.IsDigit).ToArray());
             if (!string.IsNullOrEmpty(dVencimento) && !string.IsNullOrEmpty(dEmissao))
             {
-                if (Validacoes.DataValida(txtDataEmissao.Text) && Validacoes.DataValida(txtDataVencimento.Text))
+                if (Validacoes.DataValida(txtDataEmissao.Texts) && Validacoes.DataValida(txtDataVencimento.Texts))
                 {
                     DateTime dataEmissao;
                     DateTime dataVencimento;
 
-                    bool dataEmissaoValida = DateTime.TryParseExact(txtDataEmissao.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataEmissao);
-                    bool dataVencimentoValida = DateTime.TryParseExact(txtDataVencimento.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataVencimento);
+                    bool dataEmissaoValida = DateTime.TryParseExact(txtDataEmissao.Texts, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataEmissao);
+                    bool dataVencimentoValida = DateTime.TryParseExact(txtDataVencimento.Texts, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataVencimento);
 
                     if (dataEmissaoValida && dataVencimentoValida)
                     {
@@ -399,13 +401,13 @@ namespace Pilates.Views
 
         private void txtValorRecebido_Leave(object sender, EventArgs e)
         {
-            txtValorRecebido.Text = Validacoes.FormataPreco(txtValorRecebido.Text);
+            txtValorRecebido.Texts = Validacoes.FormataPreco(txtValorRecebido.Texts);
         }
 
         private void btnReceber_Click(object sender, EventArgs e)
         {
-            string dRecebimento = new string(txtDataRecebimento.Text.Where(char.IsDigit).ToArray());
-            string dCancelamento = new string(txtDataCancelamento.Text.Where(char.IsDigit).ToArray());
+            string dRecebimento = new string(txtDataRecebimento.Texts.Where(char.IsDigit).ToArray());
+            string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
 
             if (!string.IsNullOrEmpty(dCancelamento))
             {
@@ -415,14 +417,14 @@ namespace Pilates.Views
 
             if (!string.IsNullOrEmpty(dRecebimento))
             {
-                MessageBox.Show("Pagamento já foi realizado dia " + txtDataRecebimento.Text, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Pagamento já foi realizado dia " + txtDataRecebimento.Texts, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             //parcela atual
-            int parcelaAtual = Convert.ToInt32(txtParcelas.Text);
-            string numero = txtNumero.Text;
-            int idAluno = Convert.ToInt32(txtCodAluno.Text);
+            int parcelaAtual = Convert.ToInt32(txtParcelas.Texts);
+            string numero = txtNumero.Texts;
+            int idAluno = Convert.ToInt32(txtCodAluno.Texts);
 
             //verificar se existe uma parcela menor não paga
             bool parcelaNaoPaga = controllerContasReceber.VerificarParcelasNaoPagas(numero, idAluno, parcelaAtual);
@@ -437,8 +439,8 @@ namespace Pilates.Views
             if (MessageBox.Show("Deseja realizar o pagamento?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Salvar();
-                txtDataRecebimento.Text = DateTime.Now.ToString();
-                txtValorRecebido.Text = txtTotalReceber.Text;
+                txtDataRecebimento.Texts = DateTime.Now.ToString();
+                txtValorRecebido.Texts = txtTotalReceber.Texts;
                 Salvar();
             }
         }
@@ -447,13 +449,13 @@ namespace Pilates.Views
         {
             DateTime dataEmissao;
             DateTime dataHoje = DateTime.Now;
-            bool dataValida = DateTime.TryParse(txtDataEmissao.Text, out dataEmissao);
+            bool dataValida = DateTime.TryParse(txtDataEmissao.Texts, out dataEmissao);
 
-            string dataE = new string(txtDataEmissao.Text.Where(char.IsDigit).ToArray());
+            string dataE = new string(txtDataEmissao.Texts.Where(char.IsDigit).ToArray());
 
             if (!string.IsNullOrEmpty(dataE))
             {
-                if (Validacoes.DataValida(txtDataEmissao.Text))
+                if (Validacoes.DataValida(txtDataEmissao.Texts))
                 {
                     if (!string.IsNullOrWhiteSpace(dataE) && dataValida)
                     {
@@ -473,31 +475,10 @@ namespace Pilates.Views
                 }
             }
         }
-        public override void Bloqueia()
-        {
-            base.Bloqueia();
-            txtNumero.Enabled = false;
-            txtCodAluno.Enabled = false;
-            txtDataEmissao.Enabled = false;
-            txtCodFormaPag.Enabled = false;
-            txtParcelas.Enabled = false;
-            txtValorParcela.Enabled = false;
 
-            btnPesquisarFormaPag.Enabled = false;
-            btnPesquisarAluno.Enabled = false;
-        }
-        public void BloqueiaTudo()
-        {
-            //usado quando a conta já está paga ou está cancelada
-            txtJuros.Enabled = false;
-            txtMulta.Enabled = false;
-            txtDesconto.Enabled = false;
-            txtValorRecebido.Enabled = false;
-            txtDataVencimento.Enabled = false;
-        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            string dRecebimento = new string(txtDataRecebimento.Text.Where(char.IsDigit).ToArray());
+            string dRecebimento = new string(txtDataRecebimento.Texts.Where(char.IsDigit).ToArray());
             DialogResult result = MessageBox.Show("Tem certeza que deseja cancelar esta conta a receber?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -516,7 +497,7 @@ namespace Pilates.Views
 
                         if (cancelamentoRealizado)
                         {
-                            txtDataCancelamento.Text = contaReceber.dataCancelamento?.ToString("dd/MM/yyyy");
+                            txtDataCancelamento.Texts = contaReceber.dataCancelamento?.ToString("dd/MM/yyyy");
                             lblDataCancelamento.Visible = true;
                             txtDataCancelamento.Visible = true;
                             BloqueiaTudo();
@@ -540,9 +521,81 @@ namespace Pilates.Views
             }
         }
 
-        private void txtValorRecebido_TextChanged(object sender, EventArgs e)
+        private void txtValorParcela_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
 
+        private void txtValorParcela_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtValorParcela.Texts))
+            {
+                try
+                {
+                    txtValorParcela.Texts = Validacoes.FormataPreco(txtValorParcela.Texts);
+
+                    //verifica se o valor é maior que zero
+                    if (decimal.TryParse(txtValorParcela.Texts, out decimal preco) && preco > 0)
+                    {
+                        //valor é válido e maior que zero
+                    }
+                    else
+                    {
+                        MessageBox.Show("O valor deve ser maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtValorParcela.Focus();
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtValorParcela.Focus();
+                }
+            }
+        }
+
+        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtJuros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnPesquisarFormaPag_Click(object sender, EventArgs e)
+        {
+            consultaFormaPagamento.btnSair.Text = "Selecionar";
+
+            if (consultaFormaPagamento.ShowDialog() == DialogResult.OK)
+            {
+                var infosFormaPag = consultaFormaPagamento.Tag as Tuple<int, string>;
+                if (infosFormaPag != null)
+                {
+                    int idFormaPag = infosFormaPag.Item1;
+                    string formaPag = infosFormaPag.Item2;
+
+                    txtCodFormaPag.Texts = idFormaPag.ToString();
+                    txtFormaPag.Texts = formaPag;
+                }
+            }
+        }
+
+        private void txtCodFormaPag_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

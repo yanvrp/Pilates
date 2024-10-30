@@ -36,21 +36,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvaliacao)).BeginInit();
             this.SuspendLayout();
             // 
-            // cbInativos
-            // 
-            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
-            // 
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
+            this.btnIncluir.Location = new System.Drawing.Point(527, 426);
             // 
             // btnAlterar
             // 
             this.btnAlterar.FlatAppearance.BorderSize = 0;
+            this.btnAlterar.Location = new System.Drawing.Point(616, 426);
             // 
             // btnExcluir
             // 
             this.btnExcluir.FlatAppearance.BorderSize = 0;
+            this.btnExcluir.Location = new System.Drawing.Point(12, 412);
+            this.btnExcluir.Visible = false;
             // 
             // btnPesquisar
             // 
@@ -59,6 +59,10 @@
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
+            // 
+            // cbInativos
+            // 
+            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
             // dataGridViewAvaliacao
             // 
@@ -83,22 +87,26 @@
             // 
             this.idAvaliação.HeaderText = "Código";
             this.idAvaliação.Name = "idAvaliação";
+            this.idAvaliação.ReadOnly = true;
             // 
             // idAluno
             // 
             this.idAluno.HeaderText = "Cód. Aluno";
             this.idAluno.Name = "idAluno";
+            this.idAluno.ReadOnly = true;
             // 
             // Aluno
             // 
             this.Aluno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Aluno.HeaderText = "Aluno";
             this.Aluno.Name = "Aluno";
+            this.Aluno.ReadOnly = true;
             // 
             // dataAvaliação
             // 
             this.dataAvaliação.HeaderText = "Data Avaliação";
             this.dataAvaliação.Name = "dataAvaliação";
+            this.dataAvaliação.ReadOnly = true;
             // 
             // ConsultaAvaliacao
             // 

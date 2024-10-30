@@ -323,7 +323,7 @@
             this.txtCodCidade.PlaceholderText = "";
             this.txtCodCidade.Size = new System.Drawing.Size(80, 28);
             this.txtCodCidade.TabIndex = 47;
-            this.txtCodCidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtCodCidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodCidade.Texts = "";
             this.txtCodCidade.UnderlinedStyle = false;
             this.txtCodCidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodCidade_KeyPress);
@@ -849,7 +849,7 @@
             this.txtCodProfissao.PlaceholderText = "";
             this.txtCodProfissao.Size = new System.Drawing.Size(80, 28);
             this.txtCodProfissao.TabIndex = 51;
-            this.txtCodProfissao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtCodProfissao.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodProfissao.Texts = "";
             this.txtCodProfissao.UnderlinedStyle = false;
             this.txtCodProfissao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodProfissao_KeyPress);

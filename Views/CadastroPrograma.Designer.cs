@@ -92,13 +92,14 @@
             // txtNumAula
             // 
             this.txtNumAula.FormattingEnabled = true;
+            this.txtNumAula.ItemHeight = 13;
             this.txtNumAula.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
             "4",
             "5"});
-            this.txtNumAula.Location = new System.Drawing.Point(23, 165);
+            this.txtNumAula.Location = new System.Drawing.Point(23, 171);
             this.txtNumAula.Name = "txtNumAula";
             this.txtNumAula.Size = new System.Drawing.Size(121, 21);
             this.txtNumAula.TabIndex = 12;
@@ -109,7 +110,7 @@
             this.txtTipoPrograma.Items.AddRange(new object[] {
             "EM GRUPO",
             "INDIVIDUAL"});
-            this.txtTipoPrograma.Location = new System.Drawing.Point(205, 165);
+            this.txtTipoPrograma.Location = new System.Drawing.Point(205, 171);
             this.txtTipoPrograma.Name = "txtTipoPrograma";
             this.txtTipoPrograma.Size = new System.Drawing.Size(121, 21);
             this.txtTipoPrograma.TabIndex = 13;
@@ -180,7 +181,7 @@
             this.txtValor.PlaceholderText = "";
             this.txtValor.Size = new System.Drawing.Size(118, 28);
             this.txtValor.TabIndex = 18;
-            this.txtValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValor.Texts = "";
             this.txtValor.UnderlinedStyle = false;
             this.txtValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValor_KeyPress);

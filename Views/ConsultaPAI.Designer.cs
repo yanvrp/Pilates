@@ -174,13 +174,12 @@
         }
 
         #endregion
-
-        protected System.Windows.Forms.CheckBox cbInativos;
         protected System.Windows.Forms.TextBox txtPesquisar;
         protected YControls.YButton btnIncluir;
         protected YControls.YButton btnAlterar;
         protected YControls.YButton btnExcluir;
         protected YControls.YButton btnPesquisar;
         public YControls.YButton btnSair;
+        public System.Windows.Forms.CheckBox cbInativos;
     }
 }

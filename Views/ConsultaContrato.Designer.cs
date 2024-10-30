@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridViewContrato = new System.Windows.Forms.DataGridView();
+            this.btnVisualizar = new Pilates.YControls.YButton();
             this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,7 +37,6 @@
             this.programa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataCancelamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnVisualizar = new Pilates.YControls.YButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContrato)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,6 +89,25 @@
             this.dataGridViewContrato.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContrato_CellDoubleClick);
             this.dataGridViewContrato.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewContrato_CellFormatting);
             // 
+            // btnVisualizar
+            // 
+            this.btnVisualizar.BackColor = System.Drawing.Color.DarkViolet;
+            this.btnVisualizar.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.btnVisualizar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.btnVisualizar.BorderRadius = 8;
+            this.btnVisualizar.BorderSize = 1;
+            this.btnVisualizar.FlatAppearance.BorderSize = 0;
+            this.btnVisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVisualizar.ForeColor = System.Drawing.Color.White;
+            this.btnVisualizar.Location = new System.Drawing.Point(616, 439);
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Size = new System.Drawing.Size(83, 31);
+            this.btnVisualizar.TabIndex = 12;
+            this.btnVisualizar.Text = "Visualizar";
+            this.btnVisualizar.TextColor = System.Drawing.Color.White;
+            this.btnVisualizar.UseVisualStyleBackColor = false;
+            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
+            // 
             // Código
             // 
             this.Código.HeaderText = "Código";
@@ -115,7 +134,7 @@
             this.idPrograma.HeaderText = "Cod. Programa";
             this.idPrograma.Name = "idPrograma";
             this.idPrograma.ReadOnly = true;
-            this.idPrograma.Width = 50;
+            this.idPrograma.Width = 60;
             // 
             // programa
             // 
@@ -135,25 +154,6 @@
             this.dataCancelamento.HeaderText = "Data de Cancelamento";
             this.dataCancelamento.Name = "dataCancelamento";
             this.dataCancelamento.ReadOnly = true;
-            // 
-            // btnVisualizar
-            // 
-            this.btnVisualizar.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnVisualizar.BackgroundColor = System.Drawing.Color.DarkViolet;
-            this.btnVisualizar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
-            this.btnVisualizar.BorderRadius = 8;
-            this.btnVisualizar.BorderSize = 1;
-            this.btnVisualizar.FlatAppearance.BorderSize = 0;
-            this.btnVisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVisualizar.ForeColor = System.Drawing.Color.White;
-            this.btnVisualizar.Location = new System.Drawing.Point(616, 439);
-            this.btnVisualizar.Name = "btnVisualizar";
-            this.btnVisualizar.Size = new System.Drawing.Size(83, 31);
-            this.btnVisualizar.TabIndex = 12;
-            this.btnVisualizar.Text = "Visualizar";
-            this.btnVisualizar.TextColor = System.Drawing.Color.White;
-            this.btnVisualizar.UseVisualStyleBackColor = false;
-            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
             // 
             // ConsultaContrato
             // 
@@ -182,6 +182,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewContrato;
+        protected YControls.YButton btnVisualizar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Código;
         private System.Windows.Forms.DataGridViewTextBoxColumn idAluno;
         private System.Windows.Forms.DataGridViewTextBoxColumn aluno;
@@ -189,6 +190,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn programa;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataCancelamento;
-        protected YControls.YButton btnVisualizar;
     }
 }

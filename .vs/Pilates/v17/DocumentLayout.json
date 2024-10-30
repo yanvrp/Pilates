@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroprograma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroprograma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\models\\modelagenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:models\\modelagenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroprograma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroprograma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\models\\modelcontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:models\\modelcontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroaluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroaluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroagenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroagenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroaluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroaluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroagenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroagenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroformapagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroformapagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastrocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastrocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastrocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastrocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,68 +34,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CadastroPrograma.cs",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroPrograma.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroPrograma.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroPrograma.cs",
-              "RelativeToolTip": "Views\\CadastroPrograma.cs",
-              "ViewState": "AgIAAIsAAAAAAAAAAAAvwJ8AAAANAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ModelContrato.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Models\\ModelContrato.cs",
+              "RelativeDocumentMoniker": "Models\\ModelContrato.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Models\\ModelContrato.cs",
+              "RelativeToolTip": "Models\\ModelContrato.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T02:38:39.586Z",
+              "WhenOpened": "2024-10-30T13:25:03.291Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CadastroPrograma.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroPrograma.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroPrograma.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroPrograma.cs [Design]",
-              "RelativeToolTip": "Views\\CadastroPrograma.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "ModelAgenda.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Models\\ModelAgenda.cs",
+              "RelativeDocumentMoniker": "Models\\ModelAgenda.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Models\\ModelAgenda.cs",
+              "RelativeToolTip": "Models\\ModelAgenda.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowAwAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T02:36:37.162Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-10-30T13:24:16.436Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CadastroFormaPagamento.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroFormaPagamento.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroFormaPagamento.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroFormaPagamento.cs [Design]",
-              "RelativeToolTip": "Views\\CadastroFormaPagamento.cs [Design]",
+              "Title": "CadastroContrato.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroContrato.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroContrato.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroContrato.cs",
+              "RelativeToolTip": "Views\\CadastroContrato.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAnwBYAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T02:32:04.824Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CadastroAluno.cs",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAluno.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroAluno.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAluno.cs",
-              "RelativeToolTip": "Views\\CadastroAluno.cs",
-              "ViewState": "AgIAANgBAAAAAAAAAAAwwOcBAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T21:45:22.377Z",
+              "WhenOpened": "2024-10-30T13:18:48.699Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CadastroAluno.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAluno.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroAluno.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAluno.cs [Design]",
-              "RelativeToolTip": "Views\\CadastroAluno.cs [Design]",
+              "Title": "CadastroAgenda.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAgenda.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroAgenda.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAgenda.cs",
+              "RelativeToolTip": "Views\\CadastroAgenda.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T21:45:14.248Z",
+              "WhenOpened": "2024-10-30T13:16:47.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CadastroContrato.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroContrato.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroContrato.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroContrato.cs [Design]",
+              "RelativeToolTip": "Views\\CadastroContrato.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T13:11:47.09Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CadastroAgenda.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAgenda.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroAgenda.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAgenda.cs [Design]",
+              "RelativeToolTip": "Views\\CadastroAgenda.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T13:11:22.312Z",
               "EditorCaption": " [Design]"
             }
           ]

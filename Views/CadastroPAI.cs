@@ -44,6 +44,8 @@ namespace Pilates.Views
             {
                 txtDataCadastro.Texts = DateTime.Now.ToString();
                 txtDataUltAlt.Texts = DateTime.Now.ToString();
+                rbAtivo.Enabled = false;
+                rbInativo.Enabled = false;
             }
         }
 

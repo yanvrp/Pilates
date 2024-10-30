@@ -264,6 +264,7 @@ CREATE TABLE contrato (
     horario TIME(7) NOT NULL,
     periodo VARCHAR(50) NOT NULL,
     diaAcordado INT NOT NULL,
+    diasSemana VARCHAR(50) NOT NULL,
     valorTotal DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (idContrato),
     CONSTRAINT FK_idAluno_contrato FOREIGN KEY (idAluno) REFERENCES aluno(idAluno),

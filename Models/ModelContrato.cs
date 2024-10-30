@@ -16,6 +16,7 @@ namespace Pilates.Models
         public TimeSpan horario { get; set; }
         public string periodo { get; set; }
         public decimal ValorTotal { get; set; }
+        public string diasSemana { get; set; }
         public DateTime dataInicioPrograma { get; set; }
         public DateTime dataCadastro { get; set; }
         public DateTime? dataCancelamento { get; set; }

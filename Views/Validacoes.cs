@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Pilates.YControls;
 
 namespace Pilates.Views
 {
@@ -140,7 +141,7 @@ namespace Pilates.Views
                 return dv1 == int.Parse(cpf[9].ToString()) && dv2 == int.Parse(cpf[10].ToString());
             }
         }
-        public static void AtualizarCampoData(DateTime data, MaskedTextBox campoTexto)
+        public static void AtualizarCampoData(DateTime data, YMaskedTextBox campoTexto)
         {
             DateTime dataPadrao = new DateTime(1800, 1, 1);
             if (data == dataPadrao)
@@ -152,7 +153,7 @@ namespace Pilates.Views
                 campoTexto.Text = data.ToString("dd/MM/yyyy");
             }
         }
-        public static void AtualizarCampoComDataPadrao(MaskedTextBox campoTexto, out DateTime data)
+        public static void AtualizarCampoComDataPadrao(YMaskedTextBox campoTexto, out DateTime data)
         {
             string entrada = campoTexto.Text;
             DateTime dataPadrao = new DateTime(1800, 1, 1);

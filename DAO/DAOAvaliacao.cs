@@ -29,7 +29,140 @@ namespace Pilates.DAO
         }
         public override void Alterar(ModelAvaliacao obj)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // Atualizar a avaliação principal
+                    string queryAvaliacao = @"UPDATE avaliacao 
+                                  SET data = @data, 
+                                      idAluno = @idAluno, 
+                                      dataUltAlt = @dataUltAlt, 
+                                      ativo = @ativo 
+                                  WHERE idAvaliacao = @idAvaliacao";
+                    SqlCommand cmdAvaliacao = new SqlCommand(queryAvaliacao, conn, transaction);
+
+                    cmdAvaliacao.Parameters.AddWithValue("@data", obj.data);
+                    cmdAvaliacao.Parameters.AddWithValue("@idAluno", obj.idAluno);
+                    cmdAvaliacao.Parameters.AddWithValue("@dataUltAlt", obj.dataUltAlt);
+                    cmdAvaliacao.Parameters.AddWithValue("@ativo", obj.Ativo);
+                    cmdAvaliacao.Parameters.AddWithValue("@idAvaliacao", obj.idAvaliacao);
+
+                    cmdAvaliacao.ExecuteNonQuery();
+
+                    AtualizarDores(obj.idAvaliacao, obj.Dores, conn, transaction);
+                    AtualizarDoencas(obj.idAvaliacao, obj.Doenca, conn, transaction);
+                    AtualizarCirurgias(obj.idAvaliacao, obj.Cirurgia, conn, transaction);
+                    AtualizarGestacoes(obj.idAvaliacao, obj.Gestacao, conn, transaction);
+                    AtualizarMedicamentos(obj.idAvaliacao, obj.Medicamento, conn, transaction);
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao alterar a Avaliação: " + ex.Message);
+                }
+            }
+        }
+        private void AtualizarDores(int idAvaliacao, List<ModelAvaliacaoDores> dores, SqlConnection conn, SqlTransaction transaction)
+        {
+            string deleteQuery = "DELETE FROM avaliacao_Dores WHERE idAvaliacao = @idAvaliacao";
+            SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn, transaction);
+            deleteCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+            deleteCmd.ExecuteNonQuery();
+
+            foreach (var dor in dores)
+            {
+                string insertQuery = @"INSERT INTO avaliacao_Dores (idAvaliacao, observacao, idDores) 
+                               VALUES (@idAvaliacao, @observacao, @idDores)";
+                SqlCommand insertCmd = new SqlCommand(insertQuery, conn, transaction);
+                insertCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                insertCmd.Parameters.AddWithValue("@observacao", dor.observacao);
+                insertCmd.Parameters.AddWithValue("@idDores", dor.idDores);
+                insertCmd.ExecuteNonQuery();
+            }
+        }
+        private void AtualizarDoencas(int idAvaliacao, List<ModelAvaliacaoDoenca> doencas, SqlConnection conn, SqlTransaction transaction)
+        {
+            string deleteQuery = "DELETE FROM avaliacao_Doenca WHERE idAvaliacao = @idAvaliacao";
+            SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn, transaction);
+            deleteCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+            deleteCmd.ExecuteNonQuery();
+
+            foreach (var doenca in doencas)
+            {
+                string insertQuery = @"INSERT INTO avaliacao_Doenca (idAvaliacao, observacao, idDoenca) 
+                               VALUES (@idAvaliacao, @observacao, @idDoenca)";
+                SqlCommand insertCmd = new SqlCommand(insertQuery, conn, transaction);
+                insertCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                insertCmd.Parameters.AddWithValue("@observacao", doenca.observacao);
+                insertCmd.Parameters.AddWithValue("@idDoenca", doenca.idDoenca);
+                insertCmd.ExecuteNonQuery();
+            }
+        }
+        private void AtualizarCirurgias(int idAvaliacao, List<ModelAvaliacaoCirurgia> cirurgias, SqlConnection conn, SqlTransaction transaction)
+        {
+            string deleteQuery = "DELETE FROM avaliacao_Cirurgia WHERE idAvaliacao = @idAvaliacao";
+            SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn, transaction);
+            deleteCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+            deleteCmd.ExecuteNonQuery();
+
+            foreach (var cirurgia in cirurgias)
+            {
+                string insertQuery = @"INSERT INTO avaliacao_Cirurgia (idAvaliacao, observacao, idCirurgia, dataCirurgia) 
+                       VALUES (@idAvaliacao, @observacao, @idCirurgia, @dataCirurgia)";
+                SqlCommand insertCmd = new SqlCommand(insertQuery, conn, transaction);
+                insertCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                insertCmd.Parameters.AddWithValue("@observacao", cirurgia.observacao);
+                insertCmd.Parameters.AddWithValue("@idCirurgia", cirurgia.idCirurgia);
+                insertCmd.Parameters.AddWithValue("@dataCirurgia", cirurgia.dataCirurgia);
+                insertCmd.ExecuteNonQuery();
+            }
+        }
+
+        private void AtualizarGestacoes(int idAvaliacao, List<ModelAvaliacaoGestacao> gestacoes, SqlConnection conn, SqlTransaction transaction)
+        {
+            string deleteQuery = "DELETE FROM avaliacao_Gestacao WHERE idAvaliacao = @idAvaliacao";
+            SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn, transaction);
+            deleteCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+            deleteCmd.ExecuteNonQuery();
+
+            foreach (var gestacao in gestacoes)
+            {
+                string insertQuery = @"INSERT INTO avaliacao_Gestacao (idAvaliacao, observacao, idGestacao, dataParto) 
+                               VALUES (@idAvaliacao, @observacao, @idGestacao, @dataParto)";
+                SqlCommand insertCmd = new SqlCommand(insertQuery, conn, transaction);
+                insertCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                insertCmd.Parameters.AddWithValue("@observacao", gestacao.observacao);
+                insertCmd.Parameters.AddWithValue("@idGestacao", gestacao.idGestacao);
+                insertCmd.Parameters.AddWithValue("@dataParto", gestacao.dataParto ?? (object)DBNull.Value);
+                insertCmd.ExecuteNonQuery();
+            }
+        }
+
+        private void AtualizarMedicamentos(int idAvaliacao, List<ModelAvaliacaoMedicamento> medicamentos, SqlConnection conn, SqlTransaction transaction)
+        {
+            string deleteQuery = "DELETE FROM avaliacao_Medicamento WHERE idAvaliacao = @idAvaliacao";
+            SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn, transaction);
+            deleteCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+            deleteCmd.ExecuteNonQuery();
+
+            foreach (var medicamento in medicamentos)
+            {
+                string insertQuery = @"INSERT INTO avaliacao_Medicamento (idAvaliacao, observacao, idMedicamento, dosagem, frequencia) 
+                       VALUES (@idAvaliacao, @observacao, @idMedicamento, @dosagem, @frequencia)";
+                SqlCommand insertCmd = new SqlCommand(insertQuery, conn, transaction);
+                insertCmd.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+                insertCmd.Parameters.AddWithValue("@observacao", medicamento.observacao);
+                insertCmd.Parameters.AddWithValue("@idMedicamento", medicamento.idMedicamento);
+                insertCmd.Parameters.AddWithValue("@dosagem", medicamento.dosagem);
+                insertCmd.Parameters.AddWithValue("@frequencia", medicamento.frequencia);
+                insertCmd.ExecuteNonQuery();
+            }
         }
 
         public override ModelAvaliacao BuscarPorId(int id)

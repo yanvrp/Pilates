@@ -13,6 +13,23 @@ namespace Pilates.DAO
     public class DAOCondicaoPagamento : DAO<ModelCondicaoPagamento>
     {
         public DAOCondicaoPagamento() : base() { }
+        public int BuscarUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(idCondPagamento) FROM condicaoPagamento";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
         public override void Alterar(ModelCondicaoPagamento obj)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

@@ -57,6 +57,7 @@ namespace Pilates.DAO
                         contrato.idCondPag = Convert.ToInt32(reader["idCondPagamento"]);
                         contrato.idPrograma = Convert.ToInt32(reader["idPrograma"]);
                         contrato.periodo = reader["periodo"].ToString();
+                        contrato.diasSemana = reader["diasSemana"].ToString();
                         contrato.horario = (TimeSpan)reader["horario"];
                         contrato.ValorTotal = Convert.ToDecimal(reader["valorTotal"]);
                         contrato.diaAcordado = Convert.ToInt32(reader["diaAcordado"]);
@@ -112,8 +113,8 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO contrato (idAluno, idCondPagamento, idPrograma, periodo, horario, valorTotal, diaAcordado, dataInicioPrograma, dataCancelamento, ativo, dataCadastro, dataUltAlt) 
-        VALUES (@idAluno, @idCondPagamento, @idPrograma, @periodo, @horario, @valorTotal, @diaAcordado, @dataInicioPrograma, @dataCancelamento,@ativo, @dataCadastro, @dataUltAlt)";
+                string query = @"INSERT INTO contrato (idAluno, idCondPagamento, idPrograma, periodo, horario, valorTotal, diaAcordado, diasSemana, dataInicioPrograma, dataCancelamento, ativo, dataCadastro, dataUltAlt) 
+        VALUES (@idAluno, @idCondPagamento, @idPrograma, @periodo, @horario, @valorTotal, @diaAcordado, @diasSemana, @dataInicioPrograma, @dataCancelamento,@ativo, @dataCadastro, @dataUltAlt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
@@ -124,6 +125,7 @@ namespace Pilates.DAO
                 command.Parameters.AddWithValue("@horario", contrato.horario);
                 command.Parameters.AddWithValue("@valorTotal", contrato.ValorTotal);
                 command.Parameters.AddWithValue("@diaAcordado", contrato.diaAcordado);
+                command.Parameters.AddWithValue("@diasSemana", contrato.diasSemana);
                 command.Parameters.AddWithValue("@dataInicioPrograma", contrato.dataInicioPrograma);
                 command.Parameters.AddWithValue("@dataCancelamento", contrato.dataCancelamento ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@ativo", contrato.Ativo);

@@ -287,6 +287,9 @@ namespace Pilates.YControls
         }
 
         [Category("Y Code Advance")]
+        public Color EnabledBackColor { get; set; } = Color.White;
+
+        [Category("Y Code Advance")]
         public bool Enabled
         {
             get { return maskedTextBox1.Enabled; }
@@ -300,7 +303,7 @@ namespace Pilates.YControls
                 }
                 else
                 {
-                    maskedTextBox1.BackColor = this.BackColor;
+                    maskedTextBox1.BackColor = EnabledBackColor; // Use a cor configurada para habilitado
                     maskedTextBox1.ForeColor = this.ForeColor;
                 }
             }

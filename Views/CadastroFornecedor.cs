@@ -65,7 +65,7 @@ namespace Pilates.Views
         }
         public override void Salvar()
         {
-            if (txtPais.Text != "BRASIL")
+            if (txtPais.Texts != "BRASIL")
             {
                 MessageBox.Show("Só é permitido o cadastro de fornecedores brasileiros!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodCidade.Focus();
@@ -76,7 +76,7 @@ namespace Pilates.Views
                 return;
             }
             int idAtual = Alterar != -7 ? Alterar : -7;
-            string cpf_cnpj = new string(txtCPF_CNPJ.Text.Where(char.IsDigit).ToArray());
+            string cpf_cnpj = new string(txtCPF_CNPJ.Texts.Where(char.IsDigit).ToArray());
 
             if (controllerFornecedor.JaCadastrado(cpf_cnpj, idAtual))
             {
@@ -87,25 +87,25 @@ namespace Pilates.Views
             {
                 try
                 {
-                    string cliente_razao_social = txtFornecedor.Text;
-                    string apelido_nome_fantasia = txtApelido.Text;
-                    string endereco = txtEndereco.Text;
-                    string bairro = txtBairro.Text;
-                    string numero = txtNumero.Text;
-                    string cep = new string(txtCEP.Text.Where(char.IsDigit).ToArray());
-                    string complemento = txtComplemento.Text;
-                    string email = txtEmail.Text;
-                    string telefone = new string(txtTelefone.Text.Where(char.IsDigit).ToArray());
-                    string celular = new string(txtCelular.Text.Where(char.IsDigit).ToArray());
-                    string nome_contato = txtNomeContato.Text;
-                    string rg_ie = new string(txtRG_IE.Text.Where(char.IsDigit).ToArray());
-                    int idCidade = Convert.ToInt32(txtCodCidade.Text);
-                    int idCondPagamento = Convert.ToInt32(txtCodCondPag.Text);
+                    string cliente_razao_social = txtFornecedor.Texts;
+                    string apelido_nome_fantasia = txtApelido.Texts;
+                    string endereco = txtEndereco.Texts;
+                    string bairro = txtBairro.Texts;
+                    string numero = txtNumero.Texts;
+                    string cep = new string(txtCEP.Texts.Where(char.IsDigit).ToArray());
+                    string complemento = txtComplemento.Texts;
+                    string email = txtEmail.Texts;
+                    string telefone = new string(txtTelefone.Texts.Where(char.IsDigit).ToArray());
+                    string celular = new string(txtCelular.Texts.Where(char.IsDigit).ToArray());
+                    string nome_contato = txtNomeContato.Texts;
+                    string rg_ie = new string(txtRG_IE.Texts.Where(char.IsDigit).ToArray());
+                    int idCidade = Convert.ToInt32(txtCodCidade.Texts);
+                    int idCondPagamento = Convert.ToInt32(txtCodCondPag.Texts);
 
                     Validacoes.AtualizarCampoComDataPadrao(txtDataNasc, out DateTime data_nasc);
 
-                    DateTime.TryParse(txtDataCadastro.Text, out DateTime dataCadastro);
-                    DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Text, out DateTime result) ? result : DateTime.MinValue;
+                    DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
+                    DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
 
                     string sexo;
                     if (Fisico)
@@ -162,8 +162,8 @@ namespace Pilates.Views
         }
         protected bool VerificaCamposObrigatorios()
         {
-            string cpf_cnpj = new string(txtCPF_CNPJ.Text.Where(char.IsDigit).ToArray());
-            string pais = txtPais.Text;
+            string cpf_cnpj = new string(txtCPF_CNPJ.Texts.Where(char.IsDigit).ToArray());
+            string pais = txtPais.Texts;
             if (pais == "BRASIL")
             {
                 if (!Validacoes.CampoObrigatorio(cpf_cnpj))
@@ -173,7 +173,7 @@ namespace Pilates.Views
                     return false;
                 }
             }
-            if (!Validacoes.CampoObrigatorio(txtFornecedor.Text))
+            if (!Validacoes.CampoObrigatorio(txtFornecedor.Texts))
             {
                 MessageBox.Show("Campo obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtFornecedor.Focus();
@@ -190,27 +190,27 @@ namespace Pilates.Views
             }
             if (rbJuridica.Checked)
             {
-                if (!Validacoes.CampoObrigatorio(txtNomeContato.Text))
+                if (!Validacoes.CampoObrigatorio(txtNomeContato.Texts))
                 {
                     MessageBox.Show("Campo Nome Contato é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNomeContato.Focus();
                     return false;
                 }
             }
-            string celular = new string(txtCelular.Text.Where(char.IsDigit).ToArray());
+            string celular = new string(txtCelular.Texts.Where(char.IsDigit).ToArray());
             if (!Validacoes.CampoObrigatorio(celular))
             {
                 MessageBox.Show("Campo Celular é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCelular.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtEmail.Text))
+            if (!Validacoes.CampoObrigatorio(txtEmail.Texts))
             {
                 MessageBox.Show("Campo Email é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEmail.Focus();
                 return false;
             }
-            string cep = new string(txtCEP.Text.Where(char.IsDigit).ToArray());
+            string cep = new string(txtCEP.Texts.Where(char.IsDigit).ToArray());
             if (pais == "BRASIL")
             {
                 if (!Validacoes.CampoObrigatorio(cep))
@@ -220,31 +220,31 @@ namespace Pilates.Views
                     return false;
                 }
             }
-            if (!Validacoes.CampoObrigatorio(txtEndereco.Text))
+            if (!Validacoes.CampoObrigatorio(txtEndereco.Texts))
             {
                 MessageBox.Show("Campo Endereço é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEndereco.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtNumero.Text))
+            if (!Validacoes.CampoObrigatorio(txtNumero.Texts))
             {
                 MessageBox.Show("Campo Número é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNumero.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtBairro.Text))
+            if (!Validacoes.CampoObrigatorio(txtBairro.Texts))
             {
                 MessageBox.Show("Campo Bairro é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtBairro.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtCodCidade.Text))
+            if (!Validacoes.CampoObrigatorio(txtCodCidade.Texts))
             {
                 MessageBox.Show("Campo Código Cidade é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodCidade.Focus();
                 return false;
             }
-            if (!Validacoes.CampoObrigatorio(txtCodCondPag.Text))
+            if (!Validacoes.CampoObrigatorio(txtCodCondPag.Texts))
             {
                 MessageBox.Show("Campo Código Condição de Pagamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodCondPag.Focus();
@@ -263,28 +263,28 @@ namespace Pilates.Views
                 ModelFornecedor fornecedor = controllerFornecedor.BuscarPorId(Alterar);
                 if (fornecedor != null)
                 {
-                    txtCodigo.Text = fornecedor.idFornecedor.ToString();
+                    txtCodigo.Texts = fornecedor.idFornecedor.ToString();
                     rbFisica.Checked = fornecedor.tipo_pessoa;
                     rbJuridica.Checked = !fornecedor.tipo_pessoa;
-                    txtFornecedor.Text = fornecedor.fornecedor_razao_social;
-                    txtApelido.Text = fornecedor.apelido_nome_fantasia;
-                    txtEndereco.Text = fornecedor.endereco;
-                    txtBairro.Text = fornecedor.bairro;
-                    txtNumero.Text = fornecedor.numero;
-                    txtCEP.Text = fornecedor.cep;
-                    txtComplemento.Text = fornecedor.complemento;
-                    txtCodCidade.Text = fornecedor.idCidade.ToString();
-                    txtEmail.Text = fornecedor.email;
-                    txtTelefone.Text = fornecedor.telefone;
-                    txtCelular.Text = fornecedor.celular;
-                    txtNomeContato.Text = fornecedor.nome_contato;
-                    txtCPF_CNPJ.Text = fornecedor.cpf_cnpj;
-                    txtRG_IE.Text = fornecedor.rg_ie;
-                    txtDataCadastro.Text = fornecedor.dataCadastro.ToString();
-                    txtDataUltAlt.Text = fornecedor.dataUltAlt.ToString();
+                    txtFornecedor.Texts = fornecedor.fornecedor_razao_social;
+                    txtApelido.Texts = fornecedor.apelido_nome_fantasia;
+                    txtEndereco.Texts = fornecedor.endereco;
+                    txtBairro.Texts = fornecedor.bairro;
+                    txtNumero.Texts = fornecedor.numero;
+                    txtCEP.Texts = fornecedor.cep;
+                    txtComplemento.Texts = fornecedor.complemento;
+                    txtCodCidade.Texts = fornecedor.idCidade.ToString();
+                    txtEmail.Texts = fornecedor.email;
+                    txtTelefone.Texts = fornecedor.telefone;
+                    txtCelular.Texts = fornecedor.celular;
+                    txtNomeContato.Texts = fornecedor.nome_contato;
+                    txtCPF_CNPJ.Texts = fornecedor.cpf_cnpj;
+                    txtRG_IE.Texts = fornecedor.rg_ie;
+                    txtDataCadastro.Texts = fornecedor.dataCadastro.ToString();
+                    txtDataUltAlt.Texts = fornecedor.dataUltAlt.ToString();
                     rbAtivo.Checked = fornecedor.Ativo;
                     rbInativo.Checked = !fornecedor.Ativo;
-                    txtCodCondPag.Text = fornecedor.idCondPagamento.ToString();
+                    txtCodCondPag.Texts = fornecedor.idCondPagamento.ToString();
           
                     if (!txtSexo.Items.Contains(fornecedor.sexo))
                     {
@@ -292,11 +292,11 @@ namespace Pilates.Views
                     }
                     txtSexo.Text = fornecedor.sexo;
 
-                    ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Text));
+                    ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Texts));
 
                     if (condPagamento != null)
                     {
-                        txtCondPag.Text = condPagamento.condicaoPagamento;
+                        txtCondPag.Texts = condPagamento.condicaoPagamento;
                     }
 
                     Validacoes.AtualizarCampoData(fornecedor.data_nasc, txtDataNasc);
@@ -308,9 +308,9 @@ namespace Pilates.Views
                         string[] info = cidadeEstadoPais[0].Split(',');
                         if (info.Length >= 3)
                         {
-                            txtCidade.Text = info[0].Trim();
-                            txtUF.Text = info[1].Trim();
-                            txtPais.Text = info[2].Trim();
+                            txtCidade.Texts = info[0].Trim();
+                            txtUF.Texts = info[1].Trim();
+                            txtPais.Texts = info[2].Trim();
                         }
                     }
                 }
@@ -331,22 +331,22 @@ namespace Pilates.Views
             if (Alterar == -7)
             {
                 int novoCodigo = controllerFornecedor.GetUltimoCodigo() + 1;
-                txtCodigo.Text = novoCodigo.ToString();
-                txtDataCadastro.Text = DateTime.Now.ToString();
-                txtDataUltAlt.Text = DateTime.Now.ToString();
+                txtCodigo.Texts = novoCodigo.ToString();
+                txtDataCadastro.Texts = DateTime.Now.ToString();
+                txtDataUltAlt.Texts = DateTime.Now.ToString();
             }
         }
 
         private void txtFornecedor_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtFornecedor.Text))
+            if (!Validacoes.VerificaLetras(txtFornecedor.Texts))
             {
                 MessageBox.Show("Fornecedor inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtFornecedor.Focus();
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void btnBuscarCidade_Click(object sender, EventArgs e)
         {
             consultaCidade.btnSair.Text = "Selecionar";
 
@@ -359,8 +359,8 @@ namespace Pilates.Views
                     int cidadeID = cidadeDetalhes.Item1;
                     string cidadeNome = cidadeDetalhes.Item2;
 
-                    txtCodCidade.Text = cidadeID.ToString();
-                    txtCidade.Text = cidadeNome;
+                    txtCodCidade.Texts = cidadeID.ToString();
+                    txtCidade.Texts = cidadeNome;
 
                     List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(cidadeID);
 
@@ -369,8 +369,8 @@ namespace Pilates.Views
                         string[] info = cidadeEstadoPais[0].Split(',');
                         if (info.Length >= 3)
                         {
-                            txtUF.Text = info[1].Trim();
-                            txtPais.Text = info[2].Trim();
+                            txtUF.Texts = info[1].Trim();
+                            txtPais.Texts = info[2].Trim();
                         }
                     }
                 }
@@ -379,25 +379,25 @@ namespace Pilates.Views
 
         private void txtCodCidade_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodCidade.Text))
+            if (!string.IsNullOrEmpty(txtCodCidade.Texts))
             {
-                if (!Validacoes.VerificaNumeros(txtCodCidade.Text))
+                if (!Validacoes.VerificaNumeros(txtCodCidade.Texts))
                 {
                     MessageBox.Show("Cód. Cidade inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodCidade.Focus();
                 }
                 else
                 {
-                    List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(int.Parse(txtCodCidade.Text));
+                    List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(int.Parse(txtCodCidade.Texts));
 
                     if (cidadeEstadoPais.Count > 0)
                     {
                         string[] info = cidadeEstadoPais[0].Split(',');
                         if (info.Length >= 3)
                         {
-                            txtCidade.Text = info[0].Trim();
-                            txtUF.Text = info[1].Trim();
-                            txtPais.Text = info[2].Trim();
+                            txtCidade.Texts = info[0].Trim();
+                            txtUF.Texts = info[1].Trim();
+                            txtPais.Texts = info[2].Trim();
                         }
                     }
                     else
@@ -413,7 +413,7 @@ namespace Pilates.Views
             }
         }
 
-        private void btnBuscarCondPag_Click(object sender, EventArgs e)
+        private void btnBuscarCond_Click(object sender, EventArgs e)
         {
             consultaCondicaoPagamento.btnSair.Text = "Selecionar";
             if (consultaCondicaoPagamento.ShowDialog() == DialogResult.OK)
@@ -424,20 +424,20 @@ namespace Pilates.Views
                     int idCondPag = condPagamento.Item1;
                     string condicaoPagamento = condPagamento.Item2;
 
-                    txtCodCondPag.Text = idCondPag.ToString();
-                    txtCondPag.Text = condicaoPagamento;
+                    txtCodCondPag.Texts = idCondPag.ToString();
+                    txtCondPag.Texts = condicaoPagamento;
                 }
             }
         }
 
         private void txtCodCondPag_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodCondPag.Text))
+            if (!string.IsNullOrEmpty(txtCodCondPag.Texts))
             {
-                ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Text));
+                ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Texts));
                 if (condPagamento != null)
                 {
-                    txtCondPag.Text = condPagamento.condicaoPagamento;
+                    txtCondPag.Texts = condPagamento.condicaoPagamento;
                 }
                 else
                 {
@@ -451,7 +451,7 @@ namespace Pilates.Views
 
         private void txtCPF_CNPJ_Leave(object sender, EventArgs e)
         {
-            string cpf_cnpj = new string(txtCPF_CNPJ.Text.Where(char.IsDigit).ToArray());
+            string cpf_cnpj = new string(txtCPF_CNPJ.Texts.Where(char.IsDigit).ToArray());
             if (!rbFisica.Checked)
             {
                 if (!Validacoes.ValidaCNPJ(cpf_cnpj))
@@ -468,11 +468,17 @@ namespace Pilates.Views
                     txtCPF_CNPJ.Focus();
                 }
             }
+            int idAtual = Alterar != -7 ? Alterar : -7;
+            if (controllerFornecedor.JaCadastrado(cpf_cnpj, idAtual))
+            {
+                MessageBox.Show("Fornecedor já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCPF_CNPJ.Focus();
+            }
         }
 
         private void txtNomeContato_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtNomeContato.Text))
+            if (!Validacoes.VerificaLetras(txtNomeContato.Texts))
             {
                 MessageBox.Show("Nome do Contato inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNomeContato.Focus();
@@ -481,11 +487,11 @@ namespace Pilates.Views
 
         private void txtRG_IE_Leave(object sender, EventArgs e)
         {
-            string RG_IE = new string(txtRG_IE.Text.Where(char.IsDigit).ToArray());
+            string RG_IE = new string(txtRG_IE.Texts.Where(char.IsDigit).ToArray());
 
-            if (!string.IsNullOrEmpty(txtRG_IE.Text) && !rbFisica.Checked)
+            if (!string.IsNullOrEmpty(txtRG_IE.Texts) && !rbFisica.Checked)
             {
-                if (!Validacoes.ValidaIE(txtUF.Text, RG_IE))
+                if (!Validacoes.ValidaIE(txtUF.Texts, RG_IE))
                 {
                     MessageBox.Show("IE inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtRG_IE.Focus();
@@ -496,7 +502,7 @@ namespace Pilates.Views
 
         private void txtEmail_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.ValidaEmail(txtEmail.Text))
+            if (!Validacoes.ValidaEmail(txtEmail.Texts))
             {
                 MessageBox.Show("Email inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEmail.Focus();
@@ -506,8 +512,8 @@ namespace Pilates.Views
         private void txtDataNasc_Leave(object sender, EventArgs e)
         {
             DateTime dataNasc;
-            string dataN = new string(txtDataNasc.Text.Where(char.IsDigit).ToArray());
-            bool dataValida = DateTime.TryParse(txtDataNasc.Text, out dataNasc);
+            string dataN = new string(txtDataNasc.Texts.Where(char.IsDigit).ToArray());
+            bool dataValida = DateTime.TryParse(txtDataNasc.Texts, out dataNasc);
 
             if (!string.IsNullOrEmpty(dataN))
             {
@@ -528,7 +534,7 @@ namespace Pilates.Views
                 }
                 if (rbFisica.Checked)
                 {
-                    if (!Validacoes.VerificarDataMenorOuIgualHoje(txtDataNasc.Text, "nascimento"))
+                    if (!Validacoes.VerificarDataMenorOuIgualHoje(txtDataNasc.Texts, "nascimento"))
                     {
                         txtDataNasc.Focus();
                         return;
@@ -536,7 +542,7 @@ namespace Pilates.Views
                 }
                 else
                 {
-                    if (!Validacoes.VerificarDataMenorOuIgualHoje(txtDataNasc.Text, "fundação"))
+                    if (!Validacoes.VerificarDataMenorOuIgualHoje(txtDataNasc.Texts, "fundação"))
                     {
                         txtDataNasc.Focus();
                         return;
@@ -545,7 +551,7 @@ namespace Pilates.Views
             }
         }
 
-        private void txtCodCidade_KeyPress(object sender, KeyPressEventArgs e)
+        private void CadastroFornecedor_KeyPress(object sender, KeyPressEventArgs e)
         {
             //permitir apenas números
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -554,7 +560,21 @@ namespace Pilates.Views
             }
         }
 
-        private void txtCodCondPag_KeyPress(object sender, KeyPressEventArgs e)
+        private void gbEndereco_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //permitir apenas números
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCelular_KeyPress(object sender, KeyPressEventArgs e)
         {
             //permitir apenas números
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -572,16 +592,7 @@ namespace Pilates.Views
             }
         }
 
-        private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //permitir apenas números
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtCelular_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtCEP_KeyPress(object sender, KeyPressEventArgs e)
         {
             //permitir apenas números
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
