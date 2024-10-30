@@ -9,6 +9,7 @@
     <RootNamespace>Pilates</RootNamespace>
     <AssemblyName>Pilates</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -104,6 +105,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ControllerAgenda.cs" />
     <Compile Include="Controller\ControllerAluno.cs" />
     <Compile Include="Controller\ControllerAvaliacao.cs" />
     <Compile Include="Controller\ControllerCidade.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Controller\ControllerProfissao.cs" />
     <Compile Include="Controller\ControllerPrograma.cs" />
     <Compile Include="DAO\DAO.cs" />
+    <Compile Include="DAO\DAOAgenda.cs" />
     <Compile Include="DAO\DAOAluno.cs" />
     <Compile Include="DAO\DAOAvaliacao.cs" />
     <Compile Include="DAO\DAOCidade.cs" />
@@ -310,6 +313,12 @@
     </Compile>
     <Compile Include="Views\CadastroPrograma.Designer.cs">
       <DependentUpon>CadastroPrograma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultaAgenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaAgenda.Designer.cs">
+      <DependentUpon>ConsultaAgenda.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ConsultaAluno.cs">
       <SubType>Form</SubType>
@@ -526,6 +535,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CadastroPrograma.resx">
       <DependentUpon>CadastroPrograma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaAgenda.resx">
+      <DependentUpon>ConsultaAgenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ConsultaAluno.resx">
       <DependentUpon>ConsultaAluno.cs</DependentUpon>

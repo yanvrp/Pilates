@@ -189,7 +189,24 @@ namespace Pilates.Views
 
             return true;
         }
+        public static bool VerificarDataMaiorOuIgualHoje(string dataStr, string campoNome)
+        {
+            //verificar se o texto no campo é uma data válida
+            if (!DateTime.TryParseExact(dataStr, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime data))
+            {
+                MessageBox.Show($"A data de {campoNome} inserida é inválida. Por favor, insira uma data no formato dd/MM/yyyy.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
+            //verificar se a data não é menor que a data de hoje
+            if (data < DateTime.Today)
+            {
+                MessageBox.Show($"A data de {campoNome} não pode ser menor que a data de hoje.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
         public static bool ValidaEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))

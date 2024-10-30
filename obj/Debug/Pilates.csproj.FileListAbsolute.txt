@@ -93,3 +93,5 @@ C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroAvalia
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaAvaliacao.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.YControls.YTextBox.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.YControls.YMaskedTextBox.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroAgenda.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaAgenda.resources

@@ -255,6 +255,7 @@
             this.txtData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtData.Texts = "  /  /";
             this.txtData.UnderlinedStyle = false;
+            this.txtData.Leave += new System.EventHandler(this.txtData_Leave);
             // 
             // lblData
             // 
@@ -303,6 +304,7 @@
             this.btnPesquisarContrato.Text = "Buscar";
             this.btnPesquisarContrato.TextColor = System.Drawing.Color.DarkViolet;
             this.btnPesquisarContrato.UseVisualStyleBackColor = false;
+            this.btnPesquisarContrato.Click += new System.EventHandler(this.btnPesquisarContrato_Click);
             // 
             // txtCodContrato
             // 
@@ -330,6 +332,7 @@
             this.txtCodContrato.Texts = "";
             this.txtCodContrato.UnderlinedStyle = false;
             this.txtCodContrato.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodAluno_KeyPress);
+            this.txtCodContrato.Leave += new System.EventHandler(this.txtCodContrato_Leave);
             // 
             // lblCodContrato
             // 
@@ -362,6 +365,7 @@
             this.Controls.Add(this.lblCodAluno);
             this.Name = "CadastroAgenda";
             this.Text = "Cadastro Agenda";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroAgenda_FormClosed);
             this.Load += new System.EventHandler(this.CadastroAgenda_Load);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.lblDataUltAlt, 0);

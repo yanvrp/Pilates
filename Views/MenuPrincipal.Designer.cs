@@ -46,12 +46,13 @@
             this.planoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.programaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.avaliaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.condiçãoDePagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formaDePagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contasAReceberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contasAPagarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.avaliaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,7 +183,8 @@
             this.planoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contratoToolStripMenuItem,
             this.programaToolStripMenuItem1,
-            this.avaliaçãoToolStripMenuItem});
+            this.avaliaçãoToolStripMenuItem,
+            this.agendaToolStripMenuItem});
             this.planoToolStripMenuItem.Name = "planoToolStripMenuItem";
             this.planoToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.planoToolStripMenuItem.Text = "Plano";
@@ -200,6 +202,13 @@
             this.programaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.programaToolStripMenuItem1.Text = "Programa";
             this.programaToolStripMenuItem1.Click += new System.EventHandler(this.programaToolStripMenuItem1_Click);
+            // 
+            // avaliaçãoToolStripMenuItem
+            // 
+            this.avaliaçãoToolStripMenuItem.Name = "avaliaçãoToolStripMenuItem";
+            this.avaliaçãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.avaliaçãoToolStripMenuItem.Text = "Avaliação";
+            this.avaliaçãoToolStripMenuItem.Click += new System.EventHandler(this.avaliaçãoToolStripMenuItem_Click);
             // 
             // financeiroToolStripMenuItem
             // 
@@ -240,12 +249,12 @@
             this.contasAPagarToolStripMenuItem.Text = "Contas a Pagar";
             this.contasAPagarToolStripMenuItem.Click += new System.EventHandler(this.contasAPagarToolStripMenuItem_Click);
             // 
-            // avaliaçãoToolStripMenuItem
+            // agendaToolStripMenuItem
             // 
-            this.avaliaçãoToolStripMenuItem.Name = "avaliaçãoToolStripMenuItem";
-            this.avaliaçãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.avaliaçãoToolStripMenuItem.Text = "Avaliação";
-            this.avaliaçãoToolStripMenuItem.Click += new System.EventHandler(this.avaliaçãoToolStripMenuItem_Click);
+            this.agendaToolStripMenuItem.Name = "agendaToolStripMenuItem";
+            this.agendaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agendaToolStripMenuItem.Text = "Agenda";
+            this.agendaToolStripMenuItem.Click += new System.EventHandler(this.agendaToolStripMenuItem_Click);
             // 
             // MenuPrincipal
             // 
@@ -292,6 +301,7 @@
         private System.Windows.Forms.ToolStripMenuItem contasAPagarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fornecedorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem avaliaçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agendaToolStripMenuItem;
     }
 }
 

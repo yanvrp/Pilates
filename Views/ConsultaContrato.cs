@@ -73,7 +73,7 @@ namespace Pilates.Views
                 dataGridViewContrato.Columns["dataCancelamento"].DataPropertyName = "dataCancelamento";
                 dataGridViewContrato.Columns["dataCancelamento"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 dataGridViewContrato.Columns["dataInicio"].DataPropertyName = "dataInicioPrograma";
-                dataGridViewContrato.Columns["dataCancelamento"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridViewContrato.Columns["dataInicio"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 AtualizarConsultaContratos(cbInativos.Checked);
             }
             catch (Exception ex)
@@ -143,6 +143,28 @@ namespace Pilates.Views
             cadastroContrato.BloqueiaTudo();
             cadastroContrato.Owner = this;
             cadastroContrato.ShowDialog();
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            if (btnSair.Text == "Selecionar")
+            {
+                if (dataGridViewContrato.SelectedRows.Count > 0)
+                {
+                    int idContrato = Convert.ToInt32(dataGridViewContrato.SelectedRows[0].Cells["Código"].Value);
+                    this.Tag = new Tuple<int>(idContrato);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecione um Contrato.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                Close();
+            }
         }
     }
 }

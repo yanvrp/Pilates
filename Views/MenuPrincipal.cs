@@ -153,5 +153,11 @@ namespace Pilates
             ConsultaAvaliacao consultaAvaliacao = new ConsultaAvaliacao();
             consultaAvaliacao.ShowDialog();
         }
+
+        private void agendaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaAgenda consultaAgenda = new ConsultaAgenda();
+            consultaAgenda.ShowDialog();
+        }
     }
 }
