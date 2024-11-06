@@ -47,6 +47,10 @@ namespace Pilates.Views
             {
                 btnPagar.Visible = true;
                 btnSalvar.Visible = true;
+            } else
+            {
+                btnPagar.Visible = false;
+                btnCancelar.Visible = false;
             }
         }
         public override void Carrega()
@@ -71,6 +75,7 @@ namespace Pilates.Views
                 txtDataCancelamento.Texts = contasPagar.dataCancelamento.ToString();
                 txtDataCadastro.Texts = contasPagar.dataCadastro.ToString();
                 txtDataUltAlt.Texts = contasPagar.dataUltAlt.ToString();
+                txtUsuarioUltAlt.Texts = contasPagar.usuarioUltAlt;
 
                 ModelFormaPagamento formaPagamento = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodFormaPag.Texts));
                 ModelFornecedor fornecedor = controllerFornecedor.BuscarPorId(int.Parse(txtCodFornecedor.Texts));
@@ -134,6 +139,7 @@ namespace Pilates.Views
                 string observacao = txtObservacao.Texts;
                 DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
                 DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
+                string usuario = Program.usuarioLogado;
 
                 ModelContasPagar novaContaPagar = new ModelContasPagar
                 {
@@ -152,7 +158,8 @@ namespace Pilates.Views
                     multa = porcentagemMulta,
                     observacao = observacao,
                     dataCadastro = dataCadastro,
-                    dataUltAlt = dataUltAlt
+                    dataUltAlt = dataUltAlt,
+                    usuarioUltAlt = usuario
                 };
                 if (Numero != -1 && Parcela != -1)
                 {
@@ -621,6 +628,14 @@ namespace Pilates.Views
                     txtCodFornecedor.Clear();
                     txtFornecedor.Clear();
                 }
+            }
+        }
+
+        private void txtCodFornecedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

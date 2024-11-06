@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Pilates.Views
 {
@@ -32,6 +33,33 @@ namespace Pilates.Views
             Alterar = idFornecedor;
             Carrega();
         }
+        public virtual void LimparCampos()
+        {
+            txtCodigo.Clear();
+            txtFornecedor.Clear();
+            txtApelido.Clear();
+            txtSexo.SelectedIndex = -1;
+            txtEmail.Clear();
+            txtTelefone.Clear();
+            txtCelular.Clear();
+            txtNomeContato.Clear();
+            txtCEP.Clear();
+            txtEndereco.Clear();
+            txtNumero.Clear();
+            txtComplemento.Clear();
+            txtBairro.Clear();
+            txtCodCidade.Clear();
+            txtCidade.Clear();
+            txtUF.Clear();
+            txtPais.Clear();
+            txtCPF_CNPJ.Clear();
+            txtRG_IE.Clear();
+            txtDataNasc.Clear();
+            txtDataCadastro.Clear();
+            txtDataUltAlt.Clear();
+            txtCodCondPag.Clear();
+            txtCondPag.Clear();            
+        }
         private void rbFisica_CheckedChanged(object sender, EventArgs e)
         {
             Fisico = rbFisica.Checked;
@@ -46,6 +74,7 @@ namespace Pilates.Views
             txtNomeContato.Visible = false;
             lblDataNasc.Text = "Data Nasc.";
             txtCPF_CNPJ.Clear();
+            LimparCampos();
         }
 
         private void rbJuridica_CheckedChanged(object sender, EventArgs e)
@@ -62,6 +91,7 @@ namespace Pilates.Views
             txtNomeContato.Visible = true;
             lblDataNasc.Text = "Data Fund.";
             txtCPF_CNPJ.Clear();
+            LimparCampos();
         }
         public override void Salvar()
         {
@@ -101,6 +131,7 @@ namespace Pilates.Views
                     string rg_ie = new string(txtRG_IE.Texts.Where(char.IsDigit).ToArray());
                     int idCidade = Convert.ToInt32(txtCodCidade.Texts);
                     int idCondPagamento = Convert.ToInt32(txtCodCondPag.Texts);
+                    string usuario = Program.usuarioLogado;
 
                     Validacoes.AtualizarCampoComDataPadrao(txtDataNasc, out DateTime data_nasc);
 
@@ -136,6 +167,7 @@ namespace Pilates.Views
                         cpf_cnpj = cpf_cnpj,
                         rg_ie = rg_ie,
                         Ativo = Ativo,
+                        usuarioUltAlt = usuario,
                         dataCadastro = dataCadastro,
                         dataUltAlt = dataUltAlt,
                         idCidade = idCidade,
@@ -285,6 +317,7 @@ namespace Pilates.Views
                     rbAtivo.Checked = fornecedor.Ativo;
                     rbInativo.Checked = !fornecedor.Ativo;
                     txtCodCondPag.Texts = fornecedor.idCondPagamento.ToString();
+                    txtUsuarioUltAlt.Texts = fornecedor.usuarioUltAlt.ToString();
           
                     if (!txtSexo.Items.Contains(fornecedor.sexo))
                     {
@@ -339,11 +372,7 @@ namespace Pilates.Views
 
         private void txtFornecedor_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtFornecedor.Texts))
-            {
-                MessageBox.Show("Fornecedor inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFornecedor.Focus();
-            }
+            
         }
 
         private void btnBuscarCidade_Click(object sender, EventArgs e)

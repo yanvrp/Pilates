@@ -190,6 +190,14 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Location = new System.Drawing.Point(1398, 929);
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(219, 933);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(216, 917);
+            // 
             // lblDataAvaliacao
             // 
             this.lblDataAvaliacao.AutoSize = true;
@@ -231,7 +239,7 @@
             this.gpDores.Controls.Add(this.lblObservacoesDores);
             this.gpDores.Controls.Add(this.lblDores);
             this.gpDores.Controls.Add(this.lblCodDores);
-            this.gpDores.Location = new System.Drawing.Point(23, 82);
+            this.gpDores.Location = new System.Drawing.Point(25, 82);
             this.gpDores.Name = "gpDores";
             this.gpDores.Size = new System.Drawing.Size(712, 264);
             this.gpDores.TabIndex = 3;
@@ -815,7 +823,7 @@
             this.gpMedicamento.Controls.Add(this.lblObservacoesMedicamento);
             this.gpMedicamento.Controls.Add(this.lblMedicamento);
             this.gpMedicamento.Controls.Add(this.lblCodMedicamento);
-            this.gpMedicamento.Location = new System.Drawing.Point(23, 355);
+            this.gpMedicamento.Location = new System.Drawing.Point(25, 355);
             this.gpMedicamento.Name = "gpMedicamento";
             this.gpMedicamento.Size = new System.Drawing.Size(712, 264);
             this.gpMedicamento.TabIndex = 9;
@@ -2009,6 +2017,8 @@
             this.Text = "Cadastro de Avaliação";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroAvaliacao_FormClosed);
             this.Load += new System.EventHandler(this.CadastroAvaliacao_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

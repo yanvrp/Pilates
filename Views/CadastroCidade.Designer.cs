@@ -77,6 +77,14 @@
             this.btnSair.Location = new System.Drawing.Point(353, 405);
             this.btnSair.TabIndex = 7;
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(23, 363);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(20, 347);
+            // 
             // lblCidade
             // 
             this.lblCidade.AutoSize = true;
@@ -258,6 +266,8 @@
             this.Text = "Cadastro de Cidade";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroCidade_FormClosed);
             this.Load += new System.EventHandler(this.CadastroCidade_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

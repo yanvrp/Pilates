@@ -41,7 +41,7 @@
             // 
             // lblDataUltAlt
             // 
-            this.lblDataUltAlt.Location = new System.Drawing.Point(127, 283);
+            this.lblDataUltAlt.Location = new System.Drawing.Point(118, 283);
             // 
             // lblDataCadastro
             // 
@@ -63,13 +63,21 @@
             // 
             // txtDataUltAlt
             // 
-            this.txtDataUltAlt.Location = new System.Drawing.Point(130, 299);
+            this.txtDataUltAlt.Location = new System.Drawing.Point(121, 299);
             this.txtDataUltAlt.Texts = "24/10/2024";
             // 
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Location = new System.Drawing.Point(416, 295);
+            // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(219, 299);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(216, 283);
             // 
             // lblTitulo
             // 
@@ -192,7 +200,7 @@
             // CadastroPrograma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(522, 342);
+            this.ClientSize = new System.Drawing.Size(522, 345);
             this.Controls.Add(this.txtValor);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.lblValor);
@@ -205,6 +213,8 @@
             this.Text = "Cadastro de Programa";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroPrograma_FormClosed);
             this.Load += new System.EventHandler(this.CadastroPrograma_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

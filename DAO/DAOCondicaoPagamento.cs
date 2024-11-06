@@ -64,10 +64,11 @@ namespace Pilates.DAO
                 {
                     //comando p/ atualizar a condição de pagamento
                     string queryCondicaoPagamento = @"UPDATE condicaoPagamento 
-                                       SET condicaoPagamento = @condicaoPagamento, desconto = @desconto, juros = @juros, multa = @multa, ativo = @ativo, dataUltAlt = @dataUltAlt 
+                                       SET condicaoPagamento = @condicaoPagamento,usuarioUltAlt = @usuarioUltAlt, desconto = @desconto, juros = @juros, multa = @multa, ativo = @ativo, dataUltAlt = @dataUltAlt 
                                        WHERE idCondPagamento = @idCondPagamento";
                     SqlCommand cmdCondicaoPagamento = new SqlCommand(queryCondicaoPagamento, conn, transaction);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@condicaoPagamento", obj.condicaoPagamento);
+                    cmdCondicaoPagamento.Parameters.AddWithValue("@usuarioUltAlt", obj.usuarioUltAlt);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@desconto", obj.desconto);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@juros", obj.juros);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@multa", obj.multa);
@@ -269,6 +270,7 @@ namespace Pilates.DAO
                         condicaoPagamento = new ModelCondicaoPagamento();
                         condicaoPagamento.idCondPagamento = Convert.ToInt32(reader["idCondPagamento"]);
                         condicaoPagamento.condicaoPagamento = reader["condicaoPagamento"].ToString();
+                        condicaoPagamento.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         condicaoPagamento.desconto = Convert.ToDecimal(reader["desconto"]);
                         condicaoPagamento.juros = Convert.ToDecimal(reader["juros"]);
                         condicaoPagamento.multa = Convert.ToDecimal(reader["multa"]);
@@ -325,11 +327,12 @@ namespace Pilates.DAO
                 {
                     //insere uma nova condicao de pagamento
                     string queryCondicaoPagamento = @"INSERT INTO condicaoPagamento 
-                                               (condicaoPagamento, desconto, juros, multa, ativo, dataCadastro, dataUltAlt) 
-                                               VALUES (@condicaoPagamento, @desconto, @juros, @multa, @ativo, @dataCadastro, @dataUltAlt);
+                                               (condicaoPagamento, desconto, juros, multa, ativo, dataCadastro, dataUltAlt, usuarioUltAlt) 
+                                               VALUES (@condicaoPagamento, @desconto, @juros, @multa, @ativo, @dataCadastro, @dataUltAlt, @usuarioUltAlt);
                                                SELECT SCOPE_IDENTITY();";
                     SqlCommand cmdCondicaoPagamento = new SqlCommand(queryCondicaoPagamento, conn, transaction); //novo comando para transacao e conexao
                     cmdCondicaoPagamento.Parameters.AddWithValue("@condicaoPagamento", obj.condicaoPagamento);
+                    cmdCondicaoPagamento.Parameters.AddWithValue("@usuarioUltAlt", obj.usuarioUltAlt);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@desconto", obj.desconto);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@juros", obj.juros);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@multa", obj.multa);

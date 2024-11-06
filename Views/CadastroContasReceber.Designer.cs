@@ -123,6 +123,14 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Location = new System.Drawing.Point(471, 458);
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(283, 35);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(280, 19);
+            // 
             // lblCodAluno
             // 
             this.lblCodAluno.AutoSize = true;
@@ -865,6 +873,8 @@
             this.Text = "Cadastro Contas a Receber";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroContasReceber_FormClosed);
             this.Load += new System.EventHandler(this.CadastroContasReceber_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

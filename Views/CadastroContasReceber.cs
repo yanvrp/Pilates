@@ -72,6 +72,7 @@ namespace Pilates.Views
                 txtDataCancelamento.Texts = contasReceber.dataCancelamento.ToString();
                 txtDataCadastro.Texts = contasReceber.dataCadastro.ToString();
                 txtDataUltAlt.Texts = contasReceber.dataUltAlt.ToString();
+                txtUsuarioUltAlt.Texts = contasReceber.usuarioUltAlt;
 
                 ModelAluno Aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
                 ModelFormaPagamento formaPagamento = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodFormaPag.Texts));
@@ -135,6 +136,7 @@ namespace Pilates.Views
                 string observacao = txtObservacao.Texts;
                 DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
                 DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
+                string usuario = Program.usuarioLogado;
 
                 ModelContasReceber novaContaReceber = new ModelContasReceber
                 {
@@ -153,7 +155,8 @@ namespace Pilates.Views
                     multa = porcentagemMulta,
                     observacao = observacao,
                     dataCadastro = dataCadastro,
-                    dataUltAlt = dataUltAlt
+                    dataUltAlt = dataUltAlt,
+                    usuarioUltAlt = usuario,
                 };
                 if (Numero != -1 && IdAluno != -1 && Parcela != -1)
                 {

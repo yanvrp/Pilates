@@ -33,11 +33,12 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE programa SET numeroAulas = @numeroAulas, Valor = @valor, tipoPrograma = @tipoPrograma, Ativo = @ativo, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt, titulo = @titulo WHERE idPrograma = @id";
+                string query = "UPDATE programa SET numeroAulas = @numeroAulas, usuarioUltAlt = @usuarioUltAlt, Valor = @valor, tipoPrograma = @tipoPrograma, Ativo = @ativo, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt, titulo = @titulo WHERE idPrograma = @id";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", programa.idPrograma);
                 command.Parameters.AddWithValue("@titulo", programa.titulo);
+                command.Parameters.AddWithValue("@usuarioUltAlt", programa.usuarioUltAlt);
                 command.Parameters.AddWithValue("@numeroAulas", programa.numeroAulas);
                 command.Parameters.AddWithValue("@valor", programa.Valor);
                 command.Parameters.AddWithValue("@tipoPrograma", programa.tipoPrograma);
@@ -95,6 +96,7 @@ namespace Pilates.DAO
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.idPrograma = Convert.ToInt32(reader["idPrograma"]);
                         obj.titulo = reader["titulo"].ToString();
+                        obj.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         obj.numeroAulas = Convert.ToInt32(reader["numeroAulas"]);
                         obj.tipoPrograma = reader["tipoPrograma"].ToString();
                         obj.Valor = Convert.ToDecimal(reader["Valor"]);
@@ -157,12 +159,13 @@ namespace Pilates.DAO
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "INSERT INTO programa (titulo, numeroAulas, Valor, tipoPrograma, Ativo, dataCadastro, dataUltAlt) VALUES (@titulo, @numeroAulas, @valor, @tipoPrograma, @ativo, @dataCadastro, @dataUltAlt)";
+                    string query = "INSERT INTO programa (usuarioUltAlt, titulo, numeroAulas, Valor, tipoPrograma, Ativo, dataCadastro, dataUltAlt) VALUES (@usuarioUltAlt, @titulo, @numeroAulas, @valor, @tipoPrograma, @ativo, @dataCadastro, @dataUltAlt)";
 
                     SqlCommand command = new SqlCommand(query, connection);
 
                     command.Parameters.AddWithValue("@id", programa.idPrograma);
                     command.Parameters.AddWithValue("@titulo", programa.titulo);
+                    command.Parameters.AddWithValue("@usuarioUltAlt", programa.usuarioUltAlt);
                     command.Parameters.AddWithValue("@numeroAulas", programa.numeroAulas);
                     command.Parameters.AddWithValue("@valor", programa.Valor);
                     command.Parameters.AddWithValue("@tipoPrograma", programa.tipoPrograma);

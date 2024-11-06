@@ -13,5 +13,6 @@ namespace Pilates.Models
         public DateTime dataCadastro { get; set; }
         public DateTime dataUltAlt { get; set; }
         public bool Ativo { get; set; }
+        public string usuarioUltAlt { get; set; }
     }
 }

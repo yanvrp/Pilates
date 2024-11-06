@@ -112,6 +112,14 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Location = new System.Drawing.Point(472, 484);
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(293, 34);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(290, 18);
+            // 
             // lblObservacao
             // 
             this.lblObservacao.AutoSize = true;
@@ -786,6 +794,7 @@
             this.txtCodFornecedor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodFornecedor.Texts = "";
             this.txtCodFornecedor.UnderlinedStyle = false;
+            this.txtCodFornecedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodFornecedor_KeyPress);
             this.txtCodFornecedor.Leave += new System.EventHandler(this.txtCodFornecedor_Leave);
             // 
             // lblFornecedor
@@ -852,6 +861,8 @@
             this.Text = "Cadastro Contas a Pagar";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroContasPagar_FormClosed);
             this.Load += new System.EventHandler(this.CadastroContasPagar_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

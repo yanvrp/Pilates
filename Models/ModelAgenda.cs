@@ -16,6 +16,7 @@ namespace Pilates.Models
         public DateTime dataCadastro { get; set; }
         public DateTime dataUltAlt { get; set; }
         public DateTime data { get; set; }
+        public string usuarioUltAlt { get; set; }
         public bool Ativo { get; set; }
         public DateTime? dataCancelamento { get; set; }
     }

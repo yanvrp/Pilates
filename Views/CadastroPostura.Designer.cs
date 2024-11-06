@@ -101,6 +101,14 @@
             this.btnSair.Location = new System.Drawing.Point(612, 801);
             this.btnSair.TabIndex = 13;
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(236, 805);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(233, 789);
+            // 
             // lblCabeca
             // 
             this.lblCabeca.AutoSize = true;
@@ -628,6 +636,8 @@
             this.Name = "CadastroPostura";
             this.Text = "Cadastro de Postura";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroPostura_FormClosed);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

@@ -69,6 +69,7 @@ namespace Pilates.Views
                     txtOutros.Texts = postura.Outros;
                     rbAtivo.Checked = postura.Ativo;
                     rbInativo.Checked = !postura.Ativo;
+                    txtUsuarioUltAlt.Texts = postura.usuarioUltAlt;
 
                     string nomeAluno = controllerPostura.GetNomeAlunoByPosturaId(postura.idPostura);
 
@@ -164,7 +165,8 @@ namespace Pilates.Views
                         int idAluno = int.Parse(txtCodAluno.Texts);
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
-                        DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
+                    string usuario = Program.usuarioLogado;
+                    DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
                         if (Alterar != -7)
                         {
                             DateTime.TryParse(DateTime.Now.ToString(), out dataUltAlt);
@@ -187,6 +189,7 @@ namespace Pilates.Views
                             quadrilPostura = quadril,
                             joelhoPostura = joelhos,
                             pesPostura = pes,
+                            usuarioUltAlt =usuario,
                             idAluno = idAluno,
                             dataCadastro = dataCadastro,
                             dataUltAlt = dataUltAlt,

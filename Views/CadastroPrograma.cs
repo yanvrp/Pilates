@@ -39,6 +39,7 @@ namespace Pilates.Views
                     txtDataUltAlt.Texts = programa.dataUltAlt.ToString();
                     rbAtivo.Checked = programa.Ativo;
                     rbInativo.Checked = !programa.Ativo;
+                    txtUsuarioUltAlt.Texts = programa.usuarioUltAlt;
                 }
                 else
                 {
@@ -78,6 +79,7 @@ namespace Pilates.Views
                     int numeroAulas = Convert.ToInt32(txtNumAula.Text);
                     DateTime dataCadastro;
                     DateTime dataUltAlt;
+                    string usuario = Program.usuarioLogado;
 
                     DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
@@ -98,7 +100,8 @@ namespace Pilates.Views
                         numeroAulas = numeroAulas,
                         dataCadastro = dataCadastro,
                         dataUltAlt = dataUltAlt,
-                        Ativo = Ativo
+                        Ativo = Ativo,
+                        usuarioUltAlt = usuario
                     };
 
                     if (Alterar == -7)

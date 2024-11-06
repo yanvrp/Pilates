@@ -35,11 +35,11 @@
             // 
             // lblDataUltAlt
             // 
-            this.lblDataUltAlt.Location = new System.Drawing.Point(118, 203);
+            this.lblDataUltAlt.Location = new System.Drawing.Point(118, 227);
             // 
             // lblDataCadastro
             // 
-            this.lblDataCadastro.Location = new System.Drawing.Point(20, 203);
+            this.lblDataCadastro.Location = new System.Drawing.Point(20, 227);
             // 
             // gbStatus
             // 
@@ -48,7 +48,7 @@
             // btnSalvar
             // 
             this.btnSalvar.FlatAppearance.BorderSize = 0;
-            this.btnSalvar.Location = new System.Drawing.Point(248, 219);
+            this.btnSalvar.Location = new System.Drawing.Point(248, 243);
             // 
             // txtCodigo
             // 
@@ -56,18 +56,26 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Location = new System.Drawing.Point(23, 219);
+            this.txtDataCadastro.Location = new System.Drawing.Point(23, 243);
             this.txtDataCadastro.Texts = "24/10/2024";
             // 
             // txtDataUltAlt
             // 
-            this.txtDataUltAlt.Location = new System.Drawing.Point(121, 219);
+            this.txtDataUltAlt.Location = new System.Drawing.Point(121, 243);
             this.txtDataUltAlt.Texts = "24/10/2024";
             // 
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
-            this.btnSair.Location = new System.Drawing.Point(337, 219);
+            this.btnSair.Location = new System.Drawing.Point(337, 243);
+            // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(23, 196);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(20, 180);
             // 
             // lblFormaPagamento
             // 
@@ -108,13 +116,15 @@
             // CadastroFormaPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(434, 262);
+            this.ClientSize = new System.Drawing.Size(434, 293);
             this.Controls.Add(this.txtFormaPagamento);
             this.Controls.Add(this.lblFormaPagamento);
             this.Name = "CadastroFormaPagamento";
             this.Text = "Cadastro de Forma de Pagamento";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroFormaPagamento_FormClosed);
             this.Load += new System.EventHandler(this.CadastroFormaPagamento_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblFormaPagamento, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);

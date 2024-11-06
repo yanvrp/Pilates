@@ -62,11 +62,12 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE cirurgia SET cirurgia = @cirurgia, descricao = @descricao, ativo = @ativo, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt WHERE idCirurgia = @id";
+                string query = "UPDATE cirurgia SET cirurgia = @cirurgia, usuarioUltAlt = @usuarioUltAlt, descricao = @descricao, ativo = @ativo, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt WHERE idCirurgia = @id";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", cirurgia.idCirurgia);
                 command.Parameters.AddWithValue("@cirurgia", cirurgia.cirurgia);
+                command.Parameters.AddWithValue("@usuarioUltAlt", cirurgia.usuarioUltAlt);
                 command.Parameters.AddWithValue("@descricao", cirurgia.descricao);
                 command.Parameters.AddWithValue("@ativo", cirurgia.Ativo);
                 command.Parameters.AddWithValue("@dataCadastro", cirurgia.dataCadastro);
@@ -93,6 +94,7 @@ namespace Pilates.DAO
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.idCirurgia = Convert.ToInt32(reader["idCirurgia"]);
                         obj.cirurgia = reader["cirurgia"].ToString();
+                        obj.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         obj.descricao = reader["descricao"].ToString();
                         obj.Ativo = Convert.ToBoolean(reader["Ativo"]);
                         obj.dataCadastro = DateTime.Parse(reader["dataCadastro"].ToString());
@@ -166,11 +168,12 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO cirurgia (cirurgia, descricao, ativo, dataCadastro, dataUltAlt) VALUES (@cirurgia, @descricao, @ativo, @dataCadastro, @dataUltAlt)";
+                string query = "INSERT INTO cirurgia (cirurgia, usuarioUltAlt, descricao, ativo, dataCadastro, dataUltAlt) VALUES (@cirurgia, @usuarioUltAlt, @descricao, @ativo, @dataCadastro, @dataUltAlt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@cirurgia", cirurgia.cirurgia);
+                command.Parameters.AddWithValue("@usuarioUltAlt", cirurgia.usuarioUltAlt);
                 command.Parameters.AddWithValue("@descricao", cirurgia.descricao);
                 command.Parameters.AddWithValue("@ativo", cirurgia.Ativo);
                 command.Parameters.AddWithValue("@dataCadastro", cirurgia.dataCadastro);

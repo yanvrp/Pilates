@@ -123,6 +123,14 @@
             this.btnSair.Location = new System.Drawing.Point(798, 521);
             this.btnSair.TabIndex = 22;
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(234, 521);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(231, 505);
+            // 
             // lblCPF_CNPJ
             // 
             this.lblCPF_CNPJ.AutoSize = true;
@@ -897,6 +905,7 @@
             this.txtNomeContato.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtNomeContato.Texts = "";
             this.txtNomeContato.UnderlinedStyle = false;
+            this.txtNomeContato.Visible = false;
             this.txtNomeContato.Leave += new System.EventHandler(this.txtNomeContato_Leave);
             // 
             // txtCPF_CNPJ
@@ -986,7 +995,7 @@
             // CadastroFornecedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(909, 570);
+            this.ClientSize = new System.Drawing.Size(909, 563);
             this.Controls.Add(this.txtDataNasc);
             this.Controls.Add(this.txtRG_IE);
             this.Controls.Add(this.txtCPF_CNPJ);
@@ -1015,6 +1024,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroFornecedor_FormClosed);
             this.Load += new System.EventHandler(this.CadastroFornecedor_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CadastroFornecedor_KeyPress);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblFornecedor, 0);
             this.Controls.SetChildIndex(this.lblApelido, 0);
             this.Controls.SetChildIndex(this.lblSexo, 0);

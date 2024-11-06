@@ -24,6 +24,15 @@ namespace Pilates.Views
             return regex.IsMatch(texto);
         }
 
+        public static bool VerificaLetrasCaracteres(string input)
+        {
+            //define uma expressão regular que permite letras (maiúsculas e minúsculas), espaços e o caractere de apóstrofo (')
+            string pattern = @"^[a-zA-Z'\s]+$";
+
+            //usa a regex para verificar se a entrada corresponde ao padrão
+            return Regex.IsMatch(input, pattern);
+        }
+
         public static bool VerificaLetrasSemEspaco(string texto)
         {
             if (string.IsNullOrWhiteSpace(texto))

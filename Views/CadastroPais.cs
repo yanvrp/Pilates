@@ -38,6 +38,7 @@ namespace Pilates.Views
                     txtDataUltAlt.Texts = pais.dataUltAlt.ToString();
                     rbAtivo.Checked = pais.Ativo;
                     rbInativo.Checked = !pais.Ativo;
+                    txtUsuarioUltAlt.Texts = pais.usuarioUltAlt.ToString();
                 }
                 else
                 {
@@ -80,6 +81,7 @@ namespace Pilates.Views
                         string ddi = txtDDI.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
+                        string usuario = Program.usuarioLogado;
 
                         DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
@@ -99,7 +101,8 @@ namespace Pilates.Views
                             DDI = ddi,
                             dataCadastro = dataCadastro,
                             dataUltAlt = dataUltAlt,
-                            Ativo = Ativo
+                            Ativo = Ativo,
+                            usuarioUltAlt = usuario
                         };
 
                         if (Alterar == -7)

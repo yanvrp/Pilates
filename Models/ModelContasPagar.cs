@@ -16,6 +16,7 @@ namespace Pilates.Models
         public DateTime dataVencimento { get; set; }
         public DateTime? dataPagamento { get; set; }
         public decimal? valorPago { get; set; }
+        public string usuarioUltAlt { get; set; }
         public decimal? juros { get; set; }
         public decimal? multa { get; set; }
         public decimal? desconto { get; set; }

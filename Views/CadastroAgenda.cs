@@ -85,6 +85,7 @@ namespace Pilates.Views
                 rbAtivo.Checked = agenda.Ativo;
                 rbInativo.Checked = !agenda.Ativo;
                 txtDataCancelamento.Texts = agenda.dataCancelamento.ToString();
+                txtUsuarioUltAlt.Texts = agenda.usuarioUltAlt;
 
                 if (!string.IsNullOrEmpty(txtCodContrato.Texts))
                 {
@@ -166,7 +167,8 @@ namespace Pilates.Views
                     TimeSpan horario = TimeSpan.Parse(horarioString);
                     DateTime.TryParse(txtData.Texts, out DateTime dataAgendamento);
                     string situacao = cbSituacao.Text.ToString();
-                    
+                    string usuario = Program.usuarioLogado;
+
                     DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
                     DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
                     
@@ -183,6 +185,7 @@ namespace Pilates.Views
                         dataCadastro = dataCadastro,
                         dataUltAlt = dataUltAlt,
                         dataCancelamento = dataCancelamento,
+                        usuarioUltAlt = usuario,
                         Ativo = Ativo,
                     };
                     if (Alterar == -7)

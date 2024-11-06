@@ -136,6 +136,7 @@ namespace Pilates.Views
                     txtCodAluno.Texts = avaliacao.idAluno.ToString();
                     txtObservacao.Texts = avaliacao.observacao.ToString();
                     txtDataCancelamento.Texts = avaliacao.dataCancelamento.ToString();
+                    txtUsuarioUltAlt.Texts = avaliacao.usuarioUltAlt;
 
                     if (avaliacao.dataCancelamento != null)
                     {
@@ -182,7 +183,7 @@ namespace Pilates.Views
 
                 string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
                 DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Texts, "dd/MM/yyyy", null);
-
+                string usuario = Program.usuarioLogado;
                 ModelAvaliacao avaliacao = new ModelAvaliacao
                 {
                     data = dataavaliacao,
@@ -192,6 +193,7 @@ namespace Pilates.Views
                     Ativo = Ativo,
                     observacao = observacao,
                     dataCancelamento = dataCancelamento,
+                    usuarioUltAlt = usuario,
                     Cirurgia = obtemCirurgia(),
                     Doenca = obtemDoenca(),
                     Dores = obtemDores(),

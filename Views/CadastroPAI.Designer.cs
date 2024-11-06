@@ -39,6 +39,8 @@
             this.btnSair = new Pilates.YControls.YButton();
             this.txtDataCadastro = new Pilates.YControls.YMaskedTextBox();
             this.txtDataUltAlt = new Pilates.YControls.YMaskedTextBox();
+            this.txtUsuarioUltAlt = new Pilates.YControls.YTextBox();
+            this.lblUsuarioUltAlt = new System.Windows.Forms.Label();
             this.gbStatus.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +56,7 @@
             // lblDataUltAlt
             // 
             this.lblDataUltAlt.AutoSize = true;
-            this.lblDataUltAlt.Location = new System.Drawing.Point(126, 396);
+            this.lblDataUltAlt.Location = new System.Drawing.Point(118, 396);
             this.lblDataUltAlt.Name = "lblDataUltAlt";
             this.lblDataUltAlt.Size = new System.Drawing.Size(73, 13);
             this.lblDataUltAlt.TabIndex = 6;
@@ -180,6 +182,7 @@
             this.txtDataCadastro.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtDataCadastro.DisabledForeColor = System.Drawing.Color.White;
             this.txtDataCadastro.Enabled = false;
+            this.txtDataCadastro.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataCadastro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDataCadastro.Location = new System.Drawing.Point(23, 410);
             this.txtDataCadastro.Mask = "00/00/0000";
@@ -207,8 +210,9 @@
             this.txtDataUltAlt.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtDataUltAlt.DisabledForeColor = System.Drawing.Color.White;
             this.txtDataUltAlt.Enabled = false;
+            this.txtDataUltAlt.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataUltAlt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtDataUltAlt.Location = new System.Drawing.Point(129, 410);
+            this.txtDataUltAlt.Location = new System.Drawing.Point(121, 410);
             this.txtDataUltAlt.Mask = "00/00/0000";
             this.txtDataUltAlt.MaxLength = 32767;
             this.txtDataUltAlt.Multiline = false;
@@ -223,12 +227,50 @@
             this.txtDataUltAlt.Texts = "  /  /";
             this.txtDataUltAlt.UnderlinedStyle = false;
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtUsuarioUltAlt.BorderColor = System.Drawing.Color.DarkGray;
+            this.txtUsuarioUltAlt.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.txtUsuarioUltAlt.BorderRadius = 8;
+            this.txtUsuarioUltAlt.BorderSize = 1;
+            this.txtUsuarioUltAlt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUsuarioUltAlt.DisabledBackColor = System.Drawing.Color.White;
+            this.txtUsuarioUltAlt.DisabledBorderColor = System.Drawing.Color.Gainsboro;
+            this.txtUsuarioUltAlt.DisabledForeColor = System.Drawing.Color.White;
+            this.txtUsuarioUltAlt.Enabled = false;
+            this.txtUsuarioUltAlt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(219, 410);
+            this.txtUsuarioUltAlt.MaxLength = 32767;
+            this.txtUsuarioUltAlt.Multiline = false;
+            this.txtUsuarioUltAlt.Name = "txtUsuarioUltAlt";
+            this.txtUsuarioUltAlt.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.txtUsuarioUltAlt.PasswordChar = false;
+            this.txtUsuarioUltAlt.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtUsuarioUltAlt.PlaceholderText = "";
+            this.txtUsuarioUltAlt.Size = new System.Drawing.Size(84, 28);
+            this.txtUsuarioUltAlt.TabIndex = 17;
+            this.txtUsuarioUltAlt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtUsuarioUltAlt.Texts = "";
+            this.txtUsuarioUltAlt.UnderlinedStyle = false;
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.AutoSize = true;
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(216, 394);
+            this.lblUsuarioUltAlt.Name = "lblUsuarioUltAlt";
+            this.lblUsuarioUltAlt.Size = new System.Drawing.Size(83, 13);
+            this.lblUsuarioUltAlt.TabIndex = 16;
+            this.lblUsuarioUltAlt.Text = "Usuário Ult. Alt.:";
+            // 
             // CadastroPAI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(514, 450);
+            this.Controls.Add(this.txtUsuarioUltAlt);
+            this.Controls.Add(this.lblUsuarioUltAlt);
             this.Controls.Add(this.txtDataUltAlt);
             this.Controls.Add(this.txtDataCadastro);
             this.Controls.Add(this.txtCodigo);
@@ -262,5 +304,7 @@
         protected YControls.YMaskedTextBox txtDataCadastro;
         protected YControls.YMaskedTextBox txtDataUltAlt;
         protected YControls.YButton btnSair;
+        protected YControls.YTextBox txtUsuarioUltAlt;
+        protected System.Windows.Forms.Label lblUsuarioUltAlt;
     }
 }

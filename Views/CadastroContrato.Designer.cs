@@ -138,6 +138,14 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Location = new System.Drawing.Point(562, 577);
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(386, 35);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(383, 19);
+            // 
             // lblCodAluno
             // 
             this.lblCodAluno.AutoSize = true;
@@ -247,9 +255,9 @@
             this.formaPagamento,
             this.dataVencimento,
             this.valorParcela});
-            this.dataGridViewParcelas.Location = new System.Drawing.Point(20, 406);
+            this.dataGridViewParcelas.Location = new System.Drawing.Point(20, 396);
             this.dataGridViewParcelas.Name = "dataGridViewParcelas";
-            this.dataGridViewParcelas.Size = new System.Drawing.Size(625, 147);
+            this.dataGridViewParcelas.Size = new System.Drawing.Size(625, 166);
             this.dataGridViewParcelas.TabIndex = 27;
             // 
             // Parcela
@@ -414,6 +422,7 @@
             this.txtCodPrograma.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodPrograma.Texts = "";
             this.txtCodPrograma.UnderlinedStyle = false;
+            this.txtCodPrograma._TextChanged += new System.EventHandler(this.txtCodPrograma__TextChanged);
             this.txtCodPrograma.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodPrograma_KeyPress);
             this.txtCodPrograma.Leave += new System.EventHandler(this.txtCodPrograma_Leave);
             // 
@@ -670,6 +679,7 @@
             this.txtCodCondPag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodCondPag.Texts = "";
             this.txtCodCondPag.UnderlinedStyle = false;
+            this.txtCodCondPag._TextChanged += new System.EventHandler(this.txtCodCondPag__TextChanged);
             this.txtCodCondPag.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodCondPag_KeyPress);
             this.txtCodCondPag.Leave += new System.EventHandler(this.txtCodCondPag_Leave);
             // 
@@ -906,7 +916,7 @@
             this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnCancelar.Location = new System.Drawing.Point(436, 577);
+            this.btnCancelar.Location = new System.Drawing.Point(347, 577);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(120, 31);
             this.btnCancelar.TabIndex = 101;
@@ -1002,6 +1012,8 @@
             this.Text = "Cadastro de Contrato";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroContrato_FormClosed);
             this.Load += new System.EventHandler(this.CadastroContrato_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodAluno, 0);
             this.Controls.SetChildIndex(this.lblAluno, 0);
             this.Controls.SetChildIndex(this.lblCodPrograma, 0);

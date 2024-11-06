@@ -44,6 +44,7 @@ namespace Pilates.Views
                     txtDataUltAlt.Texts = cidade.dataUltAlt.ToString();
                     rbAtivo.Checked = cidade.Ativo;
                     rbInativo.Checked = !cidade.Ativo;
+                    txtUsuarioUltAlt.Texts = cidade.usuarioUltAlt;
 
                     string nomeEstado = cidadeController.GetNomeEstadoByCidadeId(cidade.idCidade);
 
@@ -93,6 +94,7 @@ namespace Pilates.Views
                         int idEstado = int.Parse(txtCodigoEstado.Texts);
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
+                        string usuario = Program.usuarioLogado;
 
                         DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
@@ -112,6 +114,7 @@ namespace Pilates.Views
                             idEstado = idEstado,
                             dataCadastro = dataCadastro,
                             dataUltAlt = dataUltAlt,
+                            usuarioUltAlt = usuario,
                             Ativo = Ativo
                         };
 

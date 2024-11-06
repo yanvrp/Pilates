@@ -77,7 +77,7 @@ WHERE
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE fornecedor SET tipo_pessoa = @tipo_pessoa, fornecedor_razao_social = @fornecedor_razao_social, apelido_nome_fantasia = @apelido_nome_fantasia, " +
+                string query = "UPDATE fornecedor SET usuarioUltAlt = @usuarioUltAlt, tipo_pessoa = @tipo_pessoa, fornecedor_razao_social = @fornecedor_razao_social, apelido_nome_fantasia = @apelido_nome_fantasia, " +
                                "endereco = @endereco, bairro = @bairro, numero = @numero, cep = @cep, complemento = @complemento, sexo = @sexo, email = @email, " +
                                "telefone = @telefone, celular = @celular, nome_contato = @nome_contato, data_nasc = @data_nasc, cpf_cnpj = @cpf_cnpj, rg_ie = @rg_ie, ativo = @ativo, " +
                                "dataUltAlt = @dataUltAlt, idCidade = @idCidade, idCondPagamento = @idCondPagamento WHERE idFornecedor = @id";
@@ -86,6 +86,7 @@ WHERE
 
                 command.Parameters.AddWithValue("@id", fornecedor.idFornecedor);
                 command.Parameters.AddWithValue("@tipo_pessoa", fornecedor.tipo_pessoa);
+                command.Parameters.AddWithValue("@usuarioUltAlt", fornecedor.usuarioUltAlt);
                 command.Parameters.AddWithValue("@fornecedor_razao_social", fornecedor.fornecedor_razao_social);
                 command.Parameters.AddWithValue("@apelido_nome_fantasia", fornecedor.apelido_nome_fantasia);
                 command.Parameters.AddWithValue("@endereco", fornecedor.endereco);
@@ -137,6 +138,7 @@ WHERE
                         obj.idFornecedor = Convert.ToInt32(reader["idFornecedor"]);
                         obj.tipo_pessoa = Convert.ToBoolean(reader["tipo_pessoa"]);
                         obj.fornecedor_razao_social = reader["fornecedor_razao_social"].ToString();
+                        obj.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         obj.apelido_nome_fantasia = reader["apelido_nome_fantasia"].ToString();
                         obj.endereco = reader["endereco"].ToString();
                         obj.bairro = reader["bairro"].ToString();
@@ -269,13 +271,14 @@ WHERE
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO fornecedor (tipo_pessoa, fornecedor_razao_social, apelido_nome_fantasia, endereco, bairro, numero, cep, complemento, sexo, email, telefone, celular, nome_contato, data_nasc, cpf_cnpj, rg_ie, ativo, dataCadastro, dataUltAlt, idCidade, idCondPagamento) " +
-                               "VALUES (@tipo_pessoa, @fornecedor_razao_social, @apelido_nome_fantasia, @endereco, @bairro, @numero, @cep, @complemento, @sexo, @email, @telefone, @celular, @nome_contato, @data_nasc, @cpf_cnpj, @rg_ie, @ativo, @dataCadastro, @dataUltAlt, @idCidade, @idCondPagamento)";
+                string query = "INSERT INTO fornecedor (usuarioUltAlt, tipo_pessoa, fornecedor_razao_social, apelido_nome_fantasia, endereco, bairro, numero, cep, complemento, sexo, email, telefone, celular, nome_contato, data_nasc, cpf_cnpj, rg_ie, ativo, dataCadastro, dataUltAlt, idCidade, idCondPagamento) " +
+                               "VALUES (@usuarioUltAlt, @tipo_pessoa, @fornecedor_razao_social, @apelido_nome_fantasia, @endereco, @bairro, @numero, @cep, @complemento, @sexo, @email, @telefone, @celular, @nome_contato, @data_nasc, @cpf_cnpj, @rg_ie, @ativo, @dataCadastro, @dataUltAlt, @idCidade, @idCondPagamento)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@tipo_pessoa", fornecedor.tipo_pessoa);
                 command.Parameters.AddWithValue("@fornecedor_razao_social", fornecedor.fornecedor_razao_social);
+                command.Parameters.AddWithValue("@usuarioUltAlt", fornecedor.usuarioUltAlt);
                 command.Parameters.AddWithValue("@apelido_nome_fantasia", fornecedor.apelido_nome_fantasia);
                 command.Parameters.AddWithValue("@endereco", fornecedor.endereco);
                 command.Parameters.AddWithValue("@bairro", fornecedor.bairro);

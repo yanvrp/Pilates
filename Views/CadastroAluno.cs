@@ -62,6 +62,7 @@ namespace Pilates.Views
                     txtComplemento.Texts = aluno.complemento;
                     txtCodCidade.Texts = aluno.idCidade.ToString();
                     txtCodProfissao.Texts = aluno.idProfissao.ToString();
+                    txtUsuarioUltAlt.Texts = aluno.usuarioUltAlt;
                     if (aluno.idProfissao != null)
                     { 
                         ModelProfissao profissao = controllerProfissao.BuscarPorId(int.Parse(txtCodProfissao.Texts));               
@@ -220,6 +221,7 @@ namespace Pilates.Views
                     string sexo = txtSexo.SelectedItem.ToString();
                     DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
                     DateTime.TryParse(txtDataNasc.Texts, out DateTime dataNasc);
+                    string usuario = Program.usuarioLogado;
 
                     DateTime dataUltAlt = Alterar != -1 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
 
@@ -233,6 +235,7 @@ namespace Pilates.Views
                         cep = cep,
                         complemento = complemento,
                         sexo = sexo,
+                        usuarioUltAlt = usuario,
                         email = email,
                         dataNasc = dataNasc,
                         cpf = cpf,
@@ -397,7 +400,7 @@ namespace Pilates.Views
 
         private void txtNome_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtNome.Texts))
+            if (!Validacoes.VerificaLetrasCaracteres(txtNome.Texts))
             {
                 MessageBox.Show("Nome inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNome.Focus();
@@ -406,11 +409,7 @@ namespace Pilates.Views
 
         private void txtApelido_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaLetras(txtApelido.Texts))
-            {
-                MessageBox.Show("Apelido inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtApelido.Focus();
-            }
+            
         }
 
         private void txtCodCidade_Leave(object sender, EventArgs e)

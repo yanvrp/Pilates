@@ -37,6 +37,7 @@ namespace Pilates.Views
                     txtDataUltAlt.Texts = formaPag.dataUltAlt.ToString();
                     rbAtivo.Checked = formaPag.Ativo;
                     rbInativo.Checked = !formaPag.Ativo;
+                    txtUsuarioUltAlt.Texts = formaPag.usuarioUltAlt;
                 }
                 else
                 {
@@ -68,13 +69,15 @@ namespace Pilates.Views
                         string formaPagamento = txtFormaPagamento.Texts;
                         DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
                         DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
+                        string usuario = Program.usuarioLogado;
 
                         ModelFormaPagamento novaFormaPag = new ModelFormaPagamento
                         {
                             formaPagamento = formaPagamento,
                             dataCadastro = dataCadastro,
                             dataUltAlt = dataUltAlt,
-                            Ativo = Ativo
+                            Ativo = Ativo,
+                            usuarioUltAlt = usuario,
                         };
 
                         if (Alterar == -7)

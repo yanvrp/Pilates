@@ -15,12 +15,13 @@ namespace Pilates.DAO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-UPDATE contasPagar SET dataPagamento = @dataPagamento, dataEmissao = dataEmissao, idFormaPagamento = @idFormaPagamento, idFornecedor = @idFornecedor, dataVencimento = @dataVencimento, valorParcela = @valorParcela, juros = @juros, multa = @multa, desconto = @desconto, valorPago = @valorPago, dataCancelamento = @dataCancelamento, observacao = @observacao, dataUltAlt = @dataUltAlt
+UPDATE contasPagar SET dataPagamento = @dataPagamento,usuarioUltAlt = @usuarioUltAlt, dataEmissao = dataEmissao, idFormaPagamento = @idFormaPagamento, idFornecedor = @idFornecedor, dataVencimento = @dataVencimento, valorParcela = @valorParcela, juros = @juros, multa = @multa, desconto = @desconto, valorPago = @valorPago, dataCancelamento = @dataCancelamento, observacao = @observacao, dataUltAlt = @dataUltAlt
 WHERE numero = @numero AND parcela = @parcela";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@numero", obj.numero);
                 command.Parameters.AddWithValue("@dataEmissao", obj.dataEmissao);
+                command.Parameters.AddWithValue("@usuarioUltAlt", obj.usuarioUltAlt);
                 command.Parameters.AddWithValue("@idFormaPagamento", obj.idFormaPagamento);
                 command.Parameters.AddWithValue("@idFornecedor", obj.idFornecedor);
                 command.Parameters.AddWithValue("@parcela", obj.parcela);
@@ -87,13 +88,14 @@ WHERE numero = @numero AND parcela = @parcela";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO contasPagar (numero, dataEmissao, idFormaPagamento, idFornecedor, parcela, valorParcela, dataVencimento, dataPagamento, juros, multa, desconto, valorPago, dataCancelamento, observacao, dataCadastro, dataUltAlt) 
-    VALUES (@numero, @dataEmissao, @idFormaPagamento, @idFornecedor, @parcela, @valorParcela, @dataVencimento, @dataPagamento, @juros, @multa, @desconto, @valorPago, @dataCancelamento,@observacao, @dataCadastro, @dataUltAlt)";
+                string query = @"INSERT INTO contasPagar (usuarioUltAlt, numero, dataEmissao, idFormaPagamento, idFornecedor, parcela, valorParcela, dataVencimento, dataPagamento, juros, multa, desconto, valorPago, dataCancelamento, observacao, dataCadastro, dataUltAlt) 
+    VALUES (@usuarioUltAlt, @numero, @dataEmissao, @idFormaPagamento, @idFornecedor, @parcela, @valorParcela, @dataVencimento, @dataPagamento, @juros, @multa, @desconto, @valorPago, @dataCancelamento,@observacao, @dataCadastro, @dataUltAlt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@numero", contaPagar.numero);
                 command.Parameters.AddWithValue("@dataEmissao", contaPagar.dataEmissao);
+                command.Parameters.AddWithValue("@usuarioUltAlt", contaPagar.usuarioUltAlt);
                 command.Parameters.AddWithValue("@idFormaPagamento", contaPagar.idFormaPagamento);
                 command.Parameters.AddWithValue("@idFornecedor", contaPagar.idFornecedor);
                 command.Parameters.AddWithValue("@parcela", contaPagar.parcela);
@@ -155,6 +157,7 @@ WHERE numero = @numero AND parcela = @parcela";
                             valorPago = reader["valorPago"] != DBNull.Value ? Convert.ToDecimal(reader["valorPago"]) : (decimal?)null,
 
                             observacao = reader["observacao"].ToString(),
+                            usuarioUltAlt = reader["usuarioUltAlt"].ToString(),
                             dataCancelamento = reader["dataCancelamento"] != DBNull.Value ? Convert.ToDateTime(reader["dataCancelamento"]) : (DateTime?)null,
                             dataCadastro = Convert.ToDateTime(reader["dataCadastro"]),
                             dataUltAlt = Convert.ToDateTime(reader["dataUltAlt"]),

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pilates.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Pilates
 {
     internal static class Program
     {
+        public static string usuarioLogado { get; set; }
         /// <summary>
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
@@ -17,7 +19,9 @@ namespace Pilates
             Application.AddMessageFilter(new EscapeKeyFilter());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuPrincipal());
+
+            Login telaLogin = new Login();
+            Application.Run(telaLogin);
         }
     }
 }

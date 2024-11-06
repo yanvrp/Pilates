@@ -95,3 +95,6 @@ C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.YControls.YTextBox.r
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.YControls.YMaskedTextBox.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroAgenda.resources
 C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaAgenda.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.CadastroUsuario.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.ConsultaUsuarios.resources
+C:\Users\yanvr\Documents\Projetos\Pilates\obj\Debug\Pilates.Views.Login.resources

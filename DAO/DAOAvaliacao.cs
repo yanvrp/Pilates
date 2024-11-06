@@ -70,12 +70,14 @@ namespace Pilates.DAO
                                       idAluno = @idAluno, 
                                       dataUltAlt = @dataUltAlt, 
                                       ativo = @ativo,
-                                      observacao = @observacao
+                                      observacao = @observacao,
+                                      usuarioUltAlt = @usuarioUltAlt,
                                       dataCancelamento = @dataCancelamento
                                   WHERE idAvaliacao = @idAvaliacao";
                     SqlCommand cmdAvaliacao = new SqlCommand(queryAvaliacao, conn, transaction);
 
                     cmdAvaliacao.Parameters.AddWithValue("@data", obj.data);
+                    cmdAvaliacao.Parameters.AddWithValue("@usuarioUltAlt", obj.usuarioUltAlt);
                     cmdAvaliacao.Parameters.AddWithValue("@idAluno", obj.idAluno);
                     cmdAvaliacao.Parameters.AddWithValue("@dataUltAlt", obj.dataUltAlt);
                     cmdAvaliacao.Parameters.AddWithValue("@ativo", obj.Ativo);
@@ -215,6 +217,7 @@ namespace Pilates.DAO
                     {
                         avaliacao = new ModelAvaliacao();
                         avaliacao.idAvaliacao = Convert.ToInt32(reader["idAvaliacao"]);
+                        avaliacao.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         avaliacao.idAluno = Convert.ToInt32(reader["idAluno"]);
                         avaliacao.data = Convert.ToDateTime(reader["data"]);
                         avaliacao.Ativo = Convert.ToBoolean(reader["ativo"]);
@@ -552,11 +555,12 @@ namespace Pilates.DAO
                 {
                     // Inserir a avaliação principal
                     string queryAvaliacao = @"INSERT INTO avaliacao 
-                       (data, idAluno, dataCadastro, dataUltAlt, ativo, observacao, dataCancelamento) 
-                       VALUES (@data, @idAluno, @dataCadastro, @dataUltAlt, @ativo, @observacao, @dataCancelamento);
+                       (usuarioUltAlt, data, idAluno, dataCadastro, dataUltAlt, ativo, observacao, dataCancelamento) 
+                       VALUES (@usuarioUltAlt, @data, @idAluno, @dataCadastro, @dataUltAlt, @ativo, @observacao, @dataCancelamento);
                        SELECT SCOPE_IDENTITY();";
                     SqlCommand cmdAvaliacao = new SqlCommand(queryAvaliacao, conn, transaction);
 
+                    cmdAvaliacao.Parameters.AddWithValue("@usuarioUltAlt", obj.usuarioUltAlt);
                     cmdAvaliacao.Parameters.AddWithValue("@data", obj.data);
                     cmdAvaliacao.Parameters.AddWithValue("@idAluno", obj.idAluno);
                     cmdAvaliacao.Parameters.AddWithValue("@dataCadastro", obj.dataCadastro);

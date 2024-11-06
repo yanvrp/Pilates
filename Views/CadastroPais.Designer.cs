@@ -78,6 +78,14 @@
             this.btnSair.Location = new System.Drawing.Point(355, 405);
             this.btnSair.TabIndex = 5;
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(23, 363);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(20, 347);
+            // 
             // lblPais
             // 
             this.lblPais.AutoSize = true;
@@ -200,6 +208,8 @@
             this.Text = "Cadastro de País";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroPais_FormClosed);
             this.Load += new System.EventHandler(this.CadastroPais_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

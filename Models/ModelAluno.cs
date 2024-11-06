@@ -16,6 +16,7 @@ namespace Pilates.Models
         public string numero { get; set; }
         public string cep { get; set; }
         public string complemento { get; set; }
+        public string usuarioUltAlt { get; set; }
         public string sexo { get; set; }
         public string email { get; set; }
         public string celular { get; set; }

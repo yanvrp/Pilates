@@ -15,8 +15,48 @@ namespace Pilates.DAO
 
         public override void Alterar(ModelContrato obj)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE contrato 
+                         SET usuarioUltAlt = @usuarioUltAlt, 
+                             idAluno = @idAluno, 
+                             idCondPagamento = @idCondPagamento, 
+                             idPrograma = @idPrograma, 
+                             periodo = @periodo, 
+                             horario = @horario, 
+                             valorTotal = @valorTotal, 
+                             diaAcordado = @diaAcordado, 
+                             diasSemana = @diasSemana, 
+                             dataInicioPrograma = @dataInicioPrograma, 
+                             dataCancelamento = @dataCancelamento, 
+                             dataFinalContrato = @dataFinalContrato, 
+                             ativo = @ativo, 
+                             dataUltAlt = @dataUltAlt 
+                         WHERE idContrato = @idContrato";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@usuarioUltAlt", obj.usuarioUltAlt ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@idAluno", obj.idAluno);
+                command.Parameters.AddWithValue("@idCondPagamento", obj.idCondPag);
+                command.Parameters.AddWithValue("@idPrograma", obj.idPrograma);
+                command.Parameters.AddWithValue("@periodo", obj.periodo);
+                command.Parameters.AddWithValue("@horario", obj.horario);
+                command.Parameters.AddWithValue("@valorTotal", obj.ValorTotal);
+                command.Parameters.AddWithValue("@diaAcordado", obj.diaAcordado);
+                command.Parameters.AddWithValue("@diasSemana", obj.diasSemana);
+                command.Parameters.AddWithValue("@dataInicioPrograma", obj.dataInicioPrograma);
+                command.Parameters.AddWithValue("@dataCancelamento", obj.dataCancelamento ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@dataFinalContrato", obj.dataFinalContrato ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@ativo", obj.Ativo);
+                command.Parameters.AddWithValue("@dataUltAlt", DateTime.Now);
+                command.Parameters.AddWithValue("@idContrato", obj.idContrato);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
+
         public int GetUltimoNumero()
         {
             int ultimoCodigo = 0;
@@ -153,6 +193,7 @@ namespace Pilates.DAO
                         contrato.idCondPag = Convert.ToInt32(reader["idCondPagamento"]);
                         contrato.idPrograma = Convert.ToInt32(reader["idPrograma"]);
                         contrato.periodo = reader["periodo"].ToString();
+                        contrato.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         contrato.diasSemana = reader["diasSemana"].ToString();
                         contrato.horario = (TimeSpan)reader["horario"];
                         contrato.ValorTotal = Convert.ToDecimal(reader["valorTotal"]);
@@ -176,7 +217,7 @@ namespace Pilates.DAO
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM contrato";
+                string query = BuscarInativos ? "SELECT * FROM contrato" : "SELECT * FROM contrato WHERE ativo = 1";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 conn.Open();
@@ -210,13 +251,14 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO contrato (idAluno, idCondPagamento, idPrograma, periodo, horario, valorTotal, diaAcordado, diasSemana, dataInicioPrograma, dataCancelamento, dataFinalContrato, ativo, dataCadastro, dataUltAlt) 
-                         VALUES (@idAluno, @idCondPagamento, @idPrograma, @periodo, @horario, @valorTotal, @diaAcordado, @diasSemana, @dataInicioPrograma, @dataCancelamento, @dataFinalContrato, @ativo, @dataCadastro, @dataUltAlt);
+                string query = @"INSERT INTO contrato (usuarioUltAlt, idAluno, idCondPagamento, idPrograma, periodo, horario, valorTotal, diaAcordado, diasSemana, dataInicioPrograma, dataCancelamento, dataFinalContrato, ativo, dataCadastro, dataUltAlt) 
+                         VALUES (@usuarioUltAlt, @idAluno, @idCondPagamento, @idPrograma, @periodo, @horario, @valorTotal, @diaAcordado, @diasSemana, @dataInicioPrograma, @dataCancelamento, @dataFinalContrato, @ativo, @dataCadastro, @dataUltAlt);
                          SELECT SCOPE_IDENTITY();";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@idAluno", contrato.idAluno);
+                command.Parameters.AddWithValue("@usuarioUltAlt", contrato.usuarioUltAlt);
                 command.Parameters.AddWithValue("@idCondPagamento", contrato.idCondPag);
                 command.Parameters.AddWithValue("@idPrograma", contrato.idPrograma);
                 command.Parameters.AddWithValue("@periodo", contrato.periodo);

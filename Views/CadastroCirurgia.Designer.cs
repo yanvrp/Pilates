@@ -62,6 +62,14 @@
             this.btnSair.Location = new System.Drawing.Point(375, 405);
             this.btnSair.TabIndex = 4;
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(23, 363);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(20, 347);
+            // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
@@ -145,6 +153,8 @@
             this.Text = "Cadastro Cirurgia";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroCirurgia_FormClosed);
             this.Load += new System.EventHandler(this.CadastroCirurgia_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

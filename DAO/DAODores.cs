@@ -63,11 +63,12 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE dores SET dores = @dores, descricao = @descricao, ativo = @ativo, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt WHERE idDores = @id";
+                string query = "UPDATE dores SET dores = @dores, usuarioUltAlt = @usuarioUltAlt, descricao = @descricao, ativo = @ativo, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt WHERE idDores = @id";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", dores.idDores);
                 command.Parameters.AddWithValue("@dores", dores.dores);
+                command.Parameters.AddWithValue("@usuarioUltAlt", dores.usuarioUltAlt);
                 command.Parameters.AddWithValue("@descricao", dores.descricao);
                 command.Parameters.AddWithValue("@ativo", dores.Ativo);
                 command.Parameters.AddWithValue("@dataCadastro", dores.dataCadastro);
@@ -94,6 +95,7 @@ namespace Pilates.DAO
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.idDores = Convert.ToInt32(reader["idDores"]);
                         obj.dores = reader["dores"].ToString();
+                        obj.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         obj.descricao = reader["descricao"].ToString();
                         obj.Ativo = Convert.ToBoolean(reader["Ativo"]);
                         obj.dataCadastro = DateTime.Parse(reader["dataCadastro"].ToString());
@@ -167,11 +169,12 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO dores (dores, descricao, ativo, dataCadastro, dataUltAlt) VALUES (@dores, @descricao, @ativo, @dataCadastro, @dataUltAlt)";
+                string query = "INSERT INTO dores (dores, usuarioUltAlt, descricao, ativo, dataCadastro, dataUltAlt) VALUES (@dores, @usuarioUltAlt, @descricao, @ativo, @dataCadastro, @dataUltAlt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@dores", dores.dores);
+                command.Parameters.AddWithValue("@usuarioUltAlt", dores.usuarioUltAlt);
                 command.Parameters.AddWithValue("@descricao", dores.descricao);
                 command.Parameters.AddWithValue("@ativo", dores.Ativo);
                 command.Parameters.AddWithValue("@dataCadastro", dores.dataCadastro);

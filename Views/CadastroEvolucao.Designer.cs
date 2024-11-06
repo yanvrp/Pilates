@@ -77,6 +77,14 @@
             this.btnSair.TabIndex = 4;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(250, 367);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(247, 351);
+            // 
             // lblObservacao
             // 
             this.lblObservacao.AutoSize = true;
@@ -222,7 +230,7 @@
             // CadastroEvolucao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(608, 411);
+            this.ClientSize = new System.Drawing.Size(608, 412);
             this.Controls.Add(this.txtObservacao);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.txtAluno);
@@ -234,6 +242,8 @@
             this.Name = "CadastroEvolucao";
             this.Text = "Cadastro de Evolução";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroEvolucao_FormClosed);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

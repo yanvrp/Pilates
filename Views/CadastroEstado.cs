@@ -42,6 +42,7 @@ namespace Pilates.Views
                     txtDataUltAlt.Texts = estado.dataUltAlt.ToString();
                     rbAtivo.Checked = estado.Ativo;
                     rbInativo.Checked = !estado.Ativo;
+                    txtUsuarioUltAlt.Texts = estado.usuarioUltAlt;
 
                     string nomePais = controllerEstado.GetNomePaisByEstadoId(estado.idEstado);
 
@@ -91,6 +92,7 @@ namespace Pilates.Views
                         int idPais = int.Parse(txtCodigoPais.Texts);
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
+                        string usuario = Program.usuarioLogado;
 
                         DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
@@ -110,7 +112,8 @@ namespace Pilates.Views
                             idPais = idPais,
                             dataCadastro = dataCadastro,
                             dataUltAlt = dataUltAlt,
-                            Ativo = Ativo
+                            Ativo = Ativo,
+                            usuarioUltAlt = usuario,
                         };
 
                         if (Alterar == -7)

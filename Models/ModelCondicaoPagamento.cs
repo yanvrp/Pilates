@@ -15,6 +15,7 @@ namespace Pilates.Models
         public decimal multa { get; set; }
         public DateTime dataCadastro { get; set; }
         public DateTime dataUltAlt { get; set; }
+        public string usuarioUltAlt { get; set; }
         public bool Ativo { get; set; }
         public List<ModelParcela> Parcelas { get; set; }
     }

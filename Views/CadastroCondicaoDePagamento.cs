@@ -64,6 +64,7 @@ namespace Pilates.Views
                     decimal multa = Convert.ToDecimal(txtMulta.Texts);
                     DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
                     DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
+                    string usuario = Program.usuarioLogado;
 
                     ModelCondicaoPagamento NovaCondPagamento = new ModelCondicaoPagamento
                     {
@@ -74,6 +75,7 @@ namespace Pilates.Views
                         Ativo = Ativo,
                         dataCadastro = dataCadastro,
                         dataUltAlt = dataUltAlt,
+                        usuarioUltAlt = usuario,
                         Parcelas = obtemParcelas()
                     };
                     if (Alterar == -7)
@@ -107,6 +109,7 @@ namespace Pilates.Views
                 txtDataCadastro.Texts = condicaoPagamento.dataCadastro.ToString();
                 txtDataUltAlt.Texts = condicaoPagamento.dataUltAlt.ToString();
                 rbAtivo.Checked = condicaoPagamento.Ativo;
+                txtUsuarioUltAlt.Texts=condicaoPagamento.usuarioUltAlt;
                 exibirParcelasDGV(condicaoPagamento.Parcelas);
                 atualizaPorcentagemTotal();
             }
@@ -342,6 +345,7 @@ namespace Pilates.Views
             {
                 MessageBox.Show("O número da parcela não pode ser 0.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNumParcelas.Focus();
+                txtNumParcelas.Clear();
             }
         }
     }

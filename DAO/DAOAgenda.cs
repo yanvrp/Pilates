@@ -33,11 +33,12 @@ namespace Pilates.DAO
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"UPDATE agenda SET idAluno = @idAluno, idContrato = @idContrato, horario = @horario, data = @data, situacao = @situacao, ativo = @ativo,  dataUltAlt = @dataUltAlt, dataCancelamento = @dataCancelamento WHERE idAgenda = @idAgenda";
+                string query = @"UPDATE agenda SET idAluno = @idAluno, usuarioUltAlt = @usuarioUltAlt, idContrato = @idContrato, horario = @horario, data = @data, situacao = @situacao, ativo = @ativo,  dataUltAlt = @dataUltAlt, dataCancelamento = @dataCancelamento WHERE idAgenda = @idAgenda";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@idAluno", obj.idAluno);
+                command.Parameters.AddWithValue("@usuarioUltAlt", obj.usuarioUltAlt);
                 command.Parameters.AddWithValue("@idContrato", obj.idContrato ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@horario", obj.horario);
                 command.Parameters.AddWithValue("@situacao", obj.situacao ?? (object)DBNull.Value);
@@ -78,6 +79,7 @@ namespace Pilates.DAO
                     {
                         agenda = new ModelAgenda();
                         agenda.idAgenda = Convert.ToInt32(reader["idAgenda"]);
+                        agenda.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         agenda.idAluno = Convert.ToInt32(reader["idAluno"]);
                         agenda.idContrato = reader["idContrato"] != DBNull.Value ? Convert.ToInt32(reader["idContrato"]) : (int?)null;
                         agenda.situacao = reader["situacao"] != DBNull.Value ? reader["situacao"].ToString() : (string?)null;
@@ -134,12 +136,13 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO agenda (idAluno, idContrato, horario, data, situacao, ativo, dataCadastro, dataUltAlt, dataCancelamento) 
-                                 VALUES (@idAluno, @idContrato, @horario, @data, @situacao, @ativo, @dataCadastro, @dataUltAlt, @dataCancelamento)";
+                string query = @"INSERT INTO agenda (usuarioUltAlt, idAluno, idContrato, horario, data, situacao, ativo, dataCadastro, dataUltAlt, dataCancelamento) 
+                                 VALUES (@usuarioUltAlt, @idAluno, @idContrato, @horario, @data, @situacao, @ativo, @dataCadastro, @dataUltAlt, @dataCancelamento)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@idAluno", agenda.idAluno);
+                command.Parameters.AddWithValue("@usuarioUltAlt", agenda.usuarioUltAlt);
                 command.Parameters.AddWithValue("@idContrato", agenda.idContrato ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@horario", agenda.horario);
                 command.Parameters.AddWithValue("@situacao", agenda.situacao ?? (object)DBNull.Value);

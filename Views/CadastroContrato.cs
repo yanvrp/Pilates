@@ -165,6 +165,7 @@ namespace Pilates.Views
                 txtDataUltAlt.Texts = contrato.dataUltAlt.ToString();
                 rbAtivo.Checked = contrato.Ativo;
                 rbInativo.Checked = !contrato.Ativo;
+                txtUsuarioUltAlt.Texts = contrato.usuarioUltAlt;
 
                 ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
                 ModelPrograma programa = controllerPrograma.BuscarPorId(int.Parse(txtCodPrograma.Texts));
@@ -251,7 +252,7 @@ namespace Pilates.Views
                 try
                 {
                     int numeroAulasSelecionadas = 0;
-                    List<string> diasSelecionados = new List<string>(); // Mudamos o tipo para string
+                    List<string> diasSelecionados = new List<string>(); 
 
                     if (cbSegunda.Checked) { numeroAulasSelecionadas++; diasSelecionados.Add("SEGUNDA"); }
                     if (cbTerca.Checked) { numeroAulasSelecionadas++; diasSelecionados.Add("TERÇA"); }
@@ -287,6 +288,8 @@ namespace Pilates.Views
                     string horarioString = $"{horas}:{minutos}";
                     TimeSpan horario = TimeSpan.Parse(horarioString);
 
+                    string usuario = Program.usuarioLogado;
+
                     decimal valorTotal = Convert.ToDecimal(txtValorTotal.Texts);
                    
                     string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
@@ -314,130 +317,134 @@ namespace Pilates.Views
                         dataCadastro = dataCadastro,
                         dataUltAlt = dataUltAlt,
                         Ativo = Ativo,
+                        usuarioUltAlt = usuario
                     };
                     if (Alterar == -7)
                     {
                         novoContrato.idContrato = controllerContrato.SalvarC(novoContrato);
+
+                        List<ModelAgenda> aulasAgenda = new List<ModelAgenda>();
+
+                        for (DateTime data = dataInicioPrograma; data <= dataFimPrograma; data = data.AddDays(1))
+                        {
+                            //mapeamento dos dias da semana para DayOfWeek
+                            DayOfWeek diaAtual = data.DayOfWeek;
+                            string diaFormatado = diaAtual switch
+                            {
+                                DayOfWeek.Monday => "SEGUNDA",
+                                DayOfWeek.Tuesday => "TERÇA",
+                                DayOfWeek.Wednesday => "QUARTA",
+                                DayOfWeek.Thursday => "QUINTA",
+                                DayOfWeek.Friday => "SEXTA",
+                                DayOfWeek.Saturday => "SÁBADO",
+                                DayOfWeek.Sunday => "DOMINGO",
+                                _ => throw new ArgumentOutOfRangeException()
+                            };
+
+                            //ve dia atual
+                            if (diasSelecionados.Contains(diaFormatado))
+                            {
+                                //ve se a aula marcada e horario ja passou
+                                if (data == DateTime.Today && horario < DateTime.Now.TimeOfDay)
+                                {
+                                    continue; //se passou, para pra prox data
+                                }
+                                if (data == dataInicioPrograma && diaFormatado == DateTime.Today.ToString("dddd").ToUpper() && horario.Hours == DateTime.Now.Hour && horario.Minutes == DateTime.Now.Minute)
+                                {
+                                    data = data.AddDays(7);
+                                    continue;
+                                }
+
+                                ModelAgenda aula = new ModelAgenda
+                                {
+                                    idAluno = idAluno,
+                                    idContrato = novoContrato.idContrato,
+                                    horario = horario,
+                                    data = data,
+                                    situacao = null,
+                                    Ativo = Ativo,
+                                    dataCadastro = dataCadastro,
+                                    dataUltAlt = dataUltAlt,
+                                    usuarioUltAlt = usuario
+                                };
+                                aulasAgenda.Add(aula);
+                            }
+                        }
+
+                        foreach (var aula in aulasAgenda)
+                        {
+                            controllerAgenda.Salvar(aula);
+                        }
+
+                        MessageBox.Show("Contrato e agenda salvos com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+
+                        try //salvar contas a receber
+                        {
+                            foreach (DataGridViewRow row in dataGridViewParcelas.Rows)
+                            {
+                                if (row.IsNewRow) continue;
+                                //validação do que está no datagrid
+                                if (row.Cells["idFormaPagamento"].Value == null || !int.TryParse(row.Cells["idFormaPagamento"].Value.ToString(), out int idFormaPagamento))
+                                {
+                                    MessageBox.Show("Forma de pagamento inválida.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+
+                                if (row.Cells["Parcela"].Value == null || !int.TryParse(row.Cells["Parcela"].Value.ToString(), out int parcela))
+                                {
+                                    MessageBox.Show("Número de parcela inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+
+                                if (row.Cells["valorParcela"].Value == null || !decimal.TryParse(row.Cells["valorParcela"].Value.ToString(), out decimal valorParcela))
+                                {
+                                    MessageBox.Show("Valor da parcela inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+
+                                if (row.Cells["dataVencimento"].Value == null || !DateTime.TryParse(row.Cells["dataVencimento"].Value.ToString(), out DateTime dataVencimento))
+                                {
+                                    MessageBox.Show("Data de vencimento inválida.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+
+                                ModelContasReceber contaReceber = new ModelContasReceber
+                                {
+                                    numero = int.Parse(txtCodigo.Texts),
+                                    idAluno = idAluno,
+                                    dataEmissao = dataInicioPrograma,
+                                    idFormaPagamento = idFormaPagamento,
+                                    parcela = parcela,
+                                    valorParcela = valorParcela,
+                                    dataVencimento = dataVencimento,
+                                    dataRecebimento = null,
+                                    desconto = null,
+                                    valorRecebido = null,
+                                    dataCancelamento = null,
+                                    observacao = "REFERENTE AO CONTRATO NÚMERO: " + txtCodigo.Texts,
+                                    dataCadastro = DateTime.Now,
+                                    dataUltAlt = DateTime.Now,
+                                    usuarioUltAlt = usuario
+                                };
+
+                                controllerContasReceber.Salvar(contaReceber);
+                            }
+                        }
+                        catch (FormatException fe)
+                        {
+                            MessageBox.Show("Erro ao converter valores: " + fe.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ocorreu um erro ao salvar as Contas a Receber: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
+                        novoContrato.idContrato = Alterar;
                         controllerContrato.Alterar(novoContrato);
-                    }
-
-                    List<ModelAgenda> aulasAgenda = new List<ModelAgenda>();
-
-                    for (DateTime data = dataInicioPrograma; data <= dataFimPrograma; data = data.AddDays(1))
-                    {
-                        //mapeamento dos dias da semana para DayOfWeek
-                        DayOfWeek diaAtual = data.DayOfWeek;
-                        string diaFormatado = diaAtual switch
-                        {
-                            DayOfWeek.Monday => "SEGUNDA",
-                            DayOfWeek.Tuesday => "TERÇA",
-                            DayOfWeek.Wednesday => "QUARTA",
-                            DayOfWeek.Thursday => "QUINTA",
-                            DayOfWeek.Friday => "SEXTA",
-                            DayOfWeek.Saturday => "SÁBADO",
-                            DayOfWeek.Sunday => "DOMINGO",
-                            _ => throw new ArgumentOutOfRangeException()
-                        };
-
-                        //ve dia atual
-                        if (diasSelecionados.Contains(diaFormatado))
-                        {
-                            //ve se a aula marcada e horario ja passou
-                            if (data == DateTime.Today && horario < DateTime.Now.TimeOfDay)
-                            {
-                                continue; //se passou, para pra prox data
-                            }
-                            if (data == dataInicioPrograma && diaFormatado == DateTime.Today.ToString("dddd").ToUpper() && horario.Hours == DateTime.Now.Hour && horario.Minutes == DateTime.Now.Minute)
-                            {
-                                data = data.AddDays(7);
-                                continue;
-                            }
-
-                            ModelAgenda aula = new ModelAgenda
-                            {
-                                idAluno = idAluno,
-                                idContrato = novoContrato.idContrato,
-                                horario = horario,
-                                data = data,
-                                situacao = null,
-                                Ativo = Ativo,
-                                dataCadastro = dataCadastro,
-                                dataUltAlt = dataUltAlt
-                            };
-                            aulasAgenda.Add(aula);
-                        }
-                    }
-
-                    foreach (var aula in aulasAgenda)
-                    {
-                        controllerAgenda.Salvar(aula);
-                    }
-
-                    MessageBox.Show("Contrato e agenda salvos com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-
-                    try //salvar contas a receber
-                    {
-                        foreach (DataGridViewRow row in dataGridViewParcelas.Rows)
-                        {
-                            if (row.IsNewRow) continue;
-                            //validação do que está no datagrid
-                            if (row.Cells["idFormaPagamento"].Value == null || !int.TryParse(row.Cells["idFormaPagamento"].Value.ToString(), out int idFormaPagamento))
-                            {
-                                MessageBox.Show("Forma de pagamento inválida.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
-                            if (row.Cells["Parcela"].Value == null || !int.TryParse(row.Cells["Parcela"].Value.ToString(), out int parcela))
-                            {
-                                MessageBox.Show("Número de parcela inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
-                            if (row.Cells["valorParcela"].Value == null || !decimal.TryParse(row.Cells["valorParcela"].Value.ToString(), out decimal valorParcela))
-                            {
-                                MessageBox.Show("Valor da parcela inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
-                            if (row.Cells["dataVencimento"].Value == null || !DateTime.TryParse(row.Cells["dataVencimento"].Value.ToString(), out DateTime dataVencimento))
-                            {
-                                MessageBox.Show("Data de vencimento inválida.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
-                            ModelContasReceber contaReceber = new ModelContasReceber
-                            {
-                                numero = int.Parse(txtCodigo.Texts),
-                                idAluno = idAluno,
-                                dataEmissao = dataInicioPrograma,
-                                idFormaPagamento = idFormaPagamento,
-                                parcela = parcela,
-                                valorParcela = valorParcela,
-                                dataVencimento = dataVencimento,
-                                dataRecebimento = null,
-                                desconto = null,
-                                valorRecebido = null,
-                                dataCancelamento = null,
-                                observacao = "REFERENTE AO CONTRATO NÚMERO: " + txtCodigo.Texts,
-                                dataCadastro = DateTime.Now,
-                                dataUltAlt = DateTime.Now
-                            };
-
-                            controllerContasReceber.Salvar(contaReceber);
-                        }
-                    }
-                    catch (FormatException fe)
-                    {
-                        MessageBox.Show("Erro ao converter valores: " + fe.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Ocorreu um erro ao salvar as Contas a Receber: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    }                    
                     this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception ex)
@@ -529,7 +536,7 @@ namespace Pilates.Views
 
         private void txtPeriodo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            dataGridViewParcelas.Rows.Clear();
         }
 
         private void btnPesquisarAluno_Click(object sender, EventArgs e)
@@ -832,6 +839,16 @@ namespace Pilates.Views
                     txtDiaPagar.Clear();
                 }
             }
+        }
+
+        private void txtCodCondPag__TextChanged(object sender, EventArgs e)
+        {
+            dataGridViewParcelas.Rows.Clear();
+        }
+
+        private void txtCodPrograma__TextChanged(object sender, EventArgs e)
+        {
+            dataGridViewParcelas.Rows.Clear();
         }
     }
 }

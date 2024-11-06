@@ -87,6 +87,15 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Location = new System.Drawing.Point(428, 329);
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(25, 285);
+            this.txtUsuarioUltAlt.Size = new System.Drawing.Size(82, 28);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(24, 270);
+            // 
             // txtAluno
             // 
             this.txtAluno.BackColor = System.Drawing.SystemColors.Window;
@@ -347,7 +356,7 @@
             this.txtDataCancelamento.Enabled = false;
             this.txtDataCancelamento.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataCancelamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtDataCancelamento.Location = new System.Drawing.Point(23, 278);
+            this.txtDataCancelamento.Location = new System.Drawing.Point(409, 255);
             this.txtDataCancelamento.Mask = "00/00/0000";
             this.txtDataCancelamento.MaxLength = 32767;
             this.txtDataCancelamento.Multiline = false;
@@ -356,7 +365,7 @@
             this.txtDataCancelamento.PasswordChar = false;
             this.txtDataCancelamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDataCancelamento.PlaceholderText = "";
-            this.txtDataCancelamento.Size = new System.Drawing.Size(84, 27);
+            this.txtDataCancelamento.Size = new System.Drawing.Size(102, 28);
             this.txtDataCancelamento.TabIndex = 75;
             this.txtDataCancelamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataCancelamento.Texts = "  /  /";
@@ -366,7 +375,7 @@
             // lblDataCancelamento
             // 
             this.lblDataCancelamento.AutoSize = true;
-            this.lblDataCancelamento.Location = new System.Drawing.Point(21, 262);
+            this.lblDataCancelamento.Location = new System.Drawing.Point(407, 239);
             this.lblDataCancelamento.Name = "lblDataCancelamento";
             this.lblDataCancelamento.Size = new System.Drawing.Size(104, 13);
             this.lblDataCancelamento.TabIndex = 74;
@@ -396,7 +405,7 @@
             // CadastroAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(533, 378);
+            this.ClientSize = new System.Drawing.Size(533, 379);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtDataCancelamento);
             this.Controls.Add(this.lblDataCancelamento);
@@ -419,6 +428,8 @@
             this.Text = "Cadastro Agenda";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroAgenda_FormClosed);
             this.Load += new System.EventHandler(this.CadastroAgenda_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.lblDataUltAlt, 0);
             this.Controls.SetChildIndex(this.lblDataCadastro, 0);

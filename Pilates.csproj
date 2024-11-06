@@ -127,6 +127,9 @@
     <Compile Include="Controller\ControllerPostura.cs" />
     <Compile Include="Controller\ControllerProfissao.cs" />
     <Compile Include="Controller\ControllerPrograma.cs" />
+    <Compile Include="Controller\ControllerUsuario.cs" />
+    <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="DAO\Criptografia.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DAOAgenda.cs" />
     <Compile Include="DAO\DAOAluno.cs" />
@@ -149,6 +152,8 @@
     <Compile Include="DAO\DAOPostura.cs" />
     <Compile Include="DAO\DAOProfissao.cs" />
     <Compile Include="DAO\DAOPrograma.cs" />
+    <Compile Include="DAO\DAOUsuario.cs" />
+    <Compile Include="DAO\LoginDAO.cs" />
     <Compile Include="EscapeKeyFilter.cs" />
     <Compile Include="Models\ModelAgenda.cs" />
     <Compile Include="Models\ModelAluno.cs" />
@@ -177,6 +182,7 @@
     <Compile Include="Models\ModelPostura.cs" />
     <Compile Include="Models\ModelProfissao.cs" />
     <Compile Include="Models\ModelPrograma.cs" />
+    <Compile Include="Models\ModelUsuario.cs" />
     <Compile Include="pilates_BemEstarDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -314,6 +320,12 @@
     <Compile Include="Views\CadastroPrograma.Designer.cs">
       <DependentUpon>CadastroPrograma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CadastroUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroUsuario.Designer.cs">
+      <DependentUpon>CadastroUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConsultaAgenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -446,6 +458,18 @@
     <Compile Include="Views\ConsultaPrograma.Designer.cs">
       <DependentUpon>ConsultaPrograma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ConsultaUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConsultaUsuarios.Designer.cs">
+      <DependentUpon>ConsultaUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -536,6 +560,9 @@
     <EmbeddedResource Include="Views\CadastroPrograma.resx">
       <DependentUpon>CadastroPrograma.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\CadastroUsuario.resx">
+      <DependentUpon>CadastroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ConsultaAgenda.resx">
       <DependentUpon>ConsultaAgenda.cs</DependentUpon>
     </EmbeddedResource>
@@ -601,6 +628,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ConsultaPrograma.resx">
       <DependentUpon>ConsultaPrograma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConsultaUsuarios.resx">
+      <DependentUpon>ConsultaUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>

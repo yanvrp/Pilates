@@ -57,6 +57,7 @@ namespace Pilates.Views
                     txtDataUltAlt.Texts = evolucao.dataUltAlt.ToString();
                     rbAtivo.Checked = evolucao.Ativo;
                     rbInativo.Checked = !evolucao.Ativo;
+                    txtUsuarioUltAlt.Texts = evolucao.usuarioUltAlt;
 
                     string nomeAluno = controllerEvolucao.GetNomeAlunoByEvolucaoId(evolucao.idEvolucao);
 
@@ -98,6 +99,7 @@ namespace Pilates.Views
                     string observacao = txtObservacao.Texts;
                     DateTime dataCadastro;
                     DateTime dataUltAlt;
+                    string usuario = Program.usuarioLogado;
 
                     DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
@@ -117,7 +119,8 @@ namespace Pilates.Views
                         observacao = observacao,
                         dataCadastro = dataCadastro,
                         dataUltAlt = dataUltAlt,
-                        Ativo = Ativo
+                        Ativo = Ativo,
+                        usuarioUltAlt = usuario,
                     };
 
                     if (Alterar == -7)

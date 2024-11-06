@@ -69,6 +69,14 @@
             this.btnSair.Location = new System.Drawing.Point(429, 405);
             this.btnSair.TabIndex = 4;
             // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(219, 408);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(216, 392);
+            // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
@@ -188,6 +196,8 @@
             this.Text = "Cadastro de Doença";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroDoenca_FormClosed);
             this.Load += new System.EventHandler(this.CadastroDoenca_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblDoenca, 0);
             this.Controls.SetChildIndex(this.lblDescricao, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);

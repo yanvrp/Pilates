@@ -37,6 +37,7 @@ namespace Pilates.Views
                     txtDataUltAlt.Texts = cirurgia.dataUltAlt.ToString();
                     rbAtivo.Checked = cirurgia.Ativo;
                     rbInativo.Checked = !cirurgia.Ativo;
+                    txtUsuarioUltAlt.Texts = cirurgia.usuarioUltAlt;
                 }
                 else
                 {
@@ -73,6 +74,7 @@ namespace Pilates.Views
                         string descricao = txtDescricao.Texts;
                         DateTime dataCadastro;
                         DateTime dataUltAlt;
+                        string usuario = Program.usuarioLogado;
 
                         DateTime.TryParse(txtDataCadastro.Texts, out dataCadastro);
 
@@ -91,6 +93,7 @@ namespace Pilates.Views
                             descricao = descricao,
                             dataCadastro = dataCadastro,
                             dataUltAlt = dataUltAlt,
+                            usuarioUltAlt = usuario,
                             Ativo = Ativo
                         };
 

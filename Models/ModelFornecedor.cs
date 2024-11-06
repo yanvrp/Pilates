@@ -28,6 +28,7 @@ namespace Pilates.Models
         public string rg_ie { get; set; }
         public DateTime dataCadastro { get; set; }
         public DateTime dataUltAlt { get; set; }
+        public string usuarioUltAlt { get; set; }
         public bool Ativo { get; set; }
         public int idCidade { get; set; }
         public int idCondPagamento { get; set; }

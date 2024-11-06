@@ -20,11 +20,12 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE postura SET cabecaPostura = @cabecaPostura, ombroPostura = @ombroPostura, escapuloPostura = @escapuloPostura, maosPostura = @maosPostura, cervicalPostura = @cervicalPostura, toracicaPostura = @toracicaPostura, lombarPostura = @lombarPostura, quadrilPostura = @quadrilPostura, joelhoPostura = @joelhoPostura, pesPostura = @pesPostura, outros = @outros, idAluno = @idAluno, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt, ativo = @ativo, titulo = @titulo WHERE idPostura = @id";
+                string query = "UPDATE postura SET cabecaPostura = @cabecaPostura, usuarioUltAlt = @usuarioUltAlt, ombroPostura = @ombroPostura, escapuloPostura = @escapuloPostura, maosPostura = @maosPostura, cervicalPostura = @cervicalPostura, toracicaPostura = @toracicaPostura, lombarPostura = @lombarPostura, quadrilPostura = @quadrilPostura, joelhoPostura = @joelhoPostura, pesPostura = @pesPostura, outros = @outros, idAluno = @idAluno, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt, ativo = @ativo, titulo = @titulo WHERE idPostura = @id";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", postura.idPostura);
                 command.Parameters.AddWithValue("@titulo", postura.titulo);
+                command.Parameters.AddWithValue("@usuarioUltAlt", postura.usuarioUltAlt);
                 command.Parameters.AddWithValue("@cabecaPostura", postura.cabecaPostura);
                 command.Parameters.AddWithValue("@ombroPostura", postura.ombroPostura);
                 command.Parameters.AddWithValue("@escapuloPostura", postura.escapuloPostura);
@@ -63,6 +64,7 @@ namespace Pilates.DAO
                         obj.idPostura = Convert.ToInt32(reader["idPostura"]);
                         obj.cabecaPostura = reader["cabecaPostura"].ToString();
                         obj.titulo = reader["titulo"].ToString();
+                        obj.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         obj.ombroPostura = reader["ombroPostura"].ToString();
                         obj.escapuloPostura = reader["escapuloPostura"].ToString();
                         obj.maosPostura = reader["maosPostura"].ToString();
@@ -180,10 +182,11 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO postura (cabecaPostura, ombroPostura, escapuloPostura, maosPostura, cervicalPostura, toracicaPostura, lombarPostura, quadrilPostura, joelhoPostura, pesPostura, idAluno, dataCadastro, dataUltAlt, ativo, titulo, outros) VALUES (@cabecaPostura, @ombroPostura, @escapuloPostura, @maosPostura, @cervicalPostura, @toracicaPostura, @lombarPostura, @quadrilPostura, @joelhoPostura, @pesPostura, @idAluno, @dataCadastro, @dataUltAlt, @ativo, @titulo, @outros)";
+                string query = "INSERT INTO postura (usuarioUltAlt, cabecaPostura, ombroPostura, escapuloPostura, maosPostura, cervicalPostura, toracicaPostura, lombarPostura, quadrilPostura, joelhoPostura, pesPostura, idAluno, dataCadastro, dataUltAlt, ativo, titulo, outros) VALUES (@usuarioUltAlt, @cabecaPostura, @ombroPostura, @escapuloPostura, @maosPostura, @cervicalPostura, @toracicaPostura, @lombarPostura, @quadrilPostura, @joelhoPostura, @pesPostura, @idAluno, @dataCadastro, @dataUltAlt, @ativo, @titulo, @outros)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", postura.idPostura);
+                command.Parameters.AddWithValue("@usuarioUltAlt", postura.usuarioUltAlt);
                 command.Parameters.AddWithValue("@cabecaPostura", postura.cabecaPostura);
                 command.Parameters.AddWithValue("@ombroPostura", postura.ombroPostura);
                 command.Parameters.AddWithValue("@escapuloPostura", postura.escapuloPostura);

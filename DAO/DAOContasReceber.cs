@@ -16,12 +16,13 @@ namespace Pilates.DAO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-UPDATE contasReceber SET dataRecebimento = @dataRecebimento, dataEmissao = dataEmissao, idFormaPagamento = @idFormaPagamento, dataVencimento = @dataVencimento, valorParcela = @valorParcela, juros = @juros, multa = @multa, desconto = @desconto, valorRecebido = @valorRecebido, dataCancelamento = @dataCancelamento, observacao = @observacao, dataUltAlt = @dataUltAlt
+UPDATE contasReceber SET dataRecebimento = @dataRecebimento, usuarioUltAlt = @usuarioUltAlt, dataEmissao = dataEmissao, idFormaPagamento = @idFormaPagamento, dataVencimento = @dataVencimento, valorParcela = @valorParcela, juros = @juros, multa = @multa, desconto = @desconto, valorRecebido = @valorRecebido, dataCancelamento = @dataCancelamento, observacao = @observacao, dataUltAlt = @dataUltAlt
 WHERE numero = @numero AND idAluno = @idAluno AND parcela = @parcela";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@numero", obj.numero);
                 command.Parameters.AddWithValue("@idAluno", obj.idAluno);
+                command.Parameters.AddWithValue("@usuarioUltAlt", obj.usuarioUltAlt);
                 command.Parameters.AddWithValue("@dataEmissao", obj.dataEmissao);
                 command.Parameters.AddWithValue("@idFormaPagamento", obj.idFormaPagamento);
                 command.Parameters.AddWithValue("@parcela", obj.parcela);
@@ -88,13 +89,14 @@ WHERE numero = @numero AND idAluno = @idAluno AND parcela = @parcela";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO contasReceber (numero, idAluno, dataEmissao, idFormaPagamento, parcela, valorParcela, dataVencimento, dataRecebimento, juros, multa, desconto, valorRecebido, dataCancelamento, observacao, dataCadastro, dataUltAlt) 
-    VALUES (@numero, @idAluno, @dataEmissao, @idFormaPagamento, @parcela, @valorParcela, @dataVencimento, @dataRecebimento, @juros, @multa, @desconto, @valorRecebido, @dataCancelamento,@observacao, @dataCadastro, @dataUltAlt)";
+                string query = @"INSERT INTO contasReceber (usuarioUltAlt, numero, idAluno, dataEmissao, idFormaPagamento, parcela, valorParcela, dataVencimento, dataRecebimento, juros, multa, desconto, valorRecebido, dataCancelamento, observacao, dataCadastro, dataUltAlt) 
+    VALUES (@usuarioUltAlt, @numero, @idAluno, @dataEmissao, @idFormaPagamento, @parcela, @valorParcela, @dataVencimento, @dataRecebimento, @juros, @multa, @desconto, @valorRecebido, @dataCancelamento,@observacao, @dataCadastro, @dataUltAlt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@numero", contaReceber.numero);
                 command.Parameters.AddWithValue("@idAluno", contaReceber.idAluno);
+                command.Parameters.AddWithValue("@usuarioUltAlt", contaReceber.usuarioUltAlt);
                 command.Parameters.AddWithValue("@dataEmissao", contaReceber.dataEmissao);
                 command.Parameters.AddWithValue("@idFormaPagamento", contaReceber.idFormaPagamento);
                 command.Parameters.AddWithValue("@parcela", contaReceber.parcela);
@@ -157,6 +159,7 @@ WHERE numero = @numero AND idAluno = @idAluno AND parcela = @parcela";
                             valorRecebido = reader["valorRecebido"] != DBNull.Value ? Convert.ToDecimal(reader["valorRecebido"]) : (decimal?)null,
 
                             observacao = reader["observacao"].ToString(),
+                            usuarioUltAlt = reader["usuarioUltAlt"].ToString(),
                             dataCancelamento = reader["dataCancelamento"] != DBNull.Value ? Convert.ToDateTime(reader["dataCancelamento"]) : (DateTime?)null,
                             dataCadastro = Convert.ToDateTime(reader["dataCadastro"]),
                             dataUltAlt = Convert.ToDateTime(reader["dataUltAlt"]),

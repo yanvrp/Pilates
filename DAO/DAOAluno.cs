@@ -142,11 +142,12 @@ WHERE
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE aluno SET Aluno = @aluno, apelido = @apelido, endereco = @endereco, bairro = @bairro, numero = @numero, cep = @cep, complemento = @complemento, sexo = @sexo, email = @email, celular = @celular, cpf = @cpf, dataNasc = @dataNasc, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt, idCidade = @idCidade, idProfissao = @idProfissao, ativo = @ativo WHERE idAluno = @id";
+                string query = "UPDATE aluno SET Aluno = @aluno, usuarioUltAlt = @usuarioUltAlt, apelido = @apelido, endereco = @endereco, bairro = @bairro, numero = @numero, cep = @cep, complemento = @complemento, sexo = @sexo, email = @email, celular = @celular, cpf = @cpf, dataNasc = @dataNasc, dataCadastro = @dataCadastro, dataUltAlt = @dataUltAlt, idCidade = @idCidade, idProfissao = @idProfissao, ativo = @ativo WHERE idAluno = @id";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", aluno.idAluno);
                 command.Parameters.AddWithValue("@aluno", aluno.Aluno);
+                command.Parameters.AddWithValue("@usuarioUltAlt", aluno.usuarioUltAlt);
                 command.Parameters.AddWithValue("@apelido", aluno.Apelido);
                 command.Parameters.AddWithValue("@endereco", aluno.endereco);
                 command.Parameters.AddWithValue("@bairro", aluno.bairro);
@@ -185,6 +186,7 @@ WHERE
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.idAluno = Convert.ToInt32(reader["idAluno"]);
                         obj.Aluno = reader["Aluno"].ToString();
+                        obj.usuarioUltAlt = reader["usuarioUltAlt"].ToString();
                         obj.Apelido = reader["apelido"].ToString();
                         obj.endereco = reader["endereco"].ToString();
                         obj.bairro = reader["bairro"].ToString();
@@ -371,11 +373,12 @@ WHERE
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO aluno (Aluno, apelido, endereco, bairro, numero, cep, complemento, sexo, email, celular, cpf, dataNasc, dataCadastro, dataUltAlt, idCidade, idProfissao, ativo) VALUES (@aluno, @apelido, @endereco, @bairro, @numero, @cep, @complemento, @sexo, @email, @celular, @cpf, @dataNasc, @dataCadastro, @dataUltAlt, @idCidade, @idProfissao, @ativo)";
+                string query = "INSERT INTO aluno (usuarioUltAlt, Aluno, apelido, endereco, bairro, numero, cep, complemento, sexo, email, celular, cpf, dataNasc, dataCadastro, dataUltAlt, idCidade, idProfissao, ativo) VALUES (@usuarioUltAlt, @aluno, @apelido, @endereco, @bairro, @numero, @cep, @complemento, @sexo, @email, @celular, @cpf, @dataNasc, @dataCadastro, @dataUltAlt, @idCidade, @idProfissao, @ativo)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", aluno.idAluno);
                 command.Parameters.AddWithValue("@aluno", aluno.Aluno);
+                command.Parameters.AddWithValue("@usuarioUltAlt", aluno.usuarioUltAlt);
                 command.Parameters.AddWithValue("@apelido", aluno.Apelido);
                 command.Parameters.AddWithValue("@endereco", aluno.endereco);
                 command.Parameters.AddWithValue("@bairro", aluno.bairro);

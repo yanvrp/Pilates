@@ -16,6 +16,7 @@ namespace Pilates.Models
         public string cervicalPostura { get; set; }
         public string toracicaPostura { get; set; }
         public string lombarPostura { get; set; }
+        public string usuarioUltAlt { get; set; }
         public string quadrilPostura { get; set; }
         public string joelhoPostura { get; set; }
         public string pesPostura { get; set; }

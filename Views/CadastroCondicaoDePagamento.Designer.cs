@@ -60,7 +60,7 @@
             // 
             // lblDataUltAlt
             // 
-            this.lblDataUltAlt.Location = new System.Drawing.Point(134, 444);
+            this.lblDataUltAlt.Location = new System.Drawing.Point(118, 445);
             // 
             // lblDataCadastro
             // 
@@ -95,13 +95,21 @@
             // 
             // txtDataUltAlt
             // 
-            this.txtDataUltAlt.Location = new System.Drawing.Point(137, 460);
+            this.txtDataUltAlt.Location = new System.Drawing.Point(121, 461);
             this.txtDataUltAlt.Texts = "25/10/2024";
             // 
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Location = new System.Drawing.Point(590, 457);
+            // 
+            // txtUsuarioUltAlt
+            // 
+            this.txtUsuarioUltAlt.Location = new System.Drawing.Point(219, 461);
+            // 
+            // lblUsuarioUltAlt
+            // 
+            this.lblUsuarioUltAlt.Location = new System.Drawing.Point(216, 445);
             // 
             // lblCondicaoPagamento
             // 
@@ -553,6 +561,8 @@
             this.Text = "Cadastro de Condição de Pagamento";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroCondicaoDePagamento_FormClosed);
             this.Load += new System.EventHandler(this.CadastroCondicaoDePagamento_Load);
+            this.Controls.SetChildIndex(this.lblUsuarioUltAlt, 0);
+            this.Controls.SetChildIndex(this.txtUsuarioUltAlt, 0);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

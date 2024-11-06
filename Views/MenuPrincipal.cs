@@ -159,5 +159,11 @@ namespace Pilates
             ConsultaFormaPagamento consultaFormaPAgamento = new ConsultaFormaPagamento();
             consultaFormaPAgamento.ShowDialog();
         }
+
+        private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaUsuarios consultaUsuarios = new ConsultaUsuarios();
+            consultaUsuarios.ShowDialog();
+        }
     }
 }

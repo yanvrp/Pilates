@@ -16,6 +16,7 @@ namespace Pilates.Models
         public bool Ativo { get; set; }
         public string? observacao { get; set; }
         public DateTime? dataCancelamento { get; set; }
+        public string usuarioUltAlt { get; set; }
         public List<ModelAvaliacaoDores> Dores { get; set; }
         public List<ModelAvaliacaoDoenca> Doenca { get; set; }
         public List<ModelAvaliacaoCirurgia> Cirurgia { get; set; }
