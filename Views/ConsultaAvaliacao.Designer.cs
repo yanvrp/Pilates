@@ -33,6 +33,7 @@
             this.idAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Aluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataAvaliação = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataCancelamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvaliacao)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             // 
             this.btnAlterar.FlatAppearance.BorderSize = 0;
             this.btnAlterar.Location = new System.Drawing.Point(616, 426);
+            this.btnAlterar.Text = "Visualizar";
             // 
             // btnExcluir
             // 
@@ -74,7 +76,8 @@
             this.idAvaliação,
             this.idAluno,
             this.Aluno,
-            this.dataAvaliação});
+            this.dataAvaliação,
+            this.dataCancelamento});
             this.dataGridViewAvaliacao.Location = new System.Drawing.Point(12, 47);
             this.dataGridViewAvaliacao.Name = "dataGridViewAvaliacao";
             this.dataGridViewAvaliacao.ReadOnly = true;
@@ -108,6 +111,12 @@
             this.dataAvaliação.Name = "dataAvaliação";
             this.dataAvaliação.ReadOnly = true;
             // 
+            // dataCancelamento
+            // 
+            this.dataCancelamento.HeaderText = "Data Cancelamento";
+            this.dataCancelamento.Name = "dataCancelamento";
+            this.dataCancelamento.ReadOnly = true;
+            // 
             // ConsultaAvaliacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,5 +146,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idAluno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Aluno;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataAvaliação;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataCancelamento;
     }
 }

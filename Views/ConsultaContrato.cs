@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -16,6 +18,9 @@ namespace Pilates.Views
         private ControllerAluno<ModelAluno> controllerAluno;
         private ControllerPrograma<ModelPrograma> controllerPrograma;
         private ControllerCondicaoPagamento<ModelCondicaoPagamento> controllerCondicaoPagamento;
+
+        public int codAluno { get; set; }
+
         public ConsultaContrato()
         {
             InitializeComponent();
@@ -72,6 +77,8 @@ namespace Pilates.Views
                 dataGridViewContrato.Columns["idPrograma"].DataPropertyName = "idPrograma";
                 dataGridViewContrato.Columns["dataCancelamento"].DataPropertyName = "dataCancelamento";
                 dataGridViewContrato.Columns["dataCancelamento"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridViewContrato.Columns["dataFinalContrato"].DataPropertyName = "dataFinalContrato";
+                dataGridViewContrato.Columns["dataFinalContrato"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 dataGridViewContrato.Columns["dataInicio"].DataPropertyName = "dataInicioPrograma";
                 dataGridViewContrato.Columns["dataInicio"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 AtualizarConsultaContratos(cbInativos.Checked);
@@ -117,6 +124,60 @@ namespace Pilates.Views
                         dataGridViewContrato.Rows[e.RowIndex].Cells["Programa"].Value = "Programa não encontrado";
                     }
                 }
+            }
+            var dataCancelamentoValue = dataGridViewContrato.Rows[e.RowIndex].Cells["dataCancelamento"].Value;
+            var finalContratoValue = dataGridViewContrato.Rows[e.RowIndex].Cells["dataFinalContrato"].Value;
+
+            if (dataCancelamentoValue != DBNull.Value && dataCancelamentoValue != null)
+            {
+                dataGridViewContrato.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+            }
+            else if (finalContratoValue != DBNull.Value && finalContratoValue != null)
+            {
+                DateTime dataFinal = Convert.ToDateTime(finalContratoValue);
+                if (dataFinal < DateTime.Now)
+                {
+                    dataGridViewContrato.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.OrangeRed;
+                }
+                else
+                {
+                    dataGridViewContrato.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dataGridViewContrato.DefaultCellStyle.ForeColor;
+                }
+            }
+            else
+            {
+                dataGridViewContrato.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dataGridViewContrato.DefaultCellStyle.ForeColor;
+            }
+        }
+        public override void Pesquisar()
+        {
+            string pesquisa = txtPesquisar.Texts.Trim();
+            if (!string.IsNullOrEmpty(pesquisa))
+            {
+                try
+                {
+                    bool buscaInativos = cbInativos.Checked;
+                    var todosContratos = controllerContrato.BuscarTodos(buscaInativos);
+
+                    var resultadosPesquisa = todosContratos
+                        .Where(contrato =>
+                        {
+                            var aluno = controllerAluno.BuscarPorId(contrato.idAluno);
+                            return aluno != null && aluno.Aluno.Contains(pesquisa);
+                        })
+                        .ToList();
+
+                    dataGridViewContrato.DataSource = resultadosPesquisa;
+                    txtPesquisar.Texts = string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um erro ao pesquisar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                AtualizarConsultaContratos(cbInativos.Checked);
             }
         }
 
@@ -165,6 +226,12 @@ namespace Pilates.Views
             {
                 Close();
             }
+        }
+
+        private void cbInativos_CheckedChanged(object sender, EventArgs e)
+        {
+            bool incluirInativos = cbInativos.Checked;
+            AtualizarConsultaContratos(incluirInativos);
         }
     }
 }

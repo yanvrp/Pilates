@@ -57,7 +57,6 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Size = new System.Drawing.Size(92, 27);
             this.txtDataCadastro.Texts = "24/10/2024";
             // 
             // txtDataUltAlt
@@ -110,7 +109,7 @@
             this.txtDescricao.DisabledForeColor = System.Drawing.Color.White;
             this.txtDescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDescricao.Location = new System.Drawing.Point(23, 174);
-            this.txtDescricao.MaxLength = 32767;
+            this.txtDescricao.MaxLength = 200;
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -118,7 +117,7 @@
             this.txtDescricao.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDescricao.PlaceholderText = "";
             this.txtDescricao.Size = new System.Drawing.Size(489, 107);
-            this.txtDescricao.TabIndex = 21;
+            this.txtDescricao.TabIndex = 3;
             this.txtDescricao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtDescricao.Texts = "";
             this.txtDescricao.UnderlinedStyle = false;
@@ -136,7 +135,7 @@
             this.txtDoenca.DisabledForeColor = System.Drawing.Color.White;
             this.txtDoenca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDoenca.Location = new System.Drawing.Point(23, 104);
-            this.txtDoenca.MaxLength = 32767;
+            this.txtDoenca.MaxLength = 100;
             this.txtDoenca.Multiline = false;
             this.txtDoenca.Name = "txtDoenca";
             this.txtDoenca.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -144,7 +143,7 @@
             this.txtDoenca.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDoenca.PlaceholderText = "";
             this.txtDoenca.Size = new System.Drawing.Size(263, 28);
-            this.txtDoenca.TabIndex = 22;
+            this.txtDoenca.TabIndex = 1;
             this.txtDoenca.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtDoenca.Texts = "";
             this.txtDoenca.UnderlinedStyle = false;
@@ -162,7 +161,7 @@
             this.txtCID.DisabledForeColor = System.Drawing.Color.White;
             this.txtCID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCID.Location = new System.Drawing.Point(307, 104);
-            this.txtCID.MaxLength = 32767;
+            this.txtCID.MaxLength = 20;
             this.txtCID.Multiline = false;
             this.txtCID.Name = "txtCID";
             this.txtCID.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -170,7 +169,7 @@
             this.txtCID.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCID.PlaceholderText = "";
             this.txtCID.Size = new System.Drawing.Size(205, 28);
-            this.txtCID.TabIndex = 23;
+            this.txtCID.TabIndex = 2;
             this.txtCID.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCID.Texts = "";
             this.txtCID.UnderlinedStyle = false;

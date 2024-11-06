@@ -66,7 +66,6 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Size = new System.Drawing.Size(92, 27);
             this.txtDataCadastro.Texts = "24/10/2024";
             // 
             // txtDataUltAlt
@@ -119,7 +118,7 @@
             this.txtPais.DisabledForeColor = System.Drawing.Color.White;
             this.txtPais.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtPais.Location = new System.Drawing.Point(25, 104);
-            this.txtPais.MaxLength = 32767;
+            this.txtPais.MaxLength = 100;
             this.txtPais.Multiline = false;
             this.txtPais.Name = "txtPais";
             this.txtPais.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -127,7 +126,7 @@
             this.txtPais.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtPais.PlaceholderText = "";
             this.txtPais.Size = new System.Drawing.Size(413, 28);
-            this.txtPais.TabIndex = 16;
+            this.txtPais.TabIndex = 1;
             this.txtPais.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPais.Texts = "";
             this.txtPais.UnderlinedStyle = false;
@@ -146,7 +145,7 @@
             this.txtDDI.DisabledForeColor = System.Drawing.Color.White;
             this.txtDDI.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDDI.Location = new System.Drawing.Point(23, 175);
-            this.txtDDI.MaxLength = 32767;
+            this.txtDDI.MaxLength = 5;
             this.txtDDI.Multiline = false;
             this.txtDDI.Name = "txtDDI";
             this.txtDDI.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -154,7 +153,7 @@
             this.txtDDI.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDDI.PlaceholderText = "";
             this.txtDDI.Size = new System.Drawing.Size(84, 28);
-            this.txtDDI.TabIndex = 17;
+            this.txtDDI.TabIndex = 2;
             this.txtDDI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDDI.Texts = "";
             this.txtDDI.UnderlinedStyle = false;
@@ -173,7 +172,7 @@
             this.txtSigla.DisabledForeColor = System.Drawing.Color.White;
             this.txtSigla.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtSigla.Location = new System.Drawing.Point(23, 244);
-            this.txtSigla.MaxLength = 32767;
+            this.txtSigla.MaxLength = 5;
             this.txtSigla.Multiline = false;
             this.txtSigla.Name = "txtSigla";
             this.txtSigla.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -181,7 +180,7 @@
             this.txtSigla.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtSigla.PlaceholderText = "";
             this.txtSigla.Size = new System.Drawing.Size(188, 28);
-            this.txtSigla.TabIndex = 18;
+            this.txtSigla.TabIndex = 3;
             this.txtSigla.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtSigla.Texts = "";
             this.txtSigla.UnderlinedStyle = false;

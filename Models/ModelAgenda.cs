@@ -17,5 +17,6 @@ namespace Pilates.Models
         public DateTime dataUltAlt { get; set; }
         public DateTime data { get; set; }
         public bool Ativo { get; set; }
+        public DateTime? dataCancelamento { get; set; }
     }
 }

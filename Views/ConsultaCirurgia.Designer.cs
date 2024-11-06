@@ -35,10 +35,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCirurgia)).BeginInit();
             this.SuspendLayout();
             // 
-            // cbInativos
-            // 
-            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
-            // 
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
@@ -60,6 +56,10 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // cbInativos
+            // 
+            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
+            // 
             // dataGridViewCirurgia
             // 
             this.dataGridViewCirurgia.AllowUserToAddRows = false;
@@ -70,10 +70,10 @@
             this.Código,
             this.Cirurgia,
             this.Descrição});
-            this.dataGridViewCirurgia.Location = new System.Drawing.Point(12, 44);
+            this.dataGridViewCirurgia.Location = new System.Drawing.Point(12, 46);
             this.dataGridViewCirurgia.Name = "dataGridViewCirurgia";
             this.dataGridViewCirurgia.ReadOnly = true;
-            this.dataGridViewCirurgia.Size = new System.Drawing.Size(776, 371);
+            this.dataGridViewCirurgia.Size = new System.Drawing.Size(776, 369);
             this.dataGridViewCirurgia.TabIndex = 8;
             this.dataGridViewCirurgia.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCirurgia_CellDoubleClick);
             // 

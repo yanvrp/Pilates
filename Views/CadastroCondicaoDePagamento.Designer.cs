@@ -234,7 +234,7 @@
             this.txtCondicaoPagamento.DisabledForeColor = System.Drawing.Color.White;
             this.txtCondicaoPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCondicaoPagamento.Location = new System.Drawing.Point(23, 102);
-            this.txtCondicaoPagamento.MaxLength = 32767;
+            this.txtCondicaoPagamento.MaxLength = 50;
             this.txtCondicaoPagamento.Multiline = false;
             this.txtCondicaoPagamento.Name = "txtCondicaoPagamento";
             this.txtCondicaoPagamento.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -242,7 +242,7 @@
             this.txtCondicaoPagamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCondicaoPagamento.PlaceholderText = "";
             this.txtCondicaoPagamento.Size = new System.Drawing.Size(332, 28);
-            this.txtCondicaoPagamento.TabIndex = 31;
+            this.txtCondicaoPagamento.TabIndex = 1;
             this.txtCondicaoPagamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCondicaoPagamento.Texts = "";
             this.txtCondicaoPagamento.UnderlinedStyle = false;
@@ -260,7 +260,7 @@
             this.txtJuros.DisabledForeColor = System.Drawing.Color.White;
             this.txtJuros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtJuros.Location = new System.Drawing.Point(374, 102);
-            this.txtJuros.MaxLength = 32767;
+            this.txtJuros.MaxLength = 13;
             this.txtJuros.Multiline = false;
             this.txtJuros.Name = "txtJuros";
             this.txtJuros.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -268,7 +268,7 @@
             this.txtJuros.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtJuros.PlaceholderText = "";
             this.txtJuros.Size = new System.Drawing.Size(87, 28);
-            this.txtJuros.TabIndex = 32;
+            this.txtJuros.TabIndex = 2;
             this.txtJuros.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtJuros.Texts = "";
             this.txtJuros.UnderlinedStyle = false;
@@ -287,7 +287,7 @@
             this.txtDesconto.DisabledForeColor = System.Drawing.Color.White;
             this.txtDesconto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDesconto.Location = new System.Drawing.Point(586, 102);
-            this.txtDesconto.MaxLength = 32767;
+            this.txtDesconto.MaxLength = 13;
             this.txtDesconto.Multiline = false;
             this.txtDesconto.Name = "txtDesconto";
             this.txtDesconto.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -295,7 +295,7 @@
             this.txtDesconto.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDesconto.PlaceholderText = "";
             this.txtDesconto.Size = new System.Drawing.Size(87, 28);
-            this.txtDesconto.TabIndex = 33;
+            this.txtDesconto.TabIndex = 4;
             this.txtDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtDesconto.Texts = "";
             this.txtDesconto.UnderlinedStyle = false;
@@ -314,7 +314,7 @@
             this.txtMulta.DisabledForeColor = System.Drawing.Color.White;
             this.txtMulta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtMulta.Location = new System.Drawing.Point(480, 102);
-            this.txtMulta.MaxLength = 32767;
+            this.txtMulta.MaxLength = 13;
             this.txtMulta.Multiline = false;
             this.txtMulta.Name = "txtMulta";
             this.txtMulta.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -322,7 +322,7 @@
             this.txtMulta.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtMulta.PlaceholderText = "";
             this.txtMulta.Size = new System.Drawing.Size(87, 28);
-            this.txtMulta.TabIndex = 34;
+            this.txtMulta.TabIndex = 3;
             this.txtMulta.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtMulta.Texts = "";
             this.txtMulta.UnderlinedStyle = false;
@@ -341,7 +341,7 @@
             this.txtNumParcelas.DisabledForeColor = System.Drawing.Color.White;
             this.txtNumParcelas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtNumParcelas.Location = new System.Drawing.Point(23, 171);
-            this.txtNumParcelas.MaxLength = 32767;
+            this.txtNumParcelas.MaxLength = 13;
             this.txtNumParcelas.Multiline = false;
             this.txtNumParcelas.Name = "txtNumParcelas";
             this.txtNumParcelas.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -349,7 +349,7 @@
             this.txtNumParcelas.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtNumParcelas.PlaceholderText = "";
             this.txtNumParcelas.Size = new System.Drawing.Size(87, 28);
-            this.txtNumParcelas.TabIndex = 35;
+            this.txtNumParcelas.TabIndex = 5;
             this.txtNumParcelas.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtNumParcelas.Texts = "";
             this.txtNumParcelas.UnderlinedStyle = false;
@@ -369,7 +369,7 @@
             this.txtPorcentagem.DisabledForeColor = System.Drawing.Color.White;
             this.txtPorcentagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtPorcentagem.Location = new System.Drawing.Point(126, 171);
-            this.txtPorcentagem.MaxLength = 32767;
+            this.txtPorcentagem.MaxLength = 13;
             this.txtPorcentagem.Multiline = false;
             this.txtPorcentagem.Name = "txtPorcentagem";
             this.txtPorcentagem.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -377,7 +377,7 @@
             this.txtPorcentagem.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtPorcentagem.PlaceholderText = "";
             this.txtPorcentagem.Size = new System.Drawing.Size(70, 28);
-            this.txtPorcentagem.TabIndex = 36;
+            this.txtPorcentagem.TabIndex = 6;
             this.txtPorcentagem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPorcentagem.Texts = "";
             this.txtPorcentagem.UnderlinedStyle = false;
@@ -398,7 +398,7 @@
             this.txtPorcentagemTotal.Enabled = false;
             this.txtPorcentagemTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtPorcentagemTotal.Location = new System.Drawing.Point(214, 171);
-            this.txtPorcentagemTotal.MaxLength = 32767;
+            this.txtPorcentagemTotal.MaxLength = 13;
             this.txtPorcentagemTotal.Multiline = false;
             this.txtPorcentagemTotal.Name = "txtPorcentagemTotal";
             this.txtPorcentagemTotal.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -406,7 +406,7 @@
             this.txtPorcentagemTotal.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtPorcentagemTotal.PlaceholderText = "";
             this.txtPorcentagemTotal.Size = new System.Drawing.Size(70, 28);
-            this.txtPorcentagemTotal.TabIndex = 37;
+            this.txtPorcentagemTotal.TabIndex = 7;
             this.txtPorcentagemTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPorcentagemTotal.Texts = "";
             this.txtPorcentagemTotal.UnderlinedStyle = false;
@@ -424,7 +424,7 @@
             this.txtCodigoPagamento.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodigoPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodigoPagamento.Location = new System.Drawing.Point(302, 171);
-            this.txtCodigoPagamento.MaxLength = 32767;
+            this.txtCodigoPagamento.MaxLength = 5;
             this.txtCodigoPagamento.Multiline = false;
             this.txtCodigoPagamento.Name = "txtCodigoPagamento";
             this.txtCodigoPagamento.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -432,7 +432,7 @@
             this.txtCodigoPagamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodigoPagamento.PlaceholderText = "";
             this.txtCodigoPagamento.Size = new System.Drawing.Size(70, 28);
-            this.txtCodigoPagamento.TabIndex = 38;
+            this.txtCodigoPagamento.TabIndex = 8;
             this.txtCodigoPagamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCodigoPagamento.Texts = "";
             this.txtCodigoPagamento.UnderlinedStyle = false;

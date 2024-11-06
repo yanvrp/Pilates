@@ -101,18 +101,6 @@ namespace Pilates
             consultaPrograma.ShowDialog();
         }
 
-        private void formaDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConsultaFormaPagamento consultaFormaPAgamento = new ConsultaFormaPagamento();
-            consultaFormaPAgamento.ShowDialog();
-        }
-
-        private void condiçãoDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConsultaCondicaoPagamento consultaCondicaoPagamento = new ConsultaCondicaoPagamento();
-            consultaCondicaoPagamento.ShowDialog();
-        }
-
         private void programaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ConsultaPrograma consultaPrograma = new ConsultaPrograma();
@@ -158,6 +146,18 @@ namespace Pilates
         {
             ConsultaAgenda consultaAgenda = new ConsultaAgenda();
             consultaAgenda.ShowDialog();
+        }
+
+        private void condiçãoDePagamentoToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ConsultaCondicaoPagamento consultaCondicaoPagamento = new ConsultaCondicaoPagamento();
+            consultaCondicaoPagamento.ShowDialog();
+        }
+
+        private void formasDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaFormaPagamento consultaFormaPAgamento = new ConsultaFormaPagamento();
+            consultaFormaPAgamento.ShowDialog();
         }
     }
 }

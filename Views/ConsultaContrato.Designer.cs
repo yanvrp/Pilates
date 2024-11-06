@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.dataGridViewContrato = new System.Windows.Forms.DataGridView();
+            this.btnVisualizar = new Pilates.YControls.YButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,8 +39,9 @@
             this.programa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataCancelamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnVisualizar = new Pilates.YControls.YButton();
+            this.dataFinalContrato = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContrato)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnIncluir
@@ -61,12 +65,18 @@
             // btnPesquisar
             // 
             this.btnPesquisar.FlatAppearance.BorderSize = 0;
+            this.btnPesquisar.Size = new System.Drawing.Size(80, 31);
             // 
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.Location = new System.Drawing.Point(705, 439);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
+            // cbInativos
+            // 
+            this.cbInativos.Location = new System.Drawing.Point(725, 17);
+            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
             // 
             // dataGridViewContrato
             // 
@@ -81,7 +91,8 @@
             this.idPrograma,
             this.programa,
             this.dataInicio,
-            this.dataCancelamento});
+            this.dataCancelamento,
+            this.dataFinalContrato});
             this.dataGridViewContrato.Location = new System.Drawing.Point(12, 49);
             this.dataGridViewContrato.Name = "dataGridViewContrato";
             this.dataGridViewContrato.ReadOnly = true;
@@ -89,6 +100,47 @@
             this.dataGridViewContrato.TabIndex = 7;
             this.dataGridViewContrato.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContrato_CellDoubleClick);
             this.dataGridViewContrato.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewContrato_CellFormatting);
+            // 
+            // btnVisualizar
+            // 
+            this.btnVisualizar.BackColor = System.Drawing.Color.DarkViolet;
+            this.btnVisualizar.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.btnVisualizar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.btnVisualizar.BorderRadius = 8;
+            this.btnVisualizar.BorderSize = 1;
+            this.btnVisualizar.FlatAppearance.BorderSize = 0;
+            this.btnVisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVisualizar.ForeColor = System.Drawing.Color.White;
+            this.btnVisualizar.Location = new System.Drawing.Point(616, 439);
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Size = new System.Drawing.Size(83, 31);
+            this.btnVisualizar.TabIndex = 12;
+            this.btnVisualizar.Text = "Visualizar";
+            this.btnVisualizar.TextColor = System.Drawing.Color.White;
+            this.btnVisualizar.UseVisualStyleBackColor = false;
+            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(13, 17);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(53, 17);
+            this.radioButton1.TabIndex = 13;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Nome";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(505, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(78, 40);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Buscar Por";
             // 
             // Código
             // 
@@ -137,29 +189,17 @@
             this.dataCancelamento.Name = "dataCancelamento";
             this.dataCancelamento.ReadOnly = true;
             // 
-            // btnVisualizar
+            // dataFinalContrato
             // 
-            this.btnVisualizar.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnVisualizar.BackgroundColor = System.Drawing.Color.DarkViolet;
-            this.btnVisualizar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
-            this.btnVisualizar.BorderRadius = 8;
-            this.btnVisualizar.BorderSize = 1;
-            this.btnVisualizar.FlatAppearance.BorderSize = 0;
-            this.btnVisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVisualizar.ForeColor = System.Drawing.Color.White;
-            this.btnVisualizar.Location = new System.Drawing.Point(616, 439);
-            this.btnVisualizar.Name = "btnVisualizar";
-            this.btnVisualizar.Size = new System.Drawing.Size(83, 31);
-            this.btnVisualizar.TabIndex = 12;
-            this.btnVisualizar.Text = "Visualizar";
-            this.btnVisualizar.TextColor = System.Drawing.Color.White;
-            this.btnVisualizar.UseVisualStyleBackColor = false;
-            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
+            this.dataFinalContrato.HeaderText = "Data Final Contrato";
+            this.dataFinalContrato.Name = "dataFinalContrato";
+            this.dataFinalContrato.ReadOnly = true;
             // 
             // ConsultaContrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(800, 482);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnVisualizar);
             this.Controls.Add(this.dataGridViewContrato);
             this.Name = "ConsultaContrato";
@@ -174,7 +214,10 @@
             this.Controls.SetChildIndex(this.cbInativos, 0);
             this.Controls.SetChildIndex(this.dataGridViewContrato, 0);
             this.Controls.SetChildIndex(this.btnVisualizar, 0);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContrato)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +227,8 @@
 
         private System.Windows.Forms.DataGridView dataGridViewContrato;
         protected YControls.YButton btnVisualizar;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Código;
         private System.Windows.Forms.DataGridViewTextBoxColumn idAluno;
         private System.Windows.Forms.DataGridViewTextBoxColumn aluno;
@@ -191,5 +236,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn programa;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataCancelamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataFinalContrato;
     }
 }

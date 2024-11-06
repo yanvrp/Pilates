@@ -88,7 +88,7 @@ namespace Pilates.Views
                 }
                 else
                 {
-                    btnCancelar.Visible = true;
+                  //  btnCancelar.Visible = true;
                 }
                 if (contasReceber.dataRecebimento == null)
                 {
@@ -239,32 +239,50 @@ namespace Pilates.Views
         {
             if (Validacoes.DataValida(txtDataVencimento.Texts))
             {
-                DateTime dataVencimento = DateTime.Parse(txtDataVencimento.Texts);
-                DateTime dataAtual = DateTime.Now;
+                DateTime dataVencimento = Convert.ToDateTime(txtDataVencimento.Texts).Date;
+                DateTime dataAtual = DateTime.Now.Date;
 
-                int diasAtraso = (dataAtual - dataVencimento).Days;
-                decimal valorMulta = 0;
-
-                if (diasAtraso > 0 && porcentagemJuros.HasValue)
+                //verifica se a data atual é posterior à data de vencimento
+                if (dataAtual > dataVencimento && porcentagemMulta.HasValue)
                 {
-                    valorMulta = (diasAtraso * porcentagemMulta.Value / 100) * Convert.ToDecimal(txtValorParcela.Texts);
+                    //aplica a porcentagem da multa ao valor da parcela
+                    decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
+                    decimal valorMulta = (porcentagemMulta.Value / 100) * valorParcela;
+
+                    txtMulta.Texts = valorMulta.ToString("N2");
                 }
-                txtMulta.Texts = valorMulta.ToString("N2");
+                else
+                {
+                    //se não houver atraso, a multa é zero
+                    txtMulta.Texts = "0.00";
+                }
             }
         }
         private void calcularDesconto()
         {
             if (Validacoes.DataValida(txtDataVencimento.Texts))
             {
-                if (porcentagemDesconto.HasValue && !string.IsNullOrWhiteSpace(txtValorParcela.Texts))
-                {
-                    decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
-                    decimal valorDesconto = (porcentagemDesconto.Value / 100) * valorParcela;
+                DateTime dataVencimento = Convert.ToDateTime(txtDataVencimento.Texts).Date;
+                DateTime dataAtual = DateTime.Now.Date;
 
-                    txtDesconto.Texts = valorDesconto.ToString("N2");
+                //verificar se a data atual é menor ou igual à data de vencimento.
+                if (dataAtual <= dataVencimento)
+                {
+                    if (porcentagemDesconto.HasValue && !string.IsNullOrWhiteSpace(txtValorParcela.Texts))
+                    {
+                        decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
+                        decimal valorDesconto = (porcentagemDesconto.Value / 100) * valorParcela;
+
+                        txtDesconto.Texts = valorDesconto.ToString("N2");
+                    }
+                    else
+                    {
+                        txtDesconto.Texts = "0.00";
+                    }
                 }
                 else
                 {
+                    //se a data de vencimento já passou, o desconto deve ser zero.
                     txtDesconto.Texts = "0.00";
                 }
             }
@@ -294,6 +312,12 @@ namespace Pilates.Views
             txtCodFormaPag.Enabled = false;
             txtParcelas.Enabled = false;
             txtValorParcela.Enabled = false;
+            txtJuros.Enabled = false;
+            txtMulta.Enabled = false;
+            txtDesconto.Enabled = false;
+            txtValorRecebido.Enabled = false;
+            txtDataVencimento.Enabled = false;
+            txtObservacao.Enabled = false;
 
             btnPesquisarFormaPag.Enabled = false;
             btnPesquisarAluno.Enabled = false;

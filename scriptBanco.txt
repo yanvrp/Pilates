@@ -46,7 +46,7 @@ CREATE TABLE profissao (
     apelido VARCHAR(50),
     endereco VARCHAR(150),
     bairro VARCHAR(100),
-    numero INT,
+    numero VARCHAR(10),
     cep VARCHAR(8),
     complemento VARCHAR(100),
     sexo VARCHAR(10),
@@ -122,7 +122,8 @@ CREATE TABLE avaliacao (
     ativo BIT NOT NULL,
     dataCadastro DATE NOT NULL,
     dataUltAlt DATE NOT NULL,
-    PRIMARY KEY (idAvaliacao),
+    dataCancelamento DATE,
+    observação VARCHAR(200),
     CONSTRAINT FK_idAluno_Avaliacao FOREIGN KEY (idAluno) REFERENCES aluno(idAluno)
 );
 
@@ -145,11 +146,11 @@ CREATE TABLE avaliacao_Dores (
 );
 
 CREATE TABLE avaliacao_Gestacao (
+    idAvaliacaoGestacao INT IDENTITY(1,1) PRIMARY KEY,
     idAvaliacao INT NOT NULL,
     idGestacao INT NOT NULL,
     dataParto DATE,
     observacao VARCHAR(200),
-    PRIMARY KEY(idAvaliacao, idGestacao),
     CONSTRAINT FK_idAvaliacao_AvaliacaoGestacao FOREIGN KEY (idAvaliacao) REFERENCES avaliacao(idAvaliacao),
     CONSTRAINT FK_idGestacao_AvaliacaoGestacao FOREIGN KEY (idGestacao) REFERENCES gestacao(idGestacao)
 );
@@ -170,11 +171,10 @@ CREATE TABLE avaliacao_Medicamento (
     dosagem VARCHAR(10) NOT NULL,
     frequencia VARCHAR(20) NOT NULL,
     observacao VARCHAR(200),
-    PRIMARY KEY(idAvaliacao, idCirurgia),
+    PRIMARY KEY(idAvaliacao, idMedicamento),
     CONSTRAINT FK_idAvaliacao_AvaliacaoMedicamento FOREIGN KEY (idAvaliacao) REFERENCES avaliacao(idAvaliacao),
     CONSTRAINT FK_idMedicamento_AvaliacaoMedicamento FOREIGN KEY (idMedicamento) REFERENCES medicamento(idMedicamento)
 );
-
 
 CREATE TABLE postura (
     idPostura INT IDENTITY(1,1) NOT NULL,
@@ -260,16 +260,35 @@ CREATE TABLE contrato (
     idPrograma INT,
     idCondPagamento INT,
     dataInicioPrograma DATE NOT NULL,
-    dataPrograma DATE NOT NULL,
     horario TIME(7) NOT NULL,
     periodo VARCHAR(50) NOT NULL,
     diaAcordado INT NOT NULL,
     diasSemana VARCHAR(50) NOT NULL,
     valorTotal DECIMAL(10,2) NOT NULL,
+    dataCancelamento DATE, 
+    dataFinalContrato DATE,
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
     PRIMARY KEY (idContrato),
     CONSTRAINT FK_idAluno_contrato FOREIGN KEY (idAluno) REFERENCES aluno(idAluno),
     CONSTRAINT FK_idPrograma_contrato FOREIGN KEY (idPrograma) REFERENCES programa(idPrograma),
-    CONSTRAINT FK_idCondPagamento_contrato FOREING KEY (idCondPagamento) REFERENCES condicaoPagamento(idCondPagamento)
+    CONSTRAINT FK_idCondPagamento_contrato FOREIGN KEY (idCondPagamento) REFERENCES condicaoPagamento(idCondPagamento)
+);
+
+CREATE TABLE agenda (
+    idAgenda INT IDENTITY(1,1) PRIMARY KEY,  
+    idAluno INT NOT NULL,                   
+    idContrato INT,                   
+    horario TIME NOT NULL,                   
+    data DATE NOT NULL,                   
+    situacao VARCHAR(50),  
+    ativo BIT NOT NULL,
+    dataCadastro DATE NOT NULL,
+    dataUltAlt DATE NOT NULL,
+    dataCancelamento DATE,                 
+    CONSTRAINT fk_agenda_aluno FOREIGN KEY (idAluno) REFERENCES aluno(idAluno),
+    CONSTRAINT fk_agenda_contrato FOREIGN KEY (idContrato) REFERENCES contrato(idContrato)
 );
 
 CREATE TABLE fornecedor (
@@ -279,7 +298,7 @@ CREATE TABLE fornecedor (
     apelido_nome_fantasia VARCHAR(70),
     endereco VARCHAR(150),
     bairro VARCHAR(100),
-    numero VARCHAR(8),
+    numero VARCHAR(10),
     cep VARCHAR(8),
     complemento VARCHAR(50),
     sexo VARCHAR(15),
@@ -317,8 +336,10 @@ CREATE TABLE contasPagar (
     observacao VARCHAR(200),
     dataCadastro DATE NOT NULL,
     dataUltAlt DATE NOT NULL,
+    idFornecedor INT NOT NULL,
     CONSTRAINT PK_contasPagar PRIMARY KEY (numero, parcela),
-    CONSTRAINT FK_idFormaPagamento_contasPagar FOREIGN KEY (idFormaPagamento) REFERENCES formaPagamento(idFormaPagamento)
+    CONSTRAINT FK_idFormaPagamento_contasPagar FOREIGN KEY (idFormaPagamento) REFERENCES formaPagamento(idFormaPagamento),
+    CONSTRAINT FK_idFornecedor_contasPagar FOREIGN KEY (idFornecedor) REFERENCES fornecedor(idFornecedor)
 );
 
 CREATE TABLE contasReceber (
@@ -338,4 +359,7 @@ CREATE TABLE contasReceber (
     observacao VARCHAR(200),
     dataCadastro DATE NOT NULL,
     dataUltAlt DATE NOT NULL,
-    CONSTRAINT PK_contasReceber PRIMARY KEY (numero, idAluno, parcela),    CONSTRAINT FK_idFormaPagamento_contasReceber FOREIGN KEY (idFormaPagamento) REFERENCES formaPagamento(idFormaPagamento));
+    CONSTRAINT PK_contasReceber PRIMARY KEY (numero, idAluno, parcela),    CONSTRAINT FK_idFormaPagamento_contasReceber FOREIGN KEY (idFormaPagamento) REFERENCES formaPagamento(idFormaPagamento)
+);
+
+

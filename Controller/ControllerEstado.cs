@@ -15,6 +15,10 @@ namespace Pilates.Controller
         {
             daoEstado = new DAOEstado<T>();
         }
+        public string getEstado(int id)
+        {
+            return daoEstado.getEstado(id);
+        }
         public int BuscarUltimoCodigo()
         {
             return daoEstado.BuscarUltimoCodigo();

@@ -77,6 +77,9 @@
             this.cbQuarta = new System.Windows.Forms.CheckBox();
             this.cbTerca = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new Pilates.YControls.YButton();
+            this.txtFinalContrato = new Pilates.YControls.YMaskedTextBox();
+            this.lblFinalContrato = new System.Windows.Forms.Label();
             this.gbStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewParcelas)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -174,7 +177,7 @@
             // lblValorTotal
             // 
             this.lblValorTotal.AutoSize = true;
-            this.lblValorTotal.Location = new System.Drawing.Point(219, 288);
+            this.lblValorTotal.Location = new System.Drawing.Point(219, 284);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(61, 13);
             this.lblValorTotal.TabIndex = 16;
@@ -183,7 +186,7 @@
             // lblPeriodo
             // 
             this.lblPeriodo.AutoSize = true;
-            this.lblPeriodo.Location = new System.Drawing.Point(104, 287);
+            this.lblPeriodo.Location = new System.Drawing.Point(104, 283);
             this.lblPeriodo.Name = "lblPeriodo";
             this.lblPeriodo.Size = new System.Drawing.Size(48, 13);
             this.lblPeriodo.TabIndex = 18;
@@ -198,10 +201,10 @@
             "TRIMESTRAL",
             "SEMESTRAL",
             "ANUAL"});
-            this.txtPeriodo.Location = new System.Drawing.Point(107, 308);
+            this.txtPeriodo.Location = new System.Drawing.Point(107, 304);
             this.txtPeriodo.Name = "txtPeriodo";
             this.txtPeriodo.Size = new System.Drawing.Size(100, 21);
-            this.txtPeriodo.TabIndex = 19;
+            this.txtPeriodo.TabIndex = 6;
             this.txtPeriodo.SelectedIndexChanged += new System.EventHandler(this.txtPeriodo_SelectedIndexChanged);
             this.txtPeriodo.Leave += new System.EventHandler(this.txtPeriodo_Leave);
             // 
@@ -210,9 +213,9 @@
             this.lblHorario.AutoSize = true;
             this.lblHorario.Location = new System.Drawing.Point(219, 216);
             this.lblHorario.Name = "lblHorario";
-            this.lblHorario.Size = new System.Drawing.Size(44, 13);
+            this.lblHorario.Size = new System.Drawing.Size(48, 13);
             this.lblHorario.TabIndex = 20;
-            this.lblHorario.Text = "Horário:";
+            this.lblHorario.Text = "Horário*:";
             // 
             // lblCodCondPag
             // 
@@ -278,7 +281,7 @@
             // lblDiaPagamento
             // 
             this.lblDiaPagamento.AutoSize = true;
-            this.lblDiaPagamento.Location = new System.Drawing.Point(316, 287);
+            this.lblDiaPagamento.Location = new System.Drawing.Point(316, 283);
             this.lblDiaPagamento.Name = "lblDiaPagamento";
             this.lblDiaPagamento.Size = new System.Drawing.Size(69, 13);
             this.lblDiaPagamento.TabIndex = 31;
@@ -289,18 +292,18 @@
             this.lblInicioPrograma.AutoSize = true;
             this.lblInicioPrograma.Location = new System.Drawing.Point(105, 19);
             this.lblInicioPrograma.Name = "lblInicioPrograma";
-            this.lblInicioPrograma.Size = new System.Drawing.Size(102, 13);
+            this.lblInicioPrograma.Size = new System.Drawing.Size(97, 13);
             this.lblInicioPrograma.TabIndex = 33;
-            this.lblInicioPrograma.Text = "Inicio do Programa*:";
+            this.lblInicioPrograma.Text = "Inicio do Contrato*:";
             // 
             // lblDataCancelamento
             // 
             this.lblDataCancelamento.AutoSize = true;
-            this.lblDataCancelamento.Location = new System.Drawing.Point(211, 565);
+            this.lblDataCancelamento.Location = new System.Drawing.Point(210, 566);
             this.lblDataCancelamento.Name = "lblDataCancelamento";
-            this.lblDataCancelamento.Size = new System.Drawing.Size(119, 13);
+            this.lblDataCancelamento.Size = new System.Drawing.Size(104, 13);
             this.lblDataCancelamento.TabIndex = 35;
-            this.lblDataCancelamento.Text = "Data de Cancelamento:";
+            this.lblDataCancelamento.Text = "Data Cancelamento:";
             // 
             // lblAulas
             // 
@@ -323,7 +326,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 288);
+            this.label1.Location = new System.Drawing.Point(16, 284);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 41;
@@ -339,6 +342,7 @@
             this.txtInicioPrograma.DisabledBackColor = System.Drawing.Color.White;
             this.txtInicioPrograma.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtInicioPrograma.DisabledForeColor = System.Drawing.Color.White;
+            this.txtInicioPrograma.Enabled = false;
             this.txtInicioPrograma.EnabledBackColor = System.Drawing.Color.White;
             this.txtInicioPrograma.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtInicioPrograma.Location = new System.Drawing.Point(108, 35);
@@ -351,7 +355,7 @@
             this.txtInicioPrograma.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtInicioPrograma.PlaceholderText = "";
             this.txtInicioPrograma.Size = new System.Drawing.Size(95, 27);
-            this.txtInicioPrograma.TabIndex = 44;
+            this.txtInicioPrograma.TabIndex = 1;
             this.txtInicioPrograma.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtInicioPrograma.Texts = "  /  /";
             this.txtInicioPrograma.UnderlinedStyle = false;
@@ -370,7 +374,7 @@
             this.txtCodAluno.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodAluno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodAluno.Location = new System.Drawing.Point(18, 99);
-            this.txtCodAluno.MaxLength = 32767;
+            this.txtCodAluno.MaxLength = 5;
             this.txtCodAluno.Multiline = false;
             this.txtCodAluno.Name = "txtCodAluno";
             this.txtCodAluno.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -378,7 +382,7 @@
             this.txtCodAluno.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodAluno.PlaceholderText = "";
             this.txtCodAluno.Size = new System.Drawing.Size(77, 28);
-            this.txtCodAluno.TabIndex = 45;
+            this.txtCodAluno.TabIndex = 2;
             this.txtCodAluno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodAluno.Texts = "";
             this.txtCodAluno.UnderlinedStyle = false;
@@ -398,7 +402,7 @@
             this.txtCodPrograma.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodPrograma.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodPrograma.Location = new System.Drawing.Point(18, 162);
-            this.txtCodPrograma.MaxLength = 32767;
+            this.txtCodPrograma.MaxLength = 5;
             this.txtCodPrograma.Multiline = false;
             this.txtCodPrograma.Name = "txtCodPrograma";
             this.txtCodPrograma.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -406,7 +410,7 @@
             this.txtCodPrograma.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodPrograma.PlaceholderText = "";
             this.txtCodPrograma.Size = new System.Drawing.Size(77, 28);
-            this.txtCodPrograma.TabIndex = 46;
+            this.txtCodPrograma.TabIndex = 3;
             this.txtCodPrograma.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodPrograma.Texts = "";
             this.txtCodPrograma.UnderlinedStyle = false;
@@ -527,7 +531,7 @@
             this.txtAulas.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtAulas.PlaceholderText = "";
             this.txtAulas.Size = new System.Drawing.Size(76, 28);
-            this.txtAulas.TabIndex = 51;
+            this.txtAulas.TabIndex = 4;
             this.txtAulas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAulas.Texts = "";
             this.txtAulas.UnderlinedStyle = false;
@@ -554,7 +558,7 @@
             this.txtTipoPrograma.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtTipoPrograma.PlaceholderText = "";
             this.txtTipoPrograma.Size = new System.Drawing.Size(99, 28);
-            this.txtTipoPrograma.TabIndex = 52;
+            this.txtTipoPrograma.TabIndex = 5;
             this.txtTipoPrograma.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTipoPrograma.Texts = "";
             this.txtTipoPrograma.UnderlinedStyle = false;
@@ -572,7 +576,7 @@
             this.txtValorMensal.DisabledForeColor = System.Drawing.Color.White;
             this.txtValorMensal.Enabled = false;
             this.txtValorMensal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtValorMensal.Location = new System.Drawing.Point(19, 303);
+            this.txtValorMensal.Location = new System.Drawing.Point(19, 299);
             this.txtValorMensal.MaxLength = 32767;
             this.txtValorMensal.Multiline = false;
             this.txtValorMensal.Name = "txtValorMensal";
@@ -599,7 +603,7 @@
             this.txtValorTotal.DisabledForeColor = System.Drawing.Color.White;
             this.txtValorTotal.Enabled = false;
             this.txtValorTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtValorTotal.Location = new System.Drawing.Point(222, 303);
+            this.txtValorTotal.Location = new System.Drawing.Point(222, 299);
             this.txtValorTotal.MaxLength = 32767;
             this.txtValorTotal.Multiline = false;
             this.txtValorTotal.Name = "txtValorTotal";
@@ -625,8 +629,8 @@
             this.txtDiaPagar.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtDiaPagar.DisabledForeColor = System.Drawing.Color.White;
             this.txtDiaPagar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtDiaPagar.Location = new System.Drawing.Point(319, 303);
-            this.txtDiaPagar.MaxLength = 32767;
+            this.txtDiaPagar.Location = new System.Drawing.Point(319, 299);
+            this.txtDiaPagar.MaxLength = 3;
             this.txtDiaPagar.Multiline = false;
             this.txtDiaPagar.Name = "txtDiaPagar";
             this.txtDiaPagar.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -634,11 +638,12 @@
             this.txtDiaPagar.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDiaPagar.PlaceholderText = "";
             this.txtDiaPagar.Size = new System.Drawing.Size(76, 28);
-            this.txtDiaPagar.TabIndex = 56;
+            this.txtDiaPagar.TabIndex = 7;
             this.txtDiaPagar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDiaPagar.Texts = "";
             this.txtDiaPagar.UnderlinedStyle = false;
             this.txtDiaPagar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiaPagar_KeyPress);
+            this.txtDiaPagar.Leave += new System.EventHandler(this.txtDiaPagar_Leave);
             // 
             // txtCodCondPag
             // 
@@ -653,7 +658,7 @@
             this.txtCodCondPag.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodCondPag.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodCondPag.Location = new System.Drawing.Point(20, 359);
-            this.txtCodCondPag.MaxLength = 32767;
+            this.txtCodCondPag.MaxLength = 5;
             this.txtCodCondPag.Multiline = false;
             this.txtCodCondPag.Name = "txtCodCondPag";
             this.txtCodCondPag.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -661,7 +666,7 @@
             this.txtCodCondPag.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodCondPag.PlaceholderText = "";
             this.txtCodCondPag.Size = new System.Drawing.Size(76, 28);
-            this.txtCodCondPag.TabIndex = 57;
+            this.txtCodCondPag.TabIndex = 8;
             this.txtCodCondPag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodCondPag.Texts = "";
             this.txtCodCondPag.UnderlinedStyle = false;
@@ -743,6 +748,7 @@
             this.txtDataCancelamento.DisabledBackColor = System.Drawing.Color.White;
             this.txtDataCancelamento.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtDataCancelamento.DisabledForeColor = System.Drawing.Color.White;
+            this.txtDataCancelamento.Enabled = false;
             this.txtDataCancelamento.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataCancelamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDataCancelamento.Location = new System.Drawing.Point(213, 581);
@@ -754,7 +760,7 @@
             this.txtDataCancelamento.PasswordChar = false;
             this.txtDataCancelamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDataCancelamento.PlaceholderText = "";
-            this.txtDataCancelamento.Size = new System.Drawing.Size(117, 27);
+            this.txtDataCancelamento.Size = new System.Drawing.Size(102, 27);
             this.txtDataCancelamento.TabIndex = 61;
             this.txtDataCancelamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataCancelamento.Texts = "  /  /";
@@ -785,7 +791,7 @@
             this.cbHoras.Location = new System.Drawing.Point(223, 237);
             this.cbHoras.Name = "cbHoras";
             this.cbHoras.Size = new System.Drawing.Size(57, 21);
-            this.cbHoras.TabIndex = 62;
+            this.cbHoras.TabIndex = 4;
             // 
             // cbMinutos
             // 
@@ -797,7 +803,7 @@
             this.cbMinutos.Location = new System.Drawing.Point(296, 237);
             this.cbMinutos.Name = "cbMinutos";
             this.cbMinutos.Size = new System.Drawing.Size(57, 21);
-            this.cbMinutos.TabIndex = 63;
+            this.cbMinutos.TabIndex = 5;
             // 
             // label2
             // 
@@ -888,12 +894,72 @@
             this.groupBox1.Size = new System.Drawing.Size(271, 69);
             this.groupBox1.TabIndex = 71;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Dias Semana";
+            this.groupBox1.Text = "Dias Semana*";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnCancelar.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.btnCancelar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelar.BorderRadius = 8;
+            this.btnCancelar.BorderSize = 1;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelar.Location = new System.Drawing.Point(436, 577);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(120, 31);
+            this.btnCancelar.TabIndex = 101;
+            this.btnCancelar.Text = "Cancelar Contrato";
+            this.btnCancelar.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // txtFinalContrato
+            // 
+            this.txtFinalContrato.BackColor = System.Drawing.SystemColors.Window;
+            this.txtFinalContrato.BorderColor = System.Drawing.Color.DarkGray;
+            this.txtFinalContrato.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.txtFinalContrato.BorderRadius = 8;
+            this.txtFinalContrato.BorderSize = 1;
+            this.txtFinalContrato.DisabledBackColor = System.Drawing.Color.White;
+            this.txtFinalContrato.DisabledBorderColor = System.Drawing.Color.Gainsboro;
+            this.txtFinalContrato.DisabledForeColor = System.Drawing.Color.White;
+            this.txtFinalContrato.Enabled = false;
+            this.txtFinalContrato.EnabledBackColor = System.Drawing.Color.White;
+            this.txtFinalContrato.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.txtFinalContrato.Location = new System.Drawing.Point(419, 300);
+            this.txtFinalContrato.Mask = "00/00/0000";
+            this.txtFinalContrato.MaxLength = 32767;
+            this.txtFinalContrato.Multiline = false;
+            this.txtFinalContrato.Name = "txtFinalContrato";
+            this.txtFinalContrato.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.txtFinalContrato.PasswordChar = false;
+            this.txtFinalContrato.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtFinalContrato.PlaceholderText = "";
+            this.txtFinalContrato.Size = new System.Drawing.Size(95, 27);
+            this.txtFinalContrato.TabIndex = 102;
+            this.txtFinalContrato.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFinalContrato.Texts = "  /  /";
+            this.txtFinalContrato.UnderlinedStyle = false;
+            // 
+            // lblFinalContrato
+            // 
+            this.lblFinalContrato.AutoSize = true;
+            this.lblFinalContrato.Location = new System.Drawing.Point(416, 284);
+            this.lblFinalContrato.Name = "lblFinalContrato";
+            this.lblFinalContrato.Size = new System.Drawing.Size(87, 13);
+            this.lblFinalContrato.TabIndex = 103;
+            this.lblFinalContrato.Text = "Final do Contrato";
             // 
             // CadastroContrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(665, 624);
+            this.Controls.Add(this.txtFinalContrato);
+            this.Controls.Add(this.lblFinalContrato);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbMinutos);
@@ -983,6 +1049,9 @@
             this.Controls.SetChildIndex(this.cbMinutos, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.btnCancelar, 0);
+            this.Controls.SetChildIndex(this.lblFinalContrato, 0);
+            this.Controls.SetChildIndex(this.txtFinalContrato, 0);
             this.gbStatus.ResumeLayout(false);
             this.gbStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewParcelas)).EndInit();
@@ -1044,5 +1113,8 @@
         private System.Windows.Forms.CheckBox cbQuarta;
         private System.Windows.Forms.CheckBox cbTerca;
         private System.Windows.Forms.GroupBox groupBox1;
+        protected YControls.YButton btnCancelar;
+        private YControls.YMaskedTextBox txtFinalContrato;
+        private System.Windows.Forms.Label lblFinalContrato;
     }
 }

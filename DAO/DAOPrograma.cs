@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pilates.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,6 +10,23 @@ namespace Pilates.DAO
 {
     public class DAOPrograma<T> : DAO<T>
     {
+        public int BuscarUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(idPrograma) FROM programa";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
         public override void Alterar(T obj)
         {
             dynamic programa = obj;
@@ -29,6 +47,35 @@ namespace Pilates.DAO
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+        }
+        public ModelPrograma getPrograma(int id)
+        {
+            ModelPrograma programa = null;
+
+            string query = "SELECT * FROM programa WHERE idPrograma = @idPrograma AND ativo = 1";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@idPrograma", id);
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        programa = new ModelPrograma
+                        {
+                            idPrograma = reader.GetInt32(reader.GetOrdinal("idPrograma")),
+                            titulo = reader.GetString(reader.GetOrdinal("titulo")),
+                            numeroAulas = reader.GetInt32(reader.GetOrdinal("numeroAulas")),
+                            tipoPrograma = reader.GetString(reader.GetOrdinal("tipoPrograma")),
+                            Valor = reader.GetDecimal(reader.GetOrdinal("Valor"))
+                        };
+                    }
+                }
+            }
+            return programa;
         }
 
         public override T BuscarPorId(int id)

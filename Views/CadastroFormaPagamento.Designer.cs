@@ -91,7 +91,7 @@
             this.txtFormaPagamento.DisabledForeColor = System.Drawing.Color.White;
             this.txtFormaPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtFormaPagamento.Location = new System.Drawing.Point(23, 129);
-            this.txtFormaPagamento.MaxLength = 32767;
+            this.txtFormaPagamento.MaxLength = 50;
             this.txtFormaPagamento.Multiline = false;
             this.txtFormaPagamento.Name = "txtFormaPagamento";
             this.txtFormaPagamento.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -99,7 +99,7 @@
             this.txtFormaPagamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtFormaPagamento.PlaceholderText = "";
             this.txtFormaPagamento.Size = new System.Drawing.Size(389, 28);
-            this.txtFormaPagamento.TabIndex = 16;
+            this.txtFormaPagamento.TabIndex = 1;
             this.txtFormaPagamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFormaPagamento.Texts = "";
             this.txtFormaPagamento.UnderlinedStyle = false;

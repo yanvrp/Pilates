@@ -16,8 +16,10 @@ namespace Pilates.Views
         private ConsultaFormaPagamento consultaFormaPagamento;
         private ControllerFormaPagamento<ModelFormaPagamento> controllerFormaPagamento;
         private ControllerContasPagar<ModelContasPagar> controllerContasPagar;
-        int Numero = -1;
-        int Parcela = -1;
+        private ConsultaFornecedor consultaFornecedor;
+        private ControllerFornecedor<ModelFornecedor> controllerFornecedor;
+        int Numero;
+        int Parcela;
         decimal? porcentagemJuros;
         decimal? porcentagemMulta;
         decimal? porcentagemDesconto;
@@ -27,6 +29,10 @@ namespace Pilates.Views
             consultaFormaPagamento = new ConsultaFormaPagamento();
             controllerFormaPagamento = new ControllerFormaPagamento<ModelFormaPagamento>();
             controllerContasPagar = new ControllerContasPagar<ModelContasPagar>();
+            consultaFornecedor = new ConsultaFornecedor();
+            controllerFornecedor = new ControllerFornecedor<ModelFornecedor>();
+            Numero = -1;
+            Parcela = -1;
         }
         public CadastroContasPagar(int numero, int parcela) : this()
         {
@@ -52,6 +58,7 @@ namespace Pilates.Views
                 txtNumero.Texts = contasPagar.numero.ToString();
                 txtDataEmissao.Texts = contasPagar.dataEmissao.ToString();
                 txtCodFormaPag.Texts = contasPagar.idFormaPagamento.ToString();
+                txtCodFornecedor.Texts = contasPagar.idFornecedor.ToString();
                 txtParcelas.Texts = contasPagar.parcela.ToString();
                 txtValorParcela.Texts = contasPagar.valorParcela.ToString();
                 txtDataVencimento.Texts = contasPagar.dataVencimento.ToString();
@@ -66,6 +73,9 @@ namespace Pilates.Views
                 txtDataUltAlt.Texts = contasPagar.dataUltAlt.ToString();
 
                 ModelFormaPagamento formaPagamento = controllerFormaPagamento.BuscarPorId(int.Parse(txtCodFormaPag.Texts));
+                ModelFornecedor fornecedor = controllerFornecedor.BuscarPorId(int.Parse(txtCodFornecedor.Texts));
+                if (fornecedor != null)
+                    txtFornecedor.Texts = fornecedor.fornecedor_razao_social;
 
                 if (formaPagamento != null)
                     txtFormaPag.Texts = formaPagamento.formaPagamento;
@@ -112,6 +122,7 @@ namespace Pilates.Views
             {
                 DateTime.TryParse(txtDataEmissao.Texts, out DateTime dataEmissao);
                 int idFormaPag = Convert.ToInt32(txtCodFormaPag.Texts);
+                int idFornecedor = Convert.ToInt32(txtCodFornecedor.Texts);
                 int parcelas = Convert.ToInt32(txtParcelas.Texts);
                 decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
                 DateTime.TryParse(txtDataVencimento.Texts, out DateTime dataVencimento);
@@ -129,6 +140,7 @@ namespace Pilates.Views
                     numero = numero,
                     dataEmissao = dataEmissao,
                     idFormaPagamento = idFormaPag,
+                    idFornecedor = idFornecedor,
                     parcela = parcela,
                     valorParcela = valorParcela,
                     dataVencimento = dataVencimento,
@@ -179,6 +191,12 @@ namespace Pilates.Views
                 txtCodFormaPag.Focus();
                 return false;
             }
+            if (!Validacoes.CampoObrigatorio(txtCodFornecedor.Texts))
+            {
+                MessageBox.Show("Campo Código fornecedor é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCodFornecedor.Focus();
+                return false;
+            }
             if (!Validacoes.CampoObrigatorio(txtParcelas.Texts))
             {
                 MessageBox.Show("Campo Nº Parcela é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -220,32 +238,50 @@ namespace Pilates.Views
         {
             if (Validacoes.DataValida(txtDataVencimento.Texts))
             {
-                DateTime dataVencimento = DateTime.Parse(txtDataVencimento.Texts);
-                DateTime dataAtual = DateTime.Now;
+                DateTime dataVencimento = Convert.ToDateTime(txtDataVencimento.Texts).Date;
+                DateTime dataAtual = DateTime.Now.Date;
 
-                int diasAtraso = (dataAtual - dataVencimento).Days;
-                decimal valorMulta = 0;
-
-                if (diasAtraso > 0 && porcentagemJuros.HasValue)
+                //verifica se a data atual é posterior à data de vencimento
+                if (dataAtual > dataVencimento && porcentagemMulta.HasValue)
                 {
-                    valorMulta = (diasAtraso * porcentagemMulta.Value / 100) * Convert.ToDecimal(txtValorParcela.Texts);
+                    //aplica a porcentagem da multa ao valor da parcela
+                    decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
+                    decimal valorMulta = (porcentagemMulta.Value / 100) * valorParcela;
+
+                    txtMulta.Texts = valorMulta.ToString("N2");
                 }
-                txtMulta.Texts = valorMulta.ToString("N2");
+                else
+                {
+                    //se não houver atraso, a multa é zero
+                    txtMulta.Texts = "0.00";
+                }
             }
         }
         private void calcularDesconto()
         {
             if (Validacoes.DataValida(txtDataVencimento.Texts))
             {
-                if (porcentagemDesconto.HasValue && !string.IsNullOrWhiteSpace(txtValorParcela.Texts))
-                {
-                    decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
-                    decimal valorDesconto = (porcentagemDesconto.Value / 100) * valorParcela;
+                DateTime dataVencimento = Convert.ToDateTime(txtDataVencimento.Texts).Date;
+                DateTime dataAtual = DateTime.Now.Date;
 
-                    txtDesconto.Texts = valorDesconto.ToString("N2");
+                //verificar se a data atual é menor ou igual à data de vencimento.
+                if (dataAtual <= dataVencimento)
+                {
+                    if (porcentagemDesconto.HasValue && !string.IsNullOrWhiteSpace(txtValorParcela.Texts))
+                    {
+                        decimal valorParcela = Convert.ToDecimal(txtValorParcela.Texts);
+                        decimal valorDesconto = (porcentagemDesconto.Value / 100) * valorParcela;
+
+                        txtDesconto.Texts = valorDesconto.ToString("N2");
+                    }
+                    else
+                    {
+                        txtDesconto.Texts = "0.00";
+                    }
                 }
                 else
                 {
+                    //se a data de vencimento já passou, o desconto deve ser zero.
                     txtDesconto.Texts = "0.00";
                 }
             }
@@ -273,9 +309,16 @@ namespace Pilates.Views
             txtNumero.Enabled = false;
             txtDataEmissao.Enabled = false;
             txtCodFormaPag.Enabled = false;
+            txtCodFornecedor.Enabled = false;
             txtParcelas.Enabled = false;
             txtValorParcela.Enabled = false;
             btnPesquisarFormaPag.Enabled = false;
+            btnPesquisaFornecedor .Enabled = false;
+            txtDataVencimento.Enabled = false;
+            txtJuros.Enabled = false;
+            txtMulta.Enabled = false;
+            txtDesconto.Enabled = false;
+            txtValorPago.Enabled = false;
             txtDataVencimento.Enabled = false;
         }
         public void BloqueiaTudo()
@@ -461,6 +504,7 @@ namespace Pilates.Views
                             BloqueiaTudo();
 
                             MessageBox.Show("Conta a pagar cancelada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
                         }
                         else
                         {
@@ -481,10 +525,7 @@ namespace Pilates.Views
 
         private void txtParcelas_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+
         }
 
         private void txtValorParcela_KeyPress(object sender, KeyPressEventArgs e)
@@ -535,6 +576,51 @@ namespace Pilates.Views
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtCodFormaPag_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnPesquisaFornecedor_Click(object sender, EventArgs e)
+        {
+            consultaFornecedor.btnSair.Text = "Selecionar";
+
+            if (consultaFornecedor.ShowDialog() == DialogResult.OK)
+            {
+                var infosFornecedor = consultaFornecedor.Tag as Tuple<int, string>;
+                if (infosFornecedor != null)
+                {
+                    int idFornecedor = infosFornecedor.Item1;
+                    string Fornecedor = infosFornecedor.Item2;
+
+                    txtCodFornecedor.Texts = idFornecedor.ToString();
+                    txtFornecedor.Texts = Fornecedor;
+                }
+            }
+        }
+
+        private void txtCodFornecedor_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCodFornecedor.Texts))
+            {
+                ModelFornecedor fornecedor = controllerFornecedor.BuscarPorId(int.Parse(txtCodFornecedor.Texts));
+                if (fornecedor != null)
+                {
+                    txtFornecedor.Texts = fornecedor.fornecedor_razao_social;
+                }
+                else
+                {
+                    MessageBox.Show("Fornecedor não encontrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCodFornecedor.Focus();
+                    txtCodFornecedor.Clear();
+                    txtFornecedor.Clear();
+                }
             }
         }
     }

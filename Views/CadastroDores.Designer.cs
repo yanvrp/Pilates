@@ -50,7 +50,6 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Size = new System.Drawing.Size(92, 27);
             this.txtDataCadastro.Texts = "24/10/2024";
             // 
             // txtDataUltAlt
@@ -94,7 +93,7 @@
             this.txtDores.DisabledForeColor = System.Drawing.Color.White;
             this.txtDores.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDores.Location = new System.Drawing.Point(23, 101);
-            this.txtDores.MaxLength = 32767;
+            this.txtDores.MaxLength = 100;
             this.txtDores.Multiline = false;
             this.txtDores.Name = "txtDores";
             this.txtDores.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -102,7 +101,7 @@
             this.txtDores.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDores.PlaceholderText = "";
             this.txtDores.Size = new System.Drawing.Size(435, 28);
-            this.txtDores.TabIndex = 20;
+            this.txtDores.TabIndex = 1;
             this.txtDores.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtDores.Texts = "";
             this.txtDores.UnderlinedStyle = false;
@@ -120,7 +119,7 @@
             this.txtDescricao.DisabledForeColor = System.Drawing.Color.White;
             this.txtDescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDescricao.Location = new System.Drawing.Point(23, 174);
-            this.txtDescricao.MaxLength = 32767;
+            this.txtDescricao.MaxLength = 200;
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -128,7 +127,7 @@
             this.txtDescricao.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDescricao.PlaceholderText = "";
             this.txtDescricao.Size = new System.Drawing.Size(433, 107);
-            this.txtDescricao.TabIndex = 23;
+            this.txtDescricao.TabIndex = 2;
             this.txtDescricao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtDescricao.Texts = "";
             this.txtDescricao.UnderlinedStyle = false;

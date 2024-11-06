@@ -35,10 +35,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDores)).BeginInit();
             this.SuspendLayout();
             // 
-            // cbInativos
-            // 
-            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
-            // 
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
@@ -64,6 +60,10 @@
             this.btnSair.Location = new System.Drawing.Point(705, 433);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // cbInativos
+            // 
+            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
+            // 
             // dataGridViewDores
             // 
             this.dataGridViewDores.AllowUserToAddRows = false;
@@ -74,10 +74,10 @@
             this.Código,
             this.Dores,
             this.Descrição});
-            this.dataGridViewDores.Location = new System.Drawing.Point(12, 44);
+            this.dataGridViewDores.Location = new System.Drawing.Point(12, 46);
             this.dataGridViewDores.Name = "dataGridViewDores";
             this.dataGridViewDores.ReadOnly = true;
-            this.dataGridViewDores.Size = new System.Drawing.Size(776, 371);
+            this.dataGridViewDores.Size = new System.Drawing.Size(776, 369);
             this.dataGridViewDores.TabIndex = 8;
             this.dataGridViewDores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDores_CellDoubleClick);
             // 

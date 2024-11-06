@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -54,6 +55,39 @@ namespace Pilates.Views
                 MessageBox.Show("Ocorreu um erro ao atualizar a consulta de contas a receber: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public override void Pesquisar()
+        {
+            string pesquisa = txtPesquisar.Texts.Trim();
+            if (!string.IsNullOrEmpty(pesquisa))
+            {
+                try
+                {
+                    List<ModelContasReceber> resultadosPesquisa = new List<ModelContasReceber>();
+                    bool buscaInativos = cbInativos.Checked;
+
+                    if (int.TryParse(pesquisa, out int numeroNotaPesquisa))
+                    {
+                        resultadosPesquisa = controllerContasReceber.BuscarTodos(buscaInativos).Where(p => p.numero == numeroNotaPesquisa).ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor, insira um número de nota válido.", "Número inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    dataGridViewContasReceber.DataSource = resultadosPesquisa;
+                    txtPesquisar.Texts = string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um erro ao pesquisar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                AtualizarConsultaContasReceber(cbInativos.Checked);
+            }
+        }
         private void ConsultaContasReceber_Load(object sender, EventArgs e)
         {
             try
@@ -95,6 +129,47 @@ namespace Pilates.Views
                     else
                     {
                         dataGridViewContasReceber.Rows[e.RowIndex].Cells["Aluno"].Value = "Aluno não encontrado";
+                    }
+                }
+            }
+            if (dataGridViewContasReceber.Columns[e.ColumnIndex].Name == "dataRecebimento" && e.RowIndex >= 0)
+            {
+                var dataRecebimento = dataGridViewContasReceber.Rows[e.RowIndex].Cells["dataRecebimento"].Value;
+                if (dataRecebimento != DBNull.Value && dataRecebimento != null)
+                {
+                    dataGridViewContasReceber.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Green; //se estiver pago fica verde
+                }
+                else
+                {
+                    dataGridViewContasReceber.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dataGridViewContasReceber.DefaultCellStyle.ForeColor;
+                }
+            }
+
+            //verifica data vencimento e cancelamento
+            var dataVencimentoValue = dataGridViewContasReceber.Rows[e.RowIndex].Cells["dataVencimento"].Value;
+            var recebimentoValue = dataGridViewContasReceber.Rows[e.RowIndex].Cells["dataRecebimento"].Value;
+            var dataCancelamentoValue = dataGridViewContasReceber.Rows[e.RowIndex].Cells["dataCancelamento"].Value;
+
+            if (dataCancelamentoValue != DBNull.Value && dataCancelamentoValue != null)
+            {
+                e.CellStyle.ForeColor = Color.Red;
+            }
+            else
+            {
+                //verifica vencimento e pagamento
+                if (dataVencimentoValue != null && DateTime.TryParse(dataVencimentoValue.ToString(), out DateTime dataVencimento))
+                {
+                    if (dataVencimento < DateTime.Now.Date && string.IsNullOrEmpty(recebimentoValue?.ToString()))
+                    {
+                        e.CellStyle.ForeColor = ColorTranslator.FromHtml("#ff6400"); //se venceu fica laranja
+                    }
+                    else if (!string.IsNullOrEmpty(recebimentoValue?.ToString()))
+                    {
+                        e.CellStyle.ForeColor = Color.Green; //se ta pago verde
+                    }
+                    else
+                    {
+                        e.CellStyle.ForeColor = dataGridViewContasReceber.DefaultCellStyle.ForeColor; //se esta em dia fica a cor padrao
                     }
                 }
             }

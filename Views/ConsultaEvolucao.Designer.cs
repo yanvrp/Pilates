@@ -35,10 +35,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEvolucao)).BeginInit();
             this.SuspendLayout();
             // 
-            // cbInativos
-            // 
-            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
-            // 
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
@@ -61,6 +57,10 @@
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
             // 
+            // cbInativos
+            // 
+            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
+            // 
             // dataGridViewEvolucao
             // 
             this.dataGridViewEvolucao.AllowUserToAddRows = false;
@@ -71,10 +71,10 @@
             this.Código,
             this.Título,
             this.DataCadastro});
-            this.dataGridViewEvolucao.Location = new System.Drawing.Point(12, 43);
+            this.dataGridViewEvolucao.Location = new System.Drawing.Point(12, 46);
             this.dataGridViewEvolucao.Name = "dataGridViewEvolucao";
             this.dataGridViewEvolucao.ReadOnly = true;
-            this.dataGridViewEvolucao.Size = new System.Drawing.Size(776, 371);
+            this.dataGridViewEvolucao.Size = new System.Drawing.Size(776, 368);
             this.dataGridViewEvolucao.TabIndex = 8;
             this.dataGridViewEvolucao.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewEvolucao_CellFormatting);
             // 

@@ -77,7 +77,7 @@ namespace Pilates.Views
         }
         public override void Pesquisar()
         {
-            string pesquisa = txtPesquisar.Text.Trim(); //obtem a pesquisa do txt
+            string pesquisa = txtPesquisar.Texts.Trim(); //obtem a pesquisa do txt
 
             //verifica se há um termo de pesquisa
             if (!string.IsNullOrEmpty(pesquisa))
@@ -87,7 +87,7 @@ namespace Pilates.Views
                     //filtra os dados das doenças
                     List<ModelCirurgia> resultadosPesquisa = CirurgiaController.BuscarTodos(cbInativos.Checked).Where(p => p.cirurgia.ToLower().Contains(pesquisa.ToLower())).ToList();
                     dataGridViewCirurgia.DataSource = resultadosPesquisa; //atualiza o DataSource do DataGridView com os resultados da pesquisa
-                    txtPesquisar.Text = string.Empty; //limpa o txt pesquisa
+                    txtPesquisar.Texts = string.Empty; //limpa o txt pesquisa
                 }
                 catch (Exception ex)
                 {

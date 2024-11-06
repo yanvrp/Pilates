@@ -294,7 +294,7 @@
             this.txtTitulo.DisabledForeColor = System.Drawing.Color.White;
             this.txtTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtTitulo.Location = new System.Drawing.Point(20, 102);
-            this.txtTitulo.MaxLength = 32767;
+            this.txtTitulo.MaxLength = 200;
             this.txtTitulo.Multiline = false;
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -302,7 +302,7 @@
             this.txtTitulo.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtTitulo.PlaceholderText = "";
             this.txtTitulo.Size = new System.Drawing.Size(487, 28);
-            this.txtTitulo.TabIndex = 49;
+            this.txtTitulo.TabIndex = 1;
             this.txtTitulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTitulo.Texts = "";
             this.txtTitulo.UnderlinedStyle = false;
@@ -320,7 +320,7 @@
             this.txtCabeca.DisabledForeColor = System.Drawing.Color.White;
             this.txtCabeca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCabeca.Location = new System.Drawing.Point(18, 155);
-            this.txtCabeca.MaxLength = 32767;
+            this.txtCabeca.MaxLength = 200;
             this.txtCabeca.Multiline = false;
             this.txtCabeca.Name = "txtCabeca";
             this.txtCabeca.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -328,7 +328,7 @@
             this.txtCabeca.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCabeca.PlaceholderText = "";
             this.txtCabeca.Size = new System.Drawing.Size(675, 28);
-            this.txtCabeca.TabIndex = 50;
+            this.txtCabeca.TabIndex = 2;
             this.txtCabeca.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCabeca.Texts = "";
             this.txtCabeca.UnderlinedStyle = false;
@@ -346,7 +346,7 @@
             this.txtOmbro.DisabledForeColor = System.Drawing.Color.White;
             this.txtOmbro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtOmbro.Location = new System.Drawing.Point(18, 208);
-            this.txtOmbro.MaxLength = 32767;
+            this.txtOmbro.MaxLength = 200;
             this.txtOmbro.Multiline = false;
             this.txtOmbro.Name = "txtOmbro";
             this.txtOmbro.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -354,7 +354,7 @@
             this.txtOmbro.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtOmbro.PlaceholderText = "";
             this.txtOmbro.Size = new System.Drawing.Size(675, 28);
-            this.txtOmbro.TabIndex = 51;
+            this.txtOmbro.TabIndex = 3;
             this.txtOmbro.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtOmbro.Texts = "";
             this.txtOmbro.UnderlinedStyle = false;
@@ -372,7 +372,7 @@
             this.txtEscapula.DisabledForeColor = System.Drawing.Color.White;
             this.txtEscapula.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtEscapula.Location = new System.Drawing.Point(19, 262);
-            this.txtEscapula.MaxLength = 32767;
+            this.txtEscapula.MaxLength = 200;
             this.txtEscapula.Multiline = false;
             this.txtEscapula.Name = "txtEscapula";
             this.txtEscapula.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -380,7 +380,7 @@
             this.txtEscapula.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtEscapula.PlaceholderText = "";
             this.txtEscapula.Size = new System.Drawing.Size(675, 28);
-            this.txtEscapula.TabIndex = 52;
+            this.txtEscapula.TabIndex = 4;
             this.txtEscapula.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtEscapula.Texts = "";
             this.txtEscapula.UnderlinedStyle = false;
@@ -398,7 +398,7 @@
             this.txtMaos.DisabledForeColor = System.Drawing.Color.White;
             this.txtMaos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtMaos.Location = new System.Drawing.Point(20, 318);
-            this.txtMaos.MaxLength = 32767;
+            this.txtMaos.MaxLength = 200;
             this.txtMaos.Multiline = false;
             this.txtMaos.Name = "txtMaos";
             this.txtMaos.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -406,7 +406,7 @@
             this.txtMaos.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtMaos.PlaceholderText = "";
             this.txtMaos.Size = new System.Drawing.Size(675, 28);
-            this.txtMaos.TabIndex = 53;
+            this.txtMaos.TabIndex = 5;
             this.txtMaos.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtMaos.Texts = "";
             this.txtMaos.UnderlinedStyle = false;
@@ -424,7 +424,7 @@
             this.txtCervical.DisabledForeColor = System.Drawing.Color.White;
             this.txtCervical.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCervical.Location = new System.Drawing.Point(20, 375);
-            this.txtCervical.MaxLength = 32767;
+            this.txtCervical.MaxLength = 200;
             this.txtCervical.Multiline = false;
             this.txtCervical.Name = "txtCervical";
             this.txtCervical.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -432,7 +432,7 @@
             this.txtCervical.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCervical.PlaceholderText = "";
             this.txtCervical.Size = new System.Drawing.Size(675, 28);
-            this.txtCervical.TabIndex = 54;
+            this.txtCervical.TabIndex = 6;
             this.txtCervical.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCervical.Texts = "";
             this.txtCervical.UnderlinedStyle = false;
@@ -450,7 +450,7 @@
             this.txtToracica.DisabledForeColor = System.Drawing.Color.White;
             this.txtToracica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtToracica.Location = new System.Drawing.Point(20, 432);
-            this.txtToracica.MaxLength = 32767;
+            this.txtToracica.MaxLength = 200;
             this.txtToracica.Multiline = false;
             this.txtToracica.Name = "txtToracica";
             this.txtToracica.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -458,7 +458,7 @@
             this.txtToracica.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtToracica.PlaceholderText = "";
             this.txtToracica.Size = new System.Drawing.Size(675, 28);
-            this.txtToracica.TabIndex = 55;
+            this.txtToracica.TabIndex = 7;
             this.txtToracica.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtToracica.Texts = "";
             this.txtToracica.UnderlinedStyle = false;
@@ -476,7 +476,7 @@
             this.txtLombar.DisabledForeColor = System.Drawing.Color.White;
             this.txtLombar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtLombar.Location = new System.Drawing.Point(20, 488);
-            this.txtLombar.MaxLength = 32767;
+            this.txtLombar.MaxLength = 200;
             this.txtLombar.Multiline = false;
             this.txtLombar.Name = "txtLombar";
             this.txtLombar.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -484,7 +484,7 @@
             this.txtLombar.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtLombar.PlaceholderText = "";
             this.txtLombar.Size = new System.Drawing.Size(675, 28);
-            this.txtLombar.TabIndex = 56;
+            this.txtLombar.TabIndex = 8;
             this.txtLombar.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtLombar.Texts = "";
             this.txtLombar.UnderlinedStyle = false;
@@ -502,7 +502,7 @@
             this.txtQuadril.DisabledForeColor = System.Drawing.Color.White;
             this.txtQuadril.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtQuadril.Location = new System.Drawing.Point(20, 546);
-            this.txtQuadril.MaxLength = 32767;
+            this.txtQuadril.MaxLength = 200;
             this.txtQuadril.Multiline = false;
             this.txtQuadril.Name = "txtQuadril";
             this.txtQuadril.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -510,7 +510,7 @@
             this.txtQuadril.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtQuadril.PlaceholderText = "";
             this.txtQuadril.Size = new System.Drawing.Size(675, 28);
-            this.txtQuadril.TabIndex = 57;
+            this.txtQuadril.TabIndex = 9;
             this.txtQuadril.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtQuadril.Texts = "";
             this.txtQuadril.UnderlinedStyle = false;
@@ -528,7 +528,7 @@
             this.txtJoelhos.DisabledForeColor = System.Drawing.Color.White;
             this.txtJoelhos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtJoelhos.Location = new System.Drawing.Point(19, 602);
-            this.txtJoelhos.MaxLength = 32767;
+            this.txtJoelhos.MaxLength = 200;
             this.txtJoelhos.Multiline = false;
             this.txtJoelhos.Name = "txtJoelhos";
             this.txtJoelhos.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -536,7 +536,7 @@
             this.txtJoelhos.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtJoelhos.PlaceholderText = "";
             this.txtJoelhos.Size = new System.Drawing.Size(675, 28);
-            this.txtJoelhos.TabIndex = 58;
+            this.txtJoelhos.TabIndex = 10;
             this.txtJoelhos.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtJoelhos.Texts = "";
             this.txtJoelhos.UnderlinedStyle = false;
@@ -554,7 +554,7 @@
             this.txtPes.DisabledForeColor = System.Drawing.Color.White;
             this.txtPes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtPes.Location = new System.Drawing.Point(20, 660);
-            this.txtPes.MaxLength = 32767;
+            this.txtPes.MaxLength = 200;
             this.txtPes.Multiline = false;
             this.txtPes.Name = "txtPes";
             this.txtPes.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -562,7 +562,7 @@
             this.txtPes.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtPes.PlaceholderText = "";
             this.txtPes.Size = new System.Drawing.Size(675, 28);
-            this.txtPes.TabIndex = 59;
+            this.txtPes.TabIndex = 11;
             this.txtPes.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPes.Texts = "";
             this.txtPes.UnderlinedStyle = false;
@@ -580,7 +580,7 @@
             this.txtOutros.DisabledForeColor = System.Drawing.Color.White;
             this.txtOutros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtOutros.Location = new System.Drawing.Point(16, 720);
-            this.txtOutros.MaxLength = 32767;
+            this.txtOutros.MaxLength = 200;
             this.txtOutros.Multiline = true;
             this.txtOutros.Name = "txtOutros";
             this.txtOutros.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -588,7 +588,7 @@
             this.txtOutros.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtOutros.PlaceholderText = "";
             this.txtOutros.Size = new System.Drawing.Size(679, 55);
-            this.txtOutros.TabIndex = 60;
+            this.txtOutros.TabIndex = 12;
             this.txtOutros.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtOutros.Texts = "";
             this.txtOutros.UnderlinedStyle = false;

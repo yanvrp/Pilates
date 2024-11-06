@@ -50,7 +50,6 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Size = new System.Drawing.Size(92, 27);
             this.txtDataCadastro.Texts = "24/10/2024";
             // 
             // txtDataUltAlt
@@ -94,7 +93,7 @@
             this.txtDescricao.DisabledForeColor = System.Drawing.Color.White;
             this.txtDescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDescricao.Location = new System.Drawing.Point(23, 173);
-            this.txtDescricao.MaxLength = 32767;
+            this.txtDescricao.MaxLength = 200;
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -102,7 +101,7 @@
             this.txtDescricao.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDescricao.PlaceholderText = "";
             this.txtDescricao.Size = new System.Drawing.Size(432, 107);
-            this.txtDescricao.TabIndex = 20;
+            this.txtDescricao.TabIndex = 2;
             this.txtDescricao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtDescricao.Texts = "";
             this.txtDescricao.UnderlinedStyle = false;
@@ -120,7 +119,7 @@
             this.txtCirurgia.DisabledForeColor = System.Drawing.Color.White;
             this.txtCirurgia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCirurgia.Location = new System.Drawing.Point(23, 104);
-            this.txtCirurgia.MaxLength = 32767;
+            this.txtCirurgia.MaxLength = 100;
             this.txtCirurgia.Multiline = false;
             this.txtCirurgia.Name = "txtCirurgia";
             this.txtCirurgia.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -128,7 +127,7 @@
             this.txtCirurgia.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCirurgia.PlaceholderText = "";
             this.txtCirurgia.Size = new System.Drawing.Size(435, 28);
-            this.txtCirurgia.TabIndex = 21;
+            this.txtCirurgia.TabIndex = 1;
             this.txtCirurgia.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCirurgia.Texts = "";
             this.txtCirurgia.UnderlinedStyle = false;

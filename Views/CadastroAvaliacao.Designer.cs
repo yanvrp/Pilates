@@ -136,6 +136,11 @@
             this.btnPesquisarAluno = new Pilates.YControls.YButton();
             this.txtCodAluno = new Pilates.YControls.YTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtObservacao = new Pilates.YControls.YTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDataCancelamento = new Pilates.YControls.YMaskedTextBox();
+            this.lblDataCancelamento = new System.Windows.Forms.Label();
+            this.btnCancelar = new Pilates.YControls.YButton();
             this.gbStatus.SuspendLayout();
             this.gpDores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDores)).BeginInit();
@@ -229,7 +234,7 @@
             this.gpDores.Location = new System.Drawing.Point(23, 82);
             this.gpDores.Name = "gpDores";
             this.gpDores.Size = new System.Drawing.Size(712, 264);
-            this.gpDores.TabIndex = 33;
+            this.gpDores.TabIndex = 3;
             this.gpDores.TabStop = false;
             this.gpDores.Text = "Dores";
             // 
@@ -284,7 +289,7 @@
             this.txtObservacoesDores.DisabledForeColor = System.Drawing.Color.White;
             this.txtObservacoesDores.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtObservacoesDores.Location = new System.Drawing.Point(17, 90);
-            this.txtObservacoesDores.MaxLength = 32767;
+            this.txtObservacoesDores.MaxLength = 200;
             this.txtObservacoesDores.Multiline = false;
             this.txtObservacoesDores.Name = "txtObservacoesDores";
             this.txtObservacoesDores.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -292,7 +297,7 @@
             this.txtObservacoesDores.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtObservacoesDores.PlaceholderText = "";
             this.txtObservacoesDores.Size = new System.Drawing.Size(598, 28);
-            this.txtObservacoesDores.TabIndex = 57;
+            this.txtObservacoesDores.TabIndex = 5;
             this.txtObservacoesDores.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtObservacoesDores.Texts = "";
             this.txtObservacoesDores.UnderlinedStyle = false;
@@ -392,7 +397,7 @@
             this.txtCodDores.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodDores.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodDores.Location = new System.Drawing.Point(17, 38);
-            this.txtCodDores.MaxLength = 32767;
+            this.txtCodDores.MaxLength = 5;
             this.txtCodDores.Multiline = false;
             this.txtCodDores.Name = "txtCodDores";
             this.txtCodDores.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -400,7 +405,7 @@
             this.txtCodDores.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodDores.PlaceholderText = "";
             this.txtCodDores.Size = new System.Drawing.Size(85, 28);
-            this.txtCodDores.TabIndex = 53;
+            this.txtCodDores.TabIndex = 4;
             this.txtCodDores.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodDores.Texts = "";
             this.txtCodDores.UnderlinedStyle = false;
@@ -500,7 +505,7 @@
             this.gpDoenca.Location = new System.Drawing.Point(769, 82);
             this.gpDoenca.Name = "gpDoenca";
             this.gpDoenca.Size = new System.Drawing.Size(712, 264);
-            this.gpDoenca.TabIndex = 34;
+            this.gpDoenca.TabIndex = 6;
             this.gpDoenca.TabStop = false;
             this.gpDoenca.Text = "Doença";
             // 
@@ -582,7 +587,7 @@
             this.txtObservacoesDoenca.DisabledForeColor = System.Drawing.Color.White;
             this.txtObservacoesDoenca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtObservacoesDoenca.Location = new System.Drawing.Point(182, 90);
-            this.txtObservacoesDoenca.MaxLength = 32767;
+            this.txtObservacoesDoenca.MaxLength = 200;
             this.txtObservacoesDoenca.Multiline = false;
             this.txtObservacoesDoenca.Name = "txtObservacoesDoenca";
             this.txtObservacoesDoenca.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -590,7 +595,7 @@
             this.txtObservacoesDoenca.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtObservacoesDoenca.PlaceholderText = "";
             this.txtObservacoesDoenca.Size = new System.Drawing.Size(433, 28);
-            this.txtObservacoesDoenca.TabIndex = 59;
+            this.txtObservacoesDoenca.TabIndex = 8;
             this.txtObservacoesDoenca.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtObservacoesDoenca.Texts = "";
             this.txtObservacoesDoenca.UnderlinedStyle = false;
@@ -681,7 +686,7 @@
             this.txtCodDoenca.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodDoenca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodDoenca.Location = new System.Drawing.Point(17, 40);
-            this.txtCodDoenca.MaxLength = 32767;
+            this.txtCodDoenca.MaxLength = 5;
             this.txtCodDoenca.Multiline = false;
             this.txtCodDoenca.Name = "txtCodDoenca";
             this.txtCodDoenca.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -689,7 +694,7 @@
             this.txtCodDoenca.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodDoenca.PlaceholderText = "";
             this.txtCodDoenca.Size = new System.Drawing.Size(85, 28);
-            this.txtCodDoenca.TabIndex = 58;
+            this.txtCodDoenca.TabIndex = 7;
             this.txtCodDoenca.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodDoenca.Texts = "";
             this.txtCodDoenca.UnderlinedStyle = false;
@@ -813,7 +818,7 @@
             this.gpMedicamento.Location = new System.Drawing.Point(23, 355);
             this.gpMedicamento.Name = "gpMedicamento";
             this.gpMedicamento.Size = new System.Drawing.Size(712, 264);
-            this.gpMedicamento.TabIndex = 35;
+            this.gpMedicamento.TabIndex = 9;
             this.gpMedicamento.TabStop = false;
             this.gpMedicamento.Text = "Medicamento";
             // 
@@ -849,7 +854,7 @@
             this.txtDosagem.DisabledForeColor = System.Drawing.Color.White;
             this.txtDosagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDosagem.Location = new System.Drawing.Point(115, 99);
-            this.txtDosagem.MaxLength = 32767;
+            this.txtDosagem.MaxLength = 10;
             this.txtDosagem.Multiline = false;
             this.txtDosagem.Name = "txtDosagem";
             this.txtDosagem.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -857,7 +862,7 @@
             this.txtDosagem.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDosagem.PlaceholderText = "";
             this.txtDosagem.Size = new System.Drawing.Size(85, 28);
-            this.txtDosagem.TabIndex = 65;
+            this.txtDosagem.TabIndex = 12;
             this.txtDosagem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDosagem.Texts = "";
             this.txtDosagem.UnderlinedStyle = false;
@@ -876,7 +881,7 @@
             this.txtFrequencia.DisabledForeColor = System.Drawing.Color.White;
             this.txtFrequencia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtFrequencia.Location = new System.Drawing.Point(17, 99);
-            this.txtFrequencia.MaxLength = 32767;
+            this.txtFrequencia.MaxLength = 20;
             this.txtFrequencia.Multiline = false;
             this.txtFrequencia.Name = "txtFrequencia";
             this.txtFrequencia.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -884,7 +889,7 @@
             this.txtFrequencia.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtFrequencia.PlaceholderText = "";
             this.txtFrequencia.Size = new System.Drawing.Size(85, 28);
-            this.txtFrequencia.TabIndex = 64;
+            this.txtFrequencia.TabIndex = 11;
             this.txtFrequencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtFrequencia.Texts = "";
             this.txtFrequencia.UnderlinedStyle = false;
@@ -922,7 +927,7 @@
             this.txtObservacoesMedicamento.DisabledForeColor = System.Drawing.Color.White;
             this.txtObservacoesMedicamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtObservacoesMedicamento.Location = new System.Drawing.Point(211, 99);
-            this.txtObservacoesMedicamento.MaxLength = 32767;
+            this.txtObservacoesMedicamento.MaxLength = 200;
             this.txtObservacoesMedicamento.Multiline = false;
             this.txtObservacoesMedicamento.Name = "txtObservacoesMedicamento";
             this.txtObservacoesMedicamento.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -930,7 +935,7 @@
             this.txtObservacoesMedicamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtObservacoesMedicamento.PlaceholderText = "";
             this.txtObservacoesMedicamento.Size = new System.Drawing.Size(404, 28);
-            this.txtObservacoesMedicamento.TabIndex = 63;
+            this.txtObservacoesMedicamento.TabIndex = 13;
             this.txtObservacoesMedicamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtObservacoesMedicamento.Texts = "";
             this.txtObservacoesMedicamento.UnderlinedStyle = false;
@@ -1039,7 +1044,7 @@
             this.txtCodMedicamento.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodMedicamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodMedicamento.Location = new System.Drawing.Point(17, 44);
-            this.txtCodMedicamento.MaxLength = 32767;
+            this.txtCodMedicamento.MaxLength = 5;
             this.txtCodMedicamento.Multiline = false;
             this.txtCodMedicamento.Name = "txtCodMedicamento";
             this.txtCodMedicamento.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -1047,7 +1052,7 @@
             this.txtCodMedicamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodMedicamento.PlaceholderText = "";
             this.txtCodMedicamento.Size = new System.Drawing.Size(85, 28);
-            this.txtCodMedicamento.TabIndex = 59;
+            this.txtCodMedicamento.TabIndex = 10;
             this.txtCodMedicamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodMedicamento.Texts = "";
             this.txtCodMedicamento.UnderlinedStyle = false;
@@ -1167,7 +1172,7 @@
             this.gpCirurgia.Location = new System.Drawing.Point(769, 355);
             this.gpCirurgia.Name = "gpCirurgia";
             this.gpCirurgia.Size = new System.Drawing.Size(712, 264);
-            this.gpCirurgia.TabIndex = 44;
+            this.gpCirurgia.TabIndex = 14;
             this.gpCirurgia.TabStop = false;
             this.gpCirurgia.Text = "Cirurgia";
             // 
@@ -1222,7 +1227,7 @@
             this.txtObservacoesCirurgia.DisabledForeColor = System.Drawing.Color.White;
             this.txtObservacoesCirurgia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtObservacoesCirurgia.Location = new System.Drawing.Point(115, 97);
-            this.txtObservacoesCirurgia.MaxLength = 32767;
+            this.txtObservacoesCirurgia.MaxLength = 200;
             this.txtObservacoesCirurgia.Multiline = false;
             this.txtObservacoesCirurgia.Name = "txtObservacoesCirurgia";
             this.txtObservacoesCirurgia.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -1230,7 +1235,7 @@
             this.txtObservacoesCirurgia.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtObservacoesCirurgia.PlaceholderText = "";
             this.txtObservacoesCirurgia.Size = new System.Drawing.Size(500, 28);
-            this.txtObservacoesCirurgia.TabIndex = 64;
+            this.txtObservacoesCirurgia.TabIndex = 17;
             this.txtObservacoesCirurgia.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtObservacoesCirurgia.Texts = "";
             this.txtObservacoesCirurgia.UnderlinedStyle = false;
@@ -1245,6 +1250,7 @@
             this.txtDataDaCirurgia.DisabledBackColor = System.Drawing.Color.White;
             this.txtDataDaCirurgia.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtDataDaCirurgia.DisabledForeColor = System.Drawing.Color.White;
+            this.txtDataDaCirurgia.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataDaCirurgia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDataDaCirurgia.Location = new System.Drawing.Point(17, 97);
             this.txtDataDaCirurgia.Mask = "00/00/0000";
@@ -1256,7 +1262,7 @@
             this.txtDataDaCirurgia.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDataDaCirurgia.PlaceholderText = "";
             this.txtDataDaCirurgia.Size = new System.Drawing.Size(85, 27);
-            this.txtDataDaCirurgia.TabIndex = 53;
+            this.txtDataDaCirurgia.TabIndex = 16;
             this.txtDataDaCirurgia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataDaCirurgia.Texts = "  /  /";
             this.txtDataDaCirurgia.UnderlinedStyle = false;
@@ -1348,7 +1354,7 @@
             this.txtCodCirurgia.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodCirurgia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodCirurgia.Location = new System.Drawing.Point(17, 36);
-            this.txtCodCirurgia.MaxLength = 32767;
+            this.txtCodCirurgia.MaxLength = 5;
             this.txtCodCirurgia.Multiline = false;
             this.txtCodCirurgia.Name = "txtCodCirurgia";
             this.txtCodCirurgia.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -1356,7 +1362,7 @@
             this.txtCodCirurgia.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodCirurgia.PlaceholderText = "";
             this.txtCodCirurgia.Size = new System.Drawing.Size(85, 28);
-            this.txtCodCirurgia.TabIndex = 63;
+            this.txtCodCirurgia.TabIndex = 15;
             this.txtCodCirurgia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodCirurgia.Texts = "";
             this.txtCodCirurgia.UnderlinedStyle = false;
@@ -1405,6 +1411,7 @@
             this.CódigoCirurgia.HeaderText = "Código";
             this.CódigoCirurgia.Name = "CódigoCirurgia";
             this.CódigoCirurgia.ReadOnly = true;
+            this.CódigoCirurgia.Width = 60;
             // 
             // Cirurgia
             // 
@@ -1421,7 +1428,7 @@
             // 
             // DataCirurgia
             // 
-            this.DataCirurgia.HeaderText = "Data da Cirurgia";
+            this.DataCirurgia.HeaderText = "Data Cirurgia";
             this.DataCirurgia.Name = "DataCirurgia";
             this.DataCirurgia.ReadOnly = true;
             // 
@@ -1478,7 +1485,7 @@
             this.gpGestacao.Location = new System.Drawing.Point(23, 629);
             this.gpGestacao.Name = "gpGestacao";
             this.gpGestacao.Size = new System.Drawing.Size(712, 264);
-            this.gpGestacao.TabIndex = 45;
+            this.gpGestacao.TabIndex = 18;
             this.gpGestacao.TabStop = false;
             this.gpGestacao.Text = "Gestação";
             // 
@@ -1514,7 +1521,7 @@
             this.txtObservacoesGestacao.DisabledForeColor = System.Drawing.Color.White;
             this.txtObservacoesGestacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtObservacoesGestacao.Location = new System.Drawing.Point(115, 93);
-            this.txtObservacoesGestacao.MaxLength = 32767;
+            this.txtObservacoesGestacao.MaxLength = 200;
             this.txtObservacoesGestacao.Multiline = false;
             this.txtObservacoesGestacao.Name = "txtObservacoesGestacao";
             this.txtObservacoesGestacao.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -1522,7 +1529,7 @@
             this.txtObservacoesGestacao.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtObservacoesGestacao.PlaceholderText = "";
             this.txtObservacoesGestacao.Size = new System.Drawing.Size(500, 28);
-            this.txtObservacoesGestacao.TabIndex = 71;
+            this.txtObservacoesGestacao.TabIndex = 21;
             this.txtObservacoesGestacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtObservacoesGestacao.Texts = "";
             this.txtObservacoesGestacao.UnderlinedStyle = false;
@@ -1537,6 +1544,7 @@
             this.txtDataDoParto.DisabledBackColor = System.Drawing.Color.White;
             this.txtDataDoParto.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtDataDoParto.DisabledForeColor = System.Drawing.Color.White;
+            this.txtDataDoParto.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataDoParto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDataDoParto.Location = new System.Drawing.Point(17, 93);
             this.txtDataDoParto.Mask = "00/00/0000";
@@ -1548,7 +1556,7 @@
             this.txtDataDoParto.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDataDoParto.PlaceholderText = "";
             this.txtDataDoParto.Size = new System.Drawing.Size(85, 27);
-            this.txtDataDoParto.TabIndex = 70;
+            this.txtDataDoParto.TabIndex = 20;
             this.txtDataDoParto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataDoParto.Texts = "  /  /";
             this.txtDataDoParto.UnderlinedStyle = false;
@@ -1659,7 +1667,7 @@
             this.txtCodGestacao.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodGestacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodGestacao.Location = new System.Drawing.Point(17, 38);
-            this.txtCodGestacao.MaxLength = 32767;
+            this.txtCodGestacao.MaxLength = 5;
             this.txtCodGestacao.Multiline = false;
             this.txtCodGestacao.Name = "txtCodGestacao";
             this.txtCodGestacao.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -1667,7 +1675,7 @@
             this.txtCodGestacao.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodGestacao.PlaceholderText = "";
             this.txtCodGestacao.Size = new System.Drawing.Size(85, 28);
-            this.txtCodGestacao.TabIndex = 66;
+            this.txtCodGestacao.TabIndex = 19;
             this.txtCodGestacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodGestacao.Texts = "";
             this.txtCodGestacao.UnderlinedStyle = false;
@@ -1781,6 +1789,7 @@
             this.txtDataAvaliacao.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtDataAvaliacao.DisabledForeColor = System.Drawing.Color.White;
             this.txtDataAvaliacao.Enabled = false;
+            this.txtDataAvaliacao.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataAvaliacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDataAvaliacao.Location = new System.Drawing.Point(128, 35);
             this.txtDataAvaliacao.Mask = "00/00/0000";
@@ -1792,7 +1801,7 @@
             this.txtDataAvaliacao.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDataAvaliacao.PlaceholderText = "";
             this.txtDataAvaliacao.Size = new System.Drawing.Size(95, 27);
-            this.txtDataAvaliacao.TabIndex = 47;
+            this.txtDataAvaliacao.TabIndex = 1;
             this.txtDataAvaliacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataAvaliacao.Texts = "  /  /";
             this.txtDataAvaliacao.UnderlinedStyle = false;
@@ -1856,7 +1865,7 @@
             this.txtCodAluno.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodAluno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodAluno.Location = new System.Drawing.Point(248, 34);
-            this.txtCodAluno.MaxLength = 32767;
+            this.txtCodAluno.MaxLength = 5;
             this.txtCodAluno.Multiline = false;
             this.txtCodAluno.Name = "txtCodAluno";
             this.txtCodAluno.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -1864,7 +1873,7 @@
             this.txtCodAluno.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodAluno.PlaceholderText = "";
             this.txtCodAluno.Size = new System.Drawing.Size(85, 28);
-            this.txtCodAluno.TabIndex = 50;
+            this.txtCodAluno.TabIndex = 2;
             this.txtCodAluno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodAluno.Texts = "";
             this.txtCodAluno.UnderlinedStyle = false;
@@ -1879,11 +1888,110 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 53;
             // 
+            // txtObservacao
+            // 
+            this.txtObservacao.BackColor = System.Drawing.SystemColors.Window;
+            this.txtObservacao.BorderColor = System.Drawing.Color.DarkGray;
+            this.txtObservacao.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.txtObservacao.BorderRadius = 8;
+            this.txtObservacao.BorderSize = 1;
+            this.txtObservacao.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtObservacao.DisabledBackColor = System.Drawing.Color.White;
+            this.txtObservacao.DisabledBorderColor = System.Drawing.Color.Gainsboro;
+            this.txtObservacao.DisabledForeColor = System.Drawing.Color.White;
+            this.txtObservacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.txtObservacao.Location = new System.Drawing.Point(786, 691);
+            this.txtObservacao.MaxLength = 200;
+            this.txtObservacao.Multiline = true;
+            this.txtObservacao.Name = "txtObservacao";
+            this.txtObservacao.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.txtObservacao.PasswordChar = false;
+            this.txtObservacao.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtObservacao.PlaceholderText = "";
+            this.txtObservacao.Size = new System.Drawing.Size(677, 157);
+            this.txtObservacao.TabIndex = 67;
+            this.txtObservacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtObservacao.Texts = "";
+            this.txtObservacao.UnderlinedStyle = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(785, 675);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 13);
+            this.label2.TabIndex = 67;
+            this.label2.Text = "Observação Geral:";
+            // 
+            // txtDataCancelamento
+            // 
+            this.txtDataCancelamento.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDataCancelamento.BorderColor = System.Drawing.Color.DarkGray;
+            this.txtDataCancelamento.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.txtDataCancelamento.BorderRadius = 8;
+            this.txtDataCancelamento.BorderSize = 1;
+            this.txtDataCancelamento.DisabledBackColor = System.Drawing.Color.White;
+            this.txtDataCancelamento.DisabledBorderColor = System.Drawing.Color.Gainsboro;
+            this.txtDataCancelamento.DisabledForeColor = System.Drawing.Color.White;
+            this.txtDataCancelamento.Enabled = false;
+            this.txtDataCancelamento.EnabledBackColor = System.Drawing.Color.White;
+            this.txtDataCancelamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.txtDataCancelamento.Location = new System.Drawing.Point(1191, 35);
+            this.txtDataCancelamento.Mask = "00/00/0000";
+            this.txtDataCancelamento.MaxLength = 32767;
+            this.txtDataCancelamento.Multiline = false;
+            this.txtDataCancelamento.Name = "txtDataCancelamento";
+            this.txtDataCancelamento.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.txtDataCancelamento.PasswordChar = false;
+            this.txtDataCancelamento.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtDataCancelamento.PlaceholderText = "";
+            this.txtDataCancelamento.Size = new System.Drawing.Size(102, 27);
+            this.txtDataCancelamento.TabIndex = 77;
+            this.txtDataCancelamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDataCancelamento.Texts = "  /  /";
+            this.txtDataCancelamento.UnderlinedStyle = false;
+            this.txtDataCancelamento.Visible = false;
+            // 
+            // lblDataCancelamento
+            // 
+            this.lblDataCancelamento.AutoSize = true;
+            this.lblDataCancelamento.Location = new System.Drawing.Point(1189, 19);
+            this.lblDataCancelamento.Name = "lblDataCancelamento";
+            this.lblDataCancelamento.Size = new System.Drawing.Size(104, 13);
+            this.lblDataCancelamento.TabIndex = 76;
+            this.lblDataCancelamento.Text = "Data Cancelamento:";
+            this.lblDataCancelamento.Visible = false;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnCancelar.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.btnCancelar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelar.BorderRadius = 8;
+            this.btnCancelar.BorderSize = 1;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelar.Location = new System.Drawing.Point(1220, 929);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(83, 31);
+            this.btnCancelar.TabIndex = 103;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // CadastroAvaliacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1510, 981);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.txtDataCancelamento);
+            this.Controls.Add(this.lblDataCancelamento);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtObservacao);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtAluno);
             this.Controls.Add(this.btnPesquisarAluno);
@@ -1923,6 +2031,11 @@
             this.Controls.SetChildIndex(this.btnPesquisarAluno, 0);
             this.Controls.SetChildIndex(this.txtAluno, 0);
             this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.txtObservacao, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.lblDataCancelamento, 0);
+            this.Controls.SetChildIndex(this.txtDataCancelamento, 0);
+            this.Controls.SetChildIndex(this.btnCancelar, 0);
             this.gbStatus.ResumeLayout(false);
             this.gbStatus.PerformLayout();
             this.gpDores.ResumeLayout(false);
@@ -1996,11 +2109,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DescriçãoDoença;
         private System.Windows.Forms.DataGridViewTextBoxColumn CID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ObservaçãoDoença;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CódigoCirurgia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cirurgia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescriçãoCirurgia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataCirurgia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ObservaçãoCirurgia;
         private System.Windows.Forms.DataGridViewTextBoxColumn CódigoGestação;
         private System.Windows.Forms.DataGridViewTextBoxColumn Gestação;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescriçãoGestação;
@@ -2055,5 +2163,15 @@
         protected YControls.YButton btnExcluirCirurgia;
         protected YControls.YButton btnExcluirMedicamento;
         protected YControls.YButton btnExcluirGestacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CódigoCirurgia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cirurgia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescriçãoCirurgia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataCirurgia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ObservaçãoCirurgia;
+        private YControls.YTextBox txtObservacao;
+        private System.Windows.Forms.Label label2;
+        private YControls.YMaskedTextBox txtDataCancelamento;
+        private System.Windows.Forms.Label lblDataCancelamento;
+        protected YControls.YButton btnCancelar;
     }
 }

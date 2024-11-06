@@ -301,7 +301,7 @@ namespace Pilates.Views
 
                     Validacoes.AtualizarCampoData(fornecedor.data_nasc, txtDataNasc);
 
-                    List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(fornecedor.idCidade);
+                    List<string> cidadeEstadoPais = controllerFornecedor.CarregaCEP(fornecedor.idCidade);
 
                     if (cidadeEstadoPais.Count > 0)
                     {
@@ -381,34 +381,26 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodCidade.Texts))
             {
-                if (!Validacoes.VerificaNumeros(txtCodCidade.Texts))
+                List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(int.Parse(txtCodCidade.Texts));
+
+                if (cidadeEstadoPais.Count > 0)
                 {
-                    MessageBox.Show("Cód. Cidade inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtCodCidade.Focus();
+                    string[] info = cidadeEstadoPais[0].Split(',');
+                    if (info.Length >= 3)
+                    {
+                        txtCidade.Texts = info[0].Trim();
+                        txtUF.Texts = info[1].Trim();
+                        txtPais.Texts = info[2].Trim();
+                    }
                 }
                 else
                 {
-                    List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(int.Parse(txtCodCidade.Texts));
-
-                    if (cidadeEstadoPais.Count > 0)
-                    {
-                        string[] info = cidadeEstadoPais[0].Split(',');
-                        if (info.Length >= 3)
-                        {
-                            txtCidade.Texts = info[0].Trim();
-                            txtUF.Texts = info[1].Trim();
-                            txtPais.Texts = info[2].Trim();
-                        }
-                    }
-                    else
-                    {
-                        txtCodCidade.Clear();
-                        txtCidade.Clear();
-                        txtUF.Clear();
-                        txtPais.Clear();
-                        txtCodCidade.Focus();
-                        MessageBox.Show("Código Cidade não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Código Cidade não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCodCidade.Focus();
+                    txtCodCidade.Clear();
+                    txtCidade.Clear();
+                    txtUF.Clear();
+                    txtPais.Clear();
                 }
             }
         }
@@ -416,6 +408,7 @@ namespace Pilates.Views
         private void btnBuscarCond_Click(object sender, EventArgs e)
         {
             consultaCondicaoPagamento.btnSair.Text = "Selecionar";
+            consultaCondicaoPagamento.cbInativos.Visible = false;
             if (consultaCondicaoPagamento.ShowDialog() == DialogResult.OK)
             {
                 var condPagamento = consultaCondicaoPagamento.Tag as Tuple<int, string>;
@@ -434,10 +427,10 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodCondPag.Texts))
             {
-                ModelCondicaoPagamento condPagamento = controllerCondicaoPagamento.BuscarPorId(int.Parse(txtCodCondPag.Texts));
+                string condPagamento = controllerCondicaoPagamento.getCondicaoPag(int.Parse(txtCodCondPag.Texts));
                 if (condPagamento != null)
                 {
-                    txtCondPag.Texts = condPagamento.condicaoPagamento;
+                    txtCondPag.Texts = condPagamento;
                 }
                 else
                 {

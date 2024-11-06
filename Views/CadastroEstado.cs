@@ -154,6 +154,7 @@ namespace Pilates.Views
         private void btnBuscarPais_Click(object sender, EventArgs e)
         {
             consultaPais.btnSair.Text = "Selecionar";
+            consultaPais.cbInativos.Visible = false;
 
             if (consultaPais.ShowDialog() == DialogResult.OK)
             {
@@ -191,25 +192,19 @@ namespace Pilates.Views
 
         private void txtCodigoPais_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaNumeros(txtCodigoPais.Texts))
+            if (!string.IsNullOrEmpty(txtCodigoPais.Texts))
             {
-                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCodigoPais.Focus();
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(txtCodigoPais.Texts))
+                string pais = controllerPais.getPais(int.Parse(txtCodigoPais.Texts));
+                if (pais != null)
                 {
-                    ModelPais pais = controllerPais.BuscarPorId(int.Parse(txtCodigoPais.Texts));
-                    if (pais != null)
-                    {
-                        txtPais.Texts = pais.Pais;
-                    }
-                    else
-                    {
-                        MessageBox.Show("País não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtCodigoPais.Focus();
-                    }
+                    txtPais.Texts = pais;
+                }
+                else
+                {
+                    MessageBox.Show("País não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCodigoPais.Focus();
+                    txtCodigoPais.Clear();
+                    txtPais.Clear();
                 }
             }
         }

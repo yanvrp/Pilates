@@ -159,5 +159,14 @@ namespace Pilates.Views
                 }
             }
         }
+
+        private void CadastroPrograma_Load(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                int novoCodigo = programaController.BuscarUltimoCodigo() + 1;
+                txtCodigo.Texts = novoCodigo.ToString();
+            }
+        }
     }
 }

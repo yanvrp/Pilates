@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -13,10 +14,12 @@ namespace Pilates.Views
     public partial class ConsultaContasPagar : Pilates.ConsultaPAI
     {
         private ControllerContasPagar<ModelContasPagar> controllerContasPagar;
+        private ControllerFornecedor<ModelFornecedor> controllerFornecedor;
         public ConsultaContasPagar()
         {
             InitializeComponent();
             controllerContasPagar = new ControllerContasPagar<ModelContasPagar>();
+            controllerFornecedor = new ControllerFornecedor<ModelFornecedor>();
         }
         public override void Incluir()
         {
@@ -62,6 +65,7 @@ namespace Pilates.Views
                 dataGridViewContasPagar.Columns["numero"].DataPropertyName = "numero";
                 dataGridViewContasPagar.Columns["parcela"].DataPropertyName = "parcela";
                 dataGridViewContasPagar.Columns["valorParcela"].DataPropertyName = "valorParcela";
+                dataGridViewContasPagar.Columns["idFornecedor"].DataPropertyName = "idFornecedor";
                 dataGridViewContasPagar.Columns["dataVencimento"].DataPropertyName = "dataVencimento";
                 dataGridViewContasPagar.Columns["dataPagamento"].DataPropertyName = "dataPagamento";
                 dataGridViewContasPagar.Columns["dataCancelamento"].DataPropertyName = "dataCancelamento";
@@ -73,6 +77,39 @@ namespace Pilates.Views
             catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro ao carregar as contas a pagar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public override void Pesquisar()
+        {
+            string pesquisa = txtPesquisar.Texts.Trim();
+            if (!string.IsNullOrEmpty(pesquisa))
+            {
+                try
+                {
+                    List<ModelContasPagar> resultadosPesquisa = new List<ModelContasPagar>();
+                    bool buscaInativos = cbInativos.Checked;
+
+                    if (int.TryParse(pesquisa, out int numeroNotaPesquisa))
+                    {
+                        resultadosPesquisa = controllerContasPagar.BuscarTodos(buscaInativos).Where(p => p.numero == numeroNotaPesquisa).ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor, insira um número de nota válido.", "Número inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    dataGridViewContasPagar.DataSource = resultadosPesquisa;
+                    txtPesquisar.Texts = string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um erro ao pesquisar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                AtualizarConsultaContasPagar(cbInativos.Checked);
             }
         }
 
@@ -90,6 +127,73 @@ namespace Pilates.Views
             else
             {
                 MessageBox.Show("Selecione uma conta a pagar para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void dataGridViewContasPagar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewContasPagar_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridViewContasPagar.Columns[e.ColumnIndex].Name == "idFornecedor" && e.RowIndex >= 0)
+            {
+                var cellValue = dataGridViewContasPagar.Rows[e.RowIndex].Cells["idFornecedor"].Value;
+
+                if (cellValue != null && int.TryParse(cellValue.ToString(), out int idFornecedor))
+                {
+                    ModelFornecedor fornecedor = controllerFornecedor.BuscarPorId(idFornecedor);
+                    if (fornecedor != null)
+                    {
+                        dataGridViewContasPagar.Rows[e.RowIndex].Cells["Fornecedor"].Value = fornecedor.fornecedor_razao_social;
+                    }
+                    else
+                    {
+                        dataGridViewContasPagar.Rows[e.RowIndex].Cells["Fornecedor"].Value = "Fornecedor não encontrado";
+                    }
+                }
+            }
+            if (dataGridViewContasPagar.Columns[e.ColumnIndex].Name == "dataPagamento" && e.RowIndex >= 0)
+            {
+                var dataPagamento = dataGridViewContasPagar.Rows[e.RowIndex].Cells["dataPagamento"].Value;
+                if (dataPagamento != DBNull.Value && dataPagamento != null)
+                {
+                    dataGridViewContasPagar.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Green; //se estiver pago fica verde
+                }
+                else
+                {
+                    dataGridViewContasPagar.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dataGridViewContasPagar.DefaultCellStyle.ForeColor;
+                }
+            }
+
+            //verifica data vencimento e cancelamento
+            var dataVencimentoValue = dataGridViewContasPagar.Rows[e.RowIndex].Cells["dataVencimento"].Value;
+            var pagamentoValue = dataGridViewContasPagar.Rows[e.RowIndex].Cells["dataPagamento"].Value;
+            var dataCancelamentoValue = dataGridViewContasPagar.Rows[e.RowIndex].Cells["dataCancelamento"].Value;
+
+            if (dataCancelamentoValue != DBNull.Value && dataCancelamentoValue != null)
+            {
+                e.CellStyle.ForeColor = Color.Red;
+            }
+            else
+            {
+                //verifica vencimento e pagamento
+                if (dataVencimentoValue != null && DateTime.TryParse(dataVencimentoValue.ToString(), out DateTime dataVencimento))
+                {
+                    if (dataVencimento < DateTime.Now.Date && string.IsNullOrEmpty(pagamentoValue?.ToString()))
+                    {
+                        e.CellStyle.ForeColor = ColorTranslator.FromHtml("#ff6400"); //se venceu fica laranja
+                    }
+                    else if (!string.IsNullOrEmpty(pagamentoValue?.ToString()))
+                    {
+                        e.CellStyle.ForeColor = Color.Green; //se ta pago verde
+                    }
+                    else
+                    {
+                        e.CellStyle.ForeColor = dataGridViewContasPagar.DefaultCellStyle.ForeColor; //se esta em dia fica a cor padrao
+                    }
+                }
             }
         }
     }

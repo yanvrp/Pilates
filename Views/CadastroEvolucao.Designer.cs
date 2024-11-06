@@ -180,7 +180,7 @@
             this.txtTitulo.DisabledForeColor = System.Drawing.Color.White;
             this.txtTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtTitulo.Location = new System.Drawing.Point(26, 158);
-            this.txtTitulo.MaxLength = 32767;
+            this.txtTitulo.MaxLength = 255;
             this.txtTitulo.Multiline = false;
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -188,7 +188,7 @@
             this.txtTitulo.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtTitulo.PlaceholderText = "";
             this.txtTitulo.Size = new System.Drawing.Size(556, 28);
-            this.txtTitulo.TabIndex = 53;
+            this.txtTitulo.TabIndex = 1;
             this.txtTitulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTitulo.Texts = "";
             this.txtTitulo.UnderlinedStyle = false;
@@ -206,7 +206,7 @@
             this.txtObservacao.DisabledForeColor = System.Drawing.Color.White;
             this.txtObservacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtObservacao.Location = new System.Drawing.Point(26, 223);
-            this.txtObservacao.MaxLength = 32767;
+            this.txtObservacao.MaxLength = 200;
             this.txtObservacao.Multiline = true;
             this.txtObservacao.Name = "txtObservacao";
             this.txtObservacao.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -214,7 +214,7 @@
             this.txtObservacao.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtObservacao.PlaceholderText = "";
             this.txtObservacao.Size = new System.Drawing.Size(556, 99);
-            this.txtObservacao.TabIndex = 54;
+            this.txtObservacao.TabIndex = 2;
             this.txtObservacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtObservacao.Texts = "";
             this.txtObservacao.UnderlinedStyle = false;

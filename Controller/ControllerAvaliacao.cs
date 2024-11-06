@@ -19,6 +19,10 @@ namespace Pilates.Controller
         {
             daoAvaliacao.Alterar(obj);
         }
+        public void CancelarAvaliacao(int idAvaliacao)
+        {
+            daoAvaliacao.CancelarAvaliacao(idAvaliacao);
+        }
 
         public override T BuscarPorId(int idObj)
         {

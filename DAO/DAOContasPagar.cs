@@ -15,13 +15,14 @@ namespace Pilates.DAO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-UPDATE contasPagar SET dataPagamento = @dataPagamento, dataEmissao = dataEmissao, idFormaPagamento = @idFormaPagamento, dataVencimento = @dataVencimento, valorParcela = @valorParcela, juros = @juros, multa = @multa, desconto = @desconto, valorPago = @valorPago, dataCancelamento = @dataCancelamento, observacao = @observacao, dataUltAlt = @dataUltAlt
+UPDATE contasPagar SET dataPagamento = @dataPagamento, dataEmissao = dataEmissao, idFormaPagamento = @idFormaPagamento, idFornecedor = @idFornecedor, dataVencimento = @dataVencimento, valorParcela = @valorParcela, juros = @juros, multa = @multa, desconto = @desconto, valorPago = @valorPago, dataCancelamento = @dataCancelamento, observacao = @observacao, dataUltAlt = @dataUltAlt
 WHERE numero = @numero AND parcela = @parcela";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@numero", obj.numero);
                 command.Parameters.AddWithValue("@dataEmissao", obj.dataEmissao);
                 command.Parameters.AddWithValue("@idFormaPagamento", obj.idFormaPagamento);
+                command.Parameters.AddWithValue("@idFornecedor", obj.idFornecedor);
                 command.Parameters.AddWithValue("@parcela", obj.parcela);
                 command.Parameters.AddWithValue("@dataVencimento", obj.dataVencimento);
                 command.Parameters.AddWithValue("@valorParcela", obj.valorParcela);
@@ -63,6 +64,7 @@ WHERE numero = @numero AND parcela = @parcela";
                         contaPagar.numero = Convert.ToInt32(reader["numero"]);
                         contaPagar.dataVencimento = Convert.ToDateTime(reader["dataVencimento"]);
                         contaPagar.parcela = Convert.ToInt32(reader["parcela"]);
+                        contaPagar.idFornecedor = Convert.ToInt32(reader["idFornecedor"]);
                         contaPagar.valorParcela = Convert.ToDecimal(reader["valorParcela"]);
                         contaPagar.dataPagamento = reader["dataPagamento"] != DBNull.Value ? Convert.ToDateTime(reader["dataPagamento"]) : (DateTime?)null;
                         contaPagar.dataCancelamento = reader["dataCancelamento"] != DBNull.Value ? Convert.ToDateTime(reader["dataCancelamento"]) : (DateTime?)null;
@@ -85,14 +87,15 @@ WHERE numero = @numero AND parcela = @parcela";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO contasPagar (numero, dataEmissao, idFormaPagamento, parcela, valorParcela, dataVencimento, dataPagamento, juros, multa, desconto, valorPago, dataCancelamento, observacao, dataCadastro, dataUltAlt) 
-    VALUES (@numero, @dataEmissao, @idFormaPagamento, @parcela, @valorParcela, @dataVencimento, @dataPagamento, @juros, @multa, @desconto, @valorPago, @dataCancelamento,@observacao, @dataCadastro, @dataUltAlt)";
+                string query = @"INSERT INTO contasPagar (numero, dataEmissao, idFormaPagamento, idFornecedor, parcela, valorParcela, dataVencimento, dataPagamento, juros, multa, desconto, valorPago, dataCancelamento, observacao, dataCadastro, dataUltAlt) 
+    VALUES (@numero, @dataEmissao, @idFormaPagamento, @idFornecedor, @parcela, @valorParcela, @dataVencimento, @dataPagamento, @juros, @multa, @desconto, @valorPago, @dataCancelamento,@observacao, @dataCadastro, @dataUltAlt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@numero", contaPagar.numero);
                 command.Parameters.AddWithValue("@dataEmissao", contaPagar.dataEmissao);
                 command.Parameters.AddWithValue("@idFormaPagamento", contaPagar.idFormaPagamento);
+                command.Parameters.AddWithValue("@idFornecedor", contaPagar.idFornecedor);
                 command.Parameters.AddWithValue("@parcela", contaPagar.parcela);
                 command.Parameters.AddWithValue("@valorParcela", contaPagar.valorParcela);
                 command.Parameters.AddWithValue("@dataVencimento", contaPagar.dataVencimento);
@@ -140,6 +143,7 @@ WHERE numero = @numero AND parcela = @parcela";
                             numero = Convert.ToInt32(reader["numero"]),
                             dataEmissao = Convert.ToDateTime(reader["dataEmissao"]),
                             idFormaPagamento = Convert.ToInt32(reader["idFormaPagamento"]),
+                            idFornecedor = Convert.ToInt32(reader["idFornecedor"]),
                             parcela = Convert.ToInt32(reader["parcela"]),
                             valorParcela = Convert.ToDecimal(reader["valorParcela"]),
                             dataVencimento = Convert.ToDateTime(reader["dataVencimento"]),

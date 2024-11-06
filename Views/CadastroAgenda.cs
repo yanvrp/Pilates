@@ -1,9 +1,11 @@
-﻿using Pilates.Controller;
+﻿
+using Pilates.Controller;
 using Pilates.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,11 +28,39 @@ namespace Pilates.Views
             controllerAluno = new ControllerAluno<ModelAluno>();
             consultaContrato = new ConsultaContrato();
             controllerContrato = new ControllerContrato<ModelContrato>();
+            PreencherDropDownList();
         }
         public CadastroAgenda(int idAgenda) : this()
         {
             Alterar = idAgenda;
             Carrega();
+        }
+        public void BloqueiaTudo() 
+        {
+            txtCodAluno.Enabled = false;
+            btnPesquisarAluno.Enabled = false;
+            cbSituacao.Enabled = false;
+            cbHoras.Enabled = false;
+            cbMinutos.Enabled = false;
+            txtData.Enabled = false;
+        }
+        public override void Bloqueia()
+        {
+            txtCodAluno.Enabled = false;
+            btnPesquisarAluno.Enabled=false;
+            txtCodContrato.Enabled = false;
+        }
+        private void PreencherDropDownList()
+        {
+            cbHoras.Items.Clear();
+            for (int i = 6; i <= 22; i++)
+            {
+                cbHoras.Items.Add(i.ToString("D2"));
+            }
+
+            cbMinutos.Items.Clear();
+            cbMinutos.Items.Add("00");
+            cbMinutos.Items.Add("30");
         }
 
         private void CadastroAgenda_Load(object sender, EventArgs e)
@@ -48,13 +78,33 @@ namespace Pilates.Views
             {
                 txtCodigo.Texts = agenda.idAgenda.ToString();
                 txtCodAluno.Texts = agenda.idAluno.ToString();
-                cbSituacao.Text = agenda.situacao.ToString();
                 txtData.Texts = agenda.data.ToString();
                 txtCodContrato.Texts = agenda.idContrato.ToString();
                 txtDataCadastro.Texts = agenda.dataCadastro.ToString();
                 txtDataUltAlt.Texts = agenda.dataUltAlt.ToString();
                 rbAtivo.Checked = agenda.Ativo;
                 rbInativo.Checked = !agenda.Ativo;
+                txtDataCancelamento.Texts = agenda.dataCancelamento.ToString();
+
+                if (!string.IsNullOrEmpty(txtCodContrato.Texts))
+                {
+                    txtCodContrato.Visible = true;
+                    lblCodContrato.Visible = true;
+                    Bloqueia();
+                } else
+                {
+                    btnCancelar.Visible = true;
+                }
+
+                if (agenda.dataCancelamento != null)
+                {
+                    txtDataCancelamento.Visible = true;
+                    lblDataCancelamento.Visible=true;
+                    cbSituacao.Items.Add("CANCELADO");
+                    cbSituacao.Text = "CANCELADO";
+
+                    BloqueiaTudo();
+                }
 
                 ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
 
@@ -63,6 +113,16 @@ namespace Pilates.Views
                 TimeSpan horario = agenda.horario;
                 cbHoras.SelectedItem = horario.Hours.ToString("D2");
                 cbMinutos.SelectedItem = horario.Minutes.ToString("D2");
+
+                if (agenda.situacao != null)
+                {
+                    cbSituacao.Text = agenda.situacao;
+                }
+                else
+                {
+                    cbSituacao.SelectedIndex = -1;
+                }
+
             }
         }
         public override void Salvar()
@@ -94,15 +154,24 @@ namespace Pilates.Views
                 {
                     
                     int idAluno = Convert.ToInt32(txtCodAluno.Texts);
-                    int idContrato = Convert.ToInt32(txtCodContrato.Texts);
+                    int? idContrato = null;
+                    if (!string.IsNullOrEmpty(txtCodContrato.Texts))
+                    {
+                        idContrato = Convert.ToInt32(txtCodContrato.Texts);
+                    }
+
                     string horas = cbHoras.Text;
                     string minutos = cbMinutos.Text;
                     string horarioString = $"{horas}:{minutos}";
                     TimeSpan horario = TimeSpan.Parse(horarioString);
                     DateTime.TryParse(txtData.Texts, out DateTime dataAgendamento);
-                    string situacao = cbSituacao.Text;
+                    string situacao = cbSituacao.Text.ToString();
+                    
                     DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
                     DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
+                    
+                    string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
+                    DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Texts, "dd/MM/yyyy", null);
 
                     ModelAgenda novoAgendamento = new ModelAgenda
                     {
@@ -113,6 +182,7 @@ namespace Pilates.Views
                         situacao = situacao,
                         dataCadastro = dataCadastro,
                         dataUltAlt = dataUltAlt,
+                        dataCancelamento = dataCancelamento,
                         Ativo = Ativo,
                     };
                     if (Alterar == -7)
@@ -121,6 +191,7 @@ namespace Pilates.Views
                     }
                     else
                     {
+                        novoAgendamento.idAgenda = Alterar;
                         controllerAgenda.Alterar(novoAgendamento);
                     }
                     this.DialogResult = DialogResult.OK;
@@ -144,14 +215,14 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodAluno.Texts))
             {
-                ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
+                string aluno = controllerAluno.getAluno(int.Parse(txtCodAluno.Texts));
                 if (aluno != null)
                 {
-                    txtAluno.Texts = aluno.Aluno;
+                    txtAluno.Texts = aluno;
                 }
                 else
                 {
-                    MessageBox.Show("Aluno não encontrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Aluno não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodAluno.Focus();
                     txtCodAluno.Clear();
                     txtAluno.Clear();
@@ -162,6 +233,7 @@ namespace Pilates.Views
         private void btnPesquisarAluno_Click(object sender, EventArgs e)
         {
             consultaAluno.btnSair.Text = "Selecionar";
+            consultaAluno.cbInativos.Visible = false;
 
             if (consultaAluno.ShowDialog() == DialogResult.OK)
             {
@@ -179,7 +251,7 @@ namespace Pilates.Views
 
         private void CadastroAgenda_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ((ConsultaAgenda)this.Owner).AtualizarConsultaAgenda(false);
+            ((ConsultaAgenda)this.Owner).AtualizarConsultaAgenda(false, false);
         }
 
         private void txtCodContrato_Leave(object sender, EventArgs e)
@@ -232,6 +304,31 @@ namespace Pilates.Views
                     return;
                 }
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
+            if (dCancelamento == "")
+            {
+                DialogResult result = MessageBox.Show("Você tem certeza que deseja cancelar o agendamento?",
+                                          "Confirmação de Cancelamento",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    int idAgenda = Convert.ToInt32(txtCodigo.Texts);
+                    controllerAgenda.CancelarAgendamento(idAgenda);
+
+                    cbSituacao.SelectedItem = "CANCELADO";
+                    MessageBox.Show("Agendamento cancelado com sucesso!");
+                    this.Close();
+                }
+            } else
+            {
+                MessageBox.Show("O agendamento já foi cancelado anteriormente!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }            
         }
     }
 }

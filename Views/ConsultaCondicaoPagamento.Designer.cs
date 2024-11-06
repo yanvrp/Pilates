@@ -34,10 +34,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCondicaoPagamento)).BeginInit();
             this.SuspendLayout();
             // 
-            // cbInativos
-            // 
-            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
-            // 
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
@@ -63,6 +59,10 @@
             this.btnSair.Location = new System.Drawing.Point(520, 427);
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // cbInativos
+            // 
+            this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
+            // 
             // dataGridViewCondicaoPagamento
             // 
             this.dataGridViewCondicaoPagamento.AllowUserToAddRows = false;
@@ -72,10 +72,10 @@
             this.dataGridViewCondicaoPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.condicaoPagamento});
-            this.dataGridViewCondicaoPagamento.Location = new System.Drawing.Point(12, 44);
+            this.dataGridViewCondicaoPagamento.Location = new System.Drawing.Point(12, 58);
             this.dataGridViewCondicaoPagamento.Name = "dataGridViewCondicaoPagamento";
             this.dataGridViewCondicaoPagamento.ReadOnly = true;
-            this.dataGridViewCondicaoPagamento.Size = new System.Drawing.Size(591, 365);
+            this.dataGridViewCondicaoPagamento.Size = new System.Drawing.Size(591, 351);
             this.dataGridViewCondicaoPagamento.TabIndex = 7;
             this.dataGridViewCondicaoPagamento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCondicaoPagamento_CellDoubleClick);
             // 

@@ -15,6 +15,18 @@ namespace Pilates.Controller
         {
             daoAluno = new DAOAluno<T>();
         }
+        public string getAluno(int id)
+        {
+            return daoAluno.getAluno(id);
+        }
+        public List<string> GetCEPByIdCidade(int idCidade)
+        {
+            return daoAluno.GetCEPByIdCidade(idCidade);
+        }
+        public List<string> CarregaCEP(int idCidade)
+        {
+            return daoAluno.CarregaCEP(idCidade);
+        }
         public override void Alterar(T obj)
         {
             daoAluno.Alterar(obj);

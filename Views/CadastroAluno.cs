@@ -44,6 +44,9 @@ namespace Pilates.Views
             btnAlterarEvolucao.Enabled = true;
             btnIncluirEvolucao.Enabled = true;
             btnExcluirEvolucao.Enabled = true;
+            btnAlterarPostura.Enabled = true;
+            btnIncluirPostura.Enabled = true;
+            btnExcluirPostura.Enabled = true;
             if (Alterar != -7)
             {
                 ModelAluno aluno = alunoController.BuscarPorId(Alterar);
@@ -73,10 +76,12 @@ namespace Pilates.Views
                     txtDataUltAlt.Texts = aluno.dataUltAlt.ToString();
                     rbAtivo.Checked = aluno.Ativo;
                     rbInativo.Checked = !aluno.Ativo;
-                    List<string> cep = alunoController.GetCEPByCidadeId(aluno.idCidade);
-                    if (cep.Count > 0)
+
+                    List<string> cidadeEstadoPais = alunoController.CarregaCEP(aluno.idCidade);
+
+                    if (cidadeEstadoPais.Count > 0)
                     {
-                        string[] info = cep[0].Split(',');
+                        string[] info = cidadeEstadoPais[0].Split(',');
                         if (info.Length >= 3)
                         {
                             txtCidade.Texts = info[0].Trim();
@@ -205,7 +210,7 @@ namespace Pilates.Views
                     string apelido = txtApelido.Texts;
                     string endereco = txtEndereco.Texts;
                     string bairro = txtBairro.Texts;
-                    int numero = Convert.ToInt32(txtNumero.Texts);
+                    string numero = txtNumero.Texts;
                     string cep = new string(txtCEP.Texts.Where(char.IsDigit).ToArray());
                     string complemento = txtComplemento.Texts;
                     string email = txtEmail.Texts;
@@ -412,34 +417,26 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodCidade.Texts))
             {
-                if (!Validacoes.VerificaNumeros(txtCodCidade.Texts))
+                List<string> cidadeEstadoPais = alunoController.GetCEPByIdCidade(int.Parse(txtCodCidade.Texts));
+
+                if (cidadeEstadoPais.Count > 0)
                 {
-                    MessageBox.Show("Cód. Cidade inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtCodCidade.Focus();
+                    string[] info = cidadeEstadoPais[0].Split(',');
+                    if (info.Length >= 3)
+                    {
+                        txtCidade.Texts = info[0].Trim();
+                        txtUF.Texts = info[1].Trim();
+                        txtPais.Texts = info[2].Trim();
+                    }
                 }
                 else
                 {
-                    List<string> cidadeEstadoPais = alunoController.GetCEPByCidadeId(int.Parse(txtCodCidade.Texts));
-
-                    if (cidadeEstadoPais.Count > 0)
-                    {
-                        string[] info = cidadeEstadoPais[0].Split(',');
-                        if (info.Length >= 3)
-                        {
-                            txtCidade.Texts = info[0].Trim();
-                            txtUF.Texts = info[1].Trim();
-                            txtPais.Texts = info[2].Trim();
-                        }
-                    }
-                    else
-                    {
-                        txtCodCidade.Clear();
-                        txtCidade.Clear();
-                        txtUF.Clear();
-                        txtPais.Clear();
-                        txtCodCidade.Focus();
-                        MessageBox.Show("Código Cidade não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Código Cidade não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCodCidade.Focus();
+                    txtCodCidade.Clear();
+                    txtCidade.Clear();
+                    txtUF.Clear();
+                    txtPais.Clear();
                 }
             }
         }
@@ -447,6 +444,7 @@ namespace Pilates.Views
         private void btnBuscarCidade_Click(object sender, EventArgs e)
         {
             consultaCidade.btnSair.Text = "Selecionar";
+            consultaCidade.cbInativos.Visible = false;
 
             if (consultaCidade.ShowDialog() == DialogResult.OK)
             {
@@ -564,6 +562,7 @@ namespace Pilates.Views
         private void btnBuscarProfissao_Click(object sender, EventArgs e)
         {
             consultaProfissao.btnSair.Text = "Selecionar";
+            consultaProfissao.cbInativos.Visible = false;
 
             if (consultaProfissao.ShowDialog() == DialogResult.OK)
             {
@@ -583,17 +582,17 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodProfissao.Texts))
             {
-                ModelProfissao profissao = controllerProfissao.BuscarPorId(int.Parse(txtCodProfissao.Texts));
+                string profissao = controllerProfissao.getProfissao(int.Parse(txtCodProfissao.Texts));
                 if (profissao != null)
                 {
-                    txtProfissão.Texts = profissao.profissao;
+                    txtProfissão.Texts = profissao;
                 }
                 else
                 {
-                    MessageBox.Show("Aluno não encontrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Profissão não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodProfissao.Focus();
                     txtCodProfissao.Clear();
-                    txtCodProfissao.Clear();
+                    txtProfissão.Clear();
                 }
             }
         }

@@ -43,12 +43,14 @@
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
-            this.btnIncluir.Location = new System.Drawing.Point(733, 488);
+            this.btnIncluir.Location = new System.Drawing.Point(101, 481);
+            this.btnIncluir.Visible = false;
             // 
             // btnAlterar
             // 
             this.btnAlterar.FlatAppearance.BorderSize = 0;
             this.btnAlterar.Location = new System.Drawing.Point(822, 488);
+            this.btnAlterar.Text = "Visualizar";
             // 
             // btnExcluir
             // 
@@ -80,10 +82,10 @@
             this.dataVencimento,
             this.dataRecebimento,
             this.dataCancelamento});
-            this.dataGridViewContasReceber.Location = new System.Drawing.Point(12, 43);
+            this.dataGridViewContasReceber.Location = new System.Drawing.Point(12, 46);
             this.dataGridViewContasReceber.Name = "dataGridViewContasReceber";
             this.dataGridViewContasReceber.ReadOnly = true;
-            this.dataGridViewContasReceber.Size = new System.Drawing.Size(982, 436);
+            this.dataGridViewContasReceber.Size = new System.Drawing.Size(982, 433);
             this.dataGridViewContasReceber.TabIndex = 7;
             this.dataGridViewContasReceber.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContasReceber_CellDoubleClick);
             this.dataGridViewContasReceber.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewContasReceber_CellFormatting);

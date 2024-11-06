@@ -20,6 +20,7 @@ namespace Pilates.Models
         public DateTime dataInicioPrograma { get; set; }
         public DateTime dataCadastro { get; set; }
         public DateTime? dataCancelamento { get; set; }
+        public DateTime? dataFinalContrato { get; set; }
         public DateTime dataUltAlt { get; set; }
         public bool Ativo { get; set; }
     }

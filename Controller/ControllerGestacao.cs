@@ -19,6 +19,10 @@ namespace Pilates.Controller
         {
             return GestacaoDAO.BuscarUltimoCodigo();
         }
+        public ModelGestacao getGestacao(int id)
+        {
+            return GestacaoDAO.getGestacao(id);
+        }
         public override void Alterar(T obj)
         {
             GestacaoDAO.Alterar(obj);

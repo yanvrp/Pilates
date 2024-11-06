@@ -152,6 +152,7 @@ namespace Pilates.Views
         private void btnBuscarEstado_Click(object sender, EventArgs e)
         {
             consultaEstado.btnSair.Text = "Selecionar";
+            consultaEstado.cbInativos.Visible = false;
 
             if (consultaEstado.ShowDialog() == DialogResult.OK)
             {
@@ -189,25 +190,19 @@ namespace Pilates.Views
 
         private void txtCodigoEstado_Leave(object sender, EventArgs e)
         {
-            if (!Validacoes.VerificaNumeros(txtCodigoEstado.Texts))
+            if (!string.IsNullOrEmpty(txtCodigoEstado.Texts))
             {
-                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCodigoEstado.Focus();
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(txtCodigoEstado.Texts))
+                string estado = estadoController.getEstado(int.Parse(txtCodigoEstado.Texts));
+                if (estado != null)
                 {
-                    ModelEstado estado = estadoController.BuscarPorId(int.Parse(txtCodigoEstado.Texts));
-                    if (estado != null)
-                    {
-                        txtEstado.Texts = estado.Estado;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Estado não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtCodigoEstado.Focus();
-                    }
+                    txtEstado.Texts = estado;
+                }
+                else
+                {
+                    MessageBox.Show("Estado não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCodigoEstado.Focus();
+                    txtCodigoEstado.Clear();
+                    txtEstado.Clear();
                 }
             }
         }

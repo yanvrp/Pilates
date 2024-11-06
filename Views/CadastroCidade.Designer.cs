@@ -65,7 +65,6 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Size = new System.Drawing.Size(92, 27);
             this.txtDataCadastro.Texts = "24/10/2024";
             // 
             // txtDataUltAlt
@@ -146,7 +145,7 @@
             this.txtCidade.DisabledForeColor = System.Drawing.Color.White;
             this.txtCidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCidade.Location = new System.Drawing.Point(23, 104);
-            this.txtCidade.MaxLength = 32767;
+            this.txtCidade.MaxLength = 100;
             this.txtCidade.Multiline = false;
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -154,7 +153,7 @@
             this.txtCidade.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCidade.PlaceholderText = "";
             this.txtCidade.Size = new System.Drawing.Size(413, 28);
-            this.txtCidade.TabIndex = 22;
+            this.txtCidade.TabIndex = 1;
             this.txtCidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCidade.Texts = "";
             this.txtCidade.UnderlinedStyle = false;
@@ -173,7 +172,7 @@
             this.txtDDD.DisabledForeColor = System.Drawing.Color.White;
             this.txtDDD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDDD.Location = new System.Drawing.Point(23, 179);
-            this.txtDDD.MaxLength = 32767;
+            this.txtDDD.MaxLength = 5;
             this.txtDDD.Multiline = false;
             this.txtDDD.Name = "txtDDD";
             this.txtDDD.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -181,7 +180,7 @@
             this.txtDDD.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDDD.PlaceholderText = "";
             this.txtDDD.Size = new System.Drawing.Size(84, 28);
-            this.txtDDD.TabIndex = 23;
+            this.txtDDD.TabIndex = 2;
             this.txtDDD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDDD.Texts = "";
             this.txtDDD.UnderlinedStyle = false;
@@ -200,7 +199,7 @@
             this.txtCodigoEstado.DisabledForeColor = System.Drawing.Color.White;
             this.txtCodigoEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtCodigoEstado.Location = new System.Drawing.Point(23, 256);
-            this.txtCodigoEstado.MaxLength = 32767;
+            this.txtCodigoEstado.MaxLength = 5;
             this.txtCodigoEstado.Multiline = false;
             this.txtCodigoEstado.Name = "txtCodigoEstado";
             this.txtCodigoEstado.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -208,7 +207,7 @@
             this.txtCodigoEstado.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtCodigoEstado.PlaceholderText = "";
             this.txtCodigoEstado.Size = new System.Drawing.Size(84, 28);
-            this.txtCodigoEstado.TabIndex = 24;
+            this.txtCodigoEstado.TabIndex = 3;
             this.txtCodigoEstado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodigoEstado.Texts = "";
             this.txtCodigoEstado.UnderlinedStyle = false;

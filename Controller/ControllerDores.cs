@@ -15,6 +15,11 @@ namespace Pilates.Controller
         {
             DoresDAO = new DAODores<T>();
         }
+        public ModelDores getDores(int id)
+        { 
+            return DoresDAO.getDores(id);
+        }
+
         public int BuscarUltimoCodigo()
         {
             return DoresDAO.BuscarUltimoCodigo();

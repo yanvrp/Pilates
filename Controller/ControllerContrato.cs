@@ -19,6 +19,11 @@ namespace Pilates.Controller
         {
             contratoDAO.Alterar(obj);
         }
+        public void CancelarContrato(int idContrato)
+        {
+            contratoDAO.CancelarContrato(idContrato);
+        }
+
         public int GetUltimoNumero()
         {
             return contratoDAO.GetUltimoNumero();
@@ -48,5 +53,10 @@ namespace Pilates.Controller
         {
             contratoDAO.Salvar(obj);
         }
+        public int SalvarC(T obj)
+        {
+            return contratoDAO.SalvarC(obj);
+        }
+       
     }
 }

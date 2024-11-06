@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,33 @@ namespace Pilates.DAO
             }
             return ultimoCodigo;
         }
+        public void CancelarAvaliacao(int idAvaliacao)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE avaliacao 
+                         SET dataCancelamento = @dataCancelamento, 
+                             dataUltAlt = @dataUltAlt 
+                         WHERE idAvaliacao = @idAvaliacao";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@dataCancelamento", DateTime.Now);
+                command.Parameters.AddWithValue("@dataUltAlt", DateTime.Now);
+                command.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao cancelar a avaliação: " + ex.Message);
+                    throw;
+                }
+            }
+        }
         public override void Alterar(ModelAvaliacao obj)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -41,7 +69,9 @@ namespace Pilates.DAO
                                   SET data = @data, 
                                       idAluno = @idAluno, 
                                       dataUltAlt = @dataUltAlt, 
-                                      ativo = @ativo 
+                                      ativo = @ativo,
+                                      observacao = @observacao
+                                      dataCancelamento = @dataCancelamento
                                   WHERE idAvaliacao = @idAvaliacao";
                     SqlCommand cmdAvaliacao = new SqlCommand(queryAvaliacao, conn, transaction);
 
@@ -50,6 +80,8 @@ namespace Pilates.DAO
                     cmdAvaliacao.Parameters.AddWithValue("@dataUltAlt", obj.dataUltAlt);
                     cmdAvaliacao.Parameters.AddWithValue("@ativo", obj.Ativo);
                     cmdAvaliacao.Parameters.AddWithValue("@idAvaliacao", obj.idAvaliacao);
+                    cmdAvaliacao.Parameters.AddWithValue("@observacao", obj.observacao ?? (object)DBNull.Value);
+                    cmdAvaliacao.Parameters.AddWithValue("@dataCancelamento", obj.dataCancelamento ?? (object)DBNull.Value);
 
                     cmdAvaliacao.ExecuteNonQuery();
 
@@ -188,6 +220,8 @@ namespace Pilates.DAO
                         avaliacao.Ativo = Convert.ToBoolean(reader["ativo"]);
                         avaliacao.dataCadastro = Convert.ToDateTime(reader["dataCadastro"]);
                         avaliacao.dataUltAlt = Convert.ToDateTime(reader["dataUltAlt"]);
+                        avaliacao.observacao = reader.IsDBNull(reader.GetOrdinal("observacao")) ? (string?)null : reader["observacao"].ToString();
+                        avaliacao.dataCancelamento = reader.IsDBNull(reader.GetOrdinal("dataCancelamento")) ? (DateTime?)null : Convert.ToDateTime(reader["dataCancelamento"]);
 
                         // Carregar Complicações
                         avaliacao.Dores = BuscarDoresPorAvaliacaoId(avaliacao.idAvaliacao);
@@ -356,6 +390,7 @@ namespace Pilates.DAO
                         avaliacao.idAvaliacao = Convert.ToInt32(reader["idAvaliacao"]);
                         avaliacao.idAluno = Convert.ToInt32(reader["idAluno"]);
                         avaliacao.data = Convert.ToDateTime(reader["data"]);
+                        avaliacao.dataCancelamento = reader["dataCancelamento"] != DBNull.Value ? Convert.ToDateTime(reader["dataCancelamento"]) : (DateTime?)null;
                         avaliacoes.Add(avaliacao);
                     }
                 }
@@ -517,8 +552,8 @@ namespace Pilates.DAO
                 {
                     // Inserir a avaliação principal
                     string queryAvaliacao = @"INSERT INTO avaliacao 
-                       (data, idAluno, dataCadastro, dataUltAlt, ativo) 
-                       VALUES (@data, @idAluno, @dataCadastro, @dataUltAlt, @ativo);
+                       (data, idAluno, dataCadastro, dataUltAlt, ativo, observacao, dataCancelamento) 
+                       VALUES (@data, @idAluno, @dataCadastro, @dataUltAlt, @ativo, @observacao, @dataCancelamento);
                        SELECT SCOPE_IDENTITY();";
                     SqlCommand cmdAvaliacao = new SqlCommand(queryAvaliacao, conn, transaction);
 
@@ -527,6 +562,8 @@ namespace Pilates.DAO
                     cmdAvaliacao.Parameters.AddWithValue("@dataCadastro", obj.dataCadastro);
                     cmdAvaliacao.Parameters.AddWithValue("@dataUltAlt", obj.dataUltAlt);
                     cmdAvaliacao.Parameters.AddWithValue("@ativo", obj.Ativo);
+                    cmdAvaliacao.Parameters.AddWithValue("@observacao", obj.observacao ?? (object)DBNull.Value);
+                    cmdAvaliacao.Parameters.AddWithValue("@dataCancelamento", obj.dataCancelamento ?? (object)DBNull.Value);
                     int idAvaliacao = Convert.ToInt32(cmdAvaliacao.ExecuteScalar());
 
                     // Inserir as dores
@@ -563,8 +600,8 @@ namespace Pilates.DAO
                     foreach (var gestacao in obj.Gestacao)
                     {
                         string queryGestacao = @"INSERT INTO avaliacao_Gestacao 
-                            (idAvaliacao, observacao, idGestacao, dataParto) 
-                            VALUES (@idAvaliacao, @observacao, @idGestacao, @dataParto)";
+        (idAvaliacao, observacao, idGestacao, dataParto) 
+        VALUES (@idAvaliacao, @observacao, @idGestacao, @dataParto)";
                         SqlCommand cmdGestacao = new SqlCommand(queryGestacao, conn, transaction);
 
                         cmdGestacao.Parameters.AddWithValue("@idAvaliacao", idAvaliacao);

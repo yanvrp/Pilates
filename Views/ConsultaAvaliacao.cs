@@ -33,6 +33,9 @@ namespace Pilates.Views
                 dataGridViewAvaliacao.Columns["idAvaliação"].DataPropertyName = "idAvaliacao";
                 dataGridViewAvaliacao.Columns["idAluno"].DataPropertyName = "idAluno";
                 dataGridViewAvaliacao.Columns["dataAvaliação"].DataPropertyName = "data";
+                dataGridViewAvaliacao.Columns["dataAvaliação"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridViewAvaliacao.Columns["dataCancelamento"].DataPropertyName = "dataCancelamento";
+                dataGridViewAvaliacao.Columns["dataCancelamento"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
                 AtualizarConsultaAvaliacoes(cbInativos.Checked);
             }
@@ -78,7 +81,7 @@ namespace Pilates.Views
         }
         public override void Pesquisar()
         {
-            string pesquisa = txtPesquisar.Text.Trim();
+            string pesquisa = txtPesquisar.Texts.Trim();
 
             if (!string.IsNullOrEmpty(pesquisa))
             {
@@ -98,7 +101,7 @@ namespace Pilates.Views
                         MessageBox.Show("O código da avaliação deve ser um número válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
-                    txtPesquisar.Text = string.Empty; 
+                    txtPesquisar.Texts = string.Empty; 
                 }
                 catch (Exception ex)
                 {
@@ -154,6 +157,11 @@ namespace Pilates.Views
 
                 e.Value = aluno != null ? aluno.Aluno : "Aluno não encontrado";
                 e.FormattingApplied = true;
+            }
+            var dataCancelamentoValue = dataGridViewAvaliacao.Rows[e.RowIndex].Cells["dataCancelamento"].Value;
+            if (dataCancelamentoValue != DBNull.Value && dataCancelamentoValue != null)
+            {
+                dataGridViewAvaliacao.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
             }
         }
     }

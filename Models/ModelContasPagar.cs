@@ -11,6 +11,7 @@ namespace Pilates.Models
         public int numero { get; set; }
         public DateTime dataEmissao { get; set; }
         public int parcela { get; set; }
+        public int idFornecedor { get; set; }
         public decimal valorParcela { get; set; }
         public DateTime dataVencimento { get; set; }
         public DateTime? dataPagamento { get; set; }

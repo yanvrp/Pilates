@@ -15,6 +15,10 @@ namespace Pilates.Controller
         {
             ProfissaoDAO = new DAOProfissao<T>();
         }
+        public string getProfissao(int id)
+        {
+            return ProfissaoDAO.getProfissao(id);
+        }
         public int BuscarUltimoCodigo()
         {
             return ProfissaoDAO.BuscarUltimoCodigo();

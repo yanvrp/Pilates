@@ -1,4 +1,5 @@
 ﻿using Pilates.DAO;
+using Pilates.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,17 @@ namespace Pilates.Controller
         {
             daoPrograma = new DAOPrograma<T>();
         }
+        public ModelPrograma getPrograma(int id)
+        {
+            return daoPrograma.getPrograma(id);
+        }
         public override void Alterar(T obj)
         {
             daoPrograma.Alterar(obj);
+        }
+        public int BuscarUltimoCodigo()
+        {
+            return daoPrograma.BuscarUltimoCodigo();
         }
 
         public override T BuscarPorId(int idObj)

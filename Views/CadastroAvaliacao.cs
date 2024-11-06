@@ -62,6 +62,7 @@ namespace Pilates.Views
             txtCodAluno.Enabled = false;
             txtAluno.Enabled = false;
             btnPesquisarAluno.Enabled = false;
+            txtObservacao.Enabled = false;
 
             //bloqueia campos dores
             txtCodDores.Enabled = false;
@@ -118,6 +119,7 @@ namespace Pilates.Views
         }
         public override void Carrega()
         {
+            btnCancelar.Visible = true;
             BloqueiaTudo();
             base.Carrega();
             if (Alterar != -7)
@@ -132,6 +134,14 @@ namespace Pilates.Views
                     txtDataCadastro.Texts = avaliacao.dataCadastro.ToString();
                     txtDataUltAlt.Texts = avaliacao.dataUltAlt.ToString();
                     txtCodAluno.Texts = avaliacao.idAluno.ToString();
+                    txtObservacao.Texts = avaliacao.observacao.ToString();
+                    txtDataCancelamento.Texts = avaliacao.dataCancelamento.ToString();
+
+                    if (avaliacao.dataCancelamento != null)
+                    {
+                        txtDataCancelamento.Visible = true;
+                        lblDataCancelamento.Visible = true;
+                    }
 
                     ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
                     if (aluno != null)
@@ -168,6 +178,10 @@ namespace Pilates.Views
                 int idAluno = Convert.ToInt32(txtCodAluno.Texts);
                 DateTime.TryParse(txtDataCadastro.Texts, out DateTime datacadastro);
                 DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
+                string observacao = txtObservacao.Texts;
+
+                string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
+                DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Texts, "dd/MM/yyyy", null);
 
                 ModelAvaliacao avaliacao = new ModelAvaliacao
                 {
@@ -176,6 +190,8 @@ namespace Pilates.Views
                     dataCadastro = datacadastro,
                     dataUltAlt = dataUltAlt,
                     Ativo = Ativo,
+                    observacao = observacao,
+                    dataCancelamento = dataCancelamento,
                     Cirurgia = obtemCirurgia(),
                     Doenca = obtemDoenca(),
                     Dores = obtemDores(),
@@ -462,6 +478,11 @@ namespace Pilates.Views
                 int novoCodigo = controllerAvaliacao.GetUltimoCodigo() + 1;
                 txtCodigo.Texts = novoCodigo.ToString();
             }
+            dataGridViewCirurgia.Columns["DataCirurgia"].DataPropertyName = "DataCirurgia";
+            dataGridViewCirurgia.Columns["DataCirurgia"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
+            dataGridViewGestacao.Columns["DataParto"].DataPropertyName = "DataParto";
+            dataGridViewGestacao.Columns["DataParto"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
         private void limpaCamposDores()
@@ -477,6 +498,7 @@ namespace Pilates.Views
             txtDoenca.Clear();
             txtDescricaoDoenca.Clear();
             txtObservacoesDoenca.Clear();
+            txtCID.Clear();
         }
 
         private void limpaCamposMedicamento()
@@ -525,28 +547,25 @@ namespace Pilates.Views
                     string dores = txtDores.Texts;
                     string descricao = txtDescricaoDores.Texts;
 
-                    //observação pode ser nula, então usa string vazia se for o caso
+                    //obs pode ser nula, então usa string vazia se for o caso
                     string observacao = string.IsNullOrEmpty(txtObservacoesDores.Texts) ? "" : txtObservacoesDores.Texts;
 
-                    bool doresExistente = false;
+                    //ver se já existe uma dor com o mesmo código
+                    bool doresExistente = dataGridViewDores.Rows.Cast<DataGridViewRow>().Any(row =>
+                        row.Cells["CódigoDores"].Value != null &&
+                        Convert.ToInt32(row.Cells["CódigoDores"].Value) == codigoDores);
 
-                    foreach (DataGridViewRow row in dataGridViewDores.Rows)
+                    if (doresExistente)
                     {
-                        if (row.Cells["CódigoDores"].Value != null && Convert.ToInt32(row.Cells["CódigoDores"].Value) == codigoDores)
-                        {
-                            doresExistente = true;
-                            MessageBox.Show("Dor já adicionada", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            break;
-                        }
+                        MessageBox.Show("Dor já adicionada", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        limpaCamposDores();
                     }
-
-                    if (!doresExistente)
+                    else
                     {
                         dataGridViewDores.Rows.Add(codigoDores, dores, descricao, observacao);
+                        dataGridViewDores.Sort(dataGridViewDores.Columns["CódigoDores"], ListSortDirection.Ascending);
+                        limpaCamposDores();
                     }
-
-                    dataGridViewDores.Sort(dataGridViewDores.Columns["CódigoDores"], ListSortDirection.Ascending);
-                    limpaCamposDores();
                 }
                 catch (Exception ex)
                 {
@@ -664,61 +683,48 @@ namespace Pilates.Views
             {
                 MessageBox.Show("Campo Cód. Cirurgia é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCodCirurgia.Focus();
+                return; // Adiciona um return para evitar execução contínua
             }
             else if (!Validacoes.CampoObrigatorio(txtDataDaCirurgia.Texts))
             {
                 MessageBox.Show("Campo Data Cirurgia é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDataDaCirurgia.Focus();
+                return; // Adiciona um return para evitar execução contínua
             }
-            else
+
+            try
             {
-                try
+                int codigoCirurgia = Convert.ToInt32(txtCodCirurgia.Texts);
+
+                if (!DateTime.TryParseExact(txtDataDaCirurgia.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dataCirurgia))
                 {
-                    int codigoCirurgia = Convert.ToInt32(txtCodCirurgia.Texts);
-                    string cirurgia = txtCodCirurgia.Texts;
-                    string descricao = txtDescricaoCirurgia.Texts;
+                    MessageBox.Show("Data da cirurgia inválida. Por favor, insira no formato DD/MM/AAAA.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtDataDaCirurgia.Focus();
+                    return;
+                }
 
-                    //tentar converter o valor do MaskedTextBox para DateTime
-                    if (!DateTime.TryParseExact(txtDataDaCirurgia.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dataCirurgia))
-                    {
-                        MessageBox.Show("Data da cirurgia inválida. Por favor, insira no formato DD/MM/AAAA.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtDataDaCirurgia.Focus();
-                        return;
-                    }
+                //obs pode ser nula, então usa string vazia se for o caso
+                string observacao = string.IsNullOrEmpty(txtObservacoesCirurgia.Texts) ? "" : txtObservacoesCirurgia.Texts;
 
-                    //observação pode ser nula, então usa string vazia se for o caso
-                    string observacao = string.IsNullOrEmpty(txtObservacoesCirurgia.Texts) ? "" : txtObservacoesCirurgia.Texts;
+                //ver se já existe uma cirurgia com o mesmo código
+                bool cirurgiaExistente = dataGridViewCirurgia.Rows.Cast<DataGridViewRow>().Any(row =>
+                    row.Cells["CódigoCirurgia"].Value != null &&
+                    Convert.ToInt32(row.Cells["CódigoCirurgia"].Value) == codigoCirurgia);
 
-                    bool cirurgiaExistente = false;
-
-                    //verifica se já existe uma cirurgia com os mesmos dados (não apenas o código)
-                    foreach (DataGridViewRow row in dataGridViewCirurgia.Rows)
-                    {
-                        if (row.Cells["CódigoCirurgia"].Value != null &&
-                            Convert.ToInt32(row.Cells["CódigoCirurgia"].Value) == codigoCirurgia &&
-                            row.Cells["Cirurgia"].Value.ToString() == cirurgia &&
-                            row.Cells["DescriçãoCirurgia"].Value.ToString() == descricao &&
-                            row.Cells["DataCirurgia"].Value.ToString() == dataCirurgia.ToString("dd/MM/yyyy") &&
-                            row.Cells["Observacao"].Value.ToString() == observacao)
-                        {
-                            cirurgiaExistente = true;
-                            MessageBox.Show("Cirurgia com os mesmos detalhes já adicionada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            break;
-                        }
-                    }
-
-                    if (!cirurgiaExistente)
-                    {
-                        dataGridViewCirurgia.Rows.Add(codigoCirurgia, cirurgia, descricao, dataCirurgia.ToString("dd/MM/yyyy"), observacao);
-                    }
-
-                    dataGridViewCirurgia.Sort(dataGridViewCirurgia.Columns["CódigoCirurgia"], ListSortDirection.Ascending);
+                if (cirurgiaExistente)
+                {
+                    MessageBox.Show("Cirurgia já adicionada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpaCamposCirurgia();
+                    return;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao adicionar Cirurgia: " + ex.Message);
-                }
+
+                dataGridViewCirurgia.Rows.Add(codigoCirurgia, txtCodCirurgia.Texts, txtDescricaoCirurgia.Texts, dataCirurgia.ToString("dd/MM/yyyy"), observacao);
+                dataGridViewCirurgia.Sort(dataGridViewCirurgia.Columns["CódigoCirurgia"], ListSortDirection.Ascending);
+                limpaCamposCirurgia();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao adicionar Cirurgia: " + ex.Message);
             }
         }
 
@@ -793,14 +799,14 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodAluno.Texts))
             {
-                ModelAluno aluno = controllerAluno.BuscarPorId(int.Parse(txtCodAluno.Texts));
+                string aluno = controllerAluno.getAluno(int.Parse(txtCodAluno.Texts));
                 if (aluno != null)
                 {
-                    txtAluno.Texts = aluno.Aluno;
+                    txtAluno.Texts = aluno;
                 }
                 else
                 {
-                    MessageBox.Show("Aluno não encontrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Aluno não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodAluno.Focus();
                     txtCodAluno.Clear();
                     txtAluno.Clear();
@@ -812,7 +818,7 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodDores.Texts))
             {
-                ModelDores dor = controllerDores.BuscarPorId(int.Parse(txtCodDores.Texts));
+                ModelDores dor = controllerDores.getDores(int.Parse(txtCodDores.Texts));
                 if (dor != null)
                 {
                     txtDores.Texts = dor.dores;
@@ -833,7 +839,7 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodDoenca.Texts))
             {
-                ModelDoenca doenca = controllerDoenca.BuscarPorId(int.Parse(txtCodDoenca.Texts));
+                ModelDoenca doenca = controllerDoenca.getDoenca(int.Parse(txtCodDoenca.Texts));
                 if (doenca != null)
                 {
                     txtDoenca.Texts = doenca.doenca;
@@ -856,7 +862,7 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodMedicamento.Texts))
             {
-                ModelMedicamento medicamento = controllerMedicamento.BuscarPorId(int.Parse(txtCodMedicamento.Texts));
+                ModelMedicamento medicamento = controllerMedicamento.getMedicamento(int.Parse(txtCodMedicamento.Texts));
                 if (medicamento != null)
                 {
                     txtMedicamento.Texts = medicamento.medicamento;
@@ -877,7 +883,7 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodCirurgia.Texts))
             {
-                ModelCirurgia cirurgia = controllerCirurgia.BuscarPorId(int.Parse(txtCodCirurgia.Texts));
+                ModelCirurgia cirurgia = controllerCirurgia.getCirurgia(int.Parse(txtCodCirurgia.Texts));
                 if (cirurgia != null)
                 {
                     txtCirurgia.Texts = cirurgia.cirurgia;
@@ -888,7 +894,7 @@ namespace Pilates.Views
                     MessageBox.Show("Cirurgia não encontrado(a).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodCirurgia.Focus();
                     txtCodCirurgia.Clear();
-                    txtCodCirurgia.Clear();
+                    txtCirurgia.Clear();
                     txtDescricaoCirurgia.Clear();
                 }
             }
@@ -898,7 +904,7 @@ namespace Pilates.Views
         {
             if (!string.IsNullOrEmpty(txtCodGestacao.Texts))
             {
-                ModelGestacao gestacao = controllerGestacao.BuscarPorId(int.Parse(txtCodGestacao.Texts));
+                ModelGestacao gestacao = controllerGestacao.getGestacao(int.Parse(txtCodGestacao.Texts));
                 if (gestacao != null)
                 {
                     txtGestacao.Texts = gestacao.gestacao;
@@ -918,6 +924,7 @@ namespace Pilates.Views
         private void btnPesquisarAluno_Click(object sender, EventArgs e)
         {
             consultaAluno.btnSair.Text = "Selecionar";
+            consultaAluno.cbInativos.Enabled = false;
 
             if (consultaAluno.ShowDialog() == DialogResult.OK)
             {
@@ -1237,6 +1244,31 @@ namespace Pilates.Views
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao excluir Gestação: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
+            if (dCancelamento == "")
+            {
+                DialogResult result = MessageBox.Show("Você tem certeza que deseja cancelar a avaliação?",
+                                          "Confirmação de Cancelamento",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    int idAvaliacao = Convert.ToInt32(txtCodigo.Texts);
+                    controllerAvaliacao.CancelarAvaliacao(idAvaliacao);
+
+                    MessageBox.Show("Avaliação cancelada com sucesso!");
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("A avaliação já foi cancelada anteriormente!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

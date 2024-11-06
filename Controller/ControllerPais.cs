@@ -15,6 +15,10 @@ namespace Pilates.Controller
         {
             PaisDAO = new DAOPais<T>();
         }
+        public string getPais(int id)
+        {
+            return PaisDAO.getPais(id);
+        }
         public int BuscarUltimoCodigo()
         {
             return PaisDAO.BuscarUltimoCodigo();

@@ -31,6 +31,8 @@
             this.dataGridViewContasPagar = new System.Windows.Forms.DataGridView();
             this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.parcela = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idFornecedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fornecedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorParcela = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataPagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,12 +43,12 @@
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
-            this.btnIncluir.Location = new System.Drawing.Point(415, 409);
+            this.btnIncluir.Location = new System.Drawing.Point(547, 409);
             // 
             // btnAlterar
             // 
             this.btnAlterar.FlatAppearance.BorderSize = 0;
-            this.btnAlterar.Location = new System.Drawing.Point(504, 409);
+            this.btnAlterar.Location = new System.Drawing.Point(636, 409);
             // 
             // btnExcluir
             // 
@@ -61,7 +63,7 @@
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
-            this.btnSair.Location = new System.Drawing.Point(593, 409);
+            this.btnSair.Location = new System.Drawing.Point(725, 409);
             // 
             // dataGridViewContasPagar
             // 
@@ -72,6 +74,8 @@
             this.dataGridViewContasPagar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numero,
             this.parcela,
+            this.idFornecedor,
+            this.Fornecedor,
             this.valorParcela,
             this.dataVencimento,
             this.dataPagamento,
@@ -79,9 +83,11 @@
             this.dataGridViewContasPagar.Location = new System.Drawing.Point(12, 52);
             this.dataGridViewContasPagar.Name = "dataGridViewContasPagar";
             this.dataGridViewContasPagar.ReadOnly = true;
-            this.dataGridViewContasPagar.Size = new System.Drawing.Size(664, 350);
+            this.dataGridViewContasPagar.Size = new System.Drawing.Size(796, 350);
             this.dataGridViewContasPagar.TabIndex = 8;
+            this.dataGridViewContasPagar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContasPagar_CellContentClick);
             this.dataGridViewContasPagar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContasPagar_CellDoubleClick);
+            this.dataGridViewContasPagar.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewContasPagar_CellFormatting);
             // 
             // numero
             // 
@@ -94,6 +100,18 @@
             this.parcela.HeaderText = "Parcela";
             this.parcela.Name = "parcela";
             this.parcela.ReadOnly = true;
+            // 
+            // idFornecedor
+            // 
+            this.idFornecedor.HeaderText = "Cód. Fornecedor";
+            this.idFornecedor.Name = "idFornecedor";
+            this.idFornecedor.ReadOnly = true;
+            // 
+            // Fornecedor
+            // 
+            this.Fornecedor.HeaderText = "Fornecedor";
+            this.Fornecedor.Name = "Fornecedor";
+            this.Fornecedor.ReadOnly = true;
             // 
             // valorParcela
             // 
@@ -123,7 +141,7 @@
             // ConsultaContasPagar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(688, 452);
+            this.ClientSize = new System.Drawing.Size(825, 452);
             this.Controls.Add(this.dataGridViewContasPagar);
             this.Name = "ConsultaContasPagar";
             this.Text = "Consulta Contas a Pagar";
@@ -147,6 +165,8 @@
         private System.Windows.Forms.DataGridView dataGridViewContasPagar;
         private System.Windows.Forms.DataGridViewTextBoxColumn numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn parcela;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idFornecedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fornecedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorParcela;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataVencimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataPagamento;

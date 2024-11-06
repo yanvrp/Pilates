@@ -15,7 +15,10 @@ namespace Pilates.Controller
         {
             DAOFornecedor = new DAOFornecedor<T>();
         }
-
+        public List<string> CarregaCEP(int idCidade)
+        {
+            return DAOFornecedor.CarregaCEP(idCidade);
+        }
         public int GetUltimoCodigo()
         {
             return DAOFornecedor.GetUltimoCodigo();

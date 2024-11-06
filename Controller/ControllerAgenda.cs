@@ -19,9 +19,17 @@ namespace Pilates.Controller
         {
             return daoAgenda.GetUltimoCodigo();
         }
+        public void CancelarAgendamento(int idAgenda)
+        {
+            daoAgenda.CancelarAgendamento(idAgenda);
+        }
+        public int ContarAlunosPorHorarioEDia(TimeSpan horario, string diaSemana)
+        {
+            return daoAgenda.ContarAlunosPorHorarioEDia(horario, diaSemana);
+        }
         public override void Alterar(T obj)
         {
-            throw new NotImplementedException();
+            daoAgenda.Alterar(obj);
         }
 
         public override T BuscarPorId(int idObj)
@@ -39,7 +47,6 @@ namespace Pilates.Controller
             }
             return lista;
         }
-
         public override void Deletar(int idObj)
         {
             throw new NotImplementedException();

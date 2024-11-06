@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -40,24 +41,66 @@ namespace Pilates.Views
                 MessageBox.Show("Selecione um agendamento para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void AtualizarConsultaAgenda(bool incluirInativos)
+        public void AtualizarConsultaAgenda(bool incluirInativos, bool incluirCancelados)
         {
             try
             {
-                dataGridViewAgenda.DataSource = controllerAgenda.BuscarTodos(incluirInativos);
+                var agendamentos = controllerAgenda.BuscarTodos(incluirInativos) ?? new List<ModelAgenda>();
+
+                //filtra apenas os agendamentos com situação diferente de "CANCELADO"
+                if (!incluirCancelados)
+                {
+                    agendamentos = agendamentos.Where(a => a.situacao == null || !a.situacao.Equals("CANCELADO", StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+
+                dataGridViewAgenda.DataSource = agendamentos;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro ao atualizar a consulta de Agenda: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public override void Pesquisar()
+        {
+            string pesquisa = txtPesquisar.Texts.Trim(); // obtém a pesquisa do txt
+            bool pesquisaDataValida = DateTime.TryParseExact(pesquisa, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime dataPesquisa);
+
+            // Verifica se há um termo de pesquisa
+            if (!string.IsNullOrEmpty(pesquisa))
+            {
+                try
+                {
+                    List<ModelAgenda> resultadosPesquisa = new List<ModelAgenda>();
+
+                    if (pesquisaDataValida)
+                    {
+                        resultadosPesquisa = controllerAgenda.BuscarTodos(cbInativos.Checked)
+                                           .Where(p => p.data.Date == dataPesquisa.Date)
+                                           .ToList();
+                    }
+                    
+                    dataGridViewAgenda.DataSource = resultadosPesquisa;
+                    txtPesquisar.Texts = string.Empty; // limpa o txt pesquisa
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um erro ao pesquisar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                AtualizarConsultaAgenda(cbInativos.Checked, cbMostrarCancelados.Checked);
+            }
+        }
+
+
 
         private void ConsultaAgenda_Load(object sender, EventArgs e)
         {
             try
             {
                 CadastroAgenda cadastroAgenda = new CadastroAgenda();
-                cadastroAgenda.FormClosed += (s, args) => AtualizarConsultaAgenda(cbInativos.Checked);
+                cadastroAgenda.FormClosed += (s, args) => AtualizarConsultaAgenda(cbInativos.Checked, cbMostrarCancelados.Checked);
                 dataGridViewAgenda.AutoGenerateColumns = false;
                 dataGridViewAgenda.Columns["Código"].DataPropertyName = "idAgenda";
                 dataGridViewAgenda.Columns["Data"].DataPropertyName = "data";
@@ -65,7 +108,7 @@ namespace Pilates.Views
                 dataGridViewAgenda.Columns["Horário"].DataPropertyName = "horario";
                 dataGridViewAgenda.Columns["idAluno"].DataPropertyName = "idAluno";
                 dataGridViewAgenda.Columns["Situação"].DataPropertyName = "situacao";
-                AtualizarConsultaAgenda(cbInativos.Checked);
+                AtualizarConsultaAgenda(cbInativos.Checked, cbMostrarCancelados.Checked);
             }
             catch (Exception ex)
             {
@@ -92,6 +135,19 @@ namespace Pilates.Views
                     }
                 }
             }
+            if (dataGridViewAgenda.Columns.Contains("Situação") && e.RowIndex >= 0)
+            {
+                var situacaoValue = dataGridViewAgenda.Rows[e.RowIndex].Cells["Situação"].Value;
+
+                if (situacaoValue != null && situacaoValue.ToString().Equals("CANCELADO", StringComparison.OrdinalIgnoreCase))
+                {
+                    dataGridViewAgenda.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                }
+                else
+                {
+                    dataGridViewAgenda.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dataGridViewAgenda.DefaultCellStyle.ForeColor;
+                }
+            }
         }
 
         private void dataGridViewAgenda_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -108,6 +164,18 @@ namespace Pilates.Views
             {
                 MessageBox.Show("Selecione uma conta a receber para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void cbInativos_CheckedChanged(object sender, EventArgs e)
+        {
+            bool incluirInativos = cbInativos.Checked;
+            AtualizarConsultaAgenda(incluirInativos, cbMostrarCancelados.Checked);
+        }
+
+        private void cbMostrarCancelados_CheckedChanged(object sender, EventArgs e)
+        {
+            bool mostrarCancelados = cbMostrarCancelados.Checked;
+            AtualizarConsultaAgenda(mostrarCancelados, cbMostrarCancelados.Checked);
         }
     }
 }

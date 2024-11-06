@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,33 @@ namespace Pilates.DAO
         }
         public override void Alterar(ModelAgenda obj)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE agenda SET idAluno = @idAluno, idContrato = @idContrato, horario = @horario, data = @data, situacao = @situacao, ativo = @ativo,  dataUltAlt = @dataUltAlt, dataCancelamento = @dataCancelamento WHERE idAgenda = @idAgenda";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@idAluno", obj.idAluno);
+                command.Parameters.AddWithValue("@idContrato", obj.idContrato ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@horario", obj.horario);
+                command.Parameters.AddWithValue("@situacao", obj.situacao ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@data", obj.data);
+                command.Parameters.AddWithValue("@ativo", obj.Ativo);
+                command.Parameters.AddWithValue("@dataUltAlt", DateTime.Now); 
+                command.Parameters.AddWithValue("@idAgenda", obj.idAgenda);
+                command.Parameters.AddWithValue("@dataCancelamento", obj.dataCancelamento ?? (object)DBNull.Value);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao alterar o agendamento: " + ex.Message);
+                    throw;
+                }
+            }
         }
 
         public override ModelAgenda BuscarPorId(int id)
@@ -59,6 +86,7 @@ namespace Pilates.DAO
                         agenda.Ativo = Convert.ToBoolean(reader["Ativo"]);
                         agenda.dataCadastro = DateTime.Parse(reader["dataCadastro"].ToString());
                         agenda.dataUltAlt = DateTime.Parse(reader["dataUltAlt"].ToString());
+                        agenda.dataCancelamento = reader["dataCancelamento"] != DBNull.Value ? Convert.ToDateTime(reader["dataCancelamento"]) : (DateTime?)null;
                     }
                 }
             }
@@ -72,7 +100,7 @@ namespace Pilates.DAO
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM agenda ORDER BY data, horario";
+                string query = buscarInativos ? "SELECT * FROM agenda ORDER BY data, horario" : "SELECT * FROM agenda WHERE ativo = 1 ORDER BY data, horario";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 conn.Open();
@@ -106,8 +134,8 @@ namespace Pilates.DAO
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO agenda (idAluno, idContrato, horario, data, situacao, ativo, dataCadastro, dataUltAlt) 
-                                 VALUES (@idAluno, @idContrato, @horario, @data, @situacao, @ativo, @dataCadastro, @dataUltAlt)";
+                string query = @"INSERT INTO agenda (idAluno, idContrato, horario, data, situacao, ativo, dataCadastro, dataUltAlt, dataCancelamento) 
+                                 VALUES (@idAluno, @idContrato, @horario, @data, @situacao, @ativo, @dataCadastro, @dataUltAlt, @dataCancelamento)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
@@ -119,6 +147,7 @@ namespace Pilates.DAO
                 command.Parameters.AddWithValue("@ativo", agenda.Ativo);
                 command.Parameters.AddWithValue("@dataCadastro", agenda.dataCadastro);
                 command.Parameters.AddWithValue("@dataUltAlt", agenda.dataUltAlt);
+                command.Parameters.AddWithValue("@dataCancelamento", agenda.dataCancelamento ?? (object)DBNull.Value);
 
                 try
                 {
@@ -132,5 +161,62 @@ namespace Pilates.DAO
                 }
             }
         }
+        public void CancelarAgendamento(int idAgenda)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE agenda 
+                         SET situacao = @situacao, 
+                             dataCancelamento = @dataCancelamento, 
+                             dataUltAlt = @dataUltAlt 
+                         WHERE idAgenda = @idAgenda";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@situacao", "CANCELADO");
+                command.Parameters.AddWithValue("@dataCancelamento", DateTime.Now);
+                command.Parameters.AddWithValue("@dataUltAlt", DateTime.Now);
+                command.Parameters.AddWithValue("@idAgenda", idAgenda);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao cancelar o agendamento: " + ex.Message);
+                    throw;
+                }
+            }
+        }
+        public int ContarAlunosPorHorarioEDia(TimeSpan horario, string diaSemana)
+        {
+            int totalAlunos = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT COUNT(*) FROM agenda 
+                         WHERE horario = @horario AND 
+                               DATENAME(WEEKDAY, data) = @diaSemana AND 
+                               ativo = 1";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@horario", horario);
+                command.Parameters.AddWithValue("@diaSemana", diaSemana);
+
+                try
+                {
+                    connection.Open();
+                    totalAlunos = (int)command.ExecuteScalar();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao contar alunos agendados: " + ex.Message);
+                    throw;
+                }
+            }
+            return totalAlunos;
+        }
+
     }
 }

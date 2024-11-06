@@ -23,7 +23,10 @@ namespace Pilates.Controller
         {
             MedicamentoDAO.Alterar(obj);
         }
-
+        public ModelMedicamento getMedicamento(int id)
+        {
+            return MedicamentoDAO.getMedicamento(id);
+        }
         public override T BuscarPorId(int idObj)
         {
             return MedicamentoDAO.BuscarPorId(idObj);

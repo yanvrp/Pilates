@@ -91,6 +91,7 @@
             // 
             // txtNumAula
             // 
+            this.txtNumAula.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtNumAula.FormattingEnabled = true;
             this.txtNumAula.ItemHeight = 13;
             this.txtNumAula.Items.AddRange(new object[] {
@@ -102,10 +103,11 @@
             this.txtNumAula.Location = new System.Drawing.Point(23, 171);
             this.txtNumAula.Name = "txtNumAula";
             this.txtNumAula.Size = new System.Drawing.Size(121, 21);
-            this.txtNumAula.TabIndex = 12;
+            this.txtNumAula.TabIndex = 2;
             // 
             // txtTipoPrograma
             // 
+            this.txtTipoPrograma.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtTipoPrograma.FormattingEnabled = true;
             this.txtTipoPrograma.Items.AddRange(new object[] {
             "EM GRUPO",
@@ -113,7 +115,7 @@
             this.txtTipoPrograma.Location = new System.Drawing.Point(205, 171);
             this.txtTipoPrograma.Name = "txtTipoPrograma";
             this.txtTipoPrograma.Size = new System.Drawing.Size(121, 21);
-            this.txtTipoPrograma.TabIndex = 13;
+            this.txtTipoPrograma.TabIndex = 3;
             // 
             // lblTipoPrograma
             // 
@@ -146,7 +148,7 @@
             this.txtTitulo.DisabledForeColor = System.Drawing.Color.White;
             this.txtTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtTitulo.Location = new System.Drawing.Point(20, 98);
-            this.txtTitulo.MaxLength = 32767;
+            this.txtTitulo.MaxLength = 200;
             this.txtTitulo.Multiline = false;
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -154,7 +156,7 @@
             this.txtTitulo.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtTitulo.PlaceholderText = "";
             this.txtTitulo.Size = new System.Drawing.Size(479, 28);
-            this.txtTitulo.TabIndex = 17;
+            this.txtTitulo.TabIndex = 1;
             this.txtTitulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTitulo.Texts = "";
             this.txtTitulo.UnderlinedStyle = false;
@@ -172,7 +174,7 @@
             this.txtValor.DisabledForeColor = System.Drawing.Color.White;
             this.txtValor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtValor.Location = new System.Drawing.Point(381, 165);
-            this.txtValor.MaxLength = 32767;
+            this.txtValor.MaxLength = 13;
             this.txtValor.Multiline = false;
             this.txtValor.Name = "txtValor";
             this.txtValor.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -180,7 +182,7 @@
             this.txtValor.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtValor.PlaceholderText = "";
             this.txtValor.Size = new System.Drawing.Size(118, 28);
-            this.txtValor.TabIndex = 18;
+            this.txtValor.TabIndex = 4;
             this.txtValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValor.Texts = "";
             this.txtValor.UnderlinedStyle = false;
@@ -202,6 +204,7 @@
             this.Name = "CadastroPrograma";
             this.Text = "Cadastro de Programa";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroPrograma_FormClosed);
+            this.Load += new System.EventHandler(this.CadastroPrograma_Load);
             this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.txtCodigo, 0);
             this.Controls.SetChildIndex(this.btnSair, 0);

@@ -30,6 +30,29 @@ namespace Pilates.DAO
             }
             return proximoCodigo;
         }
+        public string getCondicaoPag(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT condicaoPagamento FROM condicaoPagamento WHERE idCondPagamento = @id AND Ativo = 1";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader["condicaoPagamento"].ToString();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
         public override void Alterar(ModelCondicaoPagamento obj)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

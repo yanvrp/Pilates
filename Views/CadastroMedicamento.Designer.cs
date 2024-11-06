@@ -50,7 +50,6 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Size = new System.Drawing.Size(92, 27);
             this.txtDataCadastro.Texts = "24/10/2024";
             // 
             // txtDataUltAlt
@@ -94,7 +93,7 @@
             this.txtMedicamento.DisabledForeColor = System.Drawing.Color.White;
             this.txtMedicamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtMedicamento.Location = new System.Drawing.Point(23, 105);
-            this.txtMedicamento.MaxLength = 32767;
+            this.txtMedicamento.MaxLength = 100;
             this.txtMedicamento.Multiline = false;
             this.txtMedicamento.Name = "txtMedicamento";
             this.txtMedicamento.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -102,7 +101,7 @@
             this.txtMedicamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtMedicamento.PlaceholderText = "";
             this.txtMedicamento.Size = new System.Drawing.Size(434, 28);
-            this.txtMedicamento.TabIndex = 20;
+            this.txtMedicamento.TabIndex = 1;
             this.txtMedicamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtMedicamento.Texts = "";
             this.txtMedicamento.UnderlinedStyle = false;
@@ -120,7 +119,7 @@
             this.txtDescricao.DisabledForeColor = System.Drawing.Color.White;
             this.txtDescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.txtDescricao.Location = new System.Drawing.Point(24, 178);
-            this.txtDescricao.MaxLength = 32767;
+            this.txtDescricao.MaxLength = 200;
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -128,7 +127,7 @@
             this.txtDescricao.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDescricao.PlaceholderText = "";
             this.txtDescricao.Size = new System.Drawing.Size(433, 107);
-            this.txtDescricao.TabIndex = 21;
+            this.txtDescricao.TabIndex = 2;
             this.txtDescricao.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtDescricao.Texts = "";
             this.txtDescricao.UnderlinedStyle = false;

@@ -28,6 +28,114 @@ namespace Pilates.DAO
             }
             return proximoCodigo;
         }
+        public string getAluno(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT aluno FROM aluno WHERE idAluno = @id AND Ativo = 1";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader["aluno"].ToString();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+        public List<string> CarregaCEP(int idCidade)
+        {
+            List<string> cidadeInfos = new List<string>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+SELECT 
+    cidade.cidade AS cidade,
+    estado.UF AS UF,
+    pais.pais AS pais
+FROM 
+    cidade
+JOIN 
+    estado ON cidade.idEstado = estado.idEstado
+JOIN 
+    pais ON estado.idPais = pais.idPais
+WHERE 
+    cidade.idCidade = @idCidade";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idCidade", idCidade);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string cidadeInfo = string.Format("{0}, {1}, {2}",
+                            reader["cidade"],
+                            reader["UF"],
+                            reader["pais"]);
+                        cidadeInfos.Add(cidadeInfo);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ocorreu um erro ao obter informações da cidade: " + ex.Message);
+                }
+            }
+            return cidadeInfos;
+        }
+        public List<string> GetCEPByIdCidade(int idCidade)
+        {
+            List<string> cidadeInfos = new List<string>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+SELECT 
+    cidade.cidade AS cidade,
+    estado.UF AS UF,
+    pais.pais AS pais
+FROM 
+    cidade
+JOIN 
+    estado ON cidade.idEstado = estado.idEstado
+JOIN 
+    pais ON estado.idPais = pais.idPais
+WHERE 
+    cidade.idCidade = @idCidade
+    AND cidade.Ativo = 1";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idCidade", idCidade);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string cidadeInfo = string.Format("{0}, {1}, {2}",
+                            reader["cidade"],
+                            reader["UF"],
+                            reader["pais"]);
+                        cidadeInfos.Add(cidadeInfo);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ocorreu um erro ao obter informações da cidade: " + ex.Message);
+                }
+            }
+            return cidadeInfos;
+        }
         public override void Alterar(T obj)
         {
             dynamic aluno = obj;
@@ -80,7 +188,7 @@ namespace Pilates.DAO
                         obj.Apelido = reader["apelido"].ToString();
                         obj.endereco = reader["endereco"].ToString();
                         obj.bairro = reader["bairro"].ToString();
-                        obj.numero = Convert.ToInt32(reader["numero"]);
+                        obj.numero = reader["numero"].ToString();
                         obj.cep = reader["cep"].ToString();
                         obj.complemento = reader["complemento"].ToString();
                         obj.sexo = reader["sexo"].ToString();
