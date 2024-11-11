@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridViewContrato = new System.Windows.Forms.DataGridView();
-            this.btnVisualizar = new Pilates.YControls.YButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idAluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aluno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,6 +37,11 @@
             this.dataInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataCancelamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataFinalContrato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnVisualizar = new Pilates.YControls.YButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImprimirContrato = new Pilates.YControls.YButton();
+            this.cbMostrarTerminados = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContrato)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -53,18 +55,19 @@
             // btnAlterar
             // 
             this.btnAlterar.FlatAppearance.BorderSize = 0;
-            this.btnAlterar.Location = new System.Drawing.Point(84, 439);
+            this.btnAlterar.Location = new System.Drawing.Point(292, 439);
             this.btnAlterar.Visible = false;
             // 
             // btnExcluir
             // 
             this.btnExcluir.FlatAppearance.BorderSize = 0;
-            this.btnExcluir.Location = new System.Drawing.Point(3, 439);
+            this.btnExcluir.Location = new System.Drawing.Point(211, 439);
             this.btnExcluir.Visible = false;
             // 
             // btnPesquisar
             // 
             this.btnPesquisar.FlatAppearance.BorderSize = 0;
+            this.btnPesquisar.Location = new System.Drawing.Point(416, 16);
             this.btnPesquisar.Size = new System.Drawing.Size(80, 31);
             // 
             // btnSair
@@ -75,8 +78,12 @@
             // 
             // cbInativos
             // 
-            this.cbInativos.Location = new System.Drawing.Point(725, 17);
+            this.cbInativos.Location = new System.Drawing.Point(669, 10);
             this.cbInativos.CheckedChanged += new System.EventHandler(this.cbInativos_CheckedChanged);
+            // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(12, 17);
             // 
             // dataGridViewContrato
             // 
@@ -93,54 +100,13 @@
             this.dataInicio,
             this.dataCancelamento,
             this.dataFinalContrato});
-            this.dataGridViewContrato.Location = new System.Drawing.Point(12, 49);
+            this.dataGridViewContrato.Location = new System.Drawing.Point(12, 60);
             this.dataGridViewContrato.Name = "dataGridViewContrato";
             this.dataGridViewContrato.ReadOnly = true;
-            this.dataGridViewContrato.Size = new System.Drawing.Size(776, 372);
+            this.dataGridViewContrato.Size = new System.Drawing.Size(776, 358);
             this.dataGridViewContrato.TabIndex = 7;
             this.dataGridViewContrato.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContrato_CellDoubleClick);
             this.dataGridViewContrato.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewContrato_CellFormatting);
-            // 
-            // btnVisualizar
-            // 
-            this.btnVisualizar.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnVisualizar.BackgroundColor = System.Drawing.Color.DarkViolet;
-            this.btnVisualizar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
-            this.btnVisualizar.BorderRadius = 8;
-            this.btnVisualizar.BorderSize = 1;
-            this.btnVisualizar.FlatAppearance.BorderSize = 0;
-            this.btnVisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVisualizar.ForeColor = System.Drawing.Color.White;
-            this.btnVisualizar.Location = new System.Drawing.Point(616, 439);
-            this.btnVisualizar.Name = "btnVisualizar";
-            this.btnVisualizar.Size = new System.Drawing.Size(83, 31);
-            this.btnVisualizar.TabIndex = 12;
-            this.btnVisualizar.Text = "Visualizar";
-            this.btnVisualizar.TextColor = System.Drawing.Color.White;
-            this.btnVisualizar.UseVisualStyleBackColor = false;
-            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(13, 17);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(53, 17);
-            this.radioButton1.TabIndex = 13;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Nome";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(505, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(78, 40);
-            this.groupBox1.TabIndex = 14;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Buscar Por";
             // 
             // Código
             // 
@@ -195,10 +161,83 @@
             this.dataFinalContrato.Name = "dataFinalContrato";
             this.dataFinalContrato.ReadOnly = true;
             // 
+            // btnVisualizar
+            // 
+            this.btnVisualizar.BackColor = System.Drawing.Color.DarkViolet;
+            this.btnVisualizar.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.btnVisualizar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.btnVisualizar.BorderRadius = 8;
+            this.btnVisualizar.BorderSize = 1;
+            this.btnVisualizar.FlatAppearance.BorderSize = 0;
+            this.btnVisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVisualizar.ForeColor = System.Drawing.Color.White;
+            this.btnVisualizar.Location = new System.Drawing.Point(616, 439);
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Size = new System.Drawing.Size(83, 31);
+            this.btnVisualizar.TabIndex = 12;
+            this.btnVisualizar.Text = "Visualizar";
+            this.btnVisualizar.TextColor = System.Drawing.Color.White;
+            this.btnVisualizar.UseVisualStyleBackColor = false;
+            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(13, 17);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(53, 17);
+            this.radioButton1.TabIndex = 13;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Nome";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(505, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(78, 40);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Buscar Por";
+            // 
+            // btnImprimirContrato
+            // 
+            this.btnImprimirContrato.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnImprimirContrato.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.btnImprimirContrato.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.btnImprimirContrato.BorderRadius = 8;
+            this.btnImprimirContrato.BorderSize = 1;
+            this.btnImprimirContrato.FlatAppearance.BorderSize = 0;
+            this.btnImprimirContrato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimirContrato.ForeColor = System.Drawing.Color.DarkViolet;
+            this.btnImprimirContrato.Location = new System.Drawing.Point(12, 439);
+            this.btnImprimirContrato.Name = "btnImprimirContrato";
+            this.btnImprimirContrato.Size = new System.Drawing.Size(124, 31);
+            this.btnImprimirContrato.TabIndex = 15;
+            this.btnImprimirContrato.Text = "Gerar Contrato";
+            this.btnImprimirContrato.TextColor = System.Drawing.Color.DarkViolet;
+            this.btnImprimirContrato.UseVisualStyleBackColor = false;
+            this.btnImprimirContrato.Click += new System.EventHandler(this.btnImprimirContrato_Click);
+            // 
+            // cbMostrarTerminados
+            // 
+            this.cbMostrarTerminados.AutoSize = true;
+            this.cbMostrarTerminados.Location = new System.Drawing.Point(669, 33);
+            this.cbMostrarTerminados.Name = "cbMostrarTerminados";
+            this.cbMostrarTerminados.Size = new System.Drawing.Size(119, 17);
+            this.cbMostrarTerminados.TabIndex = 17;
+            this.cbMostrarTerminados.Text = "Mostrar Terminados";
+            this.cbMostrarTerminados.UseVisualStyleBackColor = true;
+            this.cbMostrarTerminados.CheckedChanged += new System.EventHandler(this.cbMostrarTerminados_CheckedChanged);
+            // 
             // ConsultaContrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(800, 482);
+            this.Controls.Add(this.cbMostrarTerminados);
+            this.Controls.Add(this.btnImprimirContrato);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnVisualizar);
             this.Controls.Add(this.dataGridViewContrato);
@@ -215,6 +254,8 @@
             this.Controls.SetChildIndex(this.dataGridViewContrato, 0);
             this.Controls.SetChildIndex(this.btnVisualizar, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.btnImprimirContrato, 0);
+            this.Controls.SetChildIndex(this.cbMostrarTerminados, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContrato)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -237,5 +278,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataCancelamento;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataFinalContrato;
+        public YControls.YButton btnImprimirContrato;
+        private System.Windows.Forms.CheckBox cbMostrarTerminados;
     }
 }

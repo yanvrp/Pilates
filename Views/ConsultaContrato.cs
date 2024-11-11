@@ -6,9 +6,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace Pilates.Views
 {
@@ -53,11 +56,24 @@ namespace Pilates.Views
                 MessageBox.Show("Selecione um Contrato para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void AtualizarConsultaContratos(bool incluirInativos)
+        public void AtualizarConsultaContratos(bool incluirInativos, bool incluirTerminados)
         {
             try
             {
-                dataGridViewContrato.DataSource = controllerContrato.BuscarTodos(incluirInativos);
+                var contratos = controllerContrato.BuscarTodos(incluirInativos) ?? new List<ModelContrato>();
+
+                if (incluirTerminados)
+                {
+                    //filtra contratos que já finalizaram e não foram cancelados 
+                    contratos = contratos.Where(a => a.dataFinalContrato < DateTime.Now && a.dataCancelamento == null).ToList();
+                }
+                else
+                {
+                    //filtra contratos que ainda estão ativos ou cancelados
+                    contratos = contratos.Where(a => a.dataFinalContrato >= DateTime.Now).ToList();
+                }
+
+                dataGridViewContrato.DataSource = contratos;
             }
             catch (Exception ex)
             {
@@ -65,12 +81,13 @@ namespace Pilates.Views
             }
         }
 
+
         private void ConsultaContrato_Load(object sender, EventArgs e)
         {
             try
             {
                 CadastroContrato cadastroContratos = new CadastroContrato();
-                cadastroContratos.FormClosed += (s, args) => AtualizarConsultaContratos(cbInativos.Checked);
+                cadastroContratos.FormClosed += (s, args) => AtualizarConsultaContratos(cbInativos.Checked, cbMostrarTerminados.Checked);
                 dataGridViewContrato.AutoGenerateColumns = false;
                 dataGridViewContrato.Columns["Código"].DataPropertyName = "idContrato";
                 dataGridViewContrato.Columns["idAluno"].DataPropertyName = "idAluno";
@@ -81,7 +98,7 @@ namespace Pilates.Views
                 dataGridViewContrato.Columns["dataFinalContrato"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 dataGridViewContrato.Columns["dataInicio"].DataPropertyName = "dataInicioPrograma";
                 dataGridViewContrato.Columns["dataInicio"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                AtualizarConsultaContratos(cbInativos.Checked);
+                AtualizarConsultaContratos(cbInativos.Checked, cbMostrarTerminados.Checked);
             }
             catch (Exception ex)
             {
@@ -177,7 +194,7 @@ namespace Pilates.Views
             }
             else
             {
-                AtualizarConsultaContratos(cbInativos.Checked);
+                AtualizarConsultaContratos(cbInativos.Checked, cbMostrarTerminados.Checked);
             }
         }
 
@@ -231,7 +248,72 @@ namespace Pilates.Views
         private void cbInativos_CheckedChanged(object sender, EventArgs e)
         {
             bool incluirInativos = cbInativos.Checked;
-            AtualizarConsultaContratos(incluirInativos);
+            AtualizarConsultaContratos(incluirInativos, cbMostrarTerminados.Checked);
+        }
+        string FormatarNomeParaArquivo(string nomeCompleto)
+        {
+            // Remove acentos e caracteres especiais, convertendo para caracteres sem acento
+            nomeCompleto = RemoverAcentos(nomeCompleto);
+
+            // Divide o nome completo em partes e seleciona os primeiros dois nomes
+            string[] partes = nomeCompleto.Split(' ');
+            string nomeFormatado = partes.Length > 1 ? $"{partes[0]}-{partes[1]}" : partes[0];
+
+            // Remove qualquer caractere que não seja letra, número ou hífen
+            nomeFormatado = Regex.Replace(nomeFormatado, "[^a-zA-Z0-9-]", "");
+
+            return nomeFormatado;
+        }
+
+        string RemoverAcentos(string texto)
+        {
+            StringBuilder textoNormalizado = new StringBuilder();
+            foreach (char c in texto.Normalize(NormalizationForm.FormD))
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    textoNormalizado.Append(c);
+            }
+            return textoNormalizado.ToString().Normalize(NormalizationForm.FormC);
+        }
+        private void btnImprimirContrato_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewContrato.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selecione um Contrato para imprimir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var selectedRow = dataGridViewContrato.SelectedRows[0];
+            var dataCancelamento = selectedRow.Cells["dataCancelamento"].Value;
+
+            if (dataCancelamento != null)
+            {
+                MessageBox.Show("Não é possível gerar um contrato cancelado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idContrato = Convert.ToInt32(selectedRow.Cells["Código"].Value);
+            int idAluno = Convert.ToInt32(selectedRow.Cells["idAluno"].Value);
+            ModelAluno aluno = controllerAluno.BuscarPorId(idAluno);
+
+            if (aluno != null && !string.IsNullOrEmpty(aluno.Aluno))
+            {
+                string nomeFormatado = FormatarNomeParaArquivo(aluno.Aluno);
+                string caminhoArquivo = $@"C:\Contratos\CONTRATO-{nomeFormatado}.pdf";
+
+                controllerContrato.GerarContratoPdf(idContrato, caminhoArquivo);
+                MessageBox.Show("Contrato gerado com sucesso! Você pode visualizá-lo em: " + caminhoArquivo, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível encontrar o aluno associado ao contrato.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void cbMostrarTerminados_CheckedChanged(object sender, EventArgs e)
+        {
+            bool incluirInativos = cbInativos.Checked;
+            bool incluirTerminados = cbMostrarTerminados.Checked;
+            AtualizarConsultaContratos(incluirInativos, incluirTerminados);
         }
     }
 }

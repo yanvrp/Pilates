@@ -38,6 +38,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.cbMostrarCancelados = new System.Windows.Forms.CheckBox();
+            this.btnProximo = new Pilates.YControls.YButton();
+            this.btnAnterior = new Pilates.YControls.YButton();
+            this.lblPaginas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAgenda)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -45,12 +48,12 @@
             // btnIncluir
             // 
             this.btnIncluir.FlatAppearance.BorderSize = 0;
-            this.btnIncluir.Location = new System.Drawing.Point(527, 426);
+            this.btnIncluir.Location = new System.Drawing.Point(527, 419);
             // 
             // btnAlterar
             // 
             this.btnAlterar.FlatAppearance.BorderSize = 0;
-            this.btnAlterar.Location = new System.Drawing.Point(616, 426);
+            this.btnAlterar.Location = new System.Drawing.Point(616, 419);
             // 
             // btnExcluir
             // 
@@ -66,6 +69,7 @@
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.Location = new System.Drawing.Point(705, 419);
             // 
             // cbInativos
             // 
@@ -168,10 +172,60 @@
             this.cbMostrarCancelados.UseVisualStyleBackColor = true;
             this.cbMostrarCancelados.CheckedChanged += new System.EventHandler(this.cbMostrarCancelados_CheckedChanged);
             // 
+            // btnProximo
+            // 
+            this.btnProximo.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnProximo.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.btnProximo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.btnProximo.BorderRadius = 8;
+            this.btnProximo.BorderSize = 1;
+            this.btnProximo.FlatAppearance.BorderSize = 0;
+            this.btnProximo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProximo.ForeColor = System.Drawing.Color.DarkViolet;
+            this.btnProximo.Location = new System.Drawing.Point(396, 419);
+            this.btnProximo.Name = "btnProximo";
+            this.btnProximo.Size = new System.Drawing.Size(83, 31);
+            this.btnProximo.TabIndex = 17;
+            this.btnProximo.Text = "Próximo >";
+            this.btnProximo.TextColor = System.Drawing.Color.DarkViolet;
+            this.btnProximo.UseVisualStyleBackColor = false;
+            this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnAnterior.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.btnAnterior.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.btnAnterior.BorderRadius = 8;
+            this.btnAnterior.BorderSize = 1;
+            this.btnAnterior.FlatAppearance.BorderSize = 0;
+            this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnterior.ForeColor = System.Drawing.Color.DarkViolet;
+            this.btnAnterior.Location = new System.Drawing.Point(297, 419);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(83, 31);
+            this.btnAnterior.TabIndex = 18;
+            this.btnAnterior.Text = "< Anterior";
+            this.btnAnterior.TextColor = System.Drawing.Color.DarkViolet;
+            this.btnAnterior.UseVisualStyleBackColor = false;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // lblPaginas
+            // 
+            this.lblPaginas.AutoSize = true;
+            this.lblPaginas.Location = new System.Drawing.Point(12, 410);
+            this.lblPaginas.Name = "lblPaginas";
+            this.lblPaginas.Size = new System.Drawing.Size(35, 13);
+            this.lblPaginas.TabIndex = 19;
+            this.lblPaginas.Text = "label1";
+            // 
             // ConsultaAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(800, 469);
+            this.Controls.Add(this.lblPaginas);
+            this.Controls.Add(this.btnAnterior);
+            this.Controls.Add(this.btnProximo);
             this.Controls.Add(this.cbMostrarCancelados);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridViewAgenda);
@@ -188,6 +242,9 @@
             this.Controls.SetChildIndex(this.dataGridViewAgenda, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.cbMostrarCancelados, 0);
+            this.Controls.SetChildIndex(this.btnProximo, 0);
+            this.Controls.SetChildIndex(this.btnAnterior, 0);
+            this.Controls.SetChildIndex(this.lblPaginas, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAgenda)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -208,5 +265,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.CheckBox cbMostrarCancelados;
+        protected YControls.YButton btnProximo;
+        protected YControls.YButton btnAnterior;
+        private System.Windows.Forms.Label lblPaginas;
     }
 }

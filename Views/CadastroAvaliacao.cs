@@ -71,6 +71,7 @@ namespace Pilates.Views
             txtObservacoesDores.Enabled = false;
             btnPesquisarDores.Enabled = false;
             btnAdicionarDores.Enabled = false;
+            btnExcluirDores.Enabled = false;
 
             //bloqueia campos doença
             txtCodDoenca.Enabled = false;
@@ -80,6 +81,7 @@ namespace Pilates.Views
             txtObservacoesDoenca.Enabled = false;
             btnPesquisarDoenca.Enabled = false;
              btnAdiconarDoenca.Enabled = false;
+            btnExcluirDoenca.Enabled = false;
 
             //bloqueia campos medicamento
             txtCodMedicamento.Enabled = false;
@@ -90,6 +92,7 @@ namespace Pilates.Views
             txtObservacoesMedicamento.Enabled = false;
             btnPesquisarMedicamento.Enabled = false;
             btnAdicionarMedicamento.Enabled = false;
+            btnExcluirMedicamento.Enabled = false;
 
             //bloqueia campos cirurgia
             txtCodCirurgia.Enabled = false;
@@ -99,6 +102,7 @@ namespace Pilates.Views
             txtObservacoesCirurgia.Enabled = false;
             btnPesquisarCirurgia.Enabled = false;
             btnAdicionarCirurgia.Enabled = false;
+            btnExcluirCirurgia.Enabled = false;
 
             //bloqueia campos gestação
             txtCodGestacao.Enabled = false;
@@ -108,6 +112,7 @@ namespace Pilates.Views
             txtObservacoesGestacao.Enabled = false;
             btnPesquisarGestacao.Enabled = false;
             btnAdicionarGestacao.Enabled = false;
+            btnExcluirGestacao.Enabled = false;
 
             //bloqueia os dgv
             dataGridViewDores.Enabled = false;
@@ -115,7 +120,6 @@ namespace Pilates.Views
             dataGridViewMedicamento.Enabled = false;
             dataGridViewDoenca.Enabled = false;
             dataGridViewGestacao.Enabled = false;
-
         }
         public override void Carrega()
         {

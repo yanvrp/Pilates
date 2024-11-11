@@ -18,8 +18,19 @@ namespace Pilates.Views
         {
             InitializeComponent();
             loginController = new LoginController();
+            RedimensionarImagem();
         }
+        private void RedimensionarImagem()
+        {
+            string caminhoImagem = @"Imagens\logo.png";
+            Image imagemOriginal = Image.FromFile(caminhoImagem);
 
+            int largura = pictureBox1.Width;
+            int altura = pictureBox1.Height;
+
+            Image imagemRedimensionada = new Bitmap(imagemOriginal, new Size(largura, altura));
+            pictureBox1.Image = imagemRedimensionada;
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string usuario = txtUsuario.Texts;

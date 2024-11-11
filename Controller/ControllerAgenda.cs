@@ -15,6 +15,22 @@ namespace Pilates.Controller
         {
             daoAgenda = new DAOAgenda();
         }
+        public bool VerificaMaxAlunos(DateTime data, TimeSpan horario)
+        {
+            return daoAgenda.VerificaMaxAlunos(data, horario);
+        }
+        public bool VerificaHorarios(DateTime data, TimeSpan horario)
+        {
+            return daoAgenda.VerificaHorarios(data, horario);
+        }
+        public bool VerificaHorariosComLimite(DateTime data, TimeSpan horario)
+        {
+            return daoAgenda.VerificaHorariosComLimite(data, horario);
+        }
+        public void AtualizarStatus(int idAgenda, bool ativo)
+        {
+            daoAgenda.AtualizarStatus(idAgenda, ativo);
+        }
         public int GetUltimoNumero()
         {
             return daoAgenda.GetUltimoCodigo();
@@ -55,6 +71,10 @@ namespace Pilates.Controller
         public override void Salvar(T obj)
         {
             daoAgenda.Salvar(obj);
+        }
+        public bool VerificaAgendamentoAluno(int idAluno, DateTime data, TimeSpan horario)
+        {
+            return daoAgenda.VerificaAgendamentoAluno(idAluno, data, horario);
         }
     }
 }

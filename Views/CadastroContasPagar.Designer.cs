@@ -186,7 +186,7 @@
             // lblDataVencimento
             // 
             this.lblDataVencimento.AutoSize = true;
-            this.lblDataVencimento.Location = new System.Drawing.Point(256, 199);
+            this.lblDataVencimento.Location = new System.Drawing.Point(256, 205);
             this.lblDataVencimento.Name = "lblDataVencimento";
             this.lblDataVencimento.Size = new System.Drawing.Size(96, 13);
             this.lblDataVencimento.TabIndex = 59;
@@ -195,7 +195,7 @@
             // lblValorParcela
             // 
             this.lblValorParcela.AutoSize = true;
-            this.lblValorParcela.Location = new System.Drawing.Point(136, 199);
+            this.lblValorParcela.Location = new System.Drawing.Point(136, 205);
             this.lblValorParcela.Name = "lblValorParcela";
             this.lblValorParcela.Size = new System.Drawing.Size(77, 13);
             this.lblValorParcela.TabIndex = 57;
@@ -204,7 +204,7 @@
             // lblParcelas
             // 
             this.lblParcelas.AutoSize = true;
-            this.lblParcelas.Location = new System.Drawing.Point(21, 199);
+            this.lblParcelas.Location = new System.Drawing.Point(21, 205);
             this.lblParcelas.Name = "lblParcelas";
             this.lblParcelas.Size = new System.Drawing.Size(90, 13);
             this.lblParcelas.TabIndex = 55;
@@ -452,7 +452,7 @@
             this.txtParcelas.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtParcelas.DisabledForeColor = System.Drawing.Color.White;
             this.txtParcelas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtParcelas.Location = new System.Drawing.Point(24, 215);
+            this.txtParcelas.Location = new System.Drawing.Point(24, 221);
             this.txtParcelas.MaxLength = 13;
             this.txtParcelas.Multiline = false;
             this.txtParcelas.Name = "txtParcelas";
@@ -466,6 +466,7 @@
             this.txtParcelas.Texts = "";
             this.txtParcelas.UnderlinedStyle = false;
             this.txtParcelas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodFormaPag_KeyPress);
+            this.txtParcelas.Leave += new System.EventHandler(this.txtParcelas_Leave);
             // 
             // txtValorParcela
             // 
@@ -479,7 +480,7 @@
             this.txtValorParcela.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtValorParcela.DisabledForeColor = System.Drawing.Color.White;
             this.txtValorParcela.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtValorParcela.Location = new System.Drawing.Point(139, 215);
+            this.txtValorParcela.Location = new System.Drawing.Point(139, 221);
             this.txtValorParcela.MaxLength = 13;
             this.txtValorParcela.Multiline = false;
             this.txtValorParcela.Name = "txtValorParcela";
@@ -507,7 +508,7 @@
             this.txtDataVencimento.DisabledForeColor = System.Drawing.Color.White;
             this.txtDataVencimento.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataVencimento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtDataVencimento.Location = new System.Drawing.Point(257, 216);
+            this.txtDataVencimento.Location = new System.Drawing.Point(257, 222);
             this.txtDataVencimento.Mask = "00/00/0000";
             this.txtDataVencimento.MaxLength = 32767;
             this.txtDataVencimento.Multiline = false;

@@ -91,11 +91,11 @@
             // 
             // lblDataUltAlt
             // 
-            this.lblDataUltAlt.Location = new System.Drawing.Point(116, 566);
+            this.lblDataUltAlt.Location = new System.Drawing.Point(116, 588);
             // 
             // lblDataCadastro
             // 
-            this.lblDataCadastro.Location = new System.Drawing.Point(20, 565);
+            this.lblDataCadastro.Location = new System.Drawing.Point(20, 587);
             // 
             // gbStatus
             // 
@@ -113,7 +113,7 @@
             // btnSalvar
             // 
             this.btnSalvar.FlatAppearance.BorderSize = 0;
-            this.btnSalvar.Location = new System.Drawing.Point(473, 577);
+            this.btnSalvar.Location = new System.Drawing.Point(473, 599);
             // 
             // txtCodigo
             // 
@@ -123,20 +123,20 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Location = new System.Drawing.Point(20, 581);
+            this.txtDataCadastro.Location = new System.Drawing.Point(20, 603);
             this.txtDataCadastro.Size = new System.Drawing.Size(85, 27);
             this.txtDataCadastro.Texts = "25/10/2024";
             // 
             // txtDataUltAlt
             // 
-            this.txtDataUltAlt.Location = new System.Drawing.Point(119, 581);
+            this.txtDataUltAlt.Location = new System.Drawing.Point(119, 603);
             this.txtDataUltAlt.Size = new System.Drawing.Size(79, 27);
             this.txtDataUltAlt.Texts = "25/10/2024";
             // 
             // btnSair
             // 
             this.btnSair.FlatAppearance.BorderSize = 0;
-            this.btnSair.Location = new System.Drawing.Point(562, 577);
+            this.btnSair.Location = new System.Drawing.Point(562, 599);
             // 
             // txtUsuarioUltAlt
             // 
@@ -239,9 +239,9 @@
             this.lblCondPagamento.AutoSize = true;
             this.lblCondPagamento.Location = new System.Drawing.Point(180, 345);
             this.lblCondPagamento.Name = "lblCondPagamento";
-            this.lblCondPagamento.Size = new System.Drawing.Size(126, 13);
+            this.lblCondPagamento.Size = new System.Drawing.Size(127, 13);
             this.lblCondPagamento.TabIndex = 25;
-            this.lblCondPagamento.Text = "Condição de pagamento:";
+            this.lblCondPagamento.Text = "Condição de Pagamento:";
             // 
             // dataGridViewParcelas
             // 
@@ -255,7 +255,7 @@
             this.formaPagamento,
             this.dataVencimento,
             this.valorParcela});
-            this.dataGridViewParcelas.Location = new System.Drawing.Point(20, 396);
+            this.dataGridViewParcelas.Location = new System.Drawing.Point(20, 403);
             this.dataGridViewParcelas.Name = "dataGridViewParcelas";
             this.dataGridViewParcelas.Size = new System.Drawing.Size(625, 166);
             this.dataGridViewParcelas.TabIndex = 27;
@@ -291,9 +291,9 @@
             this.lblDiaPagamento.AutoSize = true;
             this.lblDiaPagamento.Location = new System.Drawing.Point(316, 283);
             this.lblDiaPagamento.Name = "lblDiaPagamento";
-            this.lblDiaPagamento.Size = new System.Drawing.Size(69, 13);
+            this.lblDiaPagamento.Size = new System.Drawing.Size(70, 13);
             this.lblDiaPagamento.TabIndex = 31;
-            this.lblDiaPagamento.Text = "Dia a pagar:*";
+            this.lblDiaPagamento.Text = "Dia a Pagar:*";
             // 
             // lblInicioPrograma
             // 
@@ -307,7 +307,7 @@
             // lblDataCancelamento
             // 
             this.lblDataCancelamento.AutoSize = true;
-            this.lblDataCancelamento.Location = new System.Drawing.Point(210, 566);
+            this.lblDataCancelamento.Location = new System.Drawing.Point(210, 588);
             this.lblDataCancelamento.Name = "lblDataCancelamento";
             this.lblDataCancelamento.Size = new System.Drawing.Size(104, 13);
             this.lblDataCancelamento.TabIndex = 35;
@@ -318,9 +318,9 @@
             this.lblAulas.AutoSize = true;
             this.lblAulas.Location = new System.Drawing.Point(17, 216);
             this.lblAulas.Name = "lblAulas";
-            this.lblAulas.Size = new System.Drawing.Size(83, 13);
+            this.lblAulas.Size = new System.Drawing.Size(85, 13);
             this.lblAulas.TabIndex = 39;
-            this.lblAulas.Text = "Aulas semanais:";
+            this.lblAulas.Text = "Aulas Semanais:";
             // 
             // lblTipoPrograma
             // 
@@ -761,7 +761,7 @@
             this.txtDataCancelamento.Enabled = false;
             this.txtDataCancelamento.EnabledBackColor = System.Drawing.Color.White;
             this.txtDataCancelamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtDataCancelamento.Location = new System.Drawing.Point(213, 581);
+            this.txtDataCancelamento.Location = new System.Drawing.Point(213, 603);
             this.txtDataCancelamento.Mask = "00/00/0000";
             this.txtDataCancelamento.MaxLength = 32767;
             this.txtDataCancelamento.Multiline = false;
@@ -916,7 +916,7 @@
             this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnCancelar.Location = new System.Drawing.Point(347, 577);
+            this.btnCancelar.Location = new System.Drawing.Point(347, 599);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(120, 31);
             this.btnCancelar.TabIndex = 101;
@@ -959,14 +959,14 @@
             this.lblFinalContrato.AutoSize = true;
             this.lblFinalContrato.Location = new System.Drawing.Point(416, 284);
             this.lblFinalContrato.Name = "lblFinalContrato";
-            this.lblFinalContrato.Size = new System.Drawing.Size(87, 13);
+            this.lblFinalContrato.Size = new System.Drawing.Size(90, 13);
             this.lblFinalContrato.TabIndex = 103;
-            this.lblFinalContrato.Text = "Final do Contrato";
+            this.lblFinalContrato.Text = "Final do Contrato:";
             // 
             // CadastroContrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(665, 624);
+            this.ClientSize = new System.Drawing.Size(672, 643);
             this.Controls.Add(this.txtFinalContrato);
             this.Controls.Add(this.lblFinalContrato);
             this.Controls.Add(this.btnCancelar);

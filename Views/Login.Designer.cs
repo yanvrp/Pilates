@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.txtUsuario = new Pilates.YControls.YTextBox();
             this.txtSenha = new Pilates.YControls.YTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSenha = new System.Windows.Forms.Label();
             this.btnLogin = new Pilates.YControls.YButton();
             this.btnCancelar = new Pilates.YControls.YButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsuario
@@ -48,7 +51,7 @@
             this.txtUsuario.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtUsuario.DisabledForeColor = System.Drawing.Color.White;
             this.txtUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtUsuario.Location = new System.Drawing.Point(27, 91);
+            this.txtUsuario.Location = new System.Drawing.Point(26, 197);
             this.txtUsuario.MaxLength = 32767;
             this.txtUsuario.Multiline = false;
             this.txtUsuario.Name = "txtUsuario";
@@ -74,7 +77,7 @@
             this.txtSenha.DisabledBorderColor = System.Drawing.Color.Gainsboro;
             this.txtSenha.DisabledForeColor = System.Drawing.Color.White;
             this.txtSenha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.txtSenha.Location = new System.Drawing.Point(27, 157);
+            this.txtSenha.Location = new System.Drawing.Point(26, 263);
             this.txtSenha.MaxLength = 32767;
             this.txtSenha.Multiline = false;
             this.txtSenha.Name = "txtSenha";
@@ -91,7 +94,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 75);
+            this.label1.Location = new System.Drawing.Point(23, 181);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 2;
@@ -100,7 +103,7 @@
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
-            this.lblSenha.Location = new System.Drawing.Point(24, 141);
+            this.lblSenha.Location = new System.Drawing.Point(23, 247);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(38, 13);
             this.lblSenha.TabIndex = 3;
@@ -117,7 +120,7 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(27, 256);
+            this.btnLogin.Location = new System.Drawing.Point(26, 317);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(278, 28);
             this.btnLogin.TabIndex = 13;
@@ -137,7 +140,7 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.DarkViolet;
-            this.btnCancelar.Location = new System.Drawing.Point(27, 290);
+            this.btnCancelar.Location = new System.Drawing.Point(26, 351);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(278, 28);
             this.btnCancelar.TabIndex = 14;
@@ -146,11 +149,22 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(85, 24);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(145, 127);
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 341);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.ClientSize = new System.Drawing.Size(329, 411);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblSenha);
@@ -160,6 +174,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,5 +188,6 @@
         private System.Windows.Forms.Label lblSenha;
         protected YControls.YButton btnLogin;
         protected YControls.YButton btnCancelar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

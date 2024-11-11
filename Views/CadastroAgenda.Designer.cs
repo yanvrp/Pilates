@@ -65,6 +65,7 @@
             // 
             this.btnSalvar.FlatAppearance.BorderSize = 0;
             this.btnSalvar.Location = new System.Drawing.Point(339, 329);
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // txtCodigo
             // 
@@ -365,7 +366,7 @@
             this.txtDataCancelamento.PasswordChar = false;
             this.txtDataCancelamento.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDataCancelamento.PlaceholderText = "";
-            this.txtDataCancelamento.Size = new System.Drawing.Size(102, 28);
+            this.txtDataCancelamento.Size = new System.Drawing.Size(102, 27);
             this.txtDataCancelamento.TabIndex = 75;
             this.txtDataCancelamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataCancelamento.Texts = "  /  /";

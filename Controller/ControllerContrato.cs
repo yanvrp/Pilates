@@ -15,9 +15,17 @@ namespace Pilates.Controller
         {
             contratoDAO = new DAOContrato();
         }
+        public bool VerificarContratoAtivo(int idAluno)
+        { 
+            return contratoDAO.VerificarContratoAtivo(idAluno);
+        }
         public override void Alterar(T obj)
         {
             contratoDAO.Alterar(obj);
+        }
+        public void GerarContratoPdf(int idContrato, string caminhoArquivo)
+        {
+            contratoDAO.GerarContratoPdf(idContrato, caminhoArquivo);
         }
         public void CancelarContrato(int idContrato)
         {

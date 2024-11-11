@@ -99,13 +99,18 @@ namespace Pilates.YControls
         {
             base.OnPaint(pevent);
 
+            // Defina a cor do texto para DarkViolet se o botão estiver desabilitado
+            Color textColor = this.Enabled ? this.ForeColor : Color.DarkViolet;
+
+            // Desenhe a superfície do botão
             Rectangle rectSurface = this.ClientRectangle;
             Rectangle rectBorder = Rectangle.Inflate(rectSurface, -borderSize, -borderSize);
             int smoothSize = 2;
+
             if (borderSize > 0)
                 smoothSize = borderSize;
 
-            if (borderRadius > 2) //Rounded button
+            if (borderRadius > 2) // Rounded button
             {
                 using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
                 using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - borderSize))
@@ -113,23 +118,26 @@ namespace Pilates.YControls
                 using (Pen penBorder = new Pen(borderColor, borderSize))
                 {
                     pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                    //Button surface
+
+                    // Defina a região do botão para aplicar bordas arredondadas
                     this.Region = new Region(pathSurface);
-                    //Draw surface border for HD result
+
+                    // Desenhe o contorno do botão
                     pevent.Graphics.DrawPath(penSurface, pathSurface);
 
-                    //Button border                    
+                    // Desenhe a borda do botão
                     if (borderSize >= 1)
-                        //Draw control border
                         pevent.Graphics.DrawPath(penBorder, pathBorder);
                 }
             }
-            else //Normal button
+            else // Normal button
             {
                 pevent.Graphics.SmoothingMode = SmoothingMode.None;
-                //Button surface
+
+                // Defina a região do botão
                 this.Region = new Region(rectSurface);
-                //Button border
+
+                // Desenhe a borda do botão
                 if (borderSize >= 1)
                 {
                     using (Pen penBorder = new Pen(borderColor, borderSize))
@@ -139,20 +147,27 @@ namespace Pilates.YControls
                     }
                 }
             }
+
+            // Desenhe o texto do botão com a cor apropriada
+            TextRenderer.DrawText(pevent.Graphics, this.Text, this.Font, rectSurface, textColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
+
 
         protected override void OnEnabledChanged(EventArgs e)
         {
             base.OnEnabledChanged(e);
+
             if (!this.Enabled)
             {
-                this.ForeColor = Color.Gainsboro;
+                this.ForeColor = Color.DarkViolet;
             }
             else
             {
-                this.ForeColor = Color.White;
+                this.ForeColor = Color.DarkViolet;
             }
+            this.Invalidate(); 
         }
+
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);

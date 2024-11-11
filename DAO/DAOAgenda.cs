@@ -29,6 +29,144 @@ namespace Pilates.DAO
             }
             return ultimoCodigo;
         }
+        public bool VerificaHorarios(DateTime data, TimeSpan horario)
+        {
+            bool limiteAlunosExcedido = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Verificando o intervalo de 30 minutos antes e depois do horário
+                TimeSpan horarioInicio = horario.Subtract(TimeSpan.FromMinutes(30));
+                TimeSpan horarioFim = horario.Add(TimeSpan.FromMinutes(30));
+
+                string query = @"
+            SELECT COUNT(*) 
+            FROM agenda 
+            WHERE data = @data AND 
+                  ativo = 1 AND 
+                  dataCancelamento IS NULL AND
+                  (
+                      (horario >= @horarioInicio AND horario < @horario) OR 
+                      (horario > @horario AND horario <= @horarioFim)
+                  )";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@data", data.Date);
+                command.Parameters.AddWithValue("@horario", horario);
+                command.Parameters.AddWithValue("@horarioInicio", horarioInicio);
+                command.Parameters.AddWithValue("@horarioFim", horarioFim);
+
+                try
+                {
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    limiteAlunosExcedido = count > 0; 
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("Erro ao verificar limite de alunos: " + ex.Message);
+                    throw new InvalidOperationException("Erro ao verificar o horário do agendamento.", ex);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro inesperado: " + ex.Message);
+                    throw;
+                }
+            }
+
+            return limiteAlunosExcedido;
+        }
+
+
+        public bool VerificaMaxAlunos(DateTime data, TimeSpan horario)
+        {
+            bool limiteAlunosExcedido = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT COUNT(*) FROM agenda 
+                         WHERE data = @data AND 
+                               horario = @horario AND 
+                               ativo = 1 AND 
+                               dataCancelamento IS NULL";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@data", data.Date);
+                command.Parameters.AddWithValue("@horario", horario);
+
+                try
+                {
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    limiteAlunosExcedido = count >= 5;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao verificar limite de alunos: " + ex.Message);
+                    throw;
+                }
+            }
+
+            return limiteAlunosExcedido;
+        }
+
+        public bool VerificaHorariosComLimite(DateTime data, TimeSpan horario)
+        {
+            bool limiteAlunosExcedido = false;
+
+            //ver se já tem agendamentos no intervalo de 30 minutos antes ou depois do horário
+            if (VerificaHorarios(data, horario))
+            {
+                limiteAlunosExcedido = true;
+            }
+            //ver se o número de alunos já atingiu o limite de 5 alunos por aula
+            else if (VerificaMaxAlunos(data, horario))
+            {
+                limiteAlunosExcedido = true;
+            }
+            return limiteAlunosExcedido;
+        }
+
+        public bool VerificaAgendamentoAluno(int idAluno, DateTime data, TimeSpan horario)
+        {
+            bool alunoAgendado = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT COUNT(*) 
+            FROM agenda 
+            WHERE idAluno = @idAluno 
+              AND data = @data 
+              AND horario = @horario 
+              AND ativo = 1 
+              AND dataCancelamento IS NULL";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idAluno", idAluno);
+                command.Parameters.AddWithValue("@data", data.Date);
+                command.Parameters.AddWithValue("@horario", horario);
+
+                try
+                {
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    alunoAgendado = count > 0;
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("Erro ao verificar agendamento do aluno: " + ex.Message);
+                    throw new InvalidOperationException("Erro ao verificar agendamento do aluno.", ex);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro inesperado: " + ex.Message);
+                    throw;
+                }
+            }
+            return alunoAgendado;
+        }
+
         public override void Alterar(ModelAgenda obj)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -220,6 +358,28 @@ namespace Pilates.DAO
             }
             return totalAlunos;
         }
+        public void AtualizarStatus(int idAgenda, bool ativo)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE agenda SET ativo = @ativo, dataUltAlt = @dataUltAlt WHERE idAgenda = @idAgenda";
 
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ativo", ativo);
+                command.Parameters.AddWithValue("@dataUltAlt", DateTime.Now);
+                command.Parameters.AddWithValue("@idAgenda", idAgenda);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao atualizar o status do agendamento: " + ex.Message);
+                    throw;
+                }
+            }
+        }
     }
 }

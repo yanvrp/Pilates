@@ -638,5 +638,19 @@ namespace Pilates.Views
                 e.Handled = true;
             }
         }
+
+        private void txtParcelas_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtParcelas.Texts))
+            {
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtParcelas.Texts.TrimStart('0')))
+            {
+                MessageBox.Show("O número da parcela não pode ser 0.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtParcelas.Focus();
+                txtParcelas.Clear();
+            }
+        }
     }
 }

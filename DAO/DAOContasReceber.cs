@@ -178,28 +178,29 @@ WHERE numero = @numero AND idAluno = @idAluno AND parcela = @parcela";
 
                 try
                 {
-                    //verifica se a conta a receber está associada a algum contrato
-                    string verificaQuery = @"
-        SELECT COUNT(*) FROM contrato
-        WHERE idContrato = @numero AND idAluno= @idAluno";
+                    string verificaContratoQuery = @"
+SELECT dataCancelamento
+FROM contrato
+WHERE idContrato = @numero AND idAluno = @idAluno";
 
-                    SqlCommand verificaCommand = new SqlCommand(verificaQuery, connection, transaction);
-                    verificaCommand.Parameters.AddWithValue("@numero", obj.numero);
-                    verificaCommand.Parameters.AddWithValue("@idAluno", obj.idAluno);
+                    SqlCommand verificaContratoCommand = new SqlCommand(verificaContratoQuery, connection, transaction);
+                    verificaContratoCommand.Parameters.AddWithValue("@numero", obj.numero);
+                    verificaContratoCommand.Parameters.AddWithValue("@idAluno", obj.idAluno);
 
-                    int count = (int)verificaCommand.ExecuteScalar();
+                    object dataCancelamentoContrato = verificaContratoCommand.ExecuteScalar();
 
-                    if (count > 0)
+                    //se o contrato existir e a dataCancelamento for NULL
+                    if (dataCancelamentoContrato == DBNull.Value)
                     {
-                        //se existe uma nota associada, não cancelar
+                        //se o contrato não foi cancelado, impede o cancelamento da conta a receber
                         return false;
                     }
 
-                    //se nao existe, atualizar a data de cancelamento
+                    //se o contrato não existe ou já está cancelado, atualiza a data de cancelamento da conta a receber
                     string cancelarQuery = @"
-        UPDATE contasReceber
-        SET dataCancelamento = @dataCancelamento
-        WHERE numero = @numero AND idAluno= @idAluno AND parcela = @parcela";
+UPDATE contasReceber
+SET dataCancelamento = @dataCancelamento
+WHERE numero = @numero AND idAluno = @idAluno AND parcela = @parcela";
 
                     SqlCommand cancelarCommand = new SqlCommand(cancelarQuery, connection, transaction);
                     cancelarCommand.Parameters.AddWithValue("@numero", obj.numero);
@@ -219,7 +220,9 @@ WHERE numero = @numero AND idAluno = @idAluno AND parcela = @parcela";
                 }
             }
         }
-            public bool VerificarParcelasNaoPagas(string numero, int idAluno, int parcelaAtual)
+
+
+        public bool VerificarParcelasNaoPagas(string numero, int idAluno, int parcelaAtual)
         {
             string query = @"
 SELECT COUNT(*)

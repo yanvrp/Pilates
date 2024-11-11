@@ -479,85 +479,6 @@ namespace Pilates.Views
                 e.Handled = true;
             }
         }
-
-        private void btnIncluirPostura_Click(object sender, EventArgs e)
-        {
-            CadastroPostura cadastroPostura = new CadastroPostura(-7, idBusca);
-            cadastroPostura.Owner = this;
-            cadastroPostura.ShowDialog();
-        }
-
-        private void btnAlterarPostura_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewPostura.SelectedRows.Count > 0)
-            {
-                int idPostura = (int)dataGridViewPostura.SelectedRows[0].Cells["CodigoPostura"].Value;
-                CadastroPostura cadastroPosturas = new CadastroPostura(idPostura, idBusca);
-                cadastroPosturas.Owner = this;
-                cadastroPosturas.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma postura para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btnExcluirPostura_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewPostura.SelectedRows.Count > 0)
-            {
-                if (MessageBox.Show("Tem certeza de que deseja excluir esta postura?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    int idPostura = (int)dataGridViewPostura.SelectedRows[0].Cells["CodigoPostura"].Value;
-                    posturaController.Deletar(idPostura);
-                    AtualizarConsultaPostura();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma postura para postura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btnIncluirEvolucao_Click(object sender, EventArgs e)
-        {
-            CadastroEvolucao cadastroEvolucao = new CadastroEvolucao(-7, idBusca);
-            cadastroEvolucao.Owner = this;
-            cadastroEvolucao.ShowDialog();
-        }
-
-        private void btnAlterarEvolucao_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewEvolucao.SelectedRows.Count > 0)
-            {
-                int idEvolucao = (int)dataGridViewEvolucao.SelectedRows[0].Cells["CodigoEvolucao"].Value;
-                CadastroEvolucao cadastroEvolucao = new CadastroEvolucao(idEvolucao, idBusca);
-                cadastroEvolucao.Owner = this;
-                cadastroEvolucao.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma evolução para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btnExcluirEvolucao_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewEvolucao.SelectedRows.Count > 0)
-            {
-                if (MessageBox.Show("Tem certeza de que deseja excluir esta evolução?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    int idEvolucao = (int)dataGridViewEvolucao.SelectedRows[0].Cells["CodigoEvolucao"].Value;
-                    evolucaoController.Deletar(idEvolucao);
-                    AtualizarConsultaEvolucao();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma evolução para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void btnBuscarProfissao_Click(object sender, EventArgs e)
         {
             consultaProfissao.btnSair.Text = "Selecionar";
@@ -631,6 +552,99 @@ namespace Pilates.Views
                     txtDataNasc.Focus();
                     return;
                 }
+            }
+        }
+
+        private void btnIncluirPostura_Click(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                MessageBox.Show("Salve o cadastro de aluno antes de adicionar uma postura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                CadastroPostura cadastroPostura = new CadastroPostura(-7, idBusca);
+                cadastroPostura.Owner = this;
+                cadastroPostura.ShowDialog();
+            }
+            
+        }
+
+        private void btnAlterarPostura_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPostura.SelectedRows.Count > 0)
+            {
+                int idPostura = (int)dataGridViewPostura.SelectedRows[0].Cells["CodigoPostura"].Value;
+                CadastroPostura cadastroPosturas = new CadastroPostura(idPostura, idBusca);
+                cadastroPosturas.Owner = this;
+                cadastroPosturas.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma postura para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnExcluirPostura_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPostura.SelectedRows.Count > 0)
+            {
+                if (MessageBox.Show("Tem certeza de que deseja excluir esta postura?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int idPostura = (int)dataGridViewPostura.SelectedRows[0].Cells["CodigoPostura"].Value;
+                    posturaController.Deletar(idPostura);
+                    AtualizarConsultaPostura();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma postura para postura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnIncluirEvolucao_Click(object sender, EventArgs e)
+        {
+            if (Alterar == -7)
+            {
+                MessageBox.Show("Salve o cadastro de aluno antes de adicionar uma evolução.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                CadastroEvolucao cadastroEvolucao = new CadastroEvolucao(-7, idBusca);
+                cadastroEvolucao.Owner = this;
+                cadastroEvolucao.ShowDialog();
+            }
+        }
+
+        private void btnAlterarEvolucao_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEvolucao.SelectedRows.Count > 0)
+            {
+                int idEvolucao = (int)dataGridViewEvolucao.SelectedRows[0].Cells["CodigoEvolucao"].Value;
+                CadastroEvolucao cadastroEvolucao = new CadastroEvolucao(idEvolucao, idBusca);
+                cadastroEvolucao.Owner = this;
+                cadastroEvolucao.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma evolução para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnExcluirEvolucao_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEvolucao.SelectedRows.Count > 0)
+            {
+                if (MessageBox.Show("Tem certeza de que deseja excluir esta evolução?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int idEvolucao = (int)dataGridViewEvolucao.SelectedRows[0].Cells["CodigoEvolucao"].Value;
+                    evolucaoController.Deletar(idEvolucao);
+                    AtualizarConsultaEvolucao();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma evolução para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

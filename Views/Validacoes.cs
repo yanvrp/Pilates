@@ -26,6 +26,8 @@ namespace Pilates.Views
 
         public static bool VerificaLetrasCaracteres(string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+                return true;
             //define uma expressão regular que permite letras (maiúsculas e minúsculas), espaços e o caractere de apóstrofo (')
             string pattern = @"^[a-zA-Z'\s]+$";
 

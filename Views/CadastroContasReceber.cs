@@ -89,7 +89,7 @@ namespace Pilates.Views
                 }
                 else
                 {
-                  //  btnCancelar.Visible = true;
+                    btnCancelar.Visible = true;
                 }
                 if (contasReceber.dataRecebimento == null)
                 {
@@ -507,6 +507,7 @@ namespace Pilates.Views
         {
             string dRecebimento = new string(txtDataRecebimento.Texts.Where(char.IsDigit).ToArray());
             DialogResult result = MessageBox.Show("Tem certeza que deseja cancelar esta conta a receber?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
             if (result == DialogResult.Yes)
             {
                 if (string.IsNullOrEmpty(dRecebimento))
@@ -530,10 +531,11 @@ namespace Pilates.Views
                             BloqueiaTudo();
 
                             MessageBox.Show("Conta a receber cancelada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Não foi possível cancelar a conta, pois ela está associada a um contrato.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Não foi possível cancelar a conta, pois ela está associada a um contrato não cancelado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -622,6 +624,20 @@ namespace Pilates.Views
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtParcelas_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtParcelas.Texts))
+            {
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtParcelas.Texts.TrimStart('0')))
+            {
+                MessageBox.Show("O número da parcela não pode ser 0.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtParcelas.Focus();
+                txtParcelas.Clear();
             }
         }
     }

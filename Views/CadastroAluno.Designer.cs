@@ -75,11 +75,11 @@
             this.txtCodProfissao = new Pilates.YControls.YTextBox();
             this.txtProfissão = new Pilates.YControls.YTextBox();
             this.txtDataNasc = new Pilates.YControls.YMaskedTextBox();
+            this.btnIncluirPostura = new Pilates.YControls.YButton();
             this.btnExcluirPostura = new Pilates.YControls.YButton();
             this.btnAlterarPostura = new Pilates.YControls.YButton();
-            this.btnIncluirPostura = new Pilates.YControls.YButton();
-            this.btnExcluirEvolucao = new Pilates.YControls.YButton();
             this.btnAlterarEvolucao = new Pilates.YControls.YButton();
+            this.btnExcluirEvolucao = new Pilates.YControls.YButton();
             this.btnIncluirEvolucao = new Pilates.YControls.YButton();
             this.gbStatus.SuspendLayout();
             this.gbEndereco.SuspendLayout();
@@ -920,123 +920,121 @@
             this.txtDataNasc.UnderlinedStyle = false;
             this.txtDataNasc.Leave += new System.EventHandler(this.txtDataNasc_Leave);
             // 
+            // btnIncluirPostura
+            // 
+            this.btnIncluirPostura.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnIncluirPostura.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.btnIncluirPostura.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.btnIncluirPostura.BorderRadius = 8;
+            this.btnIncluirPostura.BorderSize = 1;
+            this.btnIncluirPostura.FlatAppearance.BorderSize = 0;
+            this.btnIncluirPostura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIncluirPostura.ForeColor = System.Drawing.Color.DarkViolet;
+            this.btnIncluirPostura.Location = new System.Drawing.Point(178, 743);
+            this.btnIncluirPostura.Name = "btnIncluirPostura";
+            this.btnIncluirPostura.Size = new System.Drawing.Size(83, 31);
+            this.btnIncluirPostura.TabIndex = 52;
+            this.btnIncluirPostura.Text = "Incluir";
+            this.btnIncluirPostura.TextColor = System.Drawing.Color.DarkViolet;
+            this.btnIncluirPostura.UseVisualStyleBackColor = false;
+            this.btnIncluirPostura.Click += new System.EventHandler(this.btnIncluirPostura_Click);
+            // 
             // btnExcluirPostura
             // 
-            this.btnExcluirPostura.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnExcluirPostura.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.btnExcluirPostura.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnExcluirPostura.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.btnExcluirPostura.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
             this.btnExcluirPostura.BorderRadius = 8;
             this.btnExcluirPostura.BorderSize = 1;
             this.btnExcluirPostura.Enabled = false;
             this.btnExcluirPostura.FlatAppearance.BorderSize = 0;
             this.btnExcluirPostura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluirPostura.ForeColor = System.Drawing.Color.White;
+            this.btnExcluirPostura.ForeColor = System.Drawing.Color.DarkViolet;
             this.btnExcluirPostura.Location = new System.Drawing.Point(356, 743);
             this.btnExcluirPostura.Name = "btnExcluirPostura";
             this.btnExcluirPostura.Size = new System.Drawing.Size(83, 31);
             this.btnExcluirPostura.TabIndex = 54;
             this.btnExcluirPostura.Text = "Excluir";
-            this.btnExcluirPostura.TextColor = System.Drawing.Color.White;
+            this.btnExcluirPostura.TextColor = System.Drawing.Color.DarkViolet;
             this.btnExcluirPostura.UseVisualStyleBackColor = false;
             this.btnExcluirPostura.Click += new System.EventHandler(this.btnExcluirPostura_Click);
             // 
             // btnAlterarPostura
             // 
-            this.btnAlterarPostura.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnAlterarPostura.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.btnAlterarPostura.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnAlterarPostura.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.btnAlterarPostura.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
             this.btnAlterarPostura.BorderRadius = 8;
             this.btnAlterarPostura.BorderSize = 1;
             this.btnAlterarPostura.Enabled = false;
             this.btnAlterarPostura.FlatAppearance.BorderSize = 0;
             this.btnAlterarPostura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlterarPostura.ForeColor = System.Drawing.Color.White;
+            this.btnAlterarPostura.ForeColor = System.Drawing.Color.DarkViolet;
             this.btnAlterarPostura.Location = new System.Drawing.Point(267, 743);
             this.btnAlterarPostura.Name = "btnAlterarPostura";
             this.btnAlterarPostura.Size = new System.Drawing.Size(83, 31);
             this.btnAlterarPostura.TabIndex = 53;
             this.btnAlterarPostura.Text = "Alterar";
-            this.btnAlterarPostura.TextColor = System.Drawing.Color.White;
+            this.btnAlterarPostura.TextColor = System.Drawing.Color.DarkViolet;
             this.btnAlterarPostura.UseVisualStyleBackColor = false;
             this.btnAlterarPostura.Click += new System.EventHandler(this.btnAlterarPostura_Click);
             // 
-            // btnIncluirPostura
-            // 
-            this.btnIncluirPostura.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnIncluirPostura.BackgroundColor = System.Drawing.Color.DarkViolet;
-            this.btnIncluirPostura.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
-            this.btnIncluirPostura.BorderRadius = 8;
-            this.btnIncluirPostura.BorderSize = 1;
-            this.btnIncluirPostura.Enabled = false;
-            this.btnIncluirPostura.FlatAppearance.BorderSize = 0;
-            this.btnIncluirPostura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIncluirPostura.ForeColor = System.Drawing.Color.White;
-            this.btnIncluirPostura.Location = new System.Drawing.Point(178, 743);
-            this.btnIncluirPostura.Name = "btnIncluirPostura";
-            this.btnIncluirPostura.Size = new System.Drawing.Size(83, 31);
-            this.btnIncluirPostura.TabIndex = 52;
-            this.btnIncluirPostura.Text = "Incluir";
-            this.btnIncluirPostura.TextColor = System.Drawing.Color.White;
-            this.btnIncluirPostura.UseVisualStyleBackColor = false;
-            this.btnIncluirPostura.Click += new System.EventHandler(this.btnIncluirPostura_Click);
-            // 
-            // btnExcluirEvolucao
-            // 
-            this.btnExcluirEvolucao.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnExcluirEvolucao.BackgroundColor = System.Drawing.Color.DarkViolet;
-            this.btnExcluirEvolucao.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
-            this.btnExcluirEvolucao.BorderRadius = 8;
-            this.btnExcluirEvolucao.BorderSize = 1;
-            this.btnExcluirEvolucao.Enabled = false;
-            this.btnExcluirEvolucao.FlatAppearance.BorderSize = 0;
-            this.btnExcluirEvolucao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluirEvolucao.ForeColor = System.Drawing.Color.White;
-            this.btnExcluirEvolucao.Location = new System.Drawing.Point(823, 743);
-            this.btnExcluirEvolucao.Name = "btnExcluirEvolucao";
-            this.btnExcluirEvolucao.Size = new System.Drawing.Size(83, 31);
-            this.btnExcluirEvolucao.TabIndex = 57;
-            this.btnExcluirEvolucao.Text = "Excluir";
-            this.btnExcluirEvolucao.TextColor = System.Drawing.Color.White;
-            this.btnExcluirEvolucao.UseVisualStyleBackColor = false;
-            this.btnExcluirEvolucao.Click += new System.EventHandler(this.btnExcluirEvolucao_Click);
-            // 
             // btnAlterarEvolucao
             // 
-            this.btnAlterarEvolucao.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnAlterarEvolucao.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.btnAlterarEvolucao.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnAlterarEvolucao.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.btnAlterarEvolucao.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
             this.btnAlterarEvolucao.BorderRadius = 8;
             this.btnAlterarEvolucao.BorderSize = 1;
             this.btnAlterarEvolucao.Enabled = false;
             this.btnAlterarEvolucao.FlatAppearance.BorderSize = 0;
             this.btnAlterarEvolucao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlterarEvolucao.ForeColor = System.Drawing.Color.White;
-            this.btnAlterarEvolucao.Location = new System.Drawing.Point(734, 743);
+            this.btnAlterarEvolucao.ForeColor = System.Drawing.Color.DarkViolet;
+            this.btnAlterarEvolucao.Location = new System.Drawing.Point(735, 743);
             this.btnAlterarEvolucao.Name = "btnAlterarEvolucao";
             this.btnAlterarEvolucao.Size = new System.Drawing.Size(83, 31);
             this.btnAlterarEvolucao.TabIndex = 56;
             this.btnAlterarEvolucao.Text = "Alterar";
-            this.btnAlterarEvolucao.TextColor = System.Drawing.Color.White;
+            this.btnAlterarEvolucao.TextColor = System.Drawing.Color.DarkViolet;
             this.btnAlterarEvolucao.UseVisualStyleBackColor = false;
             this.btnAlterarEvolucao.Click += new System.EventHandler(this.btnAlterarEvolucao_Click);
             // 
+            // btnExcluirEvolucao
+            // 
+            this.btnExcluirEvolucao.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnExcluirEvolucao.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.btnExcluirEvolucao.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
+            this.btnExcluirEvolucao.BorderRadius = 8;
+            this.btnExcluirEvolucao.BorderSize = 1;
+            this.btnExcluirEvolucao.Enabled = false;
+            this.btnExcluirEvolucao.FlatAppearance.BorderSize = 0;
+            this.btnExcluirEvolucao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluirEvolucao.ForeColor = System.Drawing.Color.DarkViolet;
+            this.btnExcluirEvolucao.Location = new System.Drawing.Point(824, 743);
+            this.btnExcluirEvolucao.Name = "btnExcluirEvolucao";
+            this.btnExcluirEvolucao.Size = new System.Drawing.Size(83, 31);
+            this.btnExcluirEvolucao.TabIndex = 57;
+            this.btnExcluirEvolucao.Text = "Excluir";
+            this.btnExcluirEvolucao.TextColor = System.Drawing.Color.DarkViolet;
+            this.btnExcluirEvolucao.UseVisualStyleBackColor = false;
+            this.btnExcluirEvolucao.Click += new System.EventHandler(this.btnExcluirEvolucao_Click);
+            // 
             // btnIncluirEvolucao
             // 
-            this.btnIncluirEvolucao.BackColor = System.Drawing.Color.DarkViolet;
-            this.btnIncluirEvolucao.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.btnIncluirEvolucao.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnIncluirEvolucao.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.btnIncluirEvolucao.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(0)))), ((int)(((byte)(211)))));
             this.btnIncluirEvolucao.BorderRadius = 8;
             this.btnIncluirEvolucao.BorderSize = 1;
-            this.btnIncluirEvolucao.Enabled = false;
             this.btnIncluirEvolucao.FlatAppearance.BorderSize = 0;
             this.btnIncluirEvolucao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIncluirEvolucao.ForeColor = System.Drawing.Color.White;
-            this.btnIncluirEvolucao.Location = new System.Drawing.Point(645, 743);
+            this.btnIncluirEvolucao.ForeColor = System.Drawing.Color.DarkViolet;
+            this.btnIncluirEvolucao.Location = new System.Drawing.Point(646, 743);
             this.btnIncluirEvolucao.Name = "btnIncluirEvolucao";
             this.btnIncluirEvolucao.Size = new System.Drawing.Size(83, 31);
             this.btnIncluirEvolucao.TabIndex = 55;
             this.btnIncluirEvolucao.Text = "Incluir";
-            this.btnIncluirEvolucao.TextColor = System.Drawing.Color.White;
+            this.btnIncluirEvolucao.TextColor = System.Drawing.Color.DarkViolet;
             this.btnIncluirEvolucao.UseVisualStyleBackColor = false;
             this.btnIncluirEvolucao.Click += new System.EventHandler(this.btnIncluirEvolucao_Click);
             // 
@@ -1045,11 +1043,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(941, 862);
-            this.Controls.Add(this.btnExcluirEvolucao);
             this.Controls.Add(this.btnAlterarEvolucao);
+            this.Controls.Add(this.btnExcluirEvolucao);
             this.Controls.Add(this.btnIncluirEvolucao);
-            this.Controls.Add(this.btnExcluirPostura);
             this.Controls.Add(this.btnAlterarPostura);
+            this.Controls.Add(this.btnExcluirPostura);
             this.Controls.Add(this.btnIncluirPostura);
             this.Controls.Add(this.txtDataNasc);
             this.Controls.Add(this.txtProfissão);
@@ -1115,11 +1113,11 @@
             this.Controls.SetChildIndex(this.txtProfissão, 0);
             this.Controls.SetChildIndex(this.txtDataNasc, 0);
             this.Controls.SetChildIndex(this.btnIncluirPostura, 0);
-            this.Controls.SetChildIndex(this.btnAlterarPostura, 0);
             this.Controls.SetChildIndex(this.btnExcluirPostura, 0);
+            this.Controls.SetChildIndex(this.btnAlterarPostura, 0);
             this.Controls.SetChildIndex(this.btnIncluirEvolucao, 0);
-            this.Controls.SetChildIndex(this.btnAlterarEvolucao, 0);
             this.Controls.SetChildIndex(this.btnExcluirEvolucao, 0);
+            this.Controls.SetChildIndex(this.btnAlterarEvolucao, 0);
             this.gbStatus.ResumeLayout(false);
             this.gbStatus.PerformLayout();
             this.gbEndereco.ResumeLayout(false);
@@ -1180,11 +1178,11 @@
         private YControls.YTextBox txtCodProfissao;
         private YControls.YTextBox txtProfissão;
         private YControls.YMaskedTextBox txtDataNasc;
+        protected YControls.YButton btnIncluirPostura;
         protected YControls.YButton btnExcluirPostura;
         protected YControls.YButton btnAlterarPostura;
-        protected YControls.YButton btnIncluirPostura;
-        protected YControls.YButton btnExcluirEvolucao;
         protected YControls.YButton btnAlterarEvolucao;
+        protected YControls.YButton btnExcluirEvolucao;
         protected YControls.YButton btnIncluirEvolucao;
     }
 }

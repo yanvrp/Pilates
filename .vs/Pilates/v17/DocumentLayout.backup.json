@@ -1,53 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastrocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastrocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastrocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastrocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CadastroContrato.cs",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroContrato.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroContrato.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroContrato.cs",
-              "RelativeToolTip": "Views\\CadastroContrato.cs",
-              "ViewState": "AgIAAEIDAAAAAAAAAAAewFUDAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T19:18:30.959Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CadastroContrato.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroContrato.cs",
-              "RelativeDocumentMoniker": "Views\\CadastroContrato.cs",
-              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroContrato.cs [Design]",
-              "RelativeToolTip": "Views\\CadastroContrato.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T18:53:43.323Z",
-              "EditorCaption": " [Design]"
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

@@ -15,6 +15,11 @@ namespace Pilates.Views
     {
         private ControllerAluno<ModelAluno> controllerAluno;
         private ControllerAgenda<ModelAgenda> controllerAgenda;
+
+        private int paginaAtual = 1;
+        private const int registrosPorPagina = 14;
+        private int totalPaginas;
+
         public ConsultaAgenda()
         {
             InitializeComponent();
@@ -47,19 +52,36 @@ namespace Pilates.Views
             {
                 var agendamentos = controllerAgenda.BuscarTodos(incluirInativos) ?? new List<ModelAgenda>();
 
-                //filtra apenas os agendamentos com situação diferente de "CANCELADO"
+                // Filtra apenas os agendamentos com situação diferente de "CANCELADO"
                 if (!incluirCancelados)
                 {
                     agendamentos = agendamentos.Where(a => a.situacao == null || !a.situacao.Equals("CANCELADO", StringComparison.OrdinalIgnoreCase)).ToList();
                 }
+                totalPaginas = (int)Math.Ceiling((double)agendamentos.Count / registrosPorPagina);
 
-                dataGridViewAgenda.DataSource = agendamentos;
+                CarregarPaginaAgenda(paginaAtual, agendamentos);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro ao atualizar a consulta de Agenda: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void CarregarPaginaAgenda(int pagina, List<ModelAgenda> agendamentos)
+        {
+            int inicio = (pagina - 1) * registrosPorPagina;
+            var agendamentosPagina = agendamentos.Skip(inicio).Take(registrosPorPagina).ToList();
+
+            dataGridViewAgenda.DataSource = agendamentosPagina;
+            AtualizarEstadoBotoesAgenda();
+            lblPaginas.Text = $"{paginaAtual} / {totalPaginas}";
+        }
+
+        private void AtualizarEstadoBotoesAgenda()
+        {
+            btnAnterior.Visible = paginaAtual > 1;
+            btnProximo.Visible = paginaAtual < totalPaginas;
+        }
+
         public override void Pesquisar()
         {
             string pesquisa = txtPesquisar.Texts.Trim(); // obtém a pesquisa do txt
@@ -93,15 +115,47 @@ namespace Pilates.Views
             }
         }
 
+        private void InativarAgendamentosPassados()
+        {
+            var agendamentos = controllerAgenda.BuscarTodos(false);
+            DateTime agora = DateTime.Now;
+
+            //filtra os agendamentos que já passaram
+            var agendamentosPassados = agendamentos.Where(a =>
+            {
+                TimeSpan horarioAgendamento;
+                if (TimeSpan.TryParse(a.horario.ToString(), out horarioAgendamento))
+                {
+                    DateTime dataHoraAgendamento = a.data.Add(horarioAgendamento);
+
+                    //verifica se o agendamento já passou
+                    return dataHoraAgendamento <= agora;
+                }
+                else
+                {
+                    Console.WriteLine("Erro ao converter o horário do agendamento para TimeSpan.");
+                    return false;
+                }
+            }).ToList();
+            foreach (var agendamento in agendamentosPassados)
+            {
+                agendamento.Ativo = false;
+                controllerAgenda.AtualizarStatus(agendamento.idAgenda, agendamento.Ativo);
+            }
+        }
+
 
 
         private void ConsultaAgenda_Load(object sender, EventArgs e)
         {
             try
             {
+                InativarAgendamentosPassados();
+
                 CadastroAgenda cadastroAgenda = new CadastroAgenda();
                 cadastroAgenda.FormClosed += (s, args) => AtualizarConsultaAgenda(cbInativos.Checked, cbMostrarCancelados.Checked);
                 dataGridViewAgenda.AutoGenerateColumns = false;
+                dataGridViewAgenda.Columns["idAluno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewAgenda.Columns["Código"].DataPropertyName = "idAgenda";
                 dataGridViewAgenda.Columns["Data"].DataPropertyName = "data";
                 dataGridViewAgenda.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy";
@@ -176,6 +230,24 @@ namespace Pilates.Views
         {
             bool mostrarCancelados = cbMostrarCancelados.Checked;
             AtualizarConsultaAgenda(mostrarCancelados, cbMostrarCancelados.Checked);
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (paginaAtual > 1)
+            {
+                paginaAtual--;
+                AtualizarConsultaAgenda(cbInativos.Checked, cbMostrarCancelados.Checked);
+            }
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            if (paginaAtual < totalPaginas)
+            {
+                paginaAtual++;
+                AtualizarConsultaAgenda(cbInativos.Checked, cbMostrarCancelados.Checked);
+            }
         }
     }
 }

@@ -156,6 +156,7 @@ namespace Pilates.Views
                     
                     int idAluno = Convert.ToInt32(txtCodAluno.Texts);
                     int? idContrato = null;
+
                     if (!string.IsNullOrEmpty(txtCodContrato.Texts))
                     {
                         idContrato = Convert.ToInt32(txtCodContrato.Texts);
@@ -175,6 +176,27 @@ namespace Pilates.Views
                     string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
                     DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Texts, "dd/MM/yyyy", null);
 
+                    DateTime dataHoraAgendamento = dataAgendamento.Add(horario);
+
+                    //ver se a data e horário do agendamento já passaram
+                    if (dataHoraAgendamento <= DateTime.Now)
+                    {
+                        MessageBox.Show("A data e horário do agendamento já passaram. Por favor, insira uma data e horário futuros.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (controllerAgenda.VerificaAgendamentoAluno(idAluno, dataAgendamento, horario))
+                    {
+                        MessageBox.Show("O aluno já está agendado neste dia e horário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (controllerAgenda.VerificaHorariosComLimite(dataAgendamento, horario))
+                    {
+                        MessageBox.Show("Não é possível agendar este horário. Por favor, escolha um horário diferente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    
                     ModelAgenda novoAgendamento = new ModelAgenda
                     {
                         idAluno = idAluno,
@@ -332,6 +354,11 @@ namespace Pilates.Views
             {
                 MessageBox.Show("O agendamento já foi cancelado anteriormente!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }            
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

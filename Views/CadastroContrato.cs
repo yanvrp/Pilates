@@ -264,42 +264,103 @@ namespace Pilates.Views
                     int numeroAulasDefinidas = Convert.ToInt32(txtAulas.Texts);
                     if (numeroAulasSelecionadas != numeroAulasDefinidas)
                     {
-                        MessageBox.Show($"Número de aulas selecionadas ({numeroAulasSelecionadas}) não corresponde ao número definido ({numeroAulasDefinidas}).",
-                            "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Número de aulas selecionadas ({numeroAulasSelecionadas}) não corresponde ao número definido ({numeroAulasDefinidas}).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     DateTime.TryParse(txtInicioPrograma.Texts, out DateTime dataInicioPrograma);
-
                     string periodo = txtPeriodo.Text;
                     int periodoMeses = periodo == "MENSAL" ? 1 :
                                        periodo == "TRIMESTRAL" ? 3 :
                                        periodo == "SEMESTRAL" ? 6 :
                                        periodo == "ANUAL" ? 12 : 0;
                     DateTime dataFimPrograma = dataInicioPrograma.AddMonths(periodoMeses);
-
                     int idAluno = Convert.ToInt32(txtCodAluno.Texts);
                     int idPrograma = Convert.ToInt32(txtCodPrograma.Texts);
                     int idCondPag = Convert.ToInt32(txtCodCondPag.Texts);
                     int diaAcordado = Convert.ToInt32(txtDiaPagar.Texts);
-
                     string horas = cbHoras.Text;
                     string minutos = cbMinutos.Text;
                     string horarioString = $"{horas}:{minutos}";
                     TimeSpan horario = TimeSpan.Parse(horarioString);
-
                     string usuario = Program.usuarioLogado;
-
                     decimal valorTotal = Convert.ToDecimal(txtValorTotal.Texts);
-                   
                     string dCancelamento = new string(txtDataCancelamento.Texts.Where(char.IsDigit).ToArray());
                     DateTime? dataCancelamento = string.IsNullOrEmpty(dCancelamento) || dCancelamento.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtDataCancelamento.Texts, "dd/MM/yyyy", null);
-                    
                     string dFinalContrato = new string(txtFinalContrato.Texts.Where(char.IsDigit).ToArray());
                     DateTime? dataFinalContrato = string.IsNullOrEmpty(dFinalContrato) || dFinalContrato.Length != 8 ? (DateTime?)null : DateTime.ParseExact(txtFinalContrato.Texts, "dd/MM/yyyy", null);
-                    
                     DateTime.TryParse(txtDataCadastro.Texts, out DateTime dataCadastro);
                     DateTime dataUltAlt = Alterar != -7 ? DateTime.Now : DateTime.TryParse(txtDataUltAlt.Texts, out DateTime result) ? result : DateTime.MinValue;
+
+                    if (controllerContrato.VerificarContratoAtivo(idAluno))
+                    {
+                        MessageBox.Show($"Aluno já possui contrato ativo!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    List<ModelAgenda> aulasAgenda = new List<ModelAgenda>();
+                    bool erroAoSalvarAgenda = false;
+
+                    for (DateTime data = dataInicioPrograma; data <= dataFimPrograma; data = data.AddDays(1))
+                    {
+                        //mapeamento dos dias da semana para DayOfWeek
+                        DayOfWeek diaAtual = data.DayOfWeek;
+                        string diaFormatado = diaAtual switch
+                        {
+                            DayOfWeek.Monday => "SEGUNDA",
+                            DayOfWeek.Tuesday => "TERÇA",
+                            DayOfWeek.Wednesday => "QUARTA",
+                            DayOfWeek.Thursday => "QUINTA",
+                            DayOfWeek.Friday => "SEXTA",
+                            DayOfWeek.Saturday => "SÁBADO",
+                            DayOfWeek.Sunday => "DOMINGO",
+                            _ => throw new ArgumentOutOfRangeException()
+                        };
+
+                        //ve dia atual
+                        if (diasSelecionados.Contains(diaFormatado))
+                        {
+                            if (controllerAgenda.VerificaHorarios(data, horario))
+                            {
+                                MessageBox.Show($"Horário indisponível para {data.ToShortDateString()} às {horario}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                erroAoSalvarAgenda = true;
+                                break;
+                            }
+
+                            if (controllerAgenda.VerificaMaxAlunos(data, horario))
+                            {
+                                MessageBox.Show($"Limite de alunos excedido para {data.ToShortDateString()} às {horario}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                erroAoSalvarAgenda = true;
+                                break;
+                            }
+
+                            //ve se a aula marcada e horario ja passou
+                            if (data == DateTime.Today && horario < DateTime.Now.TimeOfDay)
+                            {
+                                continue; //se passou, para pra prox data
+                            }
+                            if (data == dataInicioPrograma && diaFormatado == DateTime.Today.ToString("dddd").ToUpper() && horario.Hours == DateTime.Now.Hour && horario.Minutes == DateTime.Now.Minute)
+                            {
+                                data = data.AddDays(7);
+                                continue;
+                            }
+
+                            ModelAgenda aula = new ModelAgenda
+                            {
+                                idAluno = idAluno,
+                               // idContrato = novoContrato.idContrato,
+                                horario = horario,
+                                data = data,
+                                situacao = null,
+                                Ativo = Ativo,
+                                dataCadastro = dataCadastro,
+                                dataUltAlt = dataUltAlt,
+                                usuarioUltAlt = usuario
+                            };
+                            aulasAgenda.Add(aula);
+                        }
+                    }
+                    if (erroAoSalvarAgenda) return;
 
                     ModelContrato novoContrato = new ModelContrato
                     {
@@ -319,60 +380,14 @@ namespace Pilates.Views
                         Ativo = Ativo,
                         usuarioUltAlt = usuario
                     };
+
                     if (Alterar == -7)
                     {
                         novoContrato.idContrato = controllerContrato.SalvarC(novoContrato);
 
-                        List<ModelAgenda> aulasAgenda = new List<ModelAgenda>();
-
-                        for (DateTime data = dataInicioPrograma; data <= dataFimPrograma; data = data.AddDays(1))
-                        {
-                            //mapeamento dos dias da semana para DayOfWeek
-                            DayOfWeek diaAtual = data.DayOfWeek;
-                            string diaFormatado = diaAtual switch
-                            {
-                                DayOfWeek.Monday => "SEGUNDA",
-                                DayOfWeek.Tuesday => "TERÇA",
-                                DayOfWeek.Wednesday => "QUARTA",
-                                DayOfWeek.Thursday => "QUINTA",
-                                DayOfWeek.Friday => "SEXTA",
-                                DayOfWeek.Saturday => "SÁBADO",
-                                DayOfWeek.Sunday => "DOMINGO",
-                                _ => throw new ArgumentOutOfRangeException()
-                            };
-
-                            //ve dia atual
-                            if (diasSelecionados.Contains(diaFormatado))
-                            {
-                                //ve se a aula marcada e horario ja passou
-                                if (data == DateTime.Today && horario < DateTime.Now.TimeOfDay)
-                                {
-                                    continue; //se passou, para pra prox data
-                                }
-                                if (data == dataInicioPrograma && diaFormatado == DateTime.Today.ToString("dddd").ToUpper() && horario.Hours == DateTime.Now.Hour && horario.Minutes == DateTime.Now.Minute)
-                                {
-                                    data = data.AddDays(7);
-                                    continue;
-                                }
-
-                                ModelAgenda aula = new ModelAgenda
-                                {
-                                    idAluno = idAluno,
-                                    idContrato = novoContrato.idContrato,
-                                    horario = horario,
-                                    data = data,
-                                    situacao = null,
-                                    Ativo = Ativo,
-                                    dataCadastro = dataCadastro,
-                                    dataUltAlt = dataUltAlt,
-                                    usuarioUltAlt = usuario
-                                };
-                                aulasAgenda.Add(aula);
-                            }
-                        }
-
                         foreach (var aula in aulasAgenda)
                         {
+                            aula.idContrato = novoContrato.idContrato;
                             controllerAgenda.Salvar(aula);
                         }
 
@@ -456,7 +471,7 @@ namespace Pilates.Views
 
         private void CadastroContrato_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ((ConsultaContrato)this.Owner).AtualizarConsultaContratos(false);
+            ((ConsultaContrato)this.Owner).AtualizarConsultaContratos(false, false);
         }
         private void CalculaValorTotal()
         {
@@ -849,6 +864,11 @@ namespace Pilates.Views
         private void txtCodPrograma__TextChanged(object sender, EventArgs e)
         {
             dataGridViewParcelas.Rows.Clear();
+        }
+
+        private void yButton1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
