@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using System.IO;
 using iText.Layout.Borders;
 using iText.Layout.Properties;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Pilates.DAO
 {
@@ -63,17 +66,15 @@ namespace Pilates.DAO
                 command.ExecuteNonQuery();
             }
         }
-        public void GerarContratoPdf(int idContrato, string caminhoArquivo)
+        public void GerarContratoPdf(int idContrato)
         {
-
-            // Consultar os dados do contrato no banco de dados
             string query = @"
-        SELECT c.dataInicioPrograma, c.periodo, c.diasSemana, c.horario, c.diaAcordado, 
-               c.valorTotal, a.Aluno, a.cpf, p.titulo, p.numeroAulas, p.tipoPrograma
-        FROM contrato c
-        JOIN aluno a ON c.idAluno = a.idAluno
-        JOIN programa p ON c.idPrograma = p.idPrograma
-        WHERE c.idContrato = @idContrato";
+    SELECT c.dataInicioPrograma, c.periodo, c.diasSemana, c.horario, c.diaAcordado, 
+           c.valorTotal, a.Aluno, a.cpf, p.titulo, p.numeroAulas, p.tipoPrograma, c.idCondPagamento
+    FROM contrato c
+    JOIN aluno a ON c.idAluno = a.idAluno
+    JOIN programa p ON c.idPrograma = p.idPrograma
+    WHERE c.idContrato = @idContrato";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -85,10 +86,8 @@ namespace Pilates.DAO
                 {
                     if (reader.Read())
                     {
-                        // Extrair os dados do contrato
                         var dataInicioPrograma = reader.GetDateTime(0).ToString("dd/MM/yyyy");
                         var periodo = reader.GetString(1);
-                        //var diasSemana = reader.GetString(2);
                         var horario = reader.GetTimeSpan(3).ToString(@"hh\:mm");
                         var diaAcordado = reader.GetInt32(4);
                         var valorTotal = reader.GetDecimal(5).ToString("C2");
@@ -97,15 +96,50 @@ namespace Pilates.DAO
                         var titulo = reader.GetString(8);
                         var numeroAulas = reader.GetInt32(9);
                         var tipoPrograma = reader.GetString(10);
-                        //cria o PDF
-                        using (PdfWriter writer = new PdfWriter(caminhoArquivo))
-                        using (PdfDocument pdf = new PdfDocument(writer))
-                        using (Document document = new Document(pdf))
+                        var idCondicaoPagamento = reader.GetInt32(11);
+
+                        string condPagamento = string.Empty;
+                        int numeroParcelas = 0;
+                        List<string> parcelas = new List<string>();
+
+                        string queryCondPagamento = "SELECT condicaoPagamento FROM condicaoPagamento WHERE idCondPagamento = @idCondPagamento";
+                        using (SqlCommand commandCondicao = new SqlCommand(queryCondPagamento, connection))
                         {
-                            var caminhoLogo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Imagens", "logo.jpeg");
-                            try
+                            commandCondicao.Parameters.AddWithValue("@idCondPagamento", idCondicaoPagamento);
+                            condPagamento = commandCondicao.ExecuteScalar()?.ToString() ?? "Condição não encontrada";
+                        }
+
+                        string queryParcelas = @"
+        SELECT parcela, valorParcela
+        FROM contasReceber
+        WHERE numero = @idContrato
+        ORDER BY parcela";
+
+                        using (SqlCommand commandParcelas = new SqlCommand(queryParcelas, connection))
+                        {
+                            commandParcelas.Parameters.AddWithValue("@idContrato", idContrato);
+                            using (SqlDataReader readerParcelas = commandParcelas.ExecuteReader())
                             {
-                                var imagem = new Image(ImageDataFactory.Create(caminhoLogo)).SetWidth(120).SetHeight(100);
+                                while (readerParcelas.Read())
+                                {
+                                    int numeroParcela = readerParcelas.GetInt32(0);
+                                    string valorParcela = readerParcelas.GetDecimal(1).ToString("C2");
+                                    parcelas.Add($"Parcela {numeroParcela}: {valorParcela}");
+                                }
+                                numeroParcelas = parcelas.Count;
+                            }
+                        }
+
+                        using (MemoryStream memoryStream = new MemoryStream())
+                        {
+                            using (PdfWriter writer = new PdfWriter(memoryStream))
+                            using (PdfDocument pdf = new PdfDocument(writer))
+                            using (Document document = new Document(pdf))
+                            {
+                                var caminhoLogo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Imagens", "logo.jpeg");
+                                try
+                                {
+                                    var imagem = new Image(ImageDataFactory.Create(caminhoLogo)).SetWidth(120).SetHeight(100);
 
                                 // Cria uma tabela com duas colunas
                                 Table table = new Table(2);
@@ -142,79 +176,86 @@ namespace Pilates.DAO
                             }
 
                             document.Add(new Paragraph());
+                                document.Add(new Paragraph().Add(new Text("CONTRATO").SetBold()));
+                                document.Add(new Paragraph().Add(new Text("- Início do Programa: ").SetBold()).Add(new Text(dataInicioPrograma)));
+                                document.Add(new Paragraph().Add(new Text("- Período: ").SetBold()).Add(new Text(periodo)));
 
-                            //detalhes do contrato
-                            document.Add(new Paragraph().Add(new Text("CONTRATO").SetBold()));
-                            document.Add(new Paragraph().Add(new Text("- Início do Programa: ").SetBold()).Add(new Text(dataInicioPrograma)));
-                            document.Add(new Paragraph().Add(new Text("- Período: ").SetBold()).Add(new Text(periodo)));
+                                document.Add(new Paragraph());
+                                //document.Add(new Paragraph());
 
-                            document.Add(new Paragraph());
-                            //document.Add(new Paragraph());
+                                //informações do contratante
+                                document.Add(new Paragraph("CONTRATANTE").SetBold());
+                                document.Add(new Paragraph().Add(new Text("- Nome: ").SetBold()).Add(new Text(aluno)));
+                                document.Add(new Paragraph().Add(new Text("- CPF: ").SetBold()).Add(new Text(cpf)));
 
-                            //informações do contratante
-                            document.Add(new Paragraph("CONTRATANTE").SetBold());
-                            document.Add(new Paragraph().Add(new Text("- Nome: ").SetBold()).Add(new Text(aluno)));
-                            document.Add(new Paragraph().Add(new Text("- CPF: ").SetBold()).Add(new Text(cpf)));
+                                document.Add(new Paragraph());
 
-                            document.Add(new Paragraph());
+                                string diasSemana = reader.GetString(2);
+                                string[] dias = diasSemana.Split(';');
+                                string diasFormatados = string.Join(" - ", dias);
 
-                            string diasSemana = reader.GetString(2);
-                            string[] dias = diasSemana.Split(';');
-                            string diasFormatados = string.Join(" - ", dias);
+                                //informações do programa
+                                document.Add(new Paragraph("TIPO DE PROGRAMA").SetBold());
+                                document.Add(new Paragraph().Add(new Text("- Tipo de Programa: ").SetBold()).Add(new Text(tipoPrograma)));
+                                document.Add(new Paragraph().Add(new Text("- Plano: ").SetBold()).Add(new Text(numeroAulas.ToString())).Add(new Text(" VEZ(ES) NA SEMANA")));
+                                document.Add(new Paragraph().Add(new Text("- Dias da Semana: ").SetBold()).Add(new Text(diasFormatados)));
+                                document.Add(new Paragraph().Add(new Text("- Horário: ").SetBold()).Add(new Text(horario)));
 
-                            //informações do programa
-                            document.Add(new Paragraph("TIPO DE PROGRAMA").SetBold());
-                            document.Add(new Paragraph().Add(new Text("- Tipo de Programa: ").SetBold()).Add(new Text(tipoPrograma)));
-                            document.Add(new Paragraph().Add(new Text("- Plano: ").SetBold()).Add(new Text(numeroAulas.ToString())).Add(new Text(" VEZ(ES) NA SEMANA")));
-                            document.Add(new Paragraph().Add(new Text("- Dias da Semana: ").SetBold()).Add(new Text(diasFormatados)));
-                            document.Add(new Paragraph().Add(new Text("- Horário: ").SetBold()).Add(new Text(horario)));
+                                document.Add(new Paragraph());
+                                document.Add(new Paragraph());
 
-                            document.Add(new Paragraph());
-                            document.Add(new Paragraph());
+                                //regras do contrato
+                                document.Add(new Paragraph("REGRAS").SetBold());
+                                document.Add(new Paragraph("1- O atendimento das aulas de Pilates acontecerão na Clínica Equilíbrio Saúde & Bem Estar, localizada na Rua Manoel Moreira Andrion, 1386 - Jardim Panorama.").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                                document.Add(new Paragraph("a) Nos dias e horários neste contrato relatados.").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
 
-                            //regras do contrato
-                            document.Add(new Paragraph("REGRAS").SetBold());
-                            document.Add(new Paragraph("1- O atendimento das aulas de Pilates acontecerão na Clínica Equilíbrio Saúde & Bem Estar, localizada na Rua Manoel Moreira Andrion, 1386 - Jardim Panorama.").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-                            document.Add(new Paragraph("a) Nos dias e horários neste contrato relatados.").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                                document.Add(new Paragraph());
 
-                            document.Add(new Paragraph());
+                                document.Add(new Paragraph($"2- Reposições: Será realizado 2 aulas de reposições ao mês com justificativa e aviso prévio de pelo menos 1 hora de antecedência da aula, para avisos no horário ou passados do horário não será realizada reposição;\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                                document.Add(new Paragraph($"a) As aulas perdidas em relação a viagens serão realizadas reposições referentes a 15 dias do plano mensal;").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                                document.Add(new Paragraph($"b) Não é realizado reposições de aulas referentes a feriados.").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                                document.Add(new Paragraph($"c) As reposições tem um prazo máximo de 30 dias para serem agendadas de comum acordo para serem realizadas caso ultrapasse esse período perderá o direito a reposição.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
 
-                            document.Add(new Paragraph($"2- O serviço contratado tem o valor mensal de {valorTotal}, tendo que ser pago de forma adiantada e sempre na mesma data;\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                                document.Add(new Paragraph());
+
+                                document.Add(new Paragraph($"3- O Contratante poderá trancar o plano por um período de 2 meses caso seja necessário realizar alguma cirurgia;\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                                document.Add(new Paragraph($"a) Esta pausa no contrato deverá ser avisada com antecedência de 30 dias, caso não avise com antecedência terá que pagar a mensalidade do próximo mês;\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                                document.Add(new Paragraph($"b) Só será reservado horário mediante pagamento da mensalidade integralmente, nos meses parado.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+
+                                document.Add(new Paragraph());
+
+                                document.Add(new Paragraph($"4- CANCELAMENTO: Para o cancelamento do plano antes do prazo final do contrato o contratante fica ciente de ter que pagar uma multa referente a uma mensalidade do plano que o mesmo contratou.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+
+                                document.Add(new Paragraph());
+
+                                document.Add(new Paragraph($"5- Mensalidades de Dezembro e Janeiro devem ser pagas integralmente e na mesma data de comum acordo.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+
+                                document.Add(new Paragraph());
+
+                                document.Add(new Paragraph($"6- RECESSO de Fim de Ano: será realizado recesso e férias da fisioterapeuta referente a 15 dias, caso ultrapasse quinze dias será realizado reposições das aulas referentes ao que ultrapassou.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+
+                                document.Add(new Paragraph());
+
+                                document.Add(new Paragraph($"7- As mensalidades sofrerão um reajuste de 5% a cada período de um ano sobre a mensalidade já paga.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+
+                                document.Add(new Paragraph());
+
+
+                                document.Add(new Paragraph($"8- O serviço contratado tem o valor mensal de {valorTotal}, tendo que ser pago de forma adiantada e sempre na mesma data;\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
                             document.Add(new Paragraph($"a) Data acordada para o pagamento mensal: {diaAcordado};").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-                            document.Add(new Paragraph($"b) Para planos de 1x na semana são 4 aulas ao mês, para planos de 2x na semana serão realizadas 8 aulas ao mês e para planos de 3x na semana serão realizadas 12 aulas ao mês.").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                            
+                            string textoCondicaoPagamento = $"b) A condição de pagamento acordada foi: {condPagamento}, com {numeroParcelas} parcela(s):";
+                            document.Add(new Paragraph(textoCondicaoPagamento));
+
+                            foreach (string parcela in parcelas)
+                            {
+                                 document.Add(new Paragraph(parcela).SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
+                            }
+                            document.Add(new Paragraph($"c) Para planos de 1x na semana são 4 aulas ao mês, para planos de 2x na semana serão realizadas 8 aulas ao mês e para planos de 3x na semana serão realizadas 12 aulas ao mês.").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
 
                             document.Add(new Paragraph());
 
-                            document.Add(new Paragraph($"3- Reposições: Será realizado 2 aulas de reposições ao mês com justificativa e aviso prévio de pelo menos 1 hora de antecedência da aula, para avisos no horário ou passados do horário não será realizada reposição;\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-                            document.Add(new Paragraph($"a) As aulas perdidas em relação a viagens serão realizadas reposições referentes a 15 dias do plano mensal;").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-                            document.Add(new Paragraph($"b) Não é realizado reposições de aulas referentes a feriados.").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-                            document.Add(new Paragraph($"c) As reposições tem um prazo máximo de 30 dias para serem agendadas de comum acordo para serem realizadas caso ultrapasse esse período perderá o direito a reposição.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-
-                            document.Add(new Paragraph());
-
-                            document.Add(new Paragraph($"4- O Contratante poderá trancar o plano por um período de 2 meses caso seja necessário realizar alguma cirurgia;\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-                            document.Add(new Paragraph($"a) Esta pausa no contrato deverá ser avisada com antecedência de 30 dias, caso não avise com antecedência terá que pagar a mensalidade do próximo mês;\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-                            document.Add(new Paragraph($"b) Só será reservado horário mediante pagamento da mensalidade integralmente, nos meses parado.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-
-                            document.Add(new Paragraph());
-
-                            document.Add(new Paragraph($"5- CANCELAMENTO: Para o cancelamento do plano antes do prazo final do contrato o contratante fica ciente de ter que pagar uma multa referente a uma mensalidade do plano que o mesmo contratou.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-
-                            document.Add(new Paragraph());
-
-                            document.Add(new Paragraph($"6- Mensalidades de Dezembro e Janeiro devem ser pagas integralmente e na mesma data de comum acordo.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-
-                            document.Add(new Paragraph());
-
-                            document.Add(new Paragraph($"7- RECESSO de Fim de Ano: será realizado recesso e férias da fisioterapeuta referente a 15 dias, caso ultrapasse quinze dias será realizado reposições das aulas referentes ao que ultrapassou.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-
-                            document.Add(new Paragraph());
-
-                            document.Add(new Paragraph($"8- As mensalidades sofreram um reajuste de 5% a cada período de um ano sobre a mensalidade já paga.\r\n").SetTextAlignment(iText.Layout.Properties.TextAlignment.JUSTIFIED));
-
-                            document.Add(new Paragraph());
-                            // Data e assinatura
-                            var dataAtual = DateTime.Now;
+                                var dataAtual = DateTime.Now;
                             document.Add(new Paragraph($"\nFoz do Iguaçu, {dataAtual:dd} de {dataAtual:MMMM} de {dataAtual:yyyy}."));
 
                             document.Add(new Paragraph());
@@ -235,10 +276,45 @@ namespace Pilates.DAO
                             document.Add(new Paragraph("Contratante").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                             document.Add(new Paragraph("Nome: " + aluno).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                             document.Add(new Paragraph("CPF: " + cpfFormatado).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                                document.Close();
+                            }
+                            string alunoFormatado = FormatarNomeParaArquivo(aluno);
+                            string tempPath = Path.Combine(Path.GetTempPath(), $"CONTRATO-{alunoFormatado}.pdf");
+                            File.WriteAllBytes(tempPath, memoryStream.ToArray());
+
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = tempPath,
+                                UseShellExecute = true
+                            });
                         }
                     }
                 }
             }
+        }
+        string RemoverAcentos(string texto)
+        {
+            StringBuilder textoNormalizado = new StringBuilder();
+            foreach (char c in texto.Normalize(NormalizationForm.FormD))
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    textoNormalizado.Append(c);
+            }
+            return textoNormalizado.ToString().Normalize(NormalizationForm.FormC);
+        }
+        string FormatarNomeParaArquivo(string nomeCompleto)
+        {
+            // Remove acentos e caracteres especiais, convertendo para caracteres sem acento
+            nomeCompleto = RemoverAcentos(nomeCompleto);
+
+            // Divide o nome completo em partes e seleciona os primeiros dois nomes
+            string[] partes = nomeCompleto.Split(' ');
+            string nomeFormatado = partes.Length > 1 ? $"{partes[0]}-{partes[1]}" : partes[0];
+
+            // Remove qualquer caractere que não seja letra, número ou hífen
+            nomeFormatado = Regex.Replace(nomeFormatado, "[^a-zA-Z0-9-]", "");
+
+            return nomeFormatado;
         }
         public int GetUltimoNumero()
         {

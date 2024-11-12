@@ -250,31 +250,6 @@ namespace Pilates.Views
             bool incluirInativos = cbInativos.Checked;
             AtualizarConsultaContratos(incluirInativos, cbMostrarTerminados.Checked);
         }
-        string FormatarNomeParaArquivo(string nomeCompleto)
-        {
-            // Remove acentos e caracteres especiais, convertendo para caracteres sem acento
-            nomeCompleto = RemoverAcentos(nomeCompleto);
-
-            // Divide o nome completo em partes e seleciona os primeiros dois nomes
-            string[] partes = nomeCompleto.Split(' ');
-            string nomeFormatado = partes.Length > 1 ? $"{partes[0]}-{partes[1]}" : partes[0];
-
-            // Remove qualquer caractere que não seja letra, número ou hífen
-            nomeFormatado = Regex.Replace(nomeFormatado, "[^a-zA-Z0-9-]", "");
-
-            return nomeFormatado;
-        }
-
-        string RemoverAcentos(string texto)
-        {
-            StringBuilder textoNormalizado = new StringBuilder();
-            foreach (char c in texto.Normalize(NormalizationForm.FormD))
-            {
-                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
-                    textoNormalizado.Append(c);
-            }
-            return textoNormalizado.ToString().Normalize(NormalizationForm.FormC);
-        }
         private void btnImprimirContrato_Click(object sender, EventArgs e)
         {
             if (dataGridViewContrato.SelectedRows.Count == 0)
@@ -298,11 +273,8 @@ namespace Pilates.Views
 
             if (aluno != null && !string.IsNullOrEmpty(aluno.Aluno))
             {
-                string nomeFormatado = FormatarNomeParaArquivo(aluno.Aluno);
-                string caminhoArquivo = $@"C:\Contratos\CONTRATO-{nomeFormatado}.pdf";
-
-                controllerContrato.GerarContratoPdf(idContrato, caminhoArquivo);
-                MessageBox.Show("Contrato gerado com sucesso! Você pode visualizá-lo em: " + caminhoArquivo, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                controllerContrato.GerarContratoPdf(idContrato);
+                //MessageBox.Show("Contrato gerado com sucesso! Você pode visualizá-lo em: " , "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

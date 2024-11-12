@@ -1,12 +1,85 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\dao\\daocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:dao\\daocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\controller\\controllercontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:controller\\controllercontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\views\\consultacontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\consultacontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\App.config",
+              "RelativeDocumentMoniker": "App.config",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\App.config",
+              "RelativeToolTip": "App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAC1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-11-12T03:24:36.757Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConsultaContrato.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContrato.cs",
+              "RelativeDocumentMoniker": "Views\\ConsultaContrato.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContrato.cs",
+              "RelativeToolTip": "Views\\ConsultaContrato.cs",
+              "ViewState": "AgIAAPsAAAAAAAAAAAAAABIBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T02:59:47.989Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ControllerContrato.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Controller\\ControllerContrato.cs",
+              "RelativeDocumentMoniker": "Controller\\ControllerContrato.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Controller\\ControllerContrato.cs",
+              "RelativeToolTip": "Controller\\ControllerContrato.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T02:59:37.548Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DAOContrato.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\DAO\\DAOContrato.cs",
+              "RelativeDocumentMoniker": "DAO\\DAOContrato.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\DAO\\DAOContrato.cs",
+              "RelativeToolTip": "DAO\\DAOContrato.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAawH8AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T02:58:06.31Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

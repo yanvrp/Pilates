@@ -23,9 +23,9 @@ namespace Pilates.Controller
         {
             contratoDAO.Alterar(obj);
         }
-        public void GerarContratoPdf(int idContrato, string caminhoArquivo)
+        public void GerarContratoPdf(int idContrato)
         {
-            contratoDAO.GerarContratoPdf(idContrato, caminhoArquivo);
+            contratoDAO.GerarContratoPdf(idContrato);
         }
         public void CancelarContrato(int idContrato)
         {
