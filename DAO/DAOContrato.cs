@@ -262,8 +262,8 @@ namespace Pilates.DAO
                             document.Add(new Paragraph());
 
                             document.Add(new Paragraph("\n-------------------------------").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
-                            document.Add(new Paragraph("Fisioterapeuta").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
-                            document.Add(new Paragraph("Dheyme Conte").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                            document.Add(new Paragraph("FISIOTERAPEUTA").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                            document.Add(new Paragraph("DHEYME CONTE").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                             document.Add(new Paragraph("CPF: 067.820.039-45").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 
                             document.Add(new Paragraph());
@@ -273,8 +273,8 @@ namespace Pilates.DAO
 
 
                             document.Add(new Paragraph("\n-------------------------------").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
-                            document.Add(new Paragraph("Contratante").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
-                            document.Add(new Paragraph("Nome: " + aluno).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                            document.Add(new Paragraph("CONTRATANTE").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                            document.Add(new Paragraph(aluno).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                             document.Add(new Paragraph("CPF: " + cpfFormatado).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                                 document.Close();
                             }

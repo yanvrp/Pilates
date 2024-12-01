@@ -3,7 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\dao\\daocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\cadastroavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\cadastroavaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|c:\\users\\yanvr\\documents\\projetos\\pilates\\views\\consultacontasreceber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\consultacontasreceber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\views\\consultacontasreceber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:views\\consultacontasreceber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\dao\\daocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{33031A85-68F8-4458-A013-B630C47ACA3A}|Pilates.csproj|solutionrelative:dao\\daocontrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -26,11 +38,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CadastroAvaliacao.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAvaliacao.cs",
+              "RelativeDocumentMoniker": "Views\\CadastroAvaliacao.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\CadastroAvaliacao.cs [Design]",
+              "RelativeToolTip": "Views\\CadastroAvaliacao.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T00:36:42.913Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ConsultaContasReceber.cs",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContasReceber.cs",
+              "RelativeDocumentMoniker": "Views\\ConsultaContasReceber.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContasReceber.cs",
+              "RelativeToolTip": "Views\\ConsultaContasReceber.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAHcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T03:18:37.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ConsultaContasReceber.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContasReceber.cs",
+              "RelativeDocumentMoniker": "Views\\ConsultaContasReceber.cs",
+              "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContasReceber.cs [Design]",
+              "RelativeToolTip": "Views\\ConsultaContasReceber.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T03:18:03.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -38,11 +86,12 @@
               "RelativeToolTip": "App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAC1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-11-12T03:24:36.757Z"
+              "WhenOpened": "2024-11-12T03:24:36.757Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "ConsultaContrato.cs",
               "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Views\\ConsultaContrato.cs",
               "RelativeDocumentMoniker": "Views\\ConsultaContrato.cs",
@@ -54,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ControllerContrato.cs",
               "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\Controller\\ControllerContrato.cs",
               "RelativeDocumentMoniker": "Controller\\ControllerContrato.cs",
@@ -66,16 +115,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "DAOContrato.cs",
               "DocumentMoniker": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\DAO\\DAOContrato.cs",
               "RelativeDocumentMoniker": "DAO\\DAOContrato.cs",
               "ToolTip": "C:\\Users\\yanvr\\Documents\\Projetos\\Pilates\\DAO\\DAOContrato.cs",
               "RelativeToolTip": "DAO\\DAOContrato.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAawH8AAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAawAkBAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T02:58:06.31Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-12T02:58:06.31Z"
             }
           ]
         }
